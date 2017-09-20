@@ -22,7 +22,7 @@ a:hover {
 }
 
 .form {
-  background: rgba(19, 35, 47, 0.9);
+  background: #ccc;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -30,17 +30,19 @@ a:hover {
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
 }
 
-.tab-group {
+/*.tab-group {
   list-style: none;
   padding: 0;
   margin: 0 0 40px 0;
-}
-.tab-group:after {
+}*/
+
+
+/*.tab-group:after {
   content: "";
   display: table;
   clear: both;
-}
-.tab-group li a {
+}*/
+/*.tab-group li a {
   display: block;
   text-decoration: none;
   padding: 15px;
@@ -48,24 +50,24 @@ a:hover {
   color: #a0b3b0;
   font-size: 20px;
   float: left;
-  width: 50%;
+  width: 100%;
   text-align: center;
   cursor: pointer;
   -webkit-transition: .5s ease;
   transition: .5s ease;
-}
-.tab-group li a:hover {
+}*/
+/*.tab-group li a:hover {
   background: #22586b;
   color: #ffffff;
-}
-.tab-group .active a {
+}*/
+/*.tab-group .active a {
   background: #3091B2;
   color: #ffffff;
 }
 
 .tab-content > div:last-child {
   display: none;
-}
+}*/
 
 h1 {
   text-align: center;
@@ -157,7 +159,7 @@ textarea {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .1em;
-  background: #3091B2;
+  background: #EB5E28;
   color: #ffffff;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
