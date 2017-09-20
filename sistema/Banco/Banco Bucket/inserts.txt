@@ -1,5 +1,0 @@
-insert into permissao values (0,'Administrador'),(0,'Usuario'),(0,'Cliente'),(0,'Outros');
-insert into grupo_usr values(0,'Gerenciador',1),(0,'Funcionario',1),(0,'Office Boy',4),(0,'Cliente',3),(0,'Auxliar',2);
-insert into usuario values(0,'Josicleia Antunes','josecleiaantu@gmail.com','1195555-8773','123456','josicleia'),(0,'Antunes','blablalba@blablabla.com.br','11958749654','123456','antunes'),(0,'silvana silva','silsil@gmail.com','11985478966','124556','silsil');
-insert into categoria values(0,'Mercado','Compras'),(0,'Investimento','Receita'),(0,'Roupas','Consumo'),(0,'Gas','Consumo'),(0,'Agua','Consumo'),(0,'Luz','Consumo');
-insert into despesa value(0,'Conta de Luz',now(),'2017-10-19','2017-10-19','100.5','100.5','5','0','Boleto',6),(0,'Conta de Agua',now(),'2017-10-20','2017-10-20','100.5','100.5','5','0','Boleto',5),(0,'Mercado',now(),'2017-10-19','2017-10-19','200.00','200.00','0','0','Cartão Debito',1);
