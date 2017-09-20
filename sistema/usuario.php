@@ -5,7 +5,7 @@
         <!-- Perfil -->
         <div class="row">
             <div class="col-lg-4 col-md-5">
-                <div class="card card-user">
+                <div class="card card-user" style=" height:420px">
                     <div class="image">
                         <img src="assets/img/background.jpg" alt="..."/>
                     </div>
@@ -27,9 +27,11 @@
             </div>
 
             <!--  -->
+                
 
             <!-- CHAT -->
-            <div class="card">
+            <div class="esconder">
+            <div class="card" >
                 <div class="header">
                     <h4 class="title">Chat</h4>
                 </div>
@@ -93,12 +95,12 @@
                 </div>
             </div>
         </div>
-
-        <!--  -->
+</div>
+        <!-- -->
 
         <!-- Perfil Cadastro -->
         <div class="col-lg-8 col-md-7" style="height: 420px">
-            <div class="card" style="height: 100%;"">
+            <div class="card" style="height:100%">
                 <div class="header">
                     <h4 class="title">Editar Perfil</h4>
                 </div>
@@ -157,7 +159,7 @@
                         </div>
                     </div>
 
-
+         
 
                     <div class="text-center">
                         <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar
@@ -168,6 +170,9 @@
                 </div>
             </div>
 
+            <!--div class="col-lg-12 col-md-12">
+           <div id="img"><img src="img/fundoMadeira.jpg" alt="" ></div>
+            </div-->
             <!-- Administrador -->
 
             <div class="col-lg-12 col-md-12">
