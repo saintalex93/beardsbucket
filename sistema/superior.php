@@ -11,6 +11,10 @@ $url = basename($_SERVER['PHP_SELF']);
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>Paper Dashboard by Creative Tim</title>
+	
+	<!--Temos que trocar o nome do css do login por que esta o nome de style.css-->
+	<link rel="stylesheet" href="css/styleTrocar.css">
+	
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
