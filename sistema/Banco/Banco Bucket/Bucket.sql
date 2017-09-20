@@ -179,11 +179,11 @@ insert into PF_RECEITA values(0,1,1,1),(0,2,2,2),(0,3,3,3);
 insert into PJ values(0,'12300400000133','Guanabarando a ruela','Ruelas a venda','Ruelas Perfeitas','1123456789','1123456789'),(0,'12300400000133','Guanabarando a ruela','Ruelas a venda','Ruelas Perfeitas','1123456789','1123456789'),(0,'12300400000133','Guanabarando a ruela','Ruelas a venda','Ruelas Perfeitas','1123456789','1123456789');
 insert into PJ_DESPESA values(0,1,1,1),(0,2,2,2),(0,3,3,3);
 insert into PJ_RECEITA values(0,1,1,1),(0,2,2,2),(0,3,3,3);
-insert into ENDERECO values(0,'rua joaquim barros','jardim joaquim','988','02555898','ao lado do supermercado Anal',1),(0,'Rua dos Camileiros','Jardim dos Anos','988','02578987','ao lado do supermercado Vagi',1),(0,'rua Landos Alves','jardim joaquim','8974','87985465','Posto IBE',1);
 INSERT INTO UF VALUES (0,"SP", "São Paulo"), (0, "AC", "Acre"), (0, "AL", "Alagoas"), (0, "AP", "Amapá"), (0, "AM", "Amazonas"), (0, "BA", "Bahia"),
 (0, "CE", "Ceará"), (0, "DF	", "Distrito Federal"), (0, "ES", "Espírito Santo"), (0, "GO", "Goiânia"), (0, "MA", "Maranhão"), (0, "MT", "Mato Grosso"), (0, "MS", "Mato Grosso do Sul"), (0, "MG", "Minas Gerais"), (0, "PA", "Pará"),
 (0, "PB	", "Paraíba"), (0, "PR", "Paraná"), (0, "PE", "Pernambunco"), (0, "PI", "Piauí"), (0, "RJ", "Rio de Janeiro"), (0, "RN", "Rio Grande do Norte"), (0, "RS", "Rio Grande do Sul"), (0, "RO", "Rondônia"), (0, "RR", "Roraima"), 
 (0, "SC", "Santa Catarina"), (0, "SE", "Sergipe"), (0, "TO", "Tocantins");
+insert into ENDERECO values(0,'rua joaquim barros','jardim joaquim','988','02555898','ao lado do supermercado Anal',1),(0,'Rua dos Camileiros','Jardim dos Anos','988','02578987','ao lado do supermercado Vagi',1),(0,'rua Landos Alves','jardim joaquim','8974','87985465','Posto IBE',1);
 insert into PF_END values (0,1,1),(0,2,2),(0,3,3);
 insert into PJ_END values (0,1,1),(0,2,2),(0,3,3);
 -- ------------------------- INSERTS INICIAIS -- -----------------------------------
