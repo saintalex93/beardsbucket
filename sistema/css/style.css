@@ -172,3 +172,34 @@ height: 350px;
 
 
 }
+
+
+
+
+/*CADASTRO*/
+
+
+#categoria{
+  display: none;
+}
+
+
+
+
+.NavegadorSuperior{
+
+padding-bottom: 40px;
+}
+
+
+.botao{
+  margin: 20px 5px;
+}
+.botoes{
+  margin-bottom: 30px;
+}
+
+
+#lancDesp, #divCategoria, #divConsulta{
+  display: none;
+}
