@@ -1,6 +1,6 @@
 <?php include_once('superior.php');?>
 
-		<div class="content">
+<!-- 		<div class="content">
             <div class="container-fluid">
                 <div class="card card-map">
 					<div class="header">
@@ -11,6 +11,8 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
-<?php include_once('inferior.php');?>
+<!-- Incluir inferior -->
+
+

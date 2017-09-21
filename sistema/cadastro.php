@@ -2,14 +2,14 @@
 
 <?php include_once('superior.php');?>
 
-<div class="card " style="height:245px; margin: 50px 40px 110px 40px; ">
+<div class="card "  style="height:245px; margin: 50px 40px 110px 40px; ">
     <div class="card col-md-12">
         <div class="header">
             <h4 class="title text-center">Cliente e Fornecedores</h4>
         </div>
         <div class="content">
 
-         <div class="text-center">
+           <div class="text-center">
             <button type="submit" class="btn btn-info btn-fill btn-wd" id="formPF" onclick="fnHideFormCadastro(this.id)">PF</button>
             <button type="submit" class="btn btn-info btn-fill btn-wd" id="formPJ" onclick="fnHideFormCadastro(this.id)">PJ</button>
 
@@ -75,6 +75,7 @@
 
         </form>
 
+
         <form id="formCadastroPJ">
             <div id="pf">
                 <div class="row">
@@ -106,14 +107,14 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                         <label>Telefone</label>
-                         <input type="text" class="form-control border-input">
-                     </div>
-                 </div>
+                           <label>Telefone</label>
+                           <input type="text" class="form-control border-input">
+                       </div>
+                   </div>
 
-             </div>
+               </div>
 
-             <div class="row">
+               <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Nome Representante</label>

@@ -155,3 +155,20 @@ body {
   display: none;
   height: 100%;
 }
+
+
+/* usuario */
+
+
+.esconder{
+
+display: none;
+
+}
+
+.espaco{
+overflow: hidden;
+height: 350px;
+
+
+}

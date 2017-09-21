@@ -1,7 +1,7 @@
 <?php include_once('superior.php');?>
 
 
-        <div class="content">
+<!--         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -116,10 +116,10 @@
                         				<span class="ti-exchange-vertical"></span><span class="icon-name"> ti-exchange-vertical</span>
                         			</div>
 
-                        		</div> <!-- Arrows Icons -->
+                        		</div> --> <!-- Arrows Icons -->
 
 
-
+<!-- 
                         		<h3>Web App Icons</h3>
 
                         		<div class="icon-section">
@@ -720,7 +720,7 @@
                         		</div><!-- Web App Icons -->
 
 
-                        		<div class="icon-section">
+                        		<!-- <div class="icon-section">
                         			<h3>Control Icons</h3>
                         			<div class="icon-container">
                         				<span class="ti-control-stop"></span><span class="icon-name"> ti-control-stop</span>
@@ -755,10 +755,10 @@
                         			<div class="icon-container">
                         				<span class="ti-control-eject"></span><span class="icon-name"> ti-control-eject</span>
                         			</div>
-                        		</div> <!-- Control Icons -->
+                        		</div> --> <!-- Control Icons -->
 
 
-                        		<div class="icon-section">
+                        	<!-- 	<div class="icon-section">
                         			<h3>Text Editor</h3>
 
                         			<div class="icon-container">
@@ -805,11 +805,11 @@
                         				<span class="ti-quote-left"></span><span class="icon-name"> ti-quote-left</span>
                         			</div>
 
-                        		</div> <!-- Text Editor -->
+                        		</div>  --><!-- Text Editor -->
 
 
 
-                        		<div class="icon-section">
+                        		<!-- <div class="icon-section">
                         			<h3>Layout Icons</h3>
                         			<div class="icon-container">
                         				<span class="ti-layout-width-full"></span><span class="icon-name"> ti-layout-width-full</span>
@@ -999,10 +999,10 @@
                         			</div>
 
 
-                        		</div> <!-- Layout Icons -->
+                        		</div> --> <!-- Layout Icons -->
 
 
-                        		<div class="icon-section">
+                        		<!-- <div class="icon-section">
                         			<h3>Brand Icons</h3>
 
                         			<div class="icon-container">
@@ -1130,16 +1130,16 @@
                         			</div>
                         			<div class="icon-container">
                         				<span class="ti-themify-favicon-alt"></span><span class="icon-name"> ti-themify-favicon-alt</span>
-                        			</div>
+                        			</div>  -->
 
-                        		</div> <!-- brand Icons -->
-
+                        		<!-- </div>  --><!-- brand Icons -->
+<!-- 
                             </div>
                         </div>
                     </div>
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
 <?php include_once('inferior.php');?>
