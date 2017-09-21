@@ -1,0 +1,12 @@
+.esconder{
+  display:none;
+}
+
+#img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#img img {
+    width:  100%;
+}
