@@ -1,7 +1,7 @@
 <?php include_once('superior.php');?>
 
 
-        <div class="content">
+ <!--        <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
@@ -52,11 +52,11 @@
                                     Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
                                     </p>
                                 </div>
-                                <div class="typo-line">
+                                <div class="typo-line"> -->
                                     <!--
                                      there are also "text-info", "text-success", "text-warning", "text-danger" clases for the text
                                      -->
-                                    <p class="category">Coloured Text</p>
+<!--                                     <p class="category">Coloured Text</p>
                                     <p class="text-primary">
                                         Text Primary - Light Bootstrap Table Heading and complex bootstrap dashboard you've ever seen on the internet.
                                     </p>
@@ -85,6 +85,5 @@
 
                 </div>
             </div>
-        </div>
+        </div> -->
 
- <?php include_once('inferior.php');?>

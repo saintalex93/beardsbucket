@@ -717,10 +717,10 @@
                         				<span class="ti-rss-alt"></span><span class="icon-name"> ti-rss-alt</span>
                         			</div>
 
-                        		</div><!-- Web App Icons -->
+                        		</div><!-- Web App Icons
 
 
-                        		<div class="icon-section">
+                        		<!-- <div class="icon-section">
                         			<h3>Control Icons</h3>
                         			<div class="icon-container">
                         				<span class="ti-control-stop"></span><span class="icon-name"> ti-control-stop</span>
@@ -755,10 +755,10 @@
                         			<div class="icon-container">
                         				<span class="ti-control-eject"></span><span class="icon-name"> ti-control-eject</span>
                         			</div>
-                        		</div> <!-- Control Icons -->
+                        		</div> --> <!-- Control Icons -->
 
 
-                        		<div class="icon-section">
+                        	<!-- 	<div class="icon-section">
                         			<h3>Text Editor</h3>
 
                         			<div class="icon-container">
@@ -805,7 +805,7 @@
                         				<span class="ti-quote-left"></span><span class="icon-name"> ti-quote-left</span>
                         			</div>
 
-                        		</div> <!-- Text Editor -->
+                        		</div>  --><!-- Text Editor -->
 
 
 
@@ -1130,9 +1130,9 @@
                         			</div>
                         			<div class="icon-container">
                         				<span class="ti-themify-favicon-alt"></span><span class="icon-name"> ti-themify-favicon-alt</span>
-                        			</div>
+                        			</div> 
 
-                        		</div> <!-- brand Icons -->
+                        		<!-- </div>  --><!-- brand Icons -->
 
                             </div>
                         </div>
