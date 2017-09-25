@@ -19,7 +19,7 @@ function selectConsulta(){
 
 				tableData += "<tr> <td>" + oDados[cont]['CODIGO'] + "</td>";
 
-				tableData += "<td>" + oDados[cont]['DESCRICAO'] + "</td> ";
+			 	tableData += "<td>" + oDados[cont]['DESCRICAO'] + "</td> ";
 
 				tableData += "<td>" + oDados[cont]['DATA'] + "</td> ";
 
