@@ -194,11 +194,15 @@ $url = basename($_SERVER['PHP_SELF']);
                 <li><a href="#">Another notification</a></li>
             </ul>
         </li>
-        <li>
-            <a href="#">
+        <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="ti-settings"></i>
                 <p>Configurações</p>
             </a>
+            <ul class="dropdown-menu">
+                <li><a href="sair.php">Logout</a></li>
+                
+            </ul>
         </li>
     </ul>
 
