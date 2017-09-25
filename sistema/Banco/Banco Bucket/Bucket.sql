@@ -1,4 +1,4 @@
-﻿DROP DATABASE IF EXISTS BUCKET;
+DROP DATABASE IF EXISTS BUCKET;
 CREATE DATABASE BUCKET;
 USE BUCKET;
 
@@ -101,3 +101,8 @@ INSERT INTO UF VALUES (0,"SP", "São Paulo"), (0, "AC", "Acre"), (0, "AL", "Alag
 (0, "SC", "Santa Catarina"), (0, "SE", "Sergipe"), (0, "TO", "Tocantins");
 INSERT INTO ENDERECO VALUES(0,'rua joaquim barros','jardim joaquim','988','02555898','ao lado do supermercado Anal',1,1),(0,'Rua dos Camileiros','Jardim dos Anos','988','02578987','ao lado do supermercado Vagi',1,2),(0,'rua Landos Alves','jardim joaquim','8974','87985465','Posto IBE',1,3);
 INSERT INTO LANCAMENTO VALUES(0,'QUALQUER COISA',NOW(),NOW(),NOW(),100.5,100.5,5,5,'DEBITO EM CONTA','PAGO',1,1),(0,'Luz',NOW(),'2017-10-25','2017-10-25',80.59,80.59,0,0,'Boleto','Em Aberto',2,2);
+
+
+
+
+select LCT_COD CODIGO, LCT_DESCRI DESCRICAO, LCT_DTCADASTR DATA, LCT_VLRPAGO VALOR, LCT_FRMPAG PAGAMENTO FROM LANCAMENTO WHERE LCT_DTCADASTR BETWEEN '2017-09-25' AND '2017-09-26' ;
