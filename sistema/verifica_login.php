@@ -1,6 +1,6 @@
 <?php
 	//Conexão com o banco
-	$oCon=mysqli_connect('localhost','root','macaco22','BUCKET');
+	$oCon=mysqli_connect('localhost','root','123','BUCKET');
 
 
 	session_start();
@@ -32,7 +32,7 @@
 		header("Location: dashboard.php");
 		exit;
 	}else{
-		header("Location: index.php");
+		header("Location: index.html");
 	
 		exit;
 	}
