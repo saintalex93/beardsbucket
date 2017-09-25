@@ -471,7 +471,7 @@
 			
 
 			<div class="text-center">
-				<button type="submit" class="btn btn-info btn-fill btn-wd" onclick="selectConsulta()">Consultar</button>
+				<button type="submit" class="btn btn-info btn-fill btn-wd">Consultar</button>
 			</div>
 
 			<br>
@@ -480,17 +480,28 @@
 					<thead>
 						<tr>
 							<th>Código</th>
+							<th>Nome</th>
 							<th>Descrição</th>
-							<th>Data Cadastramento</th>
-							<th>Valor</th>
-							<th>Forma de Pagamento</th>
-							<th>Cliente / Fornecedor</th>
 						</tr>
 					</thead>
 
-					<tbody id="tableConsulta">
+					<tbody>
 
-						
+						<?php
+						for($nCont = 0; $nCont<=0; $nCont++){
+
+							echo "
+
+							<tr>
+							<td>$nCont</td>
+							<td>Gasolina</td>
+							<td>RCombustivel</td>
+							</tr>
+							";
+
+						}
+
+						?>
 
 
 
@@ -516,8 +527,6 @@
 <?php include_once('inferior.php');?>
 
 <script src = "js/financas.js"></script>
-<script src = "js/ajaxConsulta.js"></script>
-
 
 
 
