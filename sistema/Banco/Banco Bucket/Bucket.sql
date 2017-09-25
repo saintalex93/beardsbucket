@@ -64,6 +64,7 @@ CLI_TELEFONE VARCHAR(15),
 CLI_CELULAR VARCHAR(15),
 CLI_EMAIL VARCHAR( 200),
 CLI_TIPO CHAR(2),
+CLI_SEXO CHAR(1),
 USR_COD INT,
 FOREIGN KEY(USR_COD) REFERENCES USUARIO (USR_COD)
 );
@@ -93,7 +94,7 @@ INSERT INTO PERMISSAO VALUES (0,'Administrador'),(0,'Usuario'),(0,'Cliente'),(0,
 INSERT INTO GRUPO_USR VALUES(0,'Gerenciador',1),(0,'Funcionario',1),(0,'Office Boy',4),(0,'Cliente',3),(0,'Auxliar',2);
 INSERT INTO USUARIO VALUES(0,'123456','josicleia'),(0,'123456','antunes'),(0,'124556','silsil');
 INSERT INTO USUARIO_GRUPO VALUES (0,1,1),(0,2,2),(0,3,3);
-INSERT INTO CLIENTE VALUES (0,'11122233344','ANTUNES JOAQUIM PINTO',NULL,NULL,'1155667788','11988774455','antunes@antunesgigolo.com.br','PF',1),(0,'11122233344','JOAQUINA DARUELA GRANDE',NULL,NULL,'1155667788','11988774455','JOAQUINA@ADVOGADALEGAL.COM.BR','PF',2),(0,'12356987000144','ELETROPAULO','ELETROPAULO','ELETROPAULO','1155667788','11988774455','sac@aeseletropaulo.com.br','PJ',3);
+INSERT INTO CLIENTE VALUES (0,'11122233344','ANTUNES JOAQUIM PINTO',NULL,NULL,'1155667788','11988774455','antunes@antunesgigolo.com.br','PF','M',1),(0,'11122233344','JOAQUINA DARUELA GRANDE',NULL,NULL,'1155667788','11988774455','JOAQUINA@ADVOGADALEGAL.COM.BR','PF','F',2),(0,'12356987000144','ELETROPAULO','ELETROPAULO','ELETROPAULO','1155667788','11988774455','sac@aeseletropaulo.com.br','PJ',NULL,3);
 INSERT INTO UF VALUES (0,"SP", "São Paulo"), (0, "AC", "Acre"), (0, "AL", "Alagoas"), (0, "AP", "Amapá"), (0, "AM", "Amazonas"), (0, "BA", "Bahia"),
 (0, "CE", "Ceará"), (0, "DF	", "Distrito Federal"), (0, "ES", "Espírito Santo"), (0, "GO", "Goiânia"), (0, "MA", "Maranhão"), (0, "MT", "Mato Grosso"), (0, "MS", "Mato Grosso do Sul"), (0, "MG", "Minas Gerais"), (0, "PA", "Pará"),
 (0, "PB	", "Paraíba"), (0, "PR", "Paraná"), (0, "PE", "Pernambunco"), (0, "PI", "Piauí"), (0, "RJ", "Rio de Janeiro"), (0, "RN", "Rio Grande do Norte"), (0, "RS", "Rio Grande do Sul"), (0, "RO", "Rondônia"), (0, "RR", "Roraima"), 
