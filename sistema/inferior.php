@@ -7,7 +7,7 @@ $url = basename($_SERVER['PHP_SELF']);
             <div class="container-fluid">
                 
 				<div class="copyright pull-right">
-                    &copy; <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by <a href="">Beards Web</a>
+                    &copy; 2017, feito com <i class="ti-linux"></i> by <a href="">Beards Web</a>
                 </div>
             </div>
         </footer>

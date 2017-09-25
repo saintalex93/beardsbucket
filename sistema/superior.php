@@ -3,7 +3,7 @@ $url = basename($_SERVER['PHP_SELF']);
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 <head>
 	<meta charset="utf-8" />
 	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/faces/beards.png">
@@ -13,7 +13,6 @@ $url = basename($_SERVER['PHP_SELF']);
 	<title>Beards Bucket</title>
 	
 	<!--Temos que trocar o nome do css do login por que esta o nome de style.css-->
-	<link rel="stylesheet" href="css/style.css">
 
     <!-- <link rel="stylesheet" href="css/style.css"> -->
 
@@ -39,6 +38,9 @@ $url = basename($_SERVER['PHP_SELF']);
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="assets/css/themify-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+
 
 </head>
 <body>
