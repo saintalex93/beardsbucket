@@ -212,7 +212,7 @@ $url = basename($_SERVER['PHP_SELF']);
      <li>
         
         <a href="sair.php">
-            <i class="ti-bell"></i> Logout
+            <i class="ti-shift-right-alt"></i> Logout
         </a>
     </li> 
 </li>
@@ -228,7 +228,7 @@ $url = basename($_SERVER['PHP_SELF']);
             </li> -->
 
             <li>
-                <a href="#">
+                <a href="usuario.php">
                     <i class="fa ti-user"></i>
                     <p>Usuário: <?php echo $_SESSION['user']['name'] ?></p>
                 </a>

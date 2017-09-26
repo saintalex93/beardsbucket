@@ -6,14 +6,13 @@ function selectLogin(usuario, senha){
 
 		open('GET', 'http://localhost/beardsbucket/sistema/src/verifica_login.php?usuario='+usuario+'&senha='+senha);
 
-
+		
 
 		send();
 		onload = function(){
 
-
 			var oDados = JSON.parse(responseText);
-
+			
 			if(oDados == 0){
 				document.all.message.innerHTML = "Usuário não encontrado";
 			}

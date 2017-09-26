@@ -8,7 +8,7 @@ $login = $_GET['usuario'];
 $senha = $_GET['senha'];
 
 
-$connect = mysqli_connect("localhost", "root", "123", "BUCKET");  
+$connect = mysqli_connect("localhost", "root", "macaco22", "BUCKET");  
 $sql = "SELECT USR_COD, USR_LOGIN,USR_SENHA FROM USUARIO WHERE USR_LOGIN = '$login'"; 
 
 
@@ -48,8 +48,9 @@ if($row = mysqli_fetch_assoc($result))
 			];
 
 
-		
+			
 			echo $response["success"] = 1;
+			
 		}
 
 
