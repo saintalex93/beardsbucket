@@ -1,6 +1,6 @@
 <?php include_once('superior.php');?>
 
-<!--         <div class="content">
+        <div class="content">
             <div class="container-fluid">
                 <div class="card">
                     <div class="header">
@@ -87,5 +87,5 @@
                 </div>
             </div>
         </div>
- -->
+
 
