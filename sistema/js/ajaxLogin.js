@@ -11,12 +11,25 @@ function selectLogin(usuario, senha){
 		send();
 		onload = function(){
 
-			alert(responseText);
-
 
 			var oDados = JSON.parse(responseText);
 
-			
+			if(oDados == 0){
+				document.all.message.innerHTML = "Usuário não encontrado";
+			}
+
+			else if(oDados == -1){
+				document.all.message.innerHTML = "Senha Inválida";
+				
+			}
+
+			else if(oDados == 1){
+				window.location = "http://localhost/beardsbucket/sistema/dashboard.php";
+			}
+
+
+
+
 
 		}
 
