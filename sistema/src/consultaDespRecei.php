@@ -1,5 +1,5 @@
 <?php   
-	$connect = mysqli_connect("localhost", "root", "123", "BUCKET");  
+	$connect = mysqli_connect("localhost", "root", "macaco22", "BUCKET");  
 	$sql = "SELECT LCT_COD CODIGO, LCT_DESCRI DESCRICAO, LCT_DTCADASTR DATA, LCT_VLRPAGO VALOR, LCT_FRMPAG PAGAMENTO , CLI_NOME NomeCliente FROM LANCAMENTO inner join CLIENTE where CLIENTE.CLI_COD = LANCAMENTO.LCT_COD";  
 	// WHERE LCT_DTCADASTR BETWEEN '2017-09-25' AND '2017-09-26'
 	$result = mysqli_query($connect, $sql);  
