@@ -55,6 +55,12 @@
 						</div>
 					</div>
 
+					<div class="row">
+						
+						<input type="radio"> Dados Completos?
+
+					</div>
+
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>Celular</label>

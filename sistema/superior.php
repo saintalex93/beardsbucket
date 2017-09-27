@@ -1,5 +1,18 @@
 <?php 
+
+
+session_start();
+
+if( !isset($_SESSION['user']) )
+{
+    header("Location: index.html");
+
+    exit;
+}
+
+
 $url = basename($_SERVER['PHP_SELF']);
+
 ?>
 
 <!doctype html>
@@ -56,7 +69,7 @@ $url = basename($_SERVER['PHP_SELF']);
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-   <div class="sidebar-wrapper">
+ <div class="sidebar-wrapper">
     <div class="logo">
         <a href="http://www.beardsweb.com.br" class="simple-text">
             Beards Web
@@ -133,9 +146,9 @@ $url = basename($_SERVER['PHP_SELF']);
             <a class="navbar-brand" href="#">
                 <?php
                 if($url == 'dashboard.php'){
-                 echo "DashBoard" ;
-             }
-             else if($url == 'usuario.php'){
+                   echo "DashBoard" ;
+               }
+               else if($url == 'usuario.php'){
 
                 echo "Usuário";
             }
@@ -172,41 +185,58 @@ $url = basename($_SERVER['PHP_SELF']);
         </a>
     </div>
     <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
+
+
+
+     <ul class="nav navbar-nav navbar-right">
+
+
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="ti-bell"></i>
+            <p class="notification">5</p>
+            <p>Avisos</p>
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="#">Notification 1</a></li>
+            <li><a href="#">Notification 2</a></li>
+            <li><a href="#">Notification 3</a></li>
+            <li><a href="#">Notification 4</a></li>
+            <li><a href="#">Another notification</a></li>
+        </ul>
+    </li>
+    <li class="dropdown">
+
+     <li>
+        
+        <a href="sair.php">
+            <i class="ti-shift-right-alt"></i> Logout
+        </a>
+    </li> 
+</li>
+</ul>
+
+
+<ul class="nav navbar-nav navbar-right">
 <!--             <li>
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <i class="ti-panel"></i>
                     <p>Stats</p>
                 </a>
             </li> -->
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="ti-bell"></i>
-                <p class="notification">5</p>
-                <p>Avisos</p>
-                <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="#">Notification 1</a></li>
-                <li><a href="#">Notification 2</a></li>
-                <li><a href="#">Notification 3</a></li>
-                <li><a href="#">Notification 4</a></li>
-                <li><a href="#">Another notification</a></li>
-            </ul>
-        </li>
-        <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <i class="ti-settings"></i>
-                <p>Configurações</p>
-            </a>
-            <ul class="dropdown-menu">
-                <li><a href="sair.php">Logout</a></li>
-                
-            </ul>
-        </li>
-    </ul>
 
-</div>
+            <li>
+                <a href="usuario.php">
+                    <i class="fa ti-user"></i>
+                    <p>Usuário: <?php echo $_SESSION['user']['name'] ?></p>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
 </div>
 </nav>
 

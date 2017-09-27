@@ -16,7 +16,7 @@
                             <div class="col-xs-7">
                                 <div class="numbers">
                                     <p>Receita</p>
-                                    R$8.000
+                                    <p class="valores" id="receita"></p>
                                 </div>
                             </div>
                         </div>
@@ -41,7 +41,7 @@
                             <div class="col-xs-7">
                                 <div class="numbers">
                                     <p>Despesas</p>
-                                    R$1,345
+                                    <p class="valores" id="despesas"></p>
                                 </div>
                             </div>
                         </div>
@@ -66,7 +66,7 @@
                             <div class="col-xs-7">
                                 <div class="numbers">
                                     <p>Caixa</p>
-                                    R$6.665
+                                    <p class="valores" id="caixa"></p>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="col-xs-7">
                                 <div class="numbers">
                                     <p>Pagamentos</p>
-                                    0.00
+                                    <p class="valores" id="pagamentos"></p>
                                 </div>
                             </div>
                         </div>
@@ -107,7 +107,7 @@
         </div>
         
         <div class="row">
-           
+
           <div class="row">
 
             <div class="col-md-12">
@@ -163,12 +163,12 @@
                         echo "
 
                         <tr>
-                            <td>$nCont</td>
-                            <td>Eletropaulo</td>
-                            <td>R$ 8.000,00</td>
-                            <td>21/02/2017</td>
-                            <td>0.1%</td>
-                            <td>8.010,00</td>
+                        <td>$nCont</td>
+                        <td>Eletropaulo</td>
+                        <td>R$ 8.000,00</td>
+                        <td>21/02/2017</td>
+                        <td>0.1%</td>
+                        <td>8.010,00</td>
                         </tr>
                         ";
 
@@ -192,42 +192,42 @@
 <div class="card-body">
     <div class="table-responsive">
       <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Valor</th>
-                        <th>Data Vencimento</th>
-                        <th>Juros</th>
-                        <th>Valor Atual</th>
-                    </tr>
-                </thead>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Data Vencimento</th>
+                <th>Juros</th>
+                <th>Valor Atual</th>
+            </tr>
+        </thead>
 
-                <tbody>
+        <tbody>
 
-                    <?php
-                    for($nCont = 0; $nCont<=10; $nCont++){
+            <?php
+            for($nCont = 0; $nCont<=10; $nCont++){
 
-                        echo "
+                echo "
 
-                        <tr>
-                            <td>$nCont</td>
-                            <td>Eletropaulo</td>
-                            <td>R$ 8.000,00</td>
-                            <td>21/02/2017</td>
-                            <td>0.1%</td>
-                            <td>8.010,00</td>
-                        </tr>
-                        ";
+                <tr>
+                <td>$nCont</td>
+                <td>Eletropaulo</td>
+                <td>R$ 8.000,00</td>
+                <td>21/02/2017</td>
+                <td>0.1%</td>
+                <td>8.010,00</td>
+                </tr>
+                ";
 
-                    }
+            }
 
-                    ?>
+            ?>
 
 
-                    
-                </tbody>
-            </table>
+
+        </tbody>
+    </table>
 </div>
 </div>
 
@@ -245,6 +245,8 @@
 
 
 </div>
+
+<script src="js/ajaxConsultaDashboard.js"></script>
 
 
 <?php include_once('inferior.php');?>
