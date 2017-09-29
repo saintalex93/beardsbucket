@@ -23,7 +23,7 @@ function selectConsulta(){
 
 				tableData += "<td>" + oDados[cont]['DATA'] + "</td> ";
 
-				tableData += "<td>" + oDados[cont]['VALOR'] + "</td> ";
+				tableData += "<td>" + oDados[cont]['VALOR'].replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.") + "</td> ";
 
 				tableData += "<td>" + oDados[cont]['DESCRICAO_PAGAMENTO'] + "</td> ";
 
