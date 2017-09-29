@@ -25,7 +25,7 @@ function selectConsulta(){
 
 				tableData += "<td>" + oDados[cont]['VALOR'] + "</td> ";
 
-				tableData += "<td>" + oDados[cont]['PAGAMENTO'] + "</td> ";
+				tableData += "<td>" + oDados[cont]['DESCRICAO_PAGAMENTO'] + "</td> ";
 
 				tableData += "<td>" + oDados[cont]['NomeCliente'] + "</td> </tr> ";
 
