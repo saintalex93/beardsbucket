@@ -247,6 +247,8 @@
 </div>
 
 <script src="js/ajaxConsultaDashboard.js"></script>
+<script src="js/ajaxConsultaDespesaDashboard.js"></script>
+
 
 
 <?php include_once('inferior.php');?>
