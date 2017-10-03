@@ -21,11 +21,11 @@ function selectConsulta(){
 
 			 	tableData += "<td>" + oDados[cont]['DESCRICAO'] + "</td> ";
 
-				tableData += "<td>" + oDados[cont]['DATA'] + "</td> ";
+				tableData += "<td>" + oDados[cont]['DATAC'] + "</td> ";
 
 				tableData += "<td>" + oDados[cont]['VALOR'].replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.") + "</td> ";
 
-				tableData += "<td>" + oDados[cont]['DESCRICAO_PAGAMENTO'] + "</td> ";
+				tableData += "<td>" + oDados[cont]['FRMPAGAMENTO'] + "</td> ";
 
 				tableData += "<td>" + oDados[cont]['NomeCliente'] + "</td> </tr> ";
 
