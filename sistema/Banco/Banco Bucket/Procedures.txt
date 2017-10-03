@@ -1,0 +1,10 @@
+/*********************** VALIDA LOGIN ***************************************/
+DELIMITER $$
+CREATE PROCEDURE LOGIN(
+IN USUARIO VARCHAR(50)
+)
+BEGIN
+	SELECT USR_LOGIN,USR_SENHA FROM USUARIO WHERE USR_LOGIN = USUARIO;
+END$$
+DELIMITER ;
+/******************************* FIM **************************************/
