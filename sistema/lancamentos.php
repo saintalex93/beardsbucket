@@ -10,12 +10,7 @@
 
 	<div class="container-fluid" >
 
-			<ul class="nav nav-pills NavegadorSuperior">
-<li class="active" id = "lancamento" onclick="fnMenuFinancas(this)"><a href="#"><span class="ti-server"></span> Lançamento</a></li>
-<li class="" id="consulta" onclick="fnMenuFinancas(this)"><a href="#"><span class="ti-search"></span> Consulta</a></li>
-<li class="" id="categ" onclick="fnMenuFinancas(this)"><a href="#"><span class="ti-bookmark"></span> Categoria</a></li>
 
-</ul>
 
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
@@ -176,46 +171,28 @@
 					</form>
 
 					<div class="text-center">
-						<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
-					</div>
+							<button type="submit" class="btn btn-info btn-fill btn-wd" onclick="selectConsulta()">Cadastrar</button>
+						</div>
 
 					<div class="content"> <!-- Content Tabela -->
 						<div class="table-responsive">
-							<table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+							<table class="table table-bordered table-striped text-center" width="100%" id="dataTable" cellspacing="0">
 								<thead>
 									<tr>
 										<th>Código</th>
-										<th>Nome</th>
+										<th>Descrição</th>
+										<th>Data</th>
 										<th>Valor</th>
-										<th>Data Vencimento</th>
-										<th>Juros</th>
-										<th>Valor Atual</th>
+										<th>Forma de Pagamento</th>
+										<th>Cliente / Fornecedor</th>
+										<th>Ações</th>
+
+
 									</tr>
 								</thead>
 
-								<tbody>
-
-									<?php
-									for($nCont = 0; $nCont<=0; $nCont++){
-
-										echo "
-
-										<tr>
-										<td>$nCont</td>
-										<td>Eletropaulo</td>
-										<td>R$ 8.000,00</td>
-										<td>21/02/2017</td>
-										<td>0.1%</td>
-										<td>8.010,00</td>
-										</tr>
-										";
-
-									}
-
-									?>
-
-
-
+								<tbody id="tableConsulta">
+											
 								</tbody>
 							</table>
 
@@ -226,73 +203,7 @@
 		</div> <!-- ROW LANCAMENTO -->
 
 
-		<div class="row">
-
-			<div class="col-lg-12 col-md-12">
-
-				<div class="card">
-					<div class="header">
-						<h4 class="title">Consulta</h4>
-					</div>
-
-					<div class="content">
-
-
-						<div class="row">
-
-							<div class="col-md-6">
-								<div class="form-group text-center">
-									<label>Data Inicial</label>
-									<input type="date" class="form-control border-input">
-								</div>
-							</div>
-
-							<div class="col-md-6">
-								<div class="form-group text-center">
-									<label>Data Final</label>
-									<input type="date" class="form-control border-input">
-								</div>
-							</div>
-
-						</div>
-
-
-
-						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd" onclick="selectConsulta()">Consultar</button>
-						</div>
-
-						<br>
-						<div class="table-responsive">
-							<table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
-								<thead>
-									<tr>
-										<th>Código</th>
-										<th>Descrição</th>
-										<th>Data</th>
-										<th>Valor</th>
-										<th>Forma de Pagamento</th>
-										<th>Cliente / Fornecedor</th>
-
-									</tr>
-								</thead>
-
-								<tbody id="tableConsulta">
-
-
-
-
-
-								</tbody>
-							</table>
-
-						</div> 
-
-					</div>
-				</div>
-			</div>
-		</div>
-
+		
 
 
 	</div> <!-- CONTAINER FLUID -->
@@ -301,7 +212,6 @@
 
 <?php include_once('inferior.php');?>
 
-<script src = "js/financas.js"></script>
 <script src = "js/ajaxConsulta.js"></script>
 
 

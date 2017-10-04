@@ -5,14 +5,26 @@
 
 	<div class="container-fluid" >
 
-		<div class="row">
+
+		<ul class="nav nav-pills NavegadorSuperior">
+			<li class="active" id = "lancamento" onclick="fnMenuFinancas(this)">
+				<a href="#"><span class="ti-server"></span> Cliente / Fornecedor</a>
+			</li>
+			
+			<li class="" id="categ" onclick="fnMenuFinancas(this)">
+				<a href="#"><span class="ti-bookmark"></span> Categoria</a>
+			</li>
+
+		</ul>
+
+		<div class="row" id="rowCliente"> <!-- ROW CLIENTE -->
 			<div class="col-lg-12 col-md-12">
 
 
 
 				<div class="card">
 					<div class="header">
-						<h4 class="title">Empresa / Perfil</h4>
+						<h4 class="title">Cliente / Fornecedor</h4>
 					</div>
 
 					<div class="content">
@@ -112,7 +124,7 @@
 
 					<div class="content"> <!--CONTENT TABELA -->
 
-						<table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+						<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
 							<thead>
 								<tr>
 									<th>Código</th>
@@ -150,7 +162,86 @@
 
 
 
-		</div> <!-- ROW FLUID -->
+		</div> <!-- ROW CLIENTE -->
+
+
+		<div class="row" id="rowCategoria"> <!-- ROW Categoria -->
+
+			<div class="col-lg-12 col-md-12">
+
+				<div class="card">
+					<div class="header">
+						<h4 class="title">Categoria</h4>
+					</div>
+
+					<div class="content">
+
+						<form id="">
+
+							<div class="row">
+
+								<div class="col-md-10">
+									<div class="form-group">
+										<label for="">Nome</label>
+										<input type="text" class="form-control border-input">
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<label>Código</label>
+										<input type="text" class="form-control border-input" disabled>
+									</div>
+								</div>
+								
+							</div>
+
+						</form>
+
+
+						<div class="text-center">
+							<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+						</div>
+
+					</div> <!--CONTENT CATEGORIA -->
+
+
+					<div class="content"> <!--CONTENT TABELA -->
+						<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+							<thead>
+								<tr>
+									<th>Código</th>
+									<th>Nome</th>
+									<th>Usuário</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<?php
+								for($nCont = 0; $nCont<=1; $nCont++){
+
+									echo "
+
+									<tr>
+									<td>$nCont</td>
+									<td>Pessoal</td>
+									<td>Alex</td>
+
+									</tr>
+									";
+
+								}
+
+								?>
+
+							</tbody>
+						</table>
+					</div> <!-- CONTENT TABELA -->
+				</div> <!--CARD CATEGORIA-->
+			</div> <!-- COL -->
+
+
+
+		</div> <!-- ROW CATEGORIA -->
 
 
 
@@ -163,3 +254,6 @@
 
 
 <?php include_once('inferior.php');?>
+
+
+<script src = "js/financas.js"></script>

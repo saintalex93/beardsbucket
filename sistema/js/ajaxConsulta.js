@@ -15,9 +15,10 @@ function selectConsulta(){
 
 			for(var cont = 0;cont < oDados.length  ; cont++){
 
+				
 
 
-				tableData += "<tr> <td>" + oDados[cont]['CODIGO'] + "</td>";
+				tableData += "<tr><td>" + oDados[cont]['CODIGO'] + "</td>";
 
 			 	tableData += "<td>" + oDados[cont]['DESCRICAO'] + "</td> ";
 
@@ -27,7 +28,9 @@ function selectConsulta(){
 
 				tableData += "<td>" + oDados[cont]['FRMPAGAMENTO'] + "</td> ";
 
-				tableData += "<td>" + oDados[cont]['NomeCliente'] + "</td> </tr> ";
+				tableData += "<td>" + oDados[cont]['NomeCliente'] + "</td>";
+
+				tableData += "<td><button class = 'btn btn-danger' id = '"+oDados[cont]['CODIGO']+"' onclick = 'alert(this.id)'>Excluir</button> <button class = 'btn'>Alterar</button> </tr> ";
 
 			}
 

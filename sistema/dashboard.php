@@ -121,105 +121,105 @@
                             <h4 class="title">Despesas</h4>
                         </div>
                         <div class="content">
-                           <div class="table-responsive">
-                              <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
-                                <thead>
+                         <div class="table-responsive">
+                          <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Valor</th>
+                                    <th>Data Vencimento</th>
+                                    <th>Juros</th>
+                                    <th>Valor Atual</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <?php
+                                for($nCont = 0; $nCont<=5; $nCont++){
+
+                                    echo "
+
                                     <tr>
-                                        <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Valor</th>
-                                        <th>Data Vencimento</th>
-                                        <th>Juros</th>
-                                        <th>Valor Atual</th>
+                                    <td>$nCont</td>
+                                    <td>Eletropaulo</td>
+                                    <td>R$ 8.000,00</td>
+                                    <td>21/02/2017</td>
+                                    <td>0.1%</td>
+                                    <td>8.010,00</td>
                                     </tr>
-                                </thead>
+                                    ";
 
-                                <tbody>
+                                }
 
-                                    <?php
-                                    for($nCont = 0; $nCont<=5; $nCont++){
-
-                                        echo "
-
-                                        <tr>
-                                        <td>$nCont</td>
-                                        <td>Eletropaulo</td>
-                                        <td>R$ 8.000,00</td>
-                                        <td>21/02/2017</td>
-                                        <td>0.1%</td>
-                                        <td>8.010,00</td>
-                                        </tr>
-                                        ";
-
-                                    }
-
-                                    ?>
+                                ?>
 
 
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div> <!--ROW DESPESAS -->
+    </div>
+</div> <!--ROW DESPESAS -->
 
-            <div class="row">
+<div class="row">
 
-            <div class="content">
+    <div class="content">
 
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="header">
-                            <h4 class="title">Receitas</h4>
-                        </div>
-                        <div class="content">
-                           <div class="table-responsive">
-                              <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
-                                <thead>
-                                    <tr>
-                                        <th>Código</th>
-                                        <th>Nome</th>
-                                        <th>Valor</th>
-                                        <th>Data Vencimento</th>
-                                        <th>Juros</th>
-                                        <th>Valor Atual</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    <?php
-                                    for($nCont = 0; $nCont<=5; $nCont++){
-
-                                        echo "
-
-                                        <tr>
-                                        <td>$nCont</td>
-                                        <td>Eletropaulo</td>
-                                        <td>R$ 8.000,00</td>
-                                        <td>21/02/2017</td>
-                                        <td>0.1%</td>
-                                        <td>8.010,00</td>
-                                        </tr>
-                                        ";
-
-                                    }
-
-                                    ?>
-
-
-
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Receitas</h4>
                 </div>
+                <div class="content">
+                 <div class="table-responsive">
+                  <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Data Vencimento</th>
+                            <th>Juros</th>
+                            <th>Valor Atual</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <?php
+                        for($nCont = 0; $nCont<=5; $nCont++){
+
+                            echo "
+
+                            <tr>
+                            <td>$nCont</td>
+                            <td>Eletropaulo</td>
+                            <td>R$ 8.000,00</td>
+                            <td>21/02/2017</td>
+                            <td>0.1%</td>
+                            <td>8.010,00</td>
+                            </tr>
+                            ";
+
+                        }
+
+                        ?>
+
+
+
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div> <!--ROW DESPESAS -->
+    </div>
+</div>
+</div>
+</div> <!--ROW DESPESAS -->
 
 
 </div> <!-- CONTENT -->

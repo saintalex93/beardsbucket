@@ -198,3 +198,13 @@ padding-bottom: 40px;
   text-align: right;
   
 }
+
+table th{
+  text-align: center;
+  background: #fffdf6;
+}
+
+
+#rowCategoria{
+  display: none;
+}

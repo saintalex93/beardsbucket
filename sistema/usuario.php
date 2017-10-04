@@ -123,7 +123,7 @@
 
                     </div>
                     
-                    <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                    <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Código</th>
@@ -234,7 +234,7 @@
                     </div>
                 </div>
 
-                <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -328,7 +328,7 @@
         </div>
 
         <div class="content">
-            <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+            <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Código</th>
@@ -426,7 +426,7 @@
                 </div>
             </form>
 
-            <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+            <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Código</th>
