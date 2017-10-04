@@ -134,25 +134,9 @@ INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,
 
 
 INSERT INTO USR_EMPR VALUES(0,1,2);
+INSERT INTO USR_EMPR VALUES(0,2,2);
 -- 
--- INSERT INTO USR_CNT VALUES(0,1,1),(0,2,2),(0,2,1),(0,2,1);
--- 
 
--- 
--- INSERT INTO LANCAMENTO_CONTA VALUES(0,1,1),(0,2,2),(0,2,1),(0,2,1);
-
-
-/*
-INSERT INTO CATEGORIA VALUES(0,'Mercado','Compras'),(0,'Investimento','Receita'),(0,'Roupas','Consumo'),(0,'Gas','Consumo'),(0,'Agua','Consumo'),(0,'Luz','Consumo');
-INSERT INTO USUARIO VALUES(0,'123456','josicleia'),(0,'123456','antunes'),(0,'124556','silsil');
-INSERT INTO CLIENTE VALUES (0,'11122233344','ANTUNES JOAQUIM PINTO',NULL,NULL,'1155667788','11988774455','antunes@antunesgigolo.com.br','PF','M','198',1),(0,'11122233345','JOAQUINA DARUELA GRANDE',NULL,NULL,'1155667788','11988774455','JOAQUINA@ADVOGADALEGAL.COM.BR','PF','F','1058',2),(0,'12356987000144','ELETROPAULO','ELETROPAULO','ELETROPAULO','1155667788','11988774455','sac@aeseletropaulo.com.br','PJ',NULL,'15887',3);
-INSERT INTO UF VALUES (0,"SP", "São Paulo"), (0, "AC", "Acre"), (0, "AL", "Alagoas"), (0, "AP", "Amapá"), (0, "AM", "Amazonas"), (0, "BA", "Bahia"),
-(0, "CE", "Ceará"), (0, "DF	", "Distrito Federal"), (0, "ES", "Espírito Santo"), (0, "GO", "Goiânia"), (0, "MA", "Maranhão"), (0, "MT", "Mato Grosso"), (0, "MS", "Mato Grosso do Sul"), (0, "MG", "Minas Gerais"), (0, "PA", "Pará"),
-(0, "PB	", "Paraíba"), (0, "PR", "Paraná"), (0, "PE", "Pernambunco"), (0, "PI", "Piauí"), (0, "RJ", "Rio de Janeiro"), (0, "RN", "Rio Grande do Norte"), (0, "RS", "Rio Grande do Sul"), (0, "RO", "Rondônia"), (0, "RR", "Roraima"), 
-(0, "SC", "Santa Catarina"), (0, "SE", "Sergipe"), (0, "TO", "Tocantins");
-INSERT INTO ENDERECO VALUES(0,'rua joaquim barros','jardim joaquim','02555898','ao lado do supermercado Anal',1,1),(0,'Rua dos Camileiros','Jardim dos Anos','02578987','ao lado do supermercado Vagi',1,2),(0,'rua Landos Alves','jardim joaquim','87985465','Posto IBE',1,3);
-INSERT INTO LANCAMENTO VALUES(0,'QUALQUER COISA',NOW(),NOW(),NOW(),100.5,100.5,5,5,'DEBITO EM CONTA','PAGO','RECEITA',1,1),(0,'Luz',NOW(),'2017-10-25','2017-10-25',80.59,80.59,0,0,'Boleto','Em Aberto','DESPESA',2,2);
-INSERT INTO CONTA VALUES (0,'CONTA EMPRESARIAL','BANRISUL','0258-X','10115789-9','PJ',1),(0,'CONTA COMPARTILHADA','BRADESCO','8990','0005789-7','PF',1),(0,'CONTA PESSOAL','ITAU','0387','5699-5','PF',1)
-
-
-*/
+-- JOIN PARA JUNTAR USUSARIO, EMPRESA CONTA. 
+select * from CONTA INNER JOIN EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON
+ EMPRESA.EMP_COD = USR_EMPR.COD_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR;
