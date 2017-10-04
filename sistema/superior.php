@@ -84,10 +84,10 @@ $url = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
 
-        <li <?php if($url == 'financas.php'){ echo "class = 'active'" ;}?>>
-            <a href="financas.php">
+        <li <?php if($url == 'lancamentos.php'){ echo "class = 'active'" ;}?>>
+            <a href="lancamentos.php">
                 <i class="ti-server"></i>
-                <p>Finanças</p>
+                <p>Lançamentos</p>
             </a>
         </li>
 
@@ -115,7 +115,7 @@ $url = basename($_SERVER['PHP_SELF']);
         <li <?php if($url == 'usuario.php'){ echo "class = 'active'" ;}?>>
             <a href="usuario.php">
                 <i class="ti-user"></i>
-                <p>Usuário</p>
+                <p>Usuário / Conta</p>
             </a>
         </li>
         
@@ -150,7 +150,7 @@ $url = basename($_SERVER['PHP_SELF']);
                }
                else if($url == 'usuario.php'){
 
-                echo "Usuário";
+                echo "Usuário / Conta";
             }
             else if($url == 'cadastro.php'){
 
@@ -164,19 +164,15 @@ $url = basename($_SERVER['PHP_SELF']);
 
                 echo "Relatório";
             }
-            else if($url == 'chat.php'){
-
-                echo "Chat";
-            }
 
             else if($url == 'notifications.php'){
 
                 echo "Notifications";
             }
 
-            else if($url == 'financas.php'){
+            else if($url == 'lancamentos.php'){
 
-                echo "Finanças";
+                echo "Lançamentos";
             }
 
             ?>

@@ -146,25 +146,13 @@ body {
 
 
 
-#formCadastroPF, #formCadastroPJ{
-  margin-top: 20px;
-  height: 100%;
-}
 
-#formCadastroPJ{
-  display: none;
-  height: 100%;
-}
 
 
 /* usuario */
 
 
-.esconder{
 
-display: none;
-
-}
 
 .espaco{
 overflow: hidden;
@@ -179,9 +167,6 @@ height: 350px;
 /*CADASTRO*/
 
 
-#categoria{
-  display: none;
-}
 
 
 
@@ -200,13 +185,11 @@ padding-bottom: 40px;
 }
 
 
-#lancDesp, #divCategoria, #divConsulta{
-  display: none;
-}
+
 
 
 .tituloSiteBeards{
-  color: #;
+  /*color: #;*/
   font-weight: bolder;
 }
 
