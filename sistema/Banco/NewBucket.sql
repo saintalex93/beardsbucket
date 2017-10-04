@@ -12,13 +12,15 @@ USE BUCKET;
 
 
 CREATE TABLE EMPRESA (
-EMP_COD INT PRIMARY KEY,
+EMP_COD INT PRIMARY KEY AUTO_INCREMENT,
 EMP_NOME_EMPRESA VARCHAR( 200),
 EMP_CNPJ VARCHAR(30)
-)
+);
+
+
 
 CREATE TABLE CONTA (
-CNT_COD INT PRIMARY KEY,
+CNT_COD INT PRIMARY KEY AUTO_INCREMENT,
 CNT_NOME VARCHAR(50),
 CNT_BANCO VARCHAR(30),
 CNT_AGNC VARCHAR(30),
@@ -27,12 +29,12 @@ CNT_TIPO CHAR(2),
 CNT_SALDOINICIAL DOUBLE(10,2),
 COD_EMPR INT,
 FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
-)
+);
 
 CREATE TABLE CLIENTE (
-CLI_COD INT PRIMARY KEY,
+CLI_COD INT PRIMARY KEY AUTO_INCREMENT,
 CLI_NOME VARCHAR(100),
-CLI_TIPO CHAR(2),
+CLI_TIPO TINYINT,
 CLI_CPF_CNPJ VARCHAR(20),
 CLI_TELEFONE VARCHAR(20),
 CLI_EMAIL VARCHAR(200),
@@ -40,39 +42,40 @@ CLI_BANCO VARCHAR(15),
 CLI_AGENCIA VARCHAR(15),
 CLI_CONTA VARCHAR(15),
 CLI_TIPOCONTA VARCHAR(50)
-)
+);
+
+
 
 CREATE TABLE USUARIO (
-USR_COD INT PRIMARY KEY,
+USR_COD INT PRIMARY KEY AUTO_INCREMENT,
 USR_SENHA VARCHAR(50),
-USR_LOGIN VARCHAR(50),
+USR_LOGIN VARCHAR(50) UNIQUE,
 USR_NOME VARCHAR( 200),
 USR_EMAIL VARCHAR( 200),
 USR_PERMISSAO INT,
 USR_STATUS TINYINT
-)
+);
 
 CREATE TABLE USR_EMPR (
-COD_USR_EMPR INT PRIMARY KEY,
+COD_USR_EMPR INT PRIMARY KEY AUTO_INCREMENT,
 COD_USR INT,
 COD_EMPR INT,
 FOREIGN KEY(COD_USR) REFERENCES USUARIO (USR_COD),
 FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
-)
+);
 
 CREATE TABLE LANCAMENTO (
-LCT_COD INT PRIMARY KEY,
+LCT_COD INT PRIMARY KEY AUTO_INCREMENT,
 LCT_DESCRICAO VARCHAR( 200),
 LCT_DTCADASTR DATETIME,
-LCT_DTRECEB DATETIME,
 LCT_DTPAG DATETIME,
 LCT_VLRPAGO DOUBLE(10,2),
 LCT_VLRTITULO DOUBLE(10,2),
-LCT_JUROSDIA INT,
+LCT_JUROSDIA FLOAT,
 LCT_NPARC TINYINT,
 LCT_STATUSLANC VARCHAR(30),
 LCT_TIPO VARCHAR(30),
-LCT_FRMPAG VACHAR(15),
+LCT_FRMPAG VARCHAR(15),
 CAT_COD INT,
 CLI_COD INT,
 CNT_COD INT,
@@ -80,49 +83,61 @@ USR_COD INT,
 FOREIGN KEY(CLI_COD) REFERENCES CLIENTE (CLI_COD),
 FOREIGN KEY(CNT_COD) REFERENCES CONTA (CNT_COD),
 FOREIGN KEY(USR_COD) REFERENCES USUARIO (USR_COD)
-)
+);
+
+
 
 CREATE TABLE CATEGORIA (
-CAT_COD INT PRIMARY KEY,
+CAT_COD INT PRIMARY KEY AUTO_INCREMENT,
 CAT_NOME VARCHAR(50),
 COD_USR INT,
 FOREIGN KEY(COD_USR) REFERENCES USUARIO (USR_COD)
-)
-
-ALTER TABLE LANCAMENTO ADD FOREIGN KEY(CAT_COD) REFERENCES CATEGORIA (CAT_COD)
+);
 
 
+
+ALTER TABLE LANCAMENTO ADD FOREIGN KEY(CAT_COD) REFERENCES CATEGORIA (CAT_COD);
 
 
 /*---------------------------INSERTS--------------------------------------*/
 
--- INSERT INTO USUARIO VALUES
--- (0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', '2'),
--- (0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', '0'),
--- (0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', '1');
+INSERT INTO USUARIO VALUES
+(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1),
+(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 2,1),
+(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1);
+
+
+insert into CATEGORIA VALUES
+(0,"Salário",1),(0,"Transporte",1),(0,"Alimentação",1),(0,"Taxas e Impostos",1),(0,"Serviços",1),
+(0,"Convênios",1),(0,"Hospedagem",1),(0,"Compras em Geral",1),(0,"Combustível",1),(0,"Viagens",1),(0,"Saúde",1),(0,"Estudos",1),
+(0,"Investimentos",1),(0,"Salário",2),(0,"Transporte",2),(0,"Alimentação",2),(0,"Taxas e Impostos",2),(0,"Contratos",2),
+(0,"Convênios",2),(0,"Hospedagem",2),(0,"Estornos",2),(0,"Vendas em Geral",2),(0,"Viagens",2),(0,"Estudos",2),(0,"Investimentos",2);
 -- 
--- insert into CATEGORIA VALUES
--- (0,"Salário",1),(0,"Transporte",1),(0,"Alimentação",1),(0,"Taxas e Impostos",1),(0,"Contratos",1),
--- (0,"Convênios",1),(0,"Hospedagem",1),(0,"Compras em Geral",1),(0,"Combustível",1),(0,"Viagens",1),(0,"Saúde",1),(0,"Estudos",1),
--- (0,"Investimentos",1),(0,"Salário",2),(0,"Transporte",2),(0,"Alimentação",2),(0,"Taxas e Impostos",2),(0,"Contratos",2),
--- (0,"Convênios",2),(0,"Hospedagem",2),(0,"Estornos",2),(0,"Vendas em Geral",2),(0,"Viagens",2),(0,"Estudos",2),(0,"Investimentos",2);
+
+INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09"),
+(0, "Beards Web", "66.666.666/0001-66"), (0, "Albroz Empreendimentos", "07.833-690/0001-09"),
+(0, "Pessoal", null);
 -- 
--- INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09"),
--- (0, "Beards Web", "66.666.666/0001-66"), (0, "Albroz Empreendimentos", "07.833-690/0001-09"),
--- (0, "Unas Prestadora", "87.920.201/0001-90");
+
 -- 
--- INSERT INTO FORMA_PAGAMENTO VALUES(0, "Crédito"), (0, "Débito"), (0, "Dinheiro"), (0, "Cheque"), (0, "Depósito"), (0, "Boleto");
+INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 1,60000.00,1),
+(0, "Beards", "Itaú", "5602", "00127-3", 2, 90000.00,2),
+(0, "Albroz BB", "Banco do Brasil", "5602", "00127-3", 1, 90000.00,3),
+(0, "Pessoal", "Banco do Brasil", "5612", "00132-3", 1, 1000.00,4);
+
 -- 
--- INSERT INTO CONTA VALUES(0, "Pessoal", "Itaú", "5607", "00657-3", 1, 60000.00), (0, "Albroz Itaú", "Itaú", "5607", "00654-3", 1, 200000.00);
--- 
--- INSERT INTO CLIENTE VALUES (0, "SABESP", 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL),
--- (0, "ELETROPAULO", 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL,NULL), 
--- (0, "Alex Santos", 2, "399.333.222.22", "(11) 96695-3835", "(11) 96695-3835", NULL, "Itaú", "5607", "00657-3", "Corrente");
+INSERT INTO CLIENTE VALUES (0, "SABESP", 1, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+(0, "Alex Santos", 2, "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 1);
+
+
+INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);
+
+
+INSERT INTO USR_EMPR VALUES(0,1,2);
 -- 
 -- INSERT INTO USR_CNT VALUES(0,1,1),(0,2,2),(0,2,1),(0,2,1);
 -- 
--- INSERT INTO LANCAMENTO VALUES (0,'CONTA DE LUZ',NOW(),'2017-09-10','2017-09-29',150.00,100.50,2,0,1,'PJ',1,1,3),
--- (0,'SALARIO',NOW(),'2017-09-28','2017-09-29',2500.50,2000.00,25,0,2,'PF',2,3,1);
+
 -- 
 -- INSERT INTO LANCAMENTO_CONTA VALUES(0,1,1),(0,2,2),(0,2,1),(0,2,1);
 
