@@ -1,4 +1,4 @@
-
+﻿
 -- CREATE USER 'bucket'@'localhost' IDENTIFIED BY '123';
 -- GRANT ALL PRIVILEGES ON * . * TO 'bucket'@'localhost';
 
@@ -34,7 +34,7 @@ FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
 CREATE TABLE CLIENTE (
 CLI_COD INT PRIMARY KEY AUTO_INCREMENT,
 CLI_NOME VARCHAR(100),
-CLI_TIPO TINYINT,
+CLI_TIPO CHAR(2),
 CLI_CPF_CNPJ VARCHAR(20),
 CLI_TELEFONE VARCHAR(20),
 CLI_EMAIL VARCHAR(200),
@@ -111,7 +111,9 @@ insert into CATEGORIA VALUES
 (0,"Salário",1),(0,"Transporte",1),(0,"Alimentação",1),(0,"Taxas e Impostos",1),(0,"Serviços",1),
 (0,"Convênios",1),(0,"Hospedagem",1),(0,"Compras em Geral",1),(0,"Combustível",1),(0,"Viagens",1),(0,"Saúde",1),(0,"Estudos",1),
 (0,"Investimentos",1),(0,"Salário",2),(0,"Transporte",2),(0,"Alimentação",2),(0,"Taxas e Impostos",2),(0,"Contratos",2),
-(0,"Convênios",2),(0,"Hospedagem",2),(0,"Estornos",2),(0,"Vendas em Geral",2),(0,"Viagens",2),(0,"Estudos",2),(0,"Investimentos",2);
+(0,"Convênios",2),(0,"Hospedagem",2),(0,"Estornos",2),(0,"Vendas em Geral",2),(0,"Viagens",2),(0,"Estudos",2),(0,"Investimentos",2),
+(0,"Salário",3),(0,"Transporte",3),(0,"Alimentação",3),(0,"Taxas e Impostos",3),(0,"Contratos",3),(0,"Convênios",3),(0,"Hospedagem",3),
+(0,"Estornos",3),(0,"Vendas em Geral",3),(0,"Viagens",3),(0,"Estudos",3),(0,"Investimentos",3);
 -- 
 
 INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09"),
@@ -120,14 +122,14 @@ INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-0
 -- 
 
 -- 
-INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 1,60000.00,1),
-(0, "Beards", "Itaú", "5602", "00127-3", 2, 90000.00,2),
-(0, "Albroz BB", "Banco do Brasil", "5602", "00127-3", 1, 90000.00,3),
-(0, "Pessoal", "Banco do Brasil", "5612", "00132-3", 1, 1000.00,4);
+INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 'CC',60000.00,1),
+(0, "Beards", "Itaú", "5602", "00127-3", 'CP', 90000.00,2),
+(0, "Albroz BB", "Banco do Brasil", "5602", "00127-3",'CC', 90000.00,3),
+(0, "Pessoal", "Banco do Brasil", "5612", "00132-3", 'CS', 1000.00,4);
 
 -- 
-INSERT INTO CLIENTE VALUES (0, "SABESP", 1, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-(0, "Alex Santos", 2, "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 1);
+INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC'),
+(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP');
 
 
 INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);
