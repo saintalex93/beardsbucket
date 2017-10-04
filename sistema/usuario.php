@@ -37,18 +37,18 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input type="text" class="form-control border-input" value="Nome">
+                                <input type="text" class="form-control border-input" placeholder="Nome">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Login</label>
-                                <input type="text" class="form-control border-input" placeholder="Username" value="beardsmaster">
+                                <input type="text" class="form-control border-input"  placeholder="beardsmaster">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Senha</label>
+                                <label for="">Senha</label>
                                 <input type="email" class="form-control border-input" placeholder="****">
                             </div>
                         </div>
@@ -58,21 +58,21 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control border-input" placeholder="alex@beardsweb.com.br" value="alex@beardsweb.com.br">
+                                <input type="text" class="form-control border-input"  placeholder="alex@beardsweb.com.br">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Permissão</label>
-                                <input type="text" class="form-control border-input" value="Administrador">
+                                <input type="text" class="form-control border-input" placeholder="Administrador">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Status</label>
-                                <input type="text" class="form-control border-input" value="Ativo">
+                                <input type="text" class="form-control border-input" placeholder="Ativo">
                             </div>
                         </div>
                     </div>
@@ -92,161 +92,42 @@
 
     </div> <!-- Fim Form Perfil -->
 
-
-
-
-
-
-
-
-
 </div> <!-- Fim ROW Conjunto perfil -->
 
-<div class="row">  <!-- Conta -->
+
+
+<div class="row"> <!-- ROW EMPRESA -->
 
     <div class="col-lg-12 col-md-12">
         <div class="card">
             <div class="header">
-                <h4 class="title">Conta</h4>
-            </div>
-            <div class="content">
-
-                <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nome</label>
-                                <input type="text" class="form-control border-input"  value="Itaú Pessoal">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Banco</label>
-                                <input type="text" class="form-control border-input" value="Itaú">
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Agência</label>
-                                <input type="email" class="form-control border-input" value="5607">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Conta Corrente</label>
-                                <input type="text" class="form-control border-input" value="00657-3">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Tipo</label>
-                                <input type="text" class="form-control border-input"  value="Conta Corrente">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Saldo Incial</label>
-                                <input type="text" class="form-control border-input" value="R$ 80.000,00">
-                            </div>
-                        </div>
-                    </div>
-
-                    <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <?php
-                            for($nCont = 0; $nCont<=1; $nCont++){
-
-                                echo "
-
-                                <tr>
-                                <td>$nCont</td>
-                                <td>Eletropaulo</td>
-
-
-                                </tr>
-                                ";
-
-                            }
-
-                            ?>
-
-                        </tbody>
-                    </table>
-
-                </form>
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
-                </div>
-
-            </div> 
-        </div>
-    </div> <!-- Fim Conta -->
-</div> <!-- Fim ROW Conta -->
-
-
-<div class="row">
-
-
-
-    <div class="col-lg-12 col-md-12">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Empresa</h4>
+                <h4 class="title">Empresa / Perfil</h4>
             </div>
             <div class="content">
                 <form>
+
                     <div class="row">
-                        <div class="col-md-4">
+
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input type="text" class="form-control border-input"  value="Itaú Pessoal">
+                                <input type="text" class="form-control border-input"  placeholder="Pessoal">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>CNPJ</label>
-                                <input type="text" class="form-control border-input" value="Itaú">
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Conta</label>
-                                <input type="text" class="form-control border-input" value="Itaú">
+                                <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6">
                             </div>
                         </div>
 
                     </div>
-
-
-
-
+                    
                     <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Código</th>
                                 <th>Nome</th>
-                                <th>Banco</th>
-
-
                             </tr>
                         </thead>
 
@@ -259,8 +140,7 @@
 
                                 <tr>
                                 <td>$nCont</td>
-                                <td>Eletropaulo</td>
-                                <td>R$ 8.000,00</td>
+                                <td>Pessoal</td>
                                 </tr>
                                 ";
 
@@ -286,6 +166,211 @@
 
 </div> <!-- Fim ROW Empresa -->
 
+
+<div class="row">  <!-- Conta -->
+
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Conta</h4>
+            </div>
+            <div class="content">
+
+                <form>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nome</label>
+                                <input type="text" class="form-control border-input"  placeholder="Itaú">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Banco</label>
+                                <input type="text" class="form-control border-input" placeholder="Itaú">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                               <label for="">Empresa / Pefil</label>
+                               <select placeholder="" class="form-control border-input">
+                                <option name="" id="">Selecione...</option>
+                                <option name="" id="">Pessoal</option>
+                                <option name="" id="">Albroz</option>
+                                <option name="" id="">Unas</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Agência</label>
+                            <input type="email" class="form-control border-input" placeholder="5607">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Conta Corrente</label>
+                            <input type="text" class="form-control border-input" placeholder="00657-3">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <input type="text" class="form-control border-input"  placeholder="Conta Corrente">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Saldo Incial</label>
+                            <input type="text" class="form-control border-input" placeholder="R$ 80.000,00">
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Banco</th>
+                            <th>Empresa</th>
+
+
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <?php
+                        for($nCont = 0; $nCont<=1; $nCont++){
+
+                            echo "
+
+                            <tr>
+                            <td>$nCont</td>
+                            <td>Pessoal</td>
+                            <td>Itaú</td>
+                            <td>Pessoal</td>
+
+                            </tr>
+                            ";
+
+                        }
+
+                        ?>
+
+                    </tbody>
+                </table>
+
+            </form>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
+            </div>
+
+        </div> 
+    </div>
+</div> <!-- Fim Conta -->
+</div> <!-- Fim ROW Conta -->
+
+
+<div class="row"> <!-- ROW EMPRESA COLABORADOR -->
+
+    <div class="col-lg-12 col-md-12">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Veincular Colaboradores</h4>
+            </div>
+            <div class="content">
+                <form>
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                             <label for="">Empresa / Pefil</label>
+                             <select placeholder="" class="form-control border-input">
+                                <option name="" id="">Selecione...</option>
+                                <option name="" id="">Pessoal</option>
+                                <option name="" id="">Albroz</option>
+                                <option name="" id="">Unas</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                         <label for="">Colaborador</label>
+                         <select placeholder="" class="form-control border-input">
+                            <option name="" id="">Selecione...</option>
+                            <option name="" id="">Alex</option>
+                            <option name="" id="">Gustavo</option>
+                            <option name="" id="">Diego</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            
+            
+
+        </form>
+
+        <div class="text-center">
+            <button type="submit" class="btn btn-info btn-fill btn-wd">Veincular</button>
+        </div>
+
+        <div class="content">
+            <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Empresa</th>
+                        <th>Colaborador</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <?php
+                    for($nCont = 0; $nCont<=1; $nCont++){
+
+                        echo "
+
+                        <tr>
+                        <td>$nCont</td>
+                        <td>BeardsWeb</td>
+                        <td>Alex</td>
+
+                        </tr>
+                        ";
+
+                    }
+
+                    ?>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</div>
+
+</div> 
+
+</div> <!-- Fim ROW Empresa COLABORADOR-->
+
+
 <!-- Administrador -->
 <div class="row">
 
@@ -296,93 +381,94 @@
             </div>
             <div class="content">
                <form>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nome</label>
-                                <input type="text" class="form-control border-input" value="Nome">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Login</label>
-                                <input type="text" class="form-control border-input" placeholder="Username" value="beardsmaster">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Senha</label>
-                                <input type="email" class="form-control border-input" placeholder="****">
-                            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Nome</label>
+                            <input type="text" class="form-control border-input" placeholder="Nome">
                         </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control border-input" placeholder="alex@beardsweb.com.br" value="alex@beardsweb.com.br">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Permissão</label>
-                                <input type="text" class="form-control border-input" value="Administrador">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Status</label>
-                                <input type="text" class="form-control border-input" value="Ativo">
-                            </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Login</label>
+                            <input type="text" class="form-control border-input"  placeholder="beardsmaster">
                         </div>
                     </div>
-                </form>
-
-                    <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Empresa</th>
-
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <?php
-                            for($nCont = 0; $nCont<=1; $nCont++){
-
-                                echo "
-
-                                <tr>
-                                <td>$nCont</td>
-                                <td>Alex</td>
-                                <td>Unas</td>
-                                </tr>
-                                ";
-
-                            }
-
-                            ?>
-
-                        </tbody>
-                    </table>
-
-
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="">Senha</label>
+                            <input type="email" class="form-control border-input" placeholder="****">
+                        </div>
+                    </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="text" class="form-control border-input" placeholder="alex@beardsweb.com.br">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Permissão</label>
+                            <input type="text" class="form-control border-input" placeholder="Administrador">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <input type="text" class="form-control border-input" placeholder="Ativo">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Login</th>
+
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <?php
+                    for($nCont = 0; $nCont<=1; $nCont++){
+
+                        echo "
+
+                        <tr>
+                        <td>$nCont</td>
+                        <td>Alex Santos</td>
+                        <td>Alex</td>
+                        </tr>
+                        ";
+
+                    }
+
+                    ?>
+
+                </tbody>
+            </table>
+
+
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
             </div>
-        </div> <!-- Card Administrador-->
-    </div>
+        </div>
+    </div> <!-- Card Administrador-->
+</div>
 
 </div> <!--FINAL ROW Administrador-->
+
 
 
 

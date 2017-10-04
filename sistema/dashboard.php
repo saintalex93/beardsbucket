@@ -79,149 +79,153 @@
                     </div>
                 </div>
             </div>
-            
-        </div>
-    </div>
+        </div> <!-- ROW DASHCAIXAS -->
 
-    <div class="row">
+        <div class="row">
 
-      <div class="row">
+            <div class="content">
 
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Demonstrativos</h4>
-                    <p class="category">Gráfico de recebimentos</p>
-                </div>
-                <div class="content">
-                    <p>Gráfico</p>
-                    <div id="chartHours" class="ct-chart"></div>
-                    <div class="footer">
-                        <div class="chart-legend">
-                            <i class="fa fa-circle text-info"></i> Receitas
-                            <i class="fa fa-circle text-danger"></i> Despesas
-                            <!-- <i class="fa fa-circle text-warning"></i> Click Second Time -->
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Demonstrativos</h4>
+                            <p class="category">Gráfico de recebimentos</p>
                         </div>
-                        <hr>
-                        <div class="stats">
-                            <i class="ti-reload"></i> Atualizado há 3 minutos
+                        <div class="content">
+                            <p>Gráfico</p>
+                            <div id="chartHours" class="ct-chart"></div>
+                            <div class="footer">
+                                <div class="chart-legend">
+                                    <i class="fa fa-circle text-info"></i> Receitas
+                                    <i class="fa fa-circle text-danger"></i> Despesas
+                                    <!-- <i class="fa fa-circle text-warning"></i> Click Second Time -->
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="ti-reload"></i> Atualizado há 3 minutos
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!--ROW GRÁFICO-->
+
+        <div class="row"> <!-- DESPESAS -->
+
+            <div class="content">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Despesas</h4>
+                        </div>
+                        <div class="content">
+                           <div class="table-responsive">
+                              <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Data Vencimento</th>
+                                        <th>Juros</th>
+                                        <th>Valor Atual</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <?php
+                                    for($nCont = 0; $nCont<=5; $nCont++){
+
+                                        echo "
+
+                                        <tr>
+                                        <td>$nCont</td>
+                                        <td>Eletropaulo</td>
+                                        <td>R$ 8.000,00</td>
+                                        <td>21/02/2017</td>
+                                        <td>0.1%</td>
+                                        <td>8.010,00</td>
+                                        </tr>
+                                        ";
+
+                                    }
+
+                                    ?>
+
+
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div> <!--ROW DESPESAS -->
 
+            <div class="row">
 
-    <div class="card mb-3">
-      <div class="card-header">
-        <i class="fa fa-table"></i>
-        Despesas
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Valor</th>
-                    <th>Data Vencimento</th>
-                    <th>Juros</th>
-                    <th>Valor Atual</th>
-                </tr>
-            </thead>
+            <div class="content">
 
-            <tbody>
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Receitas</h4>
+                        </div>
+                        <div class="content">
+                           <div class="table-responsive">
+                              <table class="table table-bordered table-striped " width="100%" id="dataTable" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Nome</th>
+                                        <th>Valor</th>
+                                        <th>Data Vencimento</th>
+                                        <th>Juros</th>
+                                        <th>Valor Atual</th>
+                                    </tr>
+                                </thead>
 
-                <?php
-                for($nCont = 0; $nCont<=10; $nCont++){
+                                <tbody>
 
-                    echo "
+                                    <?php
+                                    for($nCont = 0; $nCont<=5; $nCont++){
 
-                    <tr>
-                    <td>$nCont</td>
-                    <td>Eletropaulo</td>
-                    <td>R$ 8.000,00</td>
-                    <td>21/02/2017</td>
-                    <td>0.1%</td>
-                    <td>8.010,00</td>
-                    </tr>
-                    ";
+                                        echo "
 
-                }
+                                        <tr>
+                                        <td>$nCont</td>
+                                        <td>Eletropaulo</td>
+                                        <td>R$ 8.000,00</td>
+                                        <td>21/02/2017</td>
+                                        <td>0.1%</td>
+                                        <td>8.010,00</td>
+                                        </tr>
+                                        ";
 
-                ?>
+                                    }
 
-
-
-            </tbody>
-        </table>
-    </div>
-</div>
-
-</div>
-<div class="card mb-3">
-  <div class="card-header">
-    <i class="fa fa-table"></i>
-    Receitas
-</div>
-<div class="card-body">
-    <div class="table-responsive">
-      <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Valor</th>
-                <th>Data Vencimento</th>
-                <th>Juros</th>
-                <th>Valor Atual</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <?php
-            for($nCont = 0; $nCont<=10; $nCont++){
-
-                echo "
-
-                <tr>
-                <td>$nCont</td>
-                <td>Eletropaulo</td>
-                <td>R$ 8.000,00</td>
-                <td>21/02/2017</td>
-                <td>0.1%</td>
-                <td>8.010,00</td>
-                </tr>
-                ";
-
-            }
-
-            ?>
+                                    ?>
 
 
 
-        </tbody>
-    </table>
-</div>
-</div>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> <!--ROW DESPESAS -->
 
 
-<!-- /.container-fluid -->
-
-</div>
-<!-- /.content-wrapper -->
-
-<!-- Scroll to Top Button -->
+</div> <!-- CONTENT -->
+</div> <!-- FLUID -->
 
 
-
-
-
-
-</div>
 
 <script src="js/ajaxConsultaDashboard.js"></script>
 <script src="js/ajaxConsultaDespesaDashboard.js"></script>
