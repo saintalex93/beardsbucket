@@ -1,0 +1,22 @@
+USE BUCKET;
+/********************************** PROCEDURE LOGIN ************************************/
+DELIMITER $$
+CREATE PROCEDURE LOGIN(
+IN USUARIO VARCHAR(50)
+)
+BEGIN
+	SELECT USR_LOGIN,USR_SENHA FROM USUARIO WHERE USR_LOGIN = USUARIO;
+END$$
+DELIMITER ;
+/******************************* FIM ****************************************************/
+
+/******************************** PROCEDURE DESPESA E RECEITA GERAL **********************/
+DELIMITER $$
+CREATE PROCEDURE CONS_DESP_RECEI()
+BEGIN
+SELECT LCT_COD CODIGO, LCT_DESCRICAO DESCRICAO, FRM_PG_DESCRICAO DESCRICAO_PAGAMENTO, LCT_DTCADASTR DATA, LCT_VLRPAGO VALOR, CLI_NOME NomeCliente 
+FROM LANCAMENTO INNER JOIN CLIENTE INNER JOIN FORMA_PAGAMENTO 
+WHERE CLIENTE.CLI_COD = LANCAMENTO.LCT_COD;
+END$$
+DELIMITER ;
+/********************************** FIM **************************************************/
