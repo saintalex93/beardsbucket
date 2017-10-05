@@ -50,7 +50,7 @@
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Empresa</label>
+										<label for="">Empresa / Grupo</label>
 										<select value="" class="form-control border-input">
 											<option name="" id="">Selecione...</option>
 											<option name="" id="">Pessoal</option>

@@ -12,6 +12,7 @@ function selectLogin(usuario, senha){
 		onload = function(){
 
 			var oDados = JSON.parse(responseText);
+
 			
 			if(oDados == 0){
 				document.all.message.innerHTML = "Usuário não encontrado";

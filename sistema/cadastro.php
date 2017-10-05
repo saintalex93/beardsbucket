@@ -41,7 +41,7 @@
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label>CPF</label>
+										<label>CNPJ / CPF</label>
 										<input type="text" class="form-control border-input" placeholder="07.833.690/00001-09" >
 									</div>
 								</div>
@@ -180,16 +180,21 @@
 
 							<div class="row">
 
-								<div class="col-md-10">
+								<div class="col-md-8">
 									<div class="form-group">
 										<label for="">Nome</label>
 										<input type="text" class="form-control border-input">
 									</div>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 									<div class="form-group">
-										<label>Código</label>
-										<input type="text" class="form-control border-input" disabled>
+										<label>Empresa / Grupo</label>
+										<select value="" class="form-control border-input">
+											<option name="" id="">Selecione...</option>
+											<option name="" id="">Beards</option>
+											<option name="" id="">Pessoal</option>
+											<option name="" id="">Unas</option>
+										</select>
 									</div>
 								</div>
 								
