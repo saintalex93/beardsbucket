@@ -32,7 +32,17 @@ else
 mysqli_free_result($dataSet);
 mysqli_close($conecta);
 
+if ($permissao != 'Administrador'){
+    echo "<style>
+    #rowEmpresa, #rowAdminstrador, #rowConta{
+    display: none;
+}
+</style>";
+}
+
 ?>
+
+
 
 
 
@@ -41,7 +51,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-         <div class="col-lg-4 col-md-5">
+           <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:295px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -130,7 +140,7 @@ mysqli_close($conecta);
 
 
 
-<div class="row"> <!-- ROW EMPRESA -->
+<div class="row" id="rowEmpresa"> <!-- ROW EMPRESA -->
 
     <div class="col-lg-12 col-md-12">
         <div class="card">
@@ -219,7 +229,7 @@ mysqli_close($conecta);
 </div> <!-- Fim ROW Empresa -->
 
 
-<div class="row">  <!-- Conta -->
+<div class="row" id="rowConta">  <!-- Conta -->
 
     <div class="col-lg-12 col-md-12">
         <div class="card">
@@ -246,8 +256,8 @@ mysqli_close($conecta);
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                             <label for="">Empresa / Pefil</label>
-                             <select placeholder="" class="form-control border-input">
+                               <label for="">Empresa / Pefil</label>
+                               <select placeholder="" class="form-control border-input">
                                 <option name="" id="">Selecione...</option>
                                 <option name="" id="">Pessoal</option>
                                 <option name="" id="">Albroz</option>
@@ -357,7 +367,7 @@ mysqli_close($conecta);
 
 
 <!-- Administrador -->
-<div class="row">
+<div class="row" id="rowAdminstrador">
 
     <div class="col-lg-12 col-md-12">
         <div class="card">
@@ -365,7 +375,7 @@ mysqli_close($conecta);
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-             <form>
+               <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -417,6 +427,8 @@ mysqli_close($conecta);
                         <th>Código</th>
                         <th>Nome</th>
                         <th>Login</th>
+                        <th>Permissão</th>
+
                         <th>Ações</th>
 
 
@@ -426,52 +438,73 @@ mysqli_close($conecta);
 
                 <tbody>
 
-                   <?php
+                 <?php
 
-                        require 'src/conecta.php';
-
-
-                        $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN from USUARIO INNER JOIN USR_EMPR ON USR_EMPR.COD_USR = ".$cod;
+                 require 'src/conecta.php';
 
 
-                        $dataSet = mysqli_query($conecta, $cSql);
-
-                        while($oDados = mysqli_fetch_assoc($dataSet)){
-                            echo "
-
-                            <tr>
-                            <td>".$oDados['USR_COD']."</td>
-                            <td>".$oDados['USR_NOME']."</td>
-                            <td>".$oDados['USR_LOGIN']."</td>
-
-                            <td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
-                            </tr>
-                            ";
-
-                        }
-
-                        mysqli_free_result($dataSet);
-                        mysqli_close($conecta);  
+                 $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
+                 COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
 
+                 $dataSet = mysqli_query($conecta, $cSql);
 
-                        ?>
+                 while($oDados = mysqli_fetch_assoc($dataSet)){
+                    echo "
+
+                    <tr>
+                    <td>".$oDados['USR_COD']."</td>
+                    <td>".$oDados['USR_NOME']."</td>
+                    <td>".$oDados['USR_LOGIN']."</td>
+
+                    
+                    ";
+
+                    if($oDados['USR_PERMISSAO'] == 0)
+                        $permissao = "Usuário";
+                    else if ($oDados['USR_PERMISSAO'] == 1)
+                        $permissao = "Gerente";
+                    else
+                        $permissao = "Administrador";
+
+                    echo"
+                    <td>".$permissao."</td>";
+
+
+                    if($permissao != "Administrador"){
+                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
+                    </tr>
+                    ";
+                    }
+                    else{
+                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)' disabled>Alterar</button></td>
+                    </tr>
+                    ";
+                    }
+
+
+                }
+
+                mysqli_free_result($dataSet);
+                mysqli_close($conecta);  
+
+
+
+                ?>
 
                 </tbody>
-            </table>
+                </table>
 
 
 
-            <div class="text-center">
+                <div class="text-center">
                 <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
-            </div>
-        </div>
-    </div> <!-- Card Administrador-->
-</div>
+                </div>
+                </div>
+                </div> <!-- Card Administrador-->
+                </div>
 
-</div> <!--FINAL ROW Administrador-->
-
-
+                </div> <!--FINAL ROW Administrador-->
 
 
 
@@ -480,13 +513,14 @@ mysqli_close($conecta);
 
 
 
-</div> <!-- Container Fluid -->
-</div> <!-- Container-->
+
+
+                </div> <!-- Container Fluid -->
+                </div> <!-- Container-->
 
 
 
 
-<?php include_once('inferior.php');?>
-
+                <?php include_once('inferior.php');?>
 
 
