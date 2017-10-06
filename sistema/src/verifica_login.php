@@ -1,8 +1,11 @@
 
 
-<?php   
+<?php header('Access-Control-Allow-Origin: *');
+
 
 header("Content-type: text/html; charset=utf-8"); 
+
+
 
 $login = $_GET['usuario'];
 
@@ -69,7 +72,7 @@ if($row = mysqli_fetch_assoc($result))
 		mysqli_close($connect);
 
 
-		?>
+		
 
 
 		

@@ -33,11 +33,19 @@ mysqli_free_result($dataSet);
 mysqli_close($conecta);
 
 if ($permissao != 'Administrador'){
-    echo "<style>
-    #rowEmpresa, #rowAdminstrador, #rowConta{
-    display: none;
-}
-</style>";
+    echo '
+    <script src="js/jquery-3.2.1.js" type="text/javascript">   </script>
+<script>
+    
+    $(document).ready(function
+        () {
+            $("#rowEmpresa").remove();
+            $("#rowAdminstrador").remove();
+            $("#rowConta").remove();
+        });
+    </script>
+
+';
 }
 
 ?>
