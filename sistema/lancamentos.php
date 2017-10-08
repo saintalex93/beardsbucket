@@ -171,7 +171,7 @@
 					</form>
 
 					<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd" onclick="selectConsulta()">Cadastrar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd botao" onclick="selectConsulta()">Cadastrar</button>
 						</div>
 
 					<div class="content"> <!-- Content Tabela -->

@@ -192,7 +192,7 @@ $url = basename($_SERVER['PHP_SELF']);
 
      <li>
         
-        <a href="sair.php">
+        <a href="src/deslogar.php">
             <i class="ti-shift-right-alt"></i> Logout
         </a>
     </li> 
