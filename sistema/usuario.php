@@ -32,21 +32,8 @@ else
 mysqli_free_result($dataSet);
 mysqli_close($conecta);
 
-if ($permissao != 'Administrador'){
-    echo '
-    <script src="js/jquery-3.2.1.js" type="text/javascript">   </script>
-<script>
-    
-    $(document).ready(function
-        () {
-            $("#rowEmpresa").remove();
-            $("#rowAdminstrador").remove();
-            $("#rowConta").remove();
-        });
-    </script>
 
-';
-}
+
 
 ?>
 
@@ -146,7 +133,11 @@ if ($permissao != 'Administrador'){
 
 </div> <!-- Fim ROW Conjunto perfil -->
 
+<?php
 
+if ($permissao == 'Administrador'){
+
+?>
 
 <div class="row" id="rowEmpresa"> <!-- ROW EMPRESA -->
 
@@ -516,7 +507,10 @@ if ($permissao != 'Administrador'){
 
 
 
+<?php
 
+}
+?>
 
 
 
