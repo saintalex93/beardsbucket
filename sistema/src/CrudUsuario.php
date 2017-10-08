@@ -18,32 +18,32 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 
 
-	
+		
 
-	$codEmpresa = mysqli_insert_id($conecta);
-
-
-	$cSql = "INSERT INTO USR_EMPR  values (0, $cod, $codEmpresa)";
+		$codEmpresa = mysqli_insert_id($conecta);
 
 
-	mysqli_query($conecta, $cSql);
+		$cSql = "INSERT INTO USR_EMPR  values (0, $cod, $codEmpresa)";
 
 
-	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
+		mysqli_query($conecta, $cSql);
+
+
+		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
 
 
 	// echo $cSql;
 
-	$result = mysqli_query($conecta, $cSql); 
+		$result = mysqli_query($conecta, $cSql); 
 
-	$json_array = array();  
-	while($row = mysqli_fetch_assoc($result))  
-	{  
-		$json_array[] = $row;  
-	}  
+		$json_array = array();  
+		while($row = mysqli_fetch_assoc($result))  
+		{  
+			$json_array[] = $row;  
+		}  
 
 
-	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
 
 	}
 

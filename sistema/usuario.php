@@ -122,7 +122,7 @@ mysqli_close($conecta);
 
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
+                    <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
                     <br>
                     <div class="clearfix"></div>
                 </div>
@@ -167,15 +167,7 @@ if ($permissao == 'Administrador'){
 
                         </div>
 
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                 <div class="form-group">
-                                    <output type="text" class="text-center" id="retornoFormEmpresa"></output>
-                                </div>
-                            </div>
-
-                        </div>
+                       
                         
                         <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
                             <thead>
@@ -223,10 +215,20 @@ if ($permissao == 'Administrador'){
                             </tbody>
                         </table>
 
+                         <div class="row">
+
+                            <div class="col-md-12">
+                                 <div class="form-group">
+                                    <output type="text" class="text-center" id="retornoFormEmpresa"></output>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </form>
 
                     <div class="text-center">
-                        <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="insereEmpresaUsuario()">Atualizar</button>
+                        <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="insereEmpresaUsuario()">Inserir</button>
                     </div>
 
                 </div>
@@ -365,7 +367,7 @@ if ($permissao == 'Administrador'){
                 </form>
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
+                    <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
                 </div>
 
             </div> 
@@ -508,7 +510,7 @@ if ($permissao == 'Administrador'){
 
 
         <div class="text-center">
-            <button type="submit" class="btn btn-info btn-fill btn-wd">Atualizar</button>
+            <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
         </div>
     </div>
 </div> <!-- Card Administrador-->

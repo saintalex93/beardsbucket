@@ -142,6 +142,12 @@ body {
 }
 
 
+#retornoFormEmpresa{
+  color: red;
+  display: none;
+}
+
+
 /*                  */
 
 

@@ -41,8 +41,10 @@ function insereEmpresaUsuario(){
 			}
 
 			else{
+				document.getElementById("retornoFormEmpresa").style.display = "block";
+				document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível inserir a empresa";
+				setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
 
-				document.getElementById("retornoFormEmpresa").innerHTML+= "Não foi possível inserir a empresa";
 			}
 
 		}
