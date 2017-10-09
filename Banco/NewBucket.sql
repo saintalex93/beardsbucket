@@ -109,7 +109,7 @@ INSERT INTO USUARIO VALUES
 
 INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09"),
 (0, "Beards Web", "66.666.666/0001-66"), (0, "Albroz Empreendimentos", "07.833-690/0001-09"),
-(0, "Pessoal", ""); 
+(0, "Pessoal", "66.112.123/1231-23"); 
 
 INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 'CC',60000.00,1),
 (0, "Beards", "Itaú", "5602", "00127-3", 'CP', 90000.00,2),
@@ -173,11 +173,4 @@ SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER 
 
 
 
-select * from USR_EMPR where COD_USR = 4;
 
--- 
-
-use BUCKET;
-
-
-select * from EMPRESA;
