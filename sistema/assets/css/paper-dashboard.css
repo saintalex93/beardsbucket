@@ -974,7 +974,9 @@ textarea.form-control {
 .alert-danger {
   background-color: #FF8F5E;
   color: #B33C12; }
-
+.{
+    
+}
 .table thead tr > th,
 .table thead tr > td,
 .table tbody tr > th,
