@@ -202,7 +202,7 @@ if ($permissao == 'Administrador'){
                                 <td>".$oDados['EMP_COD']."</td>
                                 <td>".$oDados['EMP_NOME_EMPRESA']."</td>
                                 <td>".$oDados['EMP_CNPJ']."</td>
-                                <td><button class = '' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
+                                <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
                                 </tr>
                                 ";
 
