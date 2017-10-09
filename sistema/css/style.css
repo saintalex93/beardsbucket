@@ -151,6 +151,18 @@ body {
   display: none;
 }
 
+.btn.danger{
+  background: #EB5E28;
+}
+
+.btn.danger:hover{
+  background: #fb7d4d;
+}
+
+
+
+
+
 
 
 

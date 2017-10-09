@@ -47,7 +47,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-           <div class="col-lg-4 col-md-5">
+         <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:295px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -155,14 +155,25 @@ if ($permissao == 'Administrador'){
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="hidden" name="codEmpresa">
+                                    <input type="hidden" name="codEmpresa" id="codEmpresa">
                                     <input type="text" class="form-control border-input"  placeholder="Pessoal" name="txtNomeEmpresa" id="txtNomeEmpresa">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="form-group">
                                     <label>CNPJ/CPF</label>
                                     <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj">
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label>Status</label>
+                                    <select class="form-control border-input" id="cmbStatusEmpresa">
+                                        <option value="1">Ativo</option>
+                                        <option value="0">Inativo</option>
+                                    </select>
+
                                 </div>
                             </div>
 
@@ -170,57 +181,16 @@ if ($permissao == 'Administrador'){
 
                     </form>
 
-                    
-                    <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>CNPJ</th>
-                                <th>Ações</th>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
 
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <?php
-
-                            require 'src/conecta.php';
-
-                            
-                            $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON 
-                            EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
-
-
-                            $dataSet = mysqli_query($conecta, $cSql);
-
-                            while($oDados = mysqli_fetch_assoc($dataSet)){
-                                echo "
-
-                                <tr>
-                                <td>".$oDados['EMP_COD']."</td>
-                                <td>".$oDados['EMP_NOME_EMPRESA']."</td>
-                                <td>".$oDados['EMP_CNPJ']."</td>
-                                <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
-                                </tr>
-                                ";
-
-                            }
-
-                            mysqli_free_result($dataSet);
-                            mysqli_close($conecta);  
-
-
-                            ?>
-
-                        </tbody>
-                    </table>
+                        <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
+                    </div>
 
                     <div class="row">
 
                         <div class="col-md-12">
-                         <div class="form-group">
+                           <div class="form-group">
                             <output type="text" class="text-center" id="retornoFormEmpresa"></output>
                         </div>
                     </div>
@@ -228,11 +198,56 @@ if ($permissao == 'Administrador'){
                 </div>
 
 
-                <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
+                <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>CNPJ</th>
+                            <th>Ações</th>
 
-                    <button type="submit" class="btn btn-danger btn-fill btn-wd" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
-                </div>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <?php
+
+                        require 'src/conecta.php';
+
+
+                        $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON 
+                        EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
+
+
+                        $dataSet = mysqli_query($conecta, $cSql);
+
+                        while($oDados = mysqli_fetch_assoc($dataSet)){
+                            echo "
+
+                            <tr>
+                            <td>".$oDados['EMP_COD']."</td>
+                            <td>".$oDados['EMP_NOME_EMPRESA']."</td>
+                            <td>".$oDados['EMP_CNPJ']."</td>
+                            <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
+                            </tr>
+                            ";
+
+                        }
+
+                        mysqli_free_result($dataSet);
+                        mysqli_close($conecta);  
+
+
+                        ?>
+
+                    </tbody>
+                </table>
+
+
+
+
+
 
             </div>
 
@@ -271,8 +286,8 @@ if ($permissao == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                               <label for="">Empresa / Pefil</label>
-                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                             <label for="">Empresa / Pefil</label>
+                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
                                 <option value="">Selecione</option>
                                 
                             </select>
@@ -315,34 +330,47 @@ if ($permissao == 'Administrador'){
                         </div>
                     </div>
                 </div>
-
-                <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>Banco</th>
-                            <th>Empresa</th>
-                            <th>Saldo Inicial</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                       
-
-                    </tbody>
-                </table>
-
             </form>
+
 
             <div class="text-center">
                 <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
             </div>
 
-        </div> 
-    </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                   <div class="form-group">
+                    <output type="text" class="text-center" id="retornoFormConta">OI</output>
+                </div>
+            </div>
+
+        </div>
+
+        <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Banco</th>
+                    <th>Empresa</th>
+                    <th>Saldo Inicial</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+
+
+
+
+    </div> 
+</div>
 </div> <!-- Fim Conta -->
 </div> <!-- Fim ROW Conta -->
 
@@ -358,7 +386,7 @@ if ($permissao == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-               <form>
+             <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -413,86 +441,95 @@ if ($permissao == 'Administrador'){
                 </div>
             </form>
 
-            <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Código</th>
-                        <th>Nome</th>
-                        <th>Login</th>
-                        <th>Permissão</th>
+            <div class="text-center">
+                <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
+            </div>
 
-                        <th>Ações</th>
+            <div class="row">
+
+                <div class="col-md-12">
+                   <div class="form-group">
+                    <output type="text" class="text-center" id="retornoFormConta">OI</output>
+                </div>
+            </div>
+
+        </div>
+
+        <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Login</th>
+                    <th>Permissão</th>
+
+                    <th>Ações</th>
 
 
 
+                </tr>
+            </thead>
+
+            <tbody>
+
+               <?php
+
+               require 'src/conecta.php';
+
+
+               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
+               COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+
+
+               $dataSet = mysqli_query($conecta, $cSql);
+
+               while($oDados = mysqli_fetch_assoc($dataSet)){
+                echo "
+
+                <tr>
+                <td>".$oDados['USR_COD']."</td>
+                <td>".$oDados['USR_NOME']."</td>
+                <td>".$oDados['USR_LOGIN']."</td>
+
+                
+                ";
+
+                if($oDados['USR_PERMISSAO'] == 0)
+                    $permissao = "Usuário";
+                else if ($oDados['USR_PERMISSAO'] == 1)
+                    $permissao = "Gerente";
+                else
+                    $permissao = "Administrador";
+
+                echo"
+                <td>".$permissao."</td>";
+
+
+                if($permissao != "Administrador"){
+                    echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
                     </tr>
-                </thead>
-
-                <tbody>
-
-                 <?php
-
-                 require 'src/conecta.php';
-
-
-                 $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-                 COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
-
-
-                 $dataSet = mysqli_query($conecta, $cSql);
-
-                 while($oDados = mysqli_fetch_assoc($dataSet)){
-                    echo "
-
-                    <tr>
-                    <td>".$oDados['USR_COD']."</td>
-                    <td>".$oDados['USR_NOME']."</td>
-                    <td>".$oDados['USR_LOGIN']."</td>
-
-                    
                     ";
-
-                    if($oDados['USR_PERMISSAO'] == 0)
-                        $permissao = "Usuário";
-                    else if ($oDados['USR_PERMISSAO'] == 1)
-                        $permissao = "Gerente";
-                    else
-                        $permissao = "Administrador";
-
-                    echo"
-                    <td>".$permissao."</td>";
-
-
-                    if($permissao != "Administrador"){
-                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
-                        </tr>
-                        ";
-                    }
-                    else{
-                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)' disabled>Alterar</button></td>
-                        </tr>
-                        ";
-                    }
-
-
+                }
+                else{
+                    echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)' disabled>Alterar</button></td>
+                    </tr>
+                    ";
                 }
 
-                mysqli_free_result($dataSet);
-                mysqli_close($conecta);  
+
+            }
+
+            mysqli_free_result($dataSet);
+            mysqli_close($conecta);  
 
 
 
-                ?>
+            ?>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 
-
-
-        <div class="text-center">
-            <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
-        </div>
-    </div>
+</div>
 </div> <!-- Card Administrador-->
 </div>
 

@@ -1,4 +1,13 @@
-// EMPRESA
+//  --------------------------------------------USUÁRIO ------------------------------------------------
+
+
+
+//  --------------------------------------------FIM USUÁRIO ------------------------------------------------
+
+
+
+
+//  -------------------------------------------- EMPRESA ------------------------------------------------
 
 function selecionaAcao(param){
 
@@ -6,60 +15,88 @@ function selecionaAcao(param){
 
 	if(param == 1){
 
-
-		var oPagina = new XMLHttpRequest();
-		with(oPagina){
-
-
-			var empresa = document.getElementsByName("txtNomeEmpresa")[0].value;
-			var cnpj = document.getElementsByName("txtCnpj")[0].value;
-
-			open('GET', './src/CrudUsuario.php?funcao=insereEmpresa&empresa='+empresa+'&cnpj='+cnpj);
-
-			send();
-			onload = function(){
-
-
-
-
-				if(responseText != "Erro ao Inserir"){
-
-					var oDados = JSON.parse(responseText);
-
-					var Contador = parseInt(oDados.length);
-
-					Contador = Contador -1;
-
-					var tableEmpresa = document.getElementById("tableEmpresa");
-
-
-
-					tableEmpresa.insertAdjacentHTML('beforeend',
-						"<tr><td>" + oDados[Contador]['EMP_COD'] + "</td>"+
-						"<td>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
-						"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
-						"' onclick = 'alert(this.id)'>Alterar</button></tr> "
-						);
-
-				}
-
-				else{
-					document.getElementById("retornoFormEmpresa").style.display = "block";
-					document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível inserir a empresa";
-					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
-
-				}
-
-			}
-
+		if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
+			alert("Preencha o nome da Empresa");
+			document.getElementsByName("txtNomeEmpresa")[0].focus()	;
 
 		}
 
-	}
-	else if(param == 2){
+		else{
 
-			var codEmpresa, nomeEmpresa, cnpjEmpresa, status;
+
+			var oPagina = new XMLHttpRequest();
+			with(oPagina){
+
+
+				var empresa = document.getElementsByName("txtNomeEmpresa")[0].value;
+				var cnpj = document.getElementsByName("txtCnpj")[0].value;
+
+				open('GET', './src/CrudUsuario.php?funcao=insereEmpresa&empresa='+empresa+'&cnpj='+cnpj);
+
+				send();
+				onload = function(){
+
+
+
+
+					if(responseText != "Erro ao Inserir"){
+
+						var oDados = JSON.parse(responseText);
+
+						var Contador = parseInt(oDados.length);
+
+						Contador = Contador -1;
+
+						var tableEmpresa = document.getElementById("tableEmpresa");
+
+
+
+						tableEmpresa.insertAdjacentHTML('beforeend',
+							"<tr><td>" + oDados[Contador]['EMP_COD'] + "</td>"+
+							"<td>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
+							"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
+							"' onclick = 'alert(this.id)'>Alterar</button></tr> "
+							);
+
+					}
+
+					else{
+						document.getElementById("retornoFormEmpresa").style.display = "block";
+						document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível inserir a empresa";
+						setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+
+					}
+
+				}
+
+
+			}
+
+		}
+	}
+	if(param == 2){
+		
+		if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
+			alert("Preencha o nome da Empresa");
+			document.getElementsByName("txtNomeEmpresa")[0].focus()	;
+
+		}
+
+		else{
+
+			var codEmpresa = document.getElementsByName("codEmpresa")[0].value, 
+			nomeEmpresa = document.getElementsByName("txtNomeEmpresa")[0].value,
+			cnpjEmpresa = document.getElementsByName("txtCnpj")[0].value,
+			status = document.getElementById("cmbStatusEmpresa").value;
+
+
+
+			alert(codEmpresa);
+			alert(nomeEmpresa);
+			alert(cnpjEmpresa);
+			alert(status);
+
 
 			var oPagina = new XMLHttpRequest();
 
@@ -86,7 +123,7 @@ function selecionaAcao(param){
 
 			}
 
-
+		}
 
 	}
 
@@ -163,6 +200,33 @@ function atualizaComboEmpresa(){
 }
 
 
+
+
+
+
+
+//  --------------------------------------------FIM EMPRESA ------------------------------------------------
+
+
+//  --------------------------------------------CONTA ------------------------------------------------
+
+//  --------------------------------------------FIM CONTA ------------------------------------------------
+
+
+
+
+
+//  --------------------------------------------ADMINISTRADOR USUÁRIO ------------------------------------------------
+
+
+//  --------------------------------------------FIM ADMINISTRADOR ------------------------------------------------
+
+
+
+
+
+//  --------------------------------------------ATUALIZAÇÃO DA PÁGINA ------------------------------------------------
+
 (function(){
 
 
@@ -171,6 +235,9 @@ function atualizaComboEmpresa(){
 
 
 }())
+
+//  --------------------------------------------FIM ATUALIZAÇÃO ------------------------------------------------
+
 
 
 
