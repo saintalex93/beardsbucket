@@ -4,7 +4,7 @@
 	var oPagina = new XMLHttpRequest();
 	with(oPagina){
 
-		open('GET', 'http://localhost/beardsbucket/sistema/src/consultaReceitaDash.php');
+		open('GET', './src/consultaReceitaDash.php');
 
 		send();
 

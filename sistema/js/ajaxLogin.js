@@ -4,7 +4,7 @@ function selectLogin(usuario, senha){
 	var oPagina = new XMLHttpRequest();
 	with(oPagina){
 
-		open('GET', 'http://localhost/beardsbucket/sistema/src/verifica_login.php?usuario='+usuario+'&senha='+senha);
+		open('GET', './src/verifica_login.php?usuario='+usuario+'&senha='+senha);
 
 		
 
@@ -24,7 +24,7 @@ function selectLogin(usuario, senha){
 			}
 
 			else if(oDados == 1){
-				window.location = "http://localhost/beardsbucket/sistema/dashboard.php";
+				window.location = "./dashboard.php";
 			}
 
 

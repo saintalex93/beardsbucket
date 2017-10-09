@@ -4,7 +4,7 @@ function selectConsulta(){
 	var oPagina = new XMLHttpRequest();
 	with(oPagina){
 
-		open('GET', 'http://localhost/beardsbucket/sistema/src/consultaDespRecei.php');
+		open('GET', './src/consultaDespRecei.php');
 
 		send();
 		onload = function(){

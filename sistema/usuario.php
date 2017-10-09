@@ -229,7 +229,9 @@ if ($permissao == 'Administrador'){
 
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="insereEmpresaUsuario()" id="buttonEmpresa">Inserir</button>
+                    <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
+
+                    <button type="submit" class="btn btn-danger btn-fill btn-wd" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
                 </div>
 
             </div>
