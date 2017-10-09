@@ -53,16 +53,43 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 }
 
+
+// Seleciona Empresa
+
+else if($_GET['funcao'] == 'selecionaEmpresa'){
+
+
+
+	$cSql = "SELECT * FROM EMPRESA WHERE EMP_COD = $_GET[codEmpresa]";
+
+
+
+	$json_array = array(); 
+	
+	$result = mysqli_query($conecta, $cSql);
+
+	while($row = mysqli_fetch_assoc($result))
+	{  
+		$json_array[] = $row;  
+	}  
+
+
+	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+
+
+}
+
+
+// ATUALIZA EMPRESA
+
 else if($_GET['funcao'] == 'atualizaEmpresa'){
 
-	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
+	$cSql = "UPDATE EMPRESA SET EMP_NOME_EMPRESA = $_GET[empresa], EMP_CNPJ = $_GET[cnpj] WHERE EMP_COD = $_GET[codEmpresa]";
 
 
+	$json_array = array(); 
 
-	$result = mysqli_query($conecta, $cSql); 
-
-	$json_array = array();  
-	while($row = mysqli_fetch_assoc($result))  
+	while(mysqli_query($conecta, $cSql))
 	{  
 		$json_array[] = $row;  
 	}  

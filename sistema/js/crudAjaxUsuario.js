@@ -53,4 +53,66 @@ function insereEmpresaUsuario(){
 	}
 
 }
+function selecionaEmpresa(codEmpresa){
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+
+		open('GET', 'http://localhost/beardsbucket/sistema/src/CrudUsuario.php?funcao=selecionaEmpresa&codEmpresa='+codEmpresa);
+
+		send();
+
+		onload = function(){
+
+			var oDados = JSON.parse(responseText);
+
+			document.getElementsByName("codEmpresa")[0].value = oDados[0]['EMP_COD'];
+			document.getElementsByName("txtNomeEmpresa")[0].value = oDados[0]['EMP_NOME_EMPRESA'];
+			document.getElementsByName("txtCnpj")[0].value = oDados[0]['EMP_CNPJ'];
+
+			document.getElementById("buttonEmpresa").innerHTML = "Alterar";
+
+		}
+
+
+
+	}
+
+
+}
+
+
+function alteraEmpresa(codEmpresa){
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+
+		open('GET', 'http://localhost/beardsbucket/sistema/src/CrudUsuario.php?funcao=selecionaEmpresa&codEmpresa='+codEmpresa);
+
+		send();
+
+		onload = function(){
+
+			var oDados = JSON.parse(responseText);
+
+			document.getElementsByName("codEmpresa")[0].value = oDados[0]['EMP_COD'];
+			document.getElementsByName("txtNomeEmpresa")[0].value = oDados[0]['EMP_NOME_EMPRESA'];
+			document.getElementsByName("txtCnpj")[0].value = oDados[0]['EMP_CNPJ'];
+
+			document.getElementById("buttonEmpresa").innerHTML = "Alterar";
+
+		}
+
+
+
+	}
+
+
+}
+
+
 
