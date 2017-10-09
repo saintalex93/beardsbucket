@@ -13,17 +13,18 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 
 	$cSql = "INSERT INTO EMPRESA  VALUES (0, '$_GET[empresa]', '$_GET[cnpj]')";
+	
+	$cSql = str_replace("''","NULL", $cSql);
 
+	
 	if (mysqli_query($conecta, $cSql)){
 
-
-
-		
 
 		$codEmpresa = mysqli_insert_id($conecta);
 
 
 		$cSql = "INSERT INTO USR_EMPR  values (0, $cod, $codEmpresa)";
+
 
 
 		mysqli_query($conecta, $cSql);
