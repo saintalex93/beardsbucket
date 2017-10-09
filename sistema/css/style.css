@@ -24,21 +24,190 @@ body {
   font-size: 12px;
 }
 .pen-title span .fa {
-  color: #33b5e5;
+  color: #28bd28;
 }
 .pen-title span a {
-  color: #33b5e5;
+  color: #28bd28;
   font-weight: 600;
   text-decoration: none;
 }
 
+/*Form*/
+.formulario{
+    position: relative;
+  background: #ffffff;
+  max-width: 600px;
+  width: 100%;
+  border-top: 5px solid #28bd28;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+
+.formulario .toggle {
+  cursor: pointer;
+  position: absolute;
+  top: -0;
+  right: -0;
+  background: #28bd28;
+  width: 30px;
+  height: 30px;
+  margin: -5px 0 0;
+  color: #ffffff;
+  font-size: 12px;
+  line-height: 30px;
+  text-align: center;
+}
+.formulario .toggle .tooltip {
+  position: absolute;
+  top: 5px;
+  right: -65px;
+  display: block;
+  background: rgba(0, 0, 0, 0.6);
+  width: auto;
+  padding: 5px;
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.formulario .toggle .tooltip:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  display: block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid rgba(0, 0, 0, 0.6);
+}
+
+
+
+.formulario .formularioCDEmpresa {
+  display: block;
+  padding: 40px;
+}
+.formulario .form:nth-child(2) {
+  display: block;
+}
+.formulario h2 {
+  margin: 0 0 20px;
+  color: #28bd28;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1;
+}
+.formulario input {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: 1px solid #d9d9d9;
+  margin: 0 0 20px;
+  padding: 10px 15px;
+  box-sizing: border-box;
+  font-weight: 400;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.formulario input:focus {
+  border: 1px solid #28bd28;
+  color: #333333;
+}
+.formulario button {
+  cursor: pointer;
+  background: #28bd28;
+  width: 100%;
+  border: 0;
+  padding: 10px 15px;
+  color: #ffffff;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+.formulario button:hover {
+  background: #38eb47;
+}
+.formulario .cta {
+  background: #f2f2f2;
+  width: 100%;
+  padding: 15px 40px;
+  box-sizing: border-box;
+  color: #666666;
+  font-size: 12px;
+  text-align: center;
+}
+.formulario .cta a {
+  color: #333333;
+  text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Form Module */
-.form-module {
+.form-module  {
   position: relative;
   background: #ffffff;
   max-width: 320px;
   width: 100%;
-  border-top: 5px solid #33b5e5;
+  border-top: 5px solid #28bd28;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
 }
@@ -47,7 +216,7 @@ body {
   position: absolute;
   top: -0;
   right: -0;
-  background: #33b5e5;
+  background: #28bd28;
   width: 30px;
   height: 30px;
   margin: -5px 0 0;
@@ -93,7 +262,7 @@ body {
 }
 .form-module h2 {
   margin: 0 0 20px;
-  color: #33b5e5;
+  color: #28bd28;
   font-size: 18px;
   font-weight: 400;
   line-height: 1;
@@ -106,17 +275,17 @@ body {
   margin: 0 0 20px;
   padding: 10px 15px;
   box-sizing: border-box;
-  font-wieght: 400;
+  font-weight: 400;
   -webkit-transition: 0.3s ease;
   transition: 0.3s ease;
 }
 .form-module input:focus {
-  border: 1px solid #33b5e5;
+  border: 1px solid #28bd28;
   color: #333333;
 }
 .form-module button {
   cursor: pointer;
-  background: #33b5e5;
+  background: #28bd28;
   width: 100%;
   border: 0;
   padding: 10px 15px;
@@ -125,7 +294,7 @@ body {
   transition: 0.3s ease;
 }
 .form-module button:hover {
-  background: #178ab4;
+  background: #38eb47;
 }
 .form-module .cta {
   background: #f2f2f2;
@@ -215,3 +384,44 @@ table th{
   display: none;
 }
 
+<<<<<<< HEAD
+=======
+
+
+.btn-info.btn-fill{
+    border: #18d918;
+}
+
+.btn-info.btn-fill:hover{
+    border: #38eb47;
+}
+
+
+
+.nav-pills>li.active>a{
+    background-color: #28bd28;
+}
+
+.nav-pills>li.active>a:hover{
+    background-color: #38eb47;
+}
+
+#categ a {
+ color: #28bd28;  
+}
+
+
+.btn-info.btn-fill:hover{
+    background: #38eb47;
+}
+
+
+.ti-linux, .pull-right a {
+  color: #28bd28;
+}
+
+
+.navbar-default .navbar-nav > li > a:not(.btn):hover{
+ color: #28bd28;
+}
+>>>>>>> b29ed7ccf7c2a49a45168cb1ef3cef18cb45dd13

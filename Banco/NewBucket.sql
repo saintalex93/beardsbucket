@@ -1,5 +1,5 @@
--- ﻿CREATE USER 'bucket'@'localhost' IDENTIFIED BY '123';
--- GRANT ALL PRIVILEGES ON * . * TO 'bucket'@'localhost';
+﻿CREATE USER 'bucket'@'localhost' IDENTIFIED BY '123';
+GRANT ALL PRIVILEGES ON * . * TO 'bucket'@'localhost';
 -- 
 -- SELECT * FROM mysql.user;
 -- 	
