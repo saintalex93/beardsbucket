@@ -47,7 +47,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-         <div class="col-lg-4 col-md-5">
+           <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:295px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -105,14 +105,14 @@ mysqli_close($conecta);
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Permissão</label>
-                                <input type="text" class="form-control border-input" value = "<?php echo $permissao?>">
+                                <input type="text" class="form-control border-input" disabled value = "<?php echo $permissao?>">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Status</label>
-                                <input type="text" class="form-control border-input" value="<?php echo $STATUS?>" >
+                                <input type="text" class="form-control border-input" disabled value="<?php echo $STATUS?>" >
                             </div>
                         </div>
                     </div>
@@ -220,7 +220,7 @@ if ($permissao == 'Administrador'){
                     <div class="row">
 
                         <div class="col-md-12">
-                           <div class="form-group">
+                         <div class="form-group">
                             <output type="text" class="text-center" id="retornoFormEmpresa"></output>
                         </div>
                     </div>
@@ -269,16 +269,17 @@ if ($permissao == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                             <label for="">Empresa / Pefil</label>
-                             <select placeholder="" class="form-control border-input" id="selecioneEmpresa">
+                               <label for="">Empresa / Pefil</label>
+                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                                <option value="">Selecione</option>
                                 
-                             </select>
-                         </div>
-                     </div>
+                            </select>
+                        </div>
+                    </div>
 
-                 </div>
+                </div>
 
-                 <div class="row">
+                <div class="row">
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -295,7 +296,14 @@ if ($permissao == 'Administrador'){
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Tipo</label>
-                            <input type="text" class="form-control border-input"  placeholder="Conta Corrente">
+                            <select placeholder="" class="form-control border-input">
+                                <option value="">Selecione...</option>
+                                <option value="CC">Corrente</option>
+                                <option value="CP">Poupança</option>
+                                <option value="CS">Salário</option>
+                                <option value="SC">Sem Conta</option>
+
+                            </select>
                         </div>
                     </div>
                     <div class="col-md-3">
@@ -320,39 +328,7 @@ if ($permissao == 'Administrador'){
 
                     <tbody>
 
-                        <?php
-
-                        require 'src/conecta.php';
-
-
-                        $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA  FROM CONTA INNER JOIN
-                        EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod;
-
-
-                        $dataSet = mysqli_query($conecta, $cSql);
-
-                        while($oDados = mysqli_fetch_assoc($dataSet)){
-                            echo "
-
-                            <tr>
-                            <td>".$oDados['CNT_COD']."</td>
-                            <td>".$oDados['CNT_NOME']."</td>
-                            <td>".$oDados['CNT_BANCO']."</td>
-                            <td>".$oDados['EMP_NOME_EMPRESA']."</td>
-                            <td>".$oDados['CNT_SALDOINICIAL']."</td>
-
-                            <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
-                            </tr>
-                            ";
-
-                        }
-
-                        mysqli_free_result($dataSet);
-                        mysqli_close($conecta);  
-
-
-
-                        ?>
+                       
 
                     </tbody>
                 </table>
@@ -380,7 +356,7 @@ if ($permissao == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-             <form>
+               <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -413,14 +389,23 @@ if ($permissao == 'Administrador'){
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Permissão</label>
-                            <input type="text" class="form-control border-input" placeholder="Administrador">
+                            <select placeholder="" class="form-control border-input">
+                                <option value="">Selecione...</option>
+                                <option value="2">Administrador</option>
+                                <option value="1">Gerente</option>
+                                <option value="0">Usuário</option>
+                            </select>
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Status</label>
-                            <input type="text" class="form-control border-input" placeholder="Ativo">
+                            <select placeholder="" class="form-control border-input">
+                                <option value="">Selecione...</option>
+                                <option value="1">Ativo</option>
+                                <option value="0">Inativo</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -443,18 +428,18 @@ if ($permissao == 'Administrador'){
 
                 <tbody>
 
-                   <?php
+                 <?php
 
-                   require 'src/conecta.php';
-
-
-                   $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-                   COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+                 require 'src/conecta.php';
 
 
-                   $dataSet = mysqli_query($conecta, $cSql);
+                 $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
+                 COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-                   while($oDados = mysqli_fetch_assoc($dataSet)){
+
+                 $dataSet = mysqli_query($conecta, $cSql);
+
+                 while($oDados = mysqli_fetch_assoc($dataSet)){
                     echo "
 
                     <tr>

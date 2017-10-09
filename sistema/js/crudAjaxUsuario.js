@@ -115,4 +115,39 @@ function alteraEmpresa(codEmpresa){
 }
 
 
+function atualizaComboEmpresa(){
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open('GET', 'http://localhost/beardsbucket/sistema/src/CrudUsuario.php?funcao=comboConta');
+
+		send();
+
+		onload = function(){
+
+			var oDados = JSON.parse(responseText);
+
+			for(var i = 0; i<oDados.length; i++){
+				var x = document.getElementById("cmbEmpresa");
+				var option = document.createElement("option");
+				option.text = oDados[i]['EMP_NOME_EMPRESA'];
+				option.value = oDados[i]['EMP_COD'];
+				x.add(option);
+			}
+		}
+	}
+}
+
+
+(function(){
+
+
+	atualizaComboEmpresa();
+
+
+
+}())
+
+
 
