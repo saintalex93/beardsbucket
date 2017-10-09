@@ -311,12 +311,6 @@ body {
 }
 
 
-#retornoFormEmpresa{
-  color: red;
-  display: none;
-}
-
-
 /*                  */
 
 
@@ -384,8 +378,6 @@ table th{
   display: none;
 }
 
-<<<<<<< HEAD
-=======
 
 
 .btn-info.btn-fill{
@@ -424,4 +416,3 @@ table th{
 .navbar-default .navbar-nav > li > a:not(.btn):hover{
  color: #28bd28;
 }
->>>>>>> b29ed7ccf7c2a49a45168cb1ef3cef18cb45dd13
