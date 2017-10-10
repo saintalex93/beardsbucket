@@ -109,13 +109,13 @@ INSERT INTO USUARIO VALUES
 (0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 2,1);
 --
 
-INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",2),
-(0, "Beards Web", "66.666.666/0001-66",1), (0, "Albroz Empreendimentos", "07.833-690/0001-09",2),
-(0, "Pessoal", null,1); 
+INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",1),
+(0, "Beards Web", "66.666.666/0001-66",0), (0, "Albroz Empreendimentos", "07.833-690/0001-09",1),
+(0, "Pessoal", null,0); 
 
-INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 'CC',1,60000.00,1),
-(0, "Beards", "Itaú", "5602", "00127-3", 'CP',1, 90000.00,2),
-(0, "Albroz BB", "Banco do Brasil", "5602", "00127-3",'CC',1, 90000.00,3),
+INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 'CC',0,60000.00,1),
+(0, "Beards", "Itaú", "5602", "00127-3", 'CP',0, 90000.00,2),
+(0, "Albroz BB", "Banco do Brasil", "5602", "00127-3",'CC',0, 90000.00,3),
 (0, "Pessoal", "Banco do Brasil", "5612", "00132-3", 'CS',1, 1000.00,4);
 
 
@@ -129,18 +129,18 @@ INSERT INTO USR_EMPR VALUES(0,4,3);
 
 insert into CATEGORIA VALUES
 (0,"Salário",1,1),(0,"Transporte",1,1),(0,"Alimentação",1,1),(0,"Taxas e Impostos",1,1),(0,"Serviços",1,1),
-(0,"Convênios",1,1),(0,"Hospedagem",2,1),(0,"Compras em Geral",1,1),(0,"Combustível",2,1),(0,"Viagens",2,1),(0,"Saúde",1,1),(0,"Estudos",1,1),
-(0,"Investimentos",1,1),(0,"Salário",1,2),(0,"Transporte",2,2),(0,"Alimentação",2,2),(0,"Taxas e Impostos",2,2),(0,"Contratos",2,2),
-(0,"Convênios",2,2),(0,"Hospedagem",2,2),(0,"Estornos",1,2),(0,"Vendas em Geral",1,2),(0,"Viagens",2,2),(0,"Estudos",1,2),(0,"Investimentos",1,2),
-(0,"Salário",2,3),(0,"Transporte",2,3),(0,"Alimentação",2,3),(0,"Taxas e Impostos",1,3),(0,"Contratos",1,3),(0,"Convênios",1,3),(0,"Hospedagem",1,3),
-(0,"Estornos",1,3),(0,"Vendas em Geral",2,3),(0,"Viagens",2,3),(0,"Estudos",1,3),(0,"Investimentos",2,3);
+(0,"Convênios",1,1),(0,"Hospedagem",0,1),(0,"Compras em Geral",1,1),(0,"Combustível",0,1),(0,"Viagens",0,1),(0,"Saúde",1,1),(0,"Estudos",1,1),
+(0,"Investimentos",1,1),(0,"Salário",1,2),(0,"Transporte",0,2),(0,"Alimentação",0,2),(0,"Taxas e Impostos",0,2),(0,"Contratos",0,2),
+(0,"Convênios",0,2),(0,"Hospedagem",0,2),(0,"Estornos",1,2),(0,"Vendas em Geral",1,2),(0,"Viagens",0,2),(0,"Estudos",1,2),(0,"Investimentos",1,2),
+(0,"Salário",0,3),(0,"Transporte",0,3),(0,"Alimentação",0,3),(0,"Taxas e Impostos",1,3),(0,"Contratos",1,3),(0,"Convênios",1,3),(0,"Hospedagem",1,3),
+(0,"Estornos",1,3),(0,"Vendas em Geral",0,3),(0,"Viagens",0,3),(0,"Estudos",1,3),(0,"Investimentos",0,3);
 -- 
 
 -- 
 
 -- 
 INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1),
-(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',2);
+(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',0);
 
 
 INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);
@@ -182,7 +182,7 @@ SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
 IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,2,'Inativo')) as EMP_STATUS 
 FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR;
 
-
+SELECT * FROM EMPRESA;
 SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
                         IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,2,'Inativo')) as EMP_STATUS 
                         FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = 1;
