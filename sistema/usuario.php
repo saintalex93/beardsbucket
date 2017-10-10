@@ -279,13 +279,14 @@ if ($permissao == 'Administrador'){
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input type="text" class="form-control border-input"  placeholder="Itaú">
+                                <input type="hidden" name="codConta" id="codConta">
+                                <input type="text" class="form-control border-input" id="nomeConta"  name="nomeConta" placeholder="Nome da Conta">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Banco</label>
-                                <input type="text" class="form-control border-input" placeholder="Itaú">
+                                <input type="text" class="form-control border-input" id="nomeBanco" name="nomeBanco" placeholder="Itaú">
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -305,19 +306,19 @@ if ($permissao == 'Administrador'){
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="">Agência</label>
-                            <input type="email" class="form-control border-input" placeholder="5607">
+                            <input type="email" class="form-control border-input" id="agenciaConta" name="agenciaConta" placeholder="Agencia">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Conta Corrente</label>
-                            <input type="text" class="form-control border-input" placeholder="00657-3">
+                            <input type="text" class="form-control border-input" id="numeroConta" name="numeroConta" placeholder="Conta">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Tipo</label>
-                            <select placeholder="" class="form-control border-input">
+                            <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
                                 <option value="">Selecione...</option>
                                 <option value="CC">Corrente</option>
                                 <option value="CP">Poupança</option>
@@ -327,10 +328,19 @@ if ($permissao == 'Administrador'){
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Saldo Incial</label>
-                            <input type="text" class="form-control border-input" placeholder="R$ 80.000,00">
+                            <input type="text" class="form-control border-input" id="saldoInicial" name="saldoInicial" placeholder="R$ 1.000,00">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            <label>Status</label>
+                            <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -338,7 +348,7 @@ if ($permissao == 'Administrador'){
 
 
             <div class="text-center">
-                <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
+                <button  class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoConta(this.value)">Inserir</button>
             </div>
 
             <div class="row">
@@ -351,7 +361,7 @@ if ($permissao == 'Administrador'){
 
         </div>
 
-        <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="dataTable" cellspacing="0">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -383,9 +393,9 @@ if ($permissao == 'Administrador'){
                     <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
                     <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
                     <td name = '".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_SALDOINICIAL']."</td>
+                    <td name = '".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
 
-                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'alert(document.getElementsByName(".$oDados['CNT_COD'].")[2].innerText)' >Alterar</button></td>
+                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
                     </tr>
                     ";
 
@@ -429,6 +439,7 @@ if ($permissao == 'Administrador'){
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nome</label>
+
                             <input type="text" class="form-control border-input" placeholder="Nome">
                         </div>
                     </div>

@@ -141,5 +141,33 @@ else if($_GET['funcao'] == 'comboConta'){
 
 }
 
+else if($_GET['funcao'] == 'insereConta'){
+
+	$cSql = "INSERT INTO CONTA VALUES (0,'$_GET[nomeConta]','$_GET[nomeBanco]','$_GET[agenciaConta]','$_GET[numeroConta]','$_GET[tipoConta]',$_GET[saldoInicial],'$_GET[cmbStatusConta]',$_GET[cmbEmpresa]";	
+	
+	$cSql = str_replace("''","NULL", $cSql);
+
+	if(mysqli_query($conecta,$cSql)){
+
+		$cSql = "SELECT EMP_COD FROM EMPRESA WHERE EMP_NOME_EMPRESA = '$_GET[cmbEmpresa]'";
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+
+		while ($row = mysqli_fetch_assoc($result)) {
+			
+			$json_array[] = $row;
+		}
+
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
+
+	}
+	else
+		echo "Erro ao Inserir";
+
+	
+}
+
 
 ?>

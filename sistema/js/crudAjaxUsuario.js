@@ -219,11 +219,117 @@ function atualizaComboEmpresa(){
 
 
 
+
 //  --------------------------------------------FIM EMPRESA ------------------------------------------------
 
 
 //  --------------------------------------------CONTA ------------------------------------------------
+function selecionaAcaoConta(param){
 
+	if(param == 1){
+		if(document.getElementsByName("nomeBanco")[0].value.trim().length<=0 || document.getElementsByName("agenciaConta")[0].value.trim().length<=0 || document.getElementsByName("numeroConta")[0].value.trim().length<=0){
+			alert("Preencha o nome do Banco");
+			document.getElementsByName("nomeBanco")[0].focus();
+		}else{
+
+			var oPagina = new XMLHttpRequest();
+			with(oPagina){
+
+
+				var nomeConta = document.getElementsByName("nomeConta")[0].value;
+				var nomeBanco = document.getElementsByName("nomeBanco")[0].value;
+				var empresa = document.getElementsByName("cmbEmpresa")[0].value;
+				var agenciaConta = document.getElementsByName("agenciaConta")[0].value;
+				var conta = document.getElementsByName("numeroConta")[0].value;
+				var tipo = document.getElementsByName("tipoConta")[0].value;
+				var saldo = document.getElementsByName("saldoInicial")[0].value;
+				var status = document.getElementsByName("cmbStatusConta")[0].value;				
+
+				open('GET', './src/CrudUsuario.php?funcao=insereConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&cmbEmpresa='+empresa+'&agenciaConta='+agenciaConta+'&numeroConta='+conta+'&tipoConta='+tipo+'&saldoInicial='+saldo+'&cmbStatusConta='+status);
+
+				send();
+				onload = function(){
+
+
+
+
+					if(responseText != "Erro ao Inserir"){
+
+						var oDados = JSON.parse(responseText);
+
+						var Contador = parseInt(oDados.length);
+
+						Contador = Contador -1;
+
+						var tableConta = document.getElementById("tableConta");
+
+
+
+						tableEmpresa.insertAdjacentHTML('beforeend',
+							"<tr><td>" + oDados[Contador]['EMP_COD'] + "</td>"+
+							"<td>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
+							"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
+							"' onclick = 'alert(this.id)'>Alterar</button></tr> "
+							);
+
+					}
+
+					else{
+						document.getElementById("retornoFormEmpresa").style.display = "block";
+						document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível inserir a empresa";
+						setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+
+					}
+
+				}
+
+			}
+
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function selecionaConta(codConta){
+	codConta = 'con'+codConta;
+
+		document.getElementById("codConta").value = document.getElementsByName(codConta)[0].innerText;
+		document.getElementById("nomeConta").value = document.getElementsByName(codConta)[1].innerText;
+		document.getElementById("nomeBanco").value = document.getElementsByName(codConta)[2].innerText;
+		document.getElementById("cmbEmpresa").value = document.getElementsByName(codConta)[3].innerText;
+		document.getElementById("agenciaConta").value = document.getElementsByName(codConta)[4].innerText;
+		document.getElementById("numeroConta").value = document.getElementsByName(codConta)[5].innerText;
+		document.getElementById("tipoConta").value = document.getElementsByName(codConta)[6].innerText;
+		document.getElementById("saldoInicial").value = document.getElementsByName(codConta)[7].innerText;
+		document.getElementById("cmbStatusConta").value = document.getElementsByName(codConta)[8].innerText;
+		
+
+
+
+		document.getElementById("buttonEmpresa").innerHTML = "Alterar";
+		document.getElementById("buttonEmpresa").value = 2;
+		document.getElementById("buttonCancelarEmpresa").style.display = 'inline';
+}
 //  --------------------------------------------FIM CONTA ------------------------------------------------
 
 
