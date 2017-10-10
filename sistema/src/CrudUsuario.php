@@ -56,49 +56,66 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 // Seleciona Empresa
 
-else if($_GET['funcao'] == 'selecionaEmpresa'){
+// else if($_GET['funcao'] == 'selecionaEmpresa'){
 
 
 
-	$cSql = "SELECT * FROM EMPRESA WHERE EMP_COD = $_GET[codEmpresa]";
+// 	$cSql = "SELECT * FROM EMPRESA WHERE EMP_COD = $_GET[codEmpresa]";
 
 
 
-	$json_array = array(); 
-	
-	$result = mysqli_query($conecta, $cSql);
+// 	$json_array = array(); 
 
-	while($row = mysqli_fetch_assoc($result))
-	{  
-		$json_array[] = $row;  
-	}  
+// 	$result = mysqli_query($conecta, $cSql);
 
-
-	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+// 	while($row = mysqli_fetch_assoc($result))
+// 	{  
+// 		$json_array[] = $row;  
+// 	}  
 
 
-}
+// 	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+
+
+// }
 
 
 // ATUALIZA EMPRESA
 
 else if($_GET['funcao'] == 'atualizaEmpresa'){
 
-	$cSql = "UPDATE EMPRESA SET EMP_NOME_EMPRESA = $_GET[empresa], EMP_CNPJ = $_GET[cnpj] WHERE EMP_COD = $_GET[codEmpresa]";
+	$status = $_GET['status'];
 
-
-	$json_array = array(); 
-
-	$result = mysqli_query($conecta, $cSql);
-
-	while($row = mysqli_fetch_assoc($result))
-	{  
-		$json_array[] = $row;  
-	}  
+			if($status == "Ativo")
+				$status = 1;
+			else
+				$status = 2;
 
 
 
-	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+	$cSql = "UPDATE EMPRESA SET EMP_NOME_EMPRESA = '$_GET[empresa]', EMP_CNPJ = '$_GET[cnpj]', EMP_STATUS = $status WHERE EMP_COD = $_GET[codEmpresa]";
+
+
+
+	if($result = mysqli_query($conecta, $cSql)){
+		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
+		IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,2,'Inativo')) as EMP_STATUS 
+		FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[codEmpresa]";
+
+		$result = mysqli_query($conecta, $cSql);
+
+		if($row = mysqli_fetch_assoc($result))
+		{  
+			$json_array[] = $row;  
+		}  
+
+
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+
+	}
+	
+
+
 
 
 
@@ -123,46 +140,6 @@ else if($_GET['funcao'] == 'comboConta'){
 
 
 }
-
-else if($_GET['funcao'] == 'atualizaTabela'){
-
-
-$cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA  FROM CONTA INNER JOIN
-EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod;
-
-
-$dataSet = mysqli_query($conecta, $cSql);
-
-while($oDados = mysqli_fetch_assoc($dataSet)){
-	echo "
-
-	<tr>
-	<td>".$oDados['CNT_COD']."</td>
-	<td>".$oDados['CNT_NOME']."</td>
-	<td>".$oDados['CNT_BANCO']."</td>
-	<td>".$oDados['EMP_NOME_EMPRESA']."</td>
-	<td>".$oDados['CNT_SALDOINICIAL']."</td>
-
-	<td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
-	</tr>
-	";
-
-}
-
-mysqli_free_result($dataSet);
-mysqli_close($conecta);  
-
-
-
-
-
-
-}
-
-
-
-
-
 
 
 ?>

@@ -47,7 +47,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-         <div class="col-lg-4 col-md-5">
+           <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:295px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -162,7 +162,7 @@ if ($permissao == 'Administrador'){
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>CNPJ/CPF</label>
-                                    <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj">
+                                    <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj" id="txtCnpj">
                                 </div>
                             </div>
 
@@ -170,8 +170,8 @@ if ($permissao == 'Administrador'){
                                 <div class="form-group">
                                     <label>Status</label>
                                     <select class="form-control border-input" id="cmbStatusEmpresa">
-                                        <option value="1">Ativo</option>
-                                        <option value="0">Inativo</option>
+                                        <option value="Ativo">Ativo</option>
+                                        <option value="Inativo">Inativo</option>
                                     </select>
 
                                 </div>
@@ -190,7 +190,7 @@ if ($permissao == 'Administrador'){
                     <div class="row">
 
                         <div class="col-md-12">
-                           <div class="form-group">
+                         <div class="form-group">
                             <output type="text" class="text-center" id="retornoFormEmpresa"></output>
                         </div>
                     </div>
@@ -204,6 +204,7 @@ if ($permissao == 'Administrador'){
                             <th>Código</th>
                             <th>Nome</th>
                             <th>CNPJ</th>
+                            <th>Status</th>
                             <th>Ações</th>
 
                         </tr>
@@ -216,8 +217,9 @@ if ($permissao == 'Administrador'){
                         require 'src/conecta.php';
 
 
-                        $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON 
-                        EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
+                        $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
+                        IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,2,'Inativo')) as EMP_STATUS 
+                        FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
 
 
                         $dataSet = mysqli_query($conecta, $cSql);
@@ -226,9 +228,11 @@ if ($permissao == 'Administrador'){
                             echo "
 
                             <tr>
-                            <td>".$oDados['EMP_COD']."</td>
-                            <td>".$oDados['EMP_NOME_EMPRESA']."</td>
-                            <td>".$oDados['EMP_CNPJ']."</td>
+                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
+                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
+                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
+
                             <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
                             </tr>
                             ";
@@ -286,8 +290,8 @@ if ($permissao == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                             <label for="">Empresa / Pefil</label>
-                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                               <label for="">Empresa / Pefil</label>
+                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
                                 <option value="">Selecione</option>
                                 
                             </select>
@@ -340,7 +344,7 @@ if ($permissao == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                   <div class="form-group">
+                 <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta">OI</output>
                 </div>
             </div>
@@ -360,6 +364,40 @@ if ($permissao == 'Administrador'){
             </thead>
 
             <tbody>
+
+                <?php
+                require 'src/conecta.php';
+
+
+                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA  FROM CONTA INNER JOIN
+                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod;
+
+
+                $dataSet = mysqli_query($conecta, $cSql);
+
+                while($oDados = mysqli_fetch_assoc($dataSet)){
+                    echo "
+
+                    <tr>
+                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
+                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
+                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
+                    <td name = '".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_SALDOINICIAL']."</td>
+
+                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'alert(document.getElementsByName(".$oDados['CNT_COD'].")[2].innerText)' >Alterar</button></td>
+                    </tr>
+                    ";
+
+                    // for(var i = 0; i<document.getElementById('".$oDados['CNT_COD']."').length;i++){alert(document.getElementById('".$oDados['CNT_COD']."')[i].innerTEXT);}
+
+                }
+
+                mysqli_free_result($dataSet);
+                mysqli_close($conecta);  
+
+
+                ?>
 
 
 
@@ -386,7 +424,7 @@ if ($permissao == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-             <form>
+               <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -448,7 +486,7 @@ if ($permissao == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                   <div class="form-group">
+                 <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta">OI</output>
                 </div>
             </div>
@@ -472,18 +510,18 @@ if ($permissao == 'Administrador'){
 
             <tbody>
 
-               <?php
+             <?php
 
-               require 'src/conecta.php';
-
-
-               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-               COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+             require 'src/conecta.php';
 
 
-               $dataSet = mysqli_query($conecta, $cSql);
+             $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
+             COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-               while($oDados = mysqli_fetch_assoc($dataSet)){
+
+             $dataSet = mysqli_query($conecta, $cSql);
+
+             while($oDados = mysqli_fetch_assoc($dataSet)){
                 echo "
 
                 <tr>

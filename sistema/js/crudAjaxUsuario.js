@@ -87,23 +87,14 @@ function selecionaAcao(param){
 
 			var codEmpresa = document.getElementsByName("codEmpresa")[0].value, 
 			nomeEmpresa = document.getElementsByName("txtNomeEmpresa")[0].value,
-			cnpjEmpresa = document.getElementsByName("txtCnpj")[0].value,
-			status = document.getElementById("cmbStatusEmpresa").value;
-
-
-
-			alert(codEmpresa);
-			alert(nomeEmpresa);
-			alert(cnpjEmpresa);
-			alert(status);
+			cnpjEmpresa = document.getElementsByName("txtCnpj")[0].value;
 
 
 			var oPagina = new XMLHttpRequest();
 
 			with(oPagina){
 
-
-				open('GET', './src/CrudUsuario.php?funcao=selecionaEmpresa&codEmpresa='+codEmpresa);
+				open('GET', './src/CrudUsuario.php?funcao=atualizaEmpresa&empresa='+nomeEmpresa+'&cnpj='+cnpjEmpresa+'&status='+document.getElementById("cmbStatusEmpresa").value+'&codEmpresa='+codEmpresa);
 
 				send();
 
@@ -111,14 +102,20 @@ function selecionaAcao(param){
 
 					var oDados = JSON.parse(responseText);
 
-					document.getElementsByName("codEmpresa")[0].value = oDados[0]['EMP_COD'];
-					document.getElementsByName("txtNomeEmpresa")[0].value = oDados[0]['EMP_NOME_EMPRESA'];
-					document.getElementsByName("txtCnpj")[0].value = oDados[0]['EMP_CNPJ'];
+					var codEmpresa = 'emp'+oDados[0]['EMP_COD'];
+					
+					document.getElementsByName(codEmpresa)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+					document.getElementsByName(codEmpresa)[2].innerText = oDados[0]['EMP_CNPJ'];
+					document.getElementsByName(codEmpresa)[3].innerText = oDados[0]['EMP_STATUS'];
 
-					document.getElementById("buttonEmpresa").innerHTML = "Alterar";
+
+					// document.getElementsByName("codEmpresa")[0].value = oDados[0]['EMP_COD'];
+					// document.getElementsByName("txtNomeEmpresa")[0].value = oDados[0]['EMP_NOME_EMPRESA'];
+					// document.getElementsByName("txtCnpj")[0].value = oDados[0]['EMP_CNPJ'];
+
+					// document.getElementById("buttonEmpresa").innerHTML = "Alterar";
 
 				}
-
 
 
 			}
@@ -144,32 +141,42 @@ function selecionaAcao(param){
 
 function selecionaEmpresa(codEmpresa){
 
-	var oPagina = new XMLHttpRequest();
+	codEmpresa = 'emp'+codEmpresa;
 
-	with(oPagina){
+	document.getElementById("codEmpresa").value = document.getElementsByName(codEmpresa)[0].innerText;
+	document.getElementById("txtNomeEmpresa").value = document.getElementsByName(codEmpresa)[1].innerText;
+	document.getElementById("txtCnpj").value = document.getElementsByName(codEmpresa)[2].innerText;
+	document.getElementById("cmbStatusEmpresa").value = document.getElementsByName(codEmpresa)[3].innerText;
 
-
-		open('GET', './src/CrudUsuario.php?funcao=selecionaEmpresa&codEmpresa='+codEmpresa);
-
-		send();
-
-		onload = function(){
-
-			var oDados = JSON.parse(responseText);
-
-			document.getElementsByName("codEmpresa")[0].value = oDados[0]['EMP_COD'];
-			document.getElementsByName("txtNomeEmpresa")[0].value = oDados[0]['EMP_NOME_EMPRESA'];
-			document.getElementsByName("txtCnpj")[0].value = oDados[0]['EMP_CNPJ'];
-
-			document.getElementById("buttonEmpresa").innerHTML = "Alterar";
-			document.getElementById("buttonEmpresa").value = 2;
-			document.getElementById("buttonCancelarEmpresa").style.display = 'inline';
+	document.getElementById("buttonEmpresa").innerHTML = "Alterar";
+	document.getElementById("buttonEmpresa").value = 2;
+	document.getElementById("buttonCancelarEmpresa").style.display = 'inline';
 
 
+	// var oPagina = new XMLHttpRequest();
 
-		}
+	// with(oPagina){
 
-	}
+
+	// 	open('GET', './src/CrudUsuario.php?funcao=selecionaEmpresa&codEmpresa='+codEmpresa);
+
+	// 	send();
+
+	// 	onload = function(){
+
+	// 		var oDados = JSON.parse(responseText);
+
+	// 		document.getElementsByName("codEmpresa")[0].value = oDados[0]['EMP_COD'];
+	// 		document.getElementsByName("txtNomeEmpresa")[0].value = oDados[0]['EMP_NOME_EMPRESA'];
+	// 		document.getElementsByName("txtCnpj")[0].value = oDados[0]['EMP_CNPJ'];
+
+
+
+
+
+	// 	}
+
+	// }
 
 
 }
