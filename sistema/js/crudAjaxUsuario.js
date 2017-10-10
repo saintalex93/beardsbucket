@@ -90,6 +90,7 @@ function selecionaAcao(param){
 			cnpjEmpresa = document.getElementsByName("txtCnpj")[0].value;
 
 
+
 			var oPagina = new XMLHttpRequest();
 
 			with(oPagina){
@@ -116,6 +117,12 @@ function selecionaAcao(param){
 					// document.getElementById("buttonEmpresa").innerHTML = "Alterar";
 
 				}
+				document.getElementById("buttonEmpresa").innerHTML = "Inserir";
+				document.getElementById("buttonCancelarEmpresa").style.display = 'none';
+				document.getElementById("buttonEmpresa").value = 1;
+
+				document.all.txtCnpj.value = "";
+				document.all.txtNomeEmpresa.value="";
 
 
 			}
