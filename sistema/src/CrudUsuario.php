@@ -89,7 +89,7 @@ else if($_GET['funcao'] == 'atualizaEmpresa'){
 			if($status == "Ativo")
 				$status = 1;
 			else
-				$status = 2;
+				$status = 0;
 
 
 
@@ -99,7 +99,7 @@ else if($_GET['funcao'] == 'atualizaEmpresa'){
 
 	if($result = mysqli_query($conecta, $cSql)){
 		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
-		IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,2,'Inativo')) as EMP_STATUS 
+		IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
 		FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[codEmpresa]";
 
 		$result = mysqli_query($conecta, $cSql);
