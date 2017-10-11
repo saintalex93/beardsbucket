@@ -268,6 +268,7 @@ function selecionaAcaoConta(param){
 			var conta = document.getElementsByName("numeroConta")[0].value;
 			var tipo = document.getElementsByName("tipoConta")[0].value;
 			var saldo = document.getElementsByName("saldoInicial")[0].value;
+			saldo = saldo.replace('R$ ','').replace('.','').replace(',','.').trim();
 
 
 
@@ -293,7 +294,7 @@ function selecionaAcaoConta(param){
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + "R$"+oDados[Contador]['CNT_SALDOINICIAL'].replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.") + "</td> "+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL']+"</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
 
 
@@ -307,7 +308,7 @@ function selecionaAcaoConta(param){
 					
 					setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
 
-
+					limparConta();
 				}
 
 				else{
@@ -342,6 +343,7 @@ if(param == 2){
 		var tipoConta = document.getElementById("tipoConta").value;
 		var statusEmpresa = document.getElementById("cmbStatusConta").value;
 		var saldoInicial = document.getElementById("saldoInicial").value;
+		saldoInicial = saldoInicial.replace('R$ ','').replace('.','').replace(',','.').trim();
 		var codEmpresa = document.getElementById("cmbEmpresa").value;
 		var codConta = document.getElementById("codConta").value;
 
@@ -367,15 +369,18 @@ if(param == 2){
 				document.getElementsByName(codConta)[3].innerText = oDados[0]['EMP_NOME_EMPRESA'];
 				document.getElementsByName(codConta)[4].innerText = oDados[0]['CNT_SALDOINICIAL'];
 				document.getElementsByName(codConta)[5].innerText = oDados[0]['CNT_STATUS'];
-				document.getElementById("buttonEmpresa").innerHTML = "Inserir";
 				
+
 				
 				document.getElementById("retornoFormConta").style.display = "block";
+				document.getElementById("buttonCancelarConta").style.display = 'none';
 				document.getElementById("retornoFormConta").innerHTML = "Dados Alterados com sucesso!";
 				document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
 
 				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
-
+				
+				
+				limparConta();
 
 			}
 
@@ -396,21 +401,8 @@ if(param == 2){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 else if(param == 3){
-	document.getElementById("buttonConta").innerHTML = "Inserir";
-	document.getElementById("buttonCancelarConta").style.display = 'none';
-	document.getElementById("buttonConta").value = 1;
 
-	document.all.nomeConta.value = "";
-	document.all.nomeBanco.value="";
-	document.all.cmbEmpresa.value="";
-	document.all.agenciaConta.value="";
-	document.all.numeroConta.value="";
-	document.all.tipoConta.value="";
-	document.all.saldoInicial.value="";
-	
-	document.getElementById("cmbStatusConta").selectedIndex = "0";
-
-	document.getElementById("cmbStatusConta").disabled = true;
+	limparConta();
 }
 
 
@@ -444,12 +436,41 @@ function selecionaConta(codConta){
 			document.getElementById("saldoInicial").value = oDados[0]['CNT_SALDOINICIAL'];
 			document.getElementById("cmbStatusConta").value = oDados[0]['CNT_STATUS'];
 
-
-			document.getElementById("buttonConta").innerHTML = "Alterar";
-			document.getElementById("buttonConta").value = 2;
 			document.getElementById("buttonCancelarConta").style.display = 'inline';
+				document.getElementById('cmbStatusConta').disabled = false;
+
+
+
 		}
 	}
+}
+
+
+function limparConta(){
+
+				document.getElementById("buttonConta").value=1;
+				document.getElementById("buttonConta").innerHTML = "Inserir";
+
+				document.all.nomeConta.value = "";
+				document.all.nomeBanco.value="";
+				document.all.agenciaConta.value="";
+				document.all.numeroConta.value="";
+				document.all.saldoInicial.value="";
+				document.all.cmbEmpresa.selectedIndex = "0";
+				document.all.tipoConta.selectedIndex = "0";
+				document.all.cmbStatusConta.selectedIndex = "0";
+
+				
+				document.getElementById('cmbStatusConta').disabled = true;
+
+				document.getElementById("buttonConta").innerHTML = "Inserir";
+				document.getElementById("buttonCancelarConta").style.display = 'none';
+				document.getElementById("buttonConta").value = 1;
+	
+
+				document.getElementById("cmbStatusConta").disabled = true;
+
+
 }
 
 //  --------------------------------------------FIM CONTA ------------------------------------------------
