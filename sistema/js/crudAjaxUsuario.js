@@ -200,7 +200,7 @@ else if(param == 3){
 
 	document.getElementById("cmbStatusEmpresa").selectedIndex = "0";
 
-	document.getElementById("cmbStatusEmpresa").disabled = true;
+	// document.getElementById("cmbStatusEmpresa").disabled = true;
 
 
 
@@ -289,7 +289,7 @@ function selecionaAcaoConta(param){
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL'] + "</td> "+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + "R$"+oDados[Contador]['CNT_SALDOINICIAL'].replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.") + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
 
 
@@ -363,7 +363,9 @@ if(param == 2){
 				document.getElementsByName(codConta)[3].innerText = oDados[0]['EMP_NOME_EMPRESA'];
 				document.getElementsByName(codConta)[4].innerText = oDados[0]['CNT_SALDOINICIAL'];
 				document.getElementsByName(codConta)[5].innerText = oDados[0]['CNT_STATUS'];
-
+				document.getElementById("buttonEmpresa").innerHTML = "Inserir";
+				
+				
 				document.getElementById("retornoFormConta").style.display = "block";
 				document.getElementById("retornoFormConta").innerHTML = "Dados Alterados com sucesso!";
 				document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
@@ -373,32 +375,39 @@ if(param == 2){
 
 			}
 
-			else{
+			else {
 				document.getElementById("retornoFormConta").style.display = "block";
 				document.getElementById("retornoFormConta").innerHTML = "Não foi possível alterar a Conta";
 				document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
 
 				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
-
 			}
-
-
-		}
-
-
-
-
-
-
-
-			// document.getElementById("buttonConta").innerHTML = "Alterar";
-			// document.getElementById("buttonConta").value = 2;
-			// document.getElementById("buttonCancelarConta").style.display = 'inline';
 		}
 	}
+}
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////CANCELA A ALTERAÇÂO CONTA//////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+else if(param == 3){
+	document.getElementById("buttonConta").innerHTML = "Inserir";
+	document.getElementById("buttonCancelarConta").style.display = 'none';
+	document.getElementById("buttonConta").value = 1;
+
+	document.all.txtCnpj.value = "";
+	document.all.txtNomeEmpresa.value="";
+
+	document.getElementById("cmbStatusConta").selectedIndex = "0";
+
+	// document.getElementById("cmbStatusConta").disabled = true;
+}
 
 
 }
+
+
 
 
 
