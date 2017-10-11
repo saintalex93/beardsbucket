@@ -150,6 +150,10 @@ if(param == 2){
 					document.getElementById("retornoFormEmpresa").setAttribute("class", "retSuccess");
 
 					document.getElementById("retornoFormEmpresa").innerHTML = "Dados atualizados com sucesso";
+					
+					document.getElementById("cmbStatusEmpresa").disabled = true;
+
+					cmbStatusEmpresa
 
 					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
 
