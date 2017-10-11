@@ -92,13 +92,15 @@ else if($_GET['funcao'] == 'atualizaEmpresa'){
 
 }
 
+// CONTA ---------------------------------------------------------------------------------------
 
+// Atualiza empresas Combo Conta
 
 else if($_GET['funcao'] == 'comboConta'){
 
 
 	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN
-	EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = $cod";
+	EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = $cod order by (EMP_NOME_EMPRESA) asc;";
 
 	
 	$result = mysqli_query($conecta, $cSql);
@@ -114,7 +116,7 @@ else if($_GET['funcao'] == 'comboConta'){
 
 }
 
-
+// Insere Conta
 else if($_GET['funcao'] == 'insereConta'){
 
 
@@ -126,8 +128,8 @@ else if($_GET['funcao'] == 'insereConta'){
 	
 	if (mysqli_query($conecta, $cSql)){
 
-		$cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA  FROM CONTA INNER JOIN
-		EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod;
+		$cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
+		EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
 
 		$result = mysqli_query($conecta, $cSql); 
 
@@ -145,8 +147,78 @@ else if($_GET['funcao'] == 'insereConta'){
 	else
 		echo "Erro ao Inserir!";      
 
+}
+
+else if($_GET['funcao'] == 'selecionaConta'){
+
+
+	$cSql = "SELECT DISTINCT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_COD, CNT_STATUS FROM CONTA INNER JOIN
+	EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE CNT_COD =  $_GET[codConta]";
+
+
+	
+
+	$result = mysqli_query($conecta, $cSql); 
+
+	$json_array = array();  
+	if($row = mysqli_fetch_assoc($result))  
+	{  
+		$json_array[] = $row;  
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+
+	}  
+
+	else
+		echo "Erro ao consultar";  
+
 
 }
+
+
+// Atualiza Conta
+
+else if($_GET['funcao'] == 'atualizaConta'){
+
+
+	$cSql = "UPDATE CONTA SET CNT_NOME = '$_GET[nomeConta]', CNT_BANCO = '$_GET[nomeBanco]', CNT_AGNC = '$_GET[agencia]', CNT_NMCONTA = '$_GET[conta]', CNT_TIPO = '$_GET[tipoConta]', CNT_STATUS = $_GET[statusEmpresa], CNT_SALDOINICIAL = $_GET[saldoInicial], COD_EMPR = $_GET[codEmpresa] WHERE CNT_COD = $_GET[codConta]";
+
+	$cSql = str_replace("''","NULL", $cSql);
+
+	
+	if (mysqli_query($conecta, $cSql)){
+
+		$cSql = "SELECT DISTINCT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, EMP_COD, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS FROM CONTA INNER JOIN
+		EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE CNT_COD =  $_GET[codConta]";
+
+
+		$result = mysqli_query($conecta, $cSql); 
+
+		$json_array = array();  
+		if($row = mysqli_fetch_assoc($result))  
+		{  
+			$json_array[] = $row;  
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+		}  
+
+
+	}
+
+			else
+			echo "Erro ao atualizar";  
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 

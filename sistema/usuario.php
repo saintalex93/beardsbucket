@@ -292,7 +292,7 @@ if ($permissao == 'Administrador'){
                         <div class="col-md-3">
                             <div class="form-group">
                              <label for="">Empresa / Pefil</label>
-                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa" onchange="">
+                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
                              </select>
                          </div>
@@ -346,7 +346,9 @@ if ($permissao == 'Administrador'){
 
 
             <div class="text-center">
-                <button  class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoConta(this.value)">Inserir</button>
+                <button  class="btn btn-info btn-fill btn-wd" value="1" id ="buttonConta" onclick="selecionaAcaoConta(this.value)">Inserir</button>
+
+                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarConta">Cancelar</button>
             </div>
 
             <div class="row">
@@ -369,7 +371,7 @@ if ($permissao == 'Administrador'){
 
                 </div>
 
-        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="dataTable" cellspacing="0">
+        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -377,6 +379,7 @@ if ($permissao == 'Administrador'){
                     <th>Banco</th>
                     <th>Empresa</th>
                     <th>Saldo Inicial</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -387,8 +390,8 @@ if ($permissao == 'Administrador'){
                 require 'src/conecta.php';
 
 
-                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA  FROM CONTA INNER JOIN
-                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod;
+                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
+                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
 
 
                 $dataSet = mysqli_query($conecta, $cSql);
@@ -397,11 +400,12 @@ if ($permissao == 'Administrador'){
                     echo "
 
                     <tr>
-                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
-                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
-                    <td name = '".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
-                    <td name = '".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                    <td name = '".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
 
                     <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
                     </tr>

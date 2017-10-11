@@ -159,7 +159,7 @@ body {
 
 
 
-#buttonCancelarEmpresa{
+#buttonCancelarEmpresa, #buttonCancelarConta{
   display: none;
 }
 

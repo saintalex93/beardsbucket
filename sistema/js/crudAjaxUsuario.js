@@ -11,187 +11,209 @@
 
 function selecionaAcao(param){
 
-	// INSERIR EMPRESA DA PAGINA USUARIO.
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
-	if(param == 1){
+// ///////////////////////////////////////////////INSERE EMPRESA/////////////////////////////////////////////////////////// // 
 
-		if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
-			alert("Preencha o nome da Empresa");
-			document.getElementsByName("txtNomeEmpresa")[0].focus()	;
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
-		}
+if(param == 1){
 
-		else{
+	if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
+		alert("Preencha o nome da Empresa");
+		document.getElementsByName("txtNomeEmpresa")[0].focus()	;
 
+	}
 
-			var oPagina = new XMLHttpRequest();
-			with(oPagina){
-
-
-				var empresa = document.getElementsByName("txtNomeEmpresa")[0].value;
-				var cnpj = document.getElementsByName("txtCnpj")[0].value;
-
-				open('GET', './src/CrudUsuario.php?funcao=insereEmpresa&empresa='+empresa+'&cnpj='+cnpj);
-
-				send();
-				onload = function(){
-
-					
-
-					if(responseText != "Erro ao Inserir"){
-
-						var oDados = JSON.parse(responseText);
-
-						var Contador = parseInt(oDados.length);
-
-						Contador = Contador -1;
-
-						var tableEmpresa = document.getElementById("tableEmpresa");
-
-						document.getElementById("retornoFormEmpresa").style.display = "block";
-						document.getElementById("retornoFormEmpresa").setAttribute("class", "retSuccess");
-
-						document.getElementById("retornoFormEmpresa").innerHTML = "Dados inseridos com sucesso";
-
-						setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+	else{
 
 
-						tableEmpresa.insertAdjacentHTML('beforeend',
-							"<tr><td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td>"+
-							"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
-							"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_STATUS'] + "</td> "+
+		var oPagina = new XMLHttpRequest();
+		with(oPagina){
 
-							"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
-							"' onclick = 'selecionaEmpresa(this.id)'>Alterar</button></tr> "
-							);
 
-						
-						
+			var empresa = document.getElementsByName("txtNomeEmpresa")[0].value;
+			var cnpj = document.getElementsByName("txtCnpj")[0].value;
 
-					}
+			open('GET', './src/CrudUsuario.php?funcao=insereEmpresa&empresa='+empresa+'&cnpj='+cnpj);
 
-					else{
+			send();
+			onload = function(){
 
-						document.getElementById("retornoFormEmpresa").style.display = "block";
-						document.getElementById("retornoFormEmpresa").setAttribute("class", "retDanger");
-						document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível inserir a empresa";
-						setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
 
-					}
+
+				if(responseText != "Erro ao Inserir"){
+
+					var oDados = JSON.parse(responseText);
+
+					var Contador = parseInt(oDados.length);
+
+					Contador = Contador -1;
+
+					var tableEmpresa = document.getElementById("tableEmpresa");
+
+					document.getElementById("retornoFormEmpresa").style.display = "block";
+					document.getElementById("retornoFormEmpresa").setAttribute("class", "retSuccess");
+
+					document.getElementById("retornoFormEmpresa").innerHTML = "Dados inseridos com sucesso";
+
+					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+
+
+					tableEmpresa.insertAdjacentHTML('beforeend',
+						"<tr><td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td>"+
+						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
+						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_STATUS'] + "</td> "+
+
+						"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
+						"' onclick = 'selecionaEmpresa(this.id)'>Alterar</button></tr> "
+						);
+
+					atualizaComboEmpresa();
+
+
+
+
 
 				}
 
+				else{
 
-			}
-
-		}
-	}
-	// ALTERAR EMPRESA DA PAGINA USUARIO.
-
-	if(param == 2){
-
-
-		if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
-			alert("Preencha o nome da Empresa");
-			document.getElementsByName("txtNomeEmpresa")[0].focus()	;
-
-		}
-
-		else{
-
-
-			var codEmpresa = document.getElementsByName("codEmpresa")[0].value, 
-			nomeEmpresa = document.getElementsByName("txtNomeEmpresa")[0].value,
-			cnpjEmpresa = document.getElementsByName("txtCnpj")[0].value;
-
-
-
-			var oPagina = new XMLHttpRequest();
-
-			with(oPagina){
-
-				open('GET', './src/CrudUsuario.php?funcao=atualizaEmpresa&empresa='+nomeEmpresa+'&cnpj='+cnpjEmpresa+'&status='+document.getElementById("cmbStatusEmpresa").value+'&codEmpresa='+codEmpresa);
-
-				send();
-
-
-
-				onload = function(){
-
-					if(responseText != "Erro ao Atualizar"){
-
-
-						var oDados = JSON.parse(responseText);
-
-						var codEmpresa = 'emp'+oDados[0]['EMP_COD'];
-
-						document.getElementsByName(codEmpresa)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
-						document.getElementsByName(codEmpresa)[2].innerText = oDados[0]['EMP_CNPJ'];
-						document.getElementsByName(codEmpresa)[3].innerText = oDados[0]['EMP_STATUS'];
-
-						document.getElementById("buttonEmpresa").innerHTML = "Inserir";
-						document.getElementById("buttonCancelarEmpresa").style.display = 'none';
-						document.getElementById("buttonEmpresa").value = 1;
-
-						document.getElementById("retornoFormEmpresa").style.display = "block";
-
-						document.getElementById("retornoFormEmpresa").setAttribute("class", "retSuccess");
-
-						document.getElementById("retornoFormEmpresa").innerHTML = "Dados atualizados com sucesso";
-
-						setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
-
-						document.all.txtCnpj.value = "";
-						document.all.txtNomeEmpresa.value="";
-
-					}
-
-					else{
-
-						document.getElementById("retornoFormEmpresa").style.display = "block";
-						document.getElementById("retornoFormEmpresa").setAttribute("class", "retDanger");
-						document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível atualizar a empresa";
-						setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
-					}
+					document.getElementById("retornoFormEmpresa").style.display = "block";
+					document.getElementById("retornoFormEmpresa").setAttribute("class", "retDanger");
+					document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível inserir a empresa";
+					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
 
 				}
 
-
-				
-
-
 			}
+
+
 		}
 
+	}
+}
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
+// ///////////////////////////////////////////////ALTERA EMPRESA/////////////////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+if(param == 2){
+
+
+	if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
+		alert("Preencha o nome da Empresa");
+		document.getElementsByName("txtNomeEmpresa")[0].focus()	;
 
 	}
 
+	else{
 
-	// CANCELA ALTERAÇÃO EMPRESAPAGINA USUARIO.
 
-
-	else if(param == 3){
-		document.getElementById("buttonEmpresa").innerHTML = "Inserir";
-		document.getElementById("buttonCancelarEmpresa").style.display = 'none';
-		document.getElementById("buttonEmpresa").value = 1;
-
-		document.all.txtCnpj.value = "";
-		document.all.txtNomeEmpresa.value="";
-
-		document.getElementById("cmbStatusEmpresa").selectedIndex = "0";
-
-		document.getElementById("cmbStatusEmpresa").disabled = true;
+		var codEmpresa = document.getElementsByName("codEmpresa")[0].value, 
+		nomeEmpresa = document.getElementsByName("txtNomeEmpresa")[0].value,
+		cnpjEmpresa = document.getElementsByName("txtCnpj")[0].value;
 
 
 
+		var oPagina = new XMLHttpRequest();
+
+		with(oPagina){
+
+			open('GET', './src/CrudUsuario.php?funcao=atualizaEmpresa&empresa='+nomeEmpresa+'&cnpj='+cnpjEmpresa+'&status='+document.getElementById("cmbStatusEmpresa").value+'&codEmpresa='+codEmpresa);
+
+			send();
+
+
+
+			onload = function(){
+
+				if(responseText != "Erro ao Atualizar"){
+
+
+					var oDados = JSON.parse(responseText);
+
+					var codEmpresa = 'emp'+oDados[0]['EMP_COD'];
+
+					document.getElementsByName(codEmpresa)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+					document.getElementsByName(codEmpresa)[2].innerText = oDados[0]['EMP_CNPJ'];
+					document.getElementsByName(codEmpresa)[3].innerText = oDados[0]['EMP_STATUS'];
+
+					document.getElementById("buttonEmpresa").innerHTML = "Inserir";
+					document.getElementById("buttonCancelarEmpresa").style.display = 'none';
+					document.getElementById("buttonEmpresa").value = 1;
+
+					document.getElementById("retornoFormEmpresa").style.display = "block";
+
+					document.getElementById("retornoFormEmpresa").setAttribute("class", "retSuccess");
+
+					document.getElementById("retornoFormEmpresa").innerHTML = "Dados atualizados com sucesso";
+
+					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+
+					document.all.txtCnpj.value = "";
+					document.all.txtNomeEmpresa.value="";
+
+					atualizaComboEmpresa();
+
+
+				}
+
+				else{
+
+					document.getElementById("retornoFormEmpresa").style.display = "block";
+					document.getElementById("retornoFormEmpresa").setAttribute("class", "retDanger");
+					document.getElementById("retornoFormEmpresa").innerHTML = "Não foi possível atualizar a empresa";
+					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+				}
+
+			}
+
+
+
+
+
+		}
 	}
+
+
 
 }
 
 
-// SELECIONA EMPRESA DO BOTÃO ALTERAR
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////CANCELA A ALTERAÇÂO EMPRESA////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+
+else if(param == 3){
+	document.getElementById("buttonEmpresa").innerHTML = "Inserir";
+	document.getElementById("buttonCancelarEmpresa").style.display = 'none';
+	document.getElementById("buttonEmpresa").value = 1;
+
+	document.all.txtCnpj.value = "";
+	document.all.txtNomeEmpresa.value="";
+
+	document.getElementById("cmbStatusEmpresa").selectedIndex = "0";
+
+	document.getElementById("cmbStatusEmpresa").disabled = true;
+
+
+
+}
+
+}
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// //////////////////////////////////////SELECIONA A EMPRESA DO FORM CONTA///////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 function selecionaEmpresa(codEmpresa){
 
 	codEmpresa = 'emp'+codEmpresa;
@@ -212,19 +234,18 @@ function selecionaEmpresa(codEmpresa){
 
 
 
-
-
-
-
-
-
-
 //  --------------------------------------------FIM EMPRESA ------------------------------------------------
+
+
 
 
 //  --------------------------------------------CONTA ------------------------------------------------
 
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
+// ///////////////////////////////////////////////INSERE CONTA///////////////////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 
 function selecionaAcaoConta(param){
@@ -245,31 +266,35 @@ function selecionaAcaoConta(param){
 			var saldo = document.getElementsByName("saldoInicial")[0].value;
 
 
+
 			open('GET', './src/CrudUsuario.php?funcao=insereConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&agenciaConta='+agenciaConta+'&numeroConta='+conta+'&tipoConta='+tipo+'&cmbStatusConta='+statusEmpresa+'&saldoInicial='+saldo+'&cmbEmpresa='+empresa);
 
 			send();
 			onload = function(){
 
-				alert(responseText);
 
 				if(responseText != "Erro ao Inserir!"){
 
 					var oDados = JSON.parse(responseText);
 
-					var Contador = parseInt(oDados.length);
+					var Contador = parseInt(oDados.length) -1;
 
-					Contador = Contador -1;
 
 					var tableConta = document.getElementById("tableConta");
 
 
 
-					tableEmpresa.insertAdjacentHTML('beforeend',
-						"<tr><td>" + oDados[Contador]['EMP_COD'] + "</td>"+
-						"<td>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
-						"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
-						"' onclick = 'alert(this.id)'>Alterar</button></tr> "
+					tableConta.insertAdjacentHTML('beforeend',
+						"<tr><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL'] + "</td> "+
+						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
+
+
+						"<td><button class = 'btn' id = '"+oDados[Contador]['CNT_COD']+
+						"' onclick = 'selecionaConta(this.id)'>Alterar</button></tr> "
 						);
 
 					document.getElementById("retornoFormConta").style.display = "block";
@@ -295,30 +320,120 @@ function selecionaAcaoConta(param){
 
 		}
 	}
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////ATUALIZA CONTA/////////////////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+if(param == 2){
+
+
+	var oPagina = new XMLHttpRequest();
+	with(oPagina){
+
+		var nomeConta = document.getElementById("nomeConta").value;
+		var nomeBanco = document.getElementById("nomeBanco").value;
+		var agencia = document.getElementById("agenciaConta").value;
+		var conta = document.getElementById("numeroConta").value;
+		var tipoConta = document.getElementById("tipoConta").value;
+		var statusEmpresa = document.getElementById("cmbStatusConta").value;
+		var saldoInicial = document.getElementById("saldoInicial").value;
+		var codEmpresa = document.getElementById("cmbEmpresa").value;
+		var codConta = document.getElementById("codConta").value;
+
+		open('GET', './src/CrudUsuario.php?funcao=atualizaConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&agencia='+agencia+'&conta='+conta+'&tipoConta='+tipoConta+'&statusEmpresa='+statusEmpresa+'&saldoInicial='+saldoInicial+'&codEmpresa='+codEmpresa+'&codConta='+codConta);
+
+		send();
+		onload = function(){
+
+			if(responseText != "Erro ao atualizar"){
+
+
+				var oDados = JSON.parse(responseText);
+
+				var Contador = parseInt(oDados.length) -1;
+
+				var tableConta = document.getElementById("tableConta");
+
+				var codConta = 'conta'+oDados[0]['CNT_COD'];
+
+				document.getElementsByName(codConta)[0].innerText = oDados[0]['CNT_COD'];
+				document.getElementsByName(codConta)[1].innerText = oDados[0]['CNT_NOME'];
+				document.getElementsByName(codConta)[2].innerText = oDados[0]['CNT_BANCO'];
+				document.getElementsByName(codConta)[3].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+				document.getElementsByName(codConta)[4].innerText = oDados[0]['CNT_SALDOINICIAL'];
+				document.getElementsByName(codConta)[5].innerText = oDados[0]['CNT_STATUS'];
+
+				document.getElementById("retornoFormConta").style.display = "block";
+				document.getElementById("retornoFormConta").innerHTML = "Dados Alterados com sucesso!";
+				document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
+
+				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+
+			}
+
+			else{
+				document.getElementById("retornoFormConta").style.display = "block";
+				document.getElementById("retornoFormConta").innerHTML = "Não foi possível alterar a Conta";
+				document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
+
+				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+			}
+
+
+		}
+
+
+
+
+
+
+
+			// document.getElementById("buttonConta").innerHTML = "Alterar";
+			// document.getElementById("buttonConta").value = 2;
+			// document.getElementById("buttonCancelarConta").style.display = 'inline';
+		}
+	}
+
+
 }
+
+
 
 
 
 function selecionaConta(codConta){
-	codConta = 'con'+codConta;
 
-	document.getElementById("codConta").value = document.getElementsByName(codConta)[0].innerText;
-	document.getElementById("nomeConta").value = document.getElementsByName(codConta)[1].innerText;
-	document.getElementById("nomeBanco").value = document.getElementsByName(codConta)[2].innerText;
-	document.getElementById("cmbEmpresa").value = document.getElementsByName(codConta)[3].innerText;
-	document.getElementById("agenciaConta").value = document.getElementsByName(codConta)[4].innerText;
-	document.getElementById("numeroConta").value = document.getElementsByName(codConta)[5].innerText;
-	document.getElementById("tipoConta").value = document.getElementsByName(codConta)[6].innerText;
-	document.getElementById("saldoInicial").value = document.getElementsByName(codConta)[7].innerText;
-	document.getElementById("cmbStatusConta").value = document.getElementsByName(codConta)[8].innerText;
+	var oPagina = new XMLHttpRequest();
+	with(oPagina){
+
+		open('GET', './src/CrudUsuario.php?funcao=selecionaConta&codConta='+codConta);
+
+		send();
+		onload = function(){
+
+			var oDados = JSON.parse(responseText);
+
+			document.getElementById("codConta").value = oDados[0]['CNT_COD'];
+			document.getElementById("nomeConta").value = oDados[0]['CNT_NOME'];
+			document.getElementById("nomeBanco").value = oDados[0]['CNT_BANCO'];
+			document.getElementById("cmbEmpresa").value = oDados[0]['EMP_COD'];
+			document.getElementById("agenciaConta").value = oDados[0]['CNT_AGNC'];
+			document.getElementById("numeroConta").value = oDados[0]['CNT_NMCONTA'];
+			document.getElementById("tipoConta").value = oDados[0]['CNT_TIPO'];
+			document.getElementById("saldoInicial").value = oDados[0]['CNT_SALDOINICIAL'];
+			document.getElementById("cmbStatusConta").value = oDados[0]['CNT_STATUS'];
 
 
-
-
-	document.getElementById("buttonEmpresa").innerHTML = "Alterar";
-	document.getElementById("buttonEmpresa").value = 2;
-	document.getElementById("buttonCancelarEmpresa").style.display = 'inline';
+			document.getElementById("buttonConta").innerHTML = "Alterar";
+			document.getElementById("buttonConta").value = 2;
+			document.getElementById("buttonCancelarConta").style.display = 'inline';
+		}
+	}
 }
+
 //  --------------------------------------------FIM CONTA ------------------------------------------------
 
 
