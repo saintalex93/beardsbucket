@@ -396,12 +396,17 @@ else if(param == 3){
 	document.getElementById("buttonCancelarConta").style.display = 'none';
 	document.getElementById("buttonConta").value = 1;
 
-	document.all.txtCnpj.value = "";
-	document.all.txtNomeEmpresa.value="";
-
+	document.all.nomeConta.value = "";
+	document.all.nomeBanco.value="";
+	document.all.cmbEmpresa.value="";
+	document.all.agenciaConta.value="";
+	document.all.numeroConta.value="";
+	document.all.tipoConta.value="";
+	document.all.saldoInicial.value="";
+	
 	document.getElementById("cmbStatusConta").selectedIndex = "0";
 
-	// document.getElementById("cmbStatusConta").disabled = true;
+	document.getElementById("cmbStatusConta").disabled = true;
 }
 
 
@@ -450,7 +455,19 @@ function selecionaConta(codConta){
 
 
 //  --------------------------------------------ADMINISTRADOR USUÁRIO ------------------------------------------------
+function selecionaAcaoAdministrador(param){
 
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////INSERE ADMINISTRADOR///////////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+	if(param == 1){
+
+
+	}
+
+}
 
 //  --------------------------------------------FIM ADMINISTRADOR ------------------------------------------------
 

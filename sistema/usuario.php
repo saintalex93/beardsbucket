@@ -169,7 +169,7 @@ if ($permissao == 'Administrador'){
                             <div class="col-md-2">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control border-input" id="cmbStatusEmpresa" >
+                                    <select class="form-control border-input" id="cmbStatusEmpresa" disabled>
                                         <option value="Ativo">Ativo</option>
                                         <option value="Inativo">Inativo</option>
                                     </select>
@@ -335,7 +335,7 @@ if ($permissao == 'Administrador'){
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Status</label>
-                            <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" >
+                            <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" disabled>
                                 <option value="1">Ativo</option>
                                 <option value="0">Inativo</option>
                             </select>
