@@ -200,7 +200,7 @@ else if(param == 3){
 
 	document.getElementById("cmbStatusEmpresa").selectedIndex = "0";
 
-	// document.getElementById("cmbStatusEmpresa").disabled = true;
+	document.getElementById("cmbStatusEmpresa").disabled = true;
 
 
 
