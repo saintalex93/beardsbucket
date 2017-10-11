@@ -141,10 +141,22 @@ body {
 }
 
 
-#retornoFormEmpresa{
-  color: red;
+#retornoFormEmpresa, #retornoFormConta, #retoroFormAdministrador, #retornoFormUsuario{
   display: none;
+  text-align: center;
+  font-weight: bold;
+  font-size: 17px;
 }
+
+.retDanger{
+  color: #FF0000;
+}
+
+
+.retSuccess{
+  color: #00EE00;
+}
+
 
 
 #buttonCancelarEmpresa{

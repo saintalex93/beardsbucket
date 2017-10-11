@@ -5,6 +5,7 @@ session_start();
 $cod =  $_SESSION['user']['id'];
 
 
+// NSERT INTO CONTA VALUES (0,'teste','Itaubis','1234','123','CC',12000,'1',1)
 
 // 1 Inserir Empresa
 
@@ -12,7 +13,7 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 
 
-	$cSql = "INSERT INTO EMPRESA  VALUES (0, '$_GET[empresa]', '$_GET[cnpj]')";
+	$cSql = "INSERT INTO EMPRESA  VALUES (0, '$_GET[empresa]', '$_GET[cnpj]',1)";
 	
 	$cSql = str_replace("''","NULL", $cSql);
 
@@ -30,10 +31,8 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 		mysqli_query($conecta, $cSql);
 
 
-		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
+		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ, IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
 
-
-	// echo $cSql;
 
 		$result = mysqli_query($conecta, $cSql); 
 
@@ -48,48 +47,20 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 	}
 
-	else
+	else{
 		echo "Erro ao Inserir";
-
+	}	
 }
-
-
-// Seleciona Empresa
-
-// else if($_GET['funcao'] == 'selecionaEmpresa'){
-
-
-
-// 	$cSql = "SELECT * FROM EMPRESA WHERE EMP_COD = $_GET[codEmpresa]";
-
-
-
-// 	$json_array = array(); 
-
-// 	$result = mysqli_query($conecta, $cSql);
-
-// 	while($row = mysqli_fetch_assoc($result))
-// 	{  
-// 		$json_array[] = $row;  
-// 	}  
-
-
-// 	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
-
-
-// }
-
-
 // ATUALIZA EMPRESA
 
 else if($_GET['funcao'] == 'atualizaEmpresa'){
 
 	$status = $_GET['status'];
 
-			if($status == "Ativo")
-				$status = 1;
-			else
-				$status = 0;
+	if($status == "Ativo")
+		$status = 1;
+	else
+		$status = 0;
 
 
 
@@ -98,6 +69,7 @@ else if($_GET['funcao'] == 'atualizaEmpresa'){
 
 
 	if($result = mysqli_query($conecta, $cSql)){
+
 		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
 		IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
 		FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[codEmpresa]";
@@ -113,13 +85,14 @@ else if($_GET['funcao'] == 'atualizaEmpresa'){
 		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
 
 	}
+
+	else
+		echo "Erro ao Atualizar";
 	
 
-
-
-
-
 }
+
+
 
 else if($_GET['funcao'] == 'comboConta'){
 
@@ -141,33 +114,40 @@ else if($_GET['funcao'] == 'comboConta'){
 
 }
 
+
 else if($_GET['funcao'] == 'insereConta'){
 
-	$cSql = "INSERT INTO CONTA VALUES (0,'$_GET[nomeConta]','$_GET[nomeBanco]','$_GET[agenciaConta]','$_GET[numeroConta]','$_GET[tipoConta]',$_GET[saldoInicial],'$_GET[cmbStatusConta]',$_GET[cmbEmpresa]";	
-	
+
+	$cSql = "INSERT INTO CONTA VALUES(0, '$_GET[nomeConta]', '$_GET[nomeBanco]', '$_GET[agenciaConta]', '$_GET[numeroConta]','$_GET[tipoConta]',$_GET[cmbStatusConta],$_GET[saldoInicial],$_GET[cmbEmpresa])";
+
+
 	$cSql = str_replace("''","NULL", $cSql);
 
-	if(mysqli_query($conecta,$cSql)){
+	
+	if (mysqli_query($conecta, $cSql)){
 
-		$cSql = "SELECT EMP_COD FROM EMPRESA WHERE EMP_NOME_EMPRESA = '$_GET[cmbEmpresa]'";
+		$cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA  FROM CONTA INNER JOIN
+		EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod;
 
-		$result = mysqli_query($conecta,$cSql);
+		$result = mysqli_query($conecta, $cSql); 
 
-		$json_array = array();
+		$json_array = array();  
+		while($row = mysqli_fetch_assoc($result))  
+		{  
+			$json_array[] = $row;  
+		}  
 
-		while ($row = mysqli_fetch_assoc($result)) {
-			
-			$json_array[] = $row;
-		}
 
-		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
 
 	}
-	else
-		echo "Erro ao Inserir";
 
-	
+	else
+		echo "Erro ao Inserir!";      
+
+
 }
 
 
-?>
+
+
