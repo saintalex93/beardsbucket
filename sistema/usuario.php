@@ -211,56 +211,57 @@ if ($PERMISSAO == 'Administrador'){
 
                 </div>
 
-
-                <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Código</th>
-                            <th>Nome</th>
-                            <th>CNPJ</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-
-                        </tr>
-                    </thead>
-
-                    <tbody>
-
-                        <?php
-
-                        require 'src/conecta.php';
-
-
-                        $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
-                        IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
-                        FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
-
-
-                        $dataSet = mysqli_query($conecta, $cSql);
-
-                        while($oDados = mysqli_fetch_assoc($dataSet)){
-                            echo "
-
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
+                        <thead>
                             <tr>
-                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
-                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
-                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
+                                <th>Código</th>
+                                <th>Nome</th>
+                                <th>CNPJ</th>
+                                <th>Status</th>
+                                <th>Ações</th>
 
-                            <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
                             </tr>
-                            ";
+                        </thead>
 
-                        }
+                        <tbody>
 
-                        mysqli_free_result($dataSet);
-                        mysqli_close($conecta);  
+                            <?php
+
+                            require 'src/conecta.php';
 
 
-                        ?>
+                            $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
+                            IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
+                            FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
 
-                    </tbody>
-                </table>
+
+                            $dataSet = mysqli_query($conecta, $cSql);
+
+                            while($oDados = mysqli_fetch_assoc($dataSet)){
+                                echo "
+
+                                <tr>
+                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
+                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
+                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
+
+                                <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
+                                </tr>
+                                ";
+
+                            }
+
+                            mysqli_free_result($dataSet);
+                            mysqli_close($conecta);  
+
+
+                            ?>
+
+                        </tbody>
+                    </table>
+                </div>
 
 
 
@@ -384,62 +385,63 @@ if ($PERMISSAO == 'Administrador'){
         </div>
 
     </div>
+    <div class="table-responsive">
 
-    <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
-        <thead>
-            <tr>
-                <th>Código</th>
-                <th>Nome</th>
-                <th>Banco</th>
-                <th>Empresa</th>
-                <th>Saldo Inicial</th>
-                <th>Status</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <?php
-            require 'src/conecta.php';
-
-
-            $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
-            EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
-
-
-            $dataSet = mysqli_query($conecta, $cSql);
-
-            while($oDados = mysqli_fetch_assoc($dataSet)){
-                echo "
-
+        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
+            <thead>
                 <tr>
-                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
-                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
-                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
-                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
-                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
-
-                <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+                    <th>Código</th>
+                    <th>Nome</th>
+                    <th>Banco</th>
+                    <th>Empresa</th>
+                    <th>Saldo Inicial</th>
+                    <th>Status</th>
+                    <th>Ações</th>
                 </tr>
-                ";
+            </thead>
+
+            <tbody>
+
+                <?php
+                require 'src/conecta.php';
+
+
+                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
+                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
+
+
+                $dataSet = mysqli_query($conecta, $cSql);
+
+                while($oDados = mysqli_fetch_assoc($dataSet)){
+                    echo "
+
+                    <tr>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
+                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
+
+                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+                    </tr>
+                    ";
 
                     // for(var i = 0; i<document.getElementById('".$oDados['CNT_COD']."').length;i++){alert(document.getElementById('".$oDados['CNT_COD']."')[i].innerTEXT);}
 
-            }
+                }
 
-            mysqli_free_result($dataSet);
-            mysqli_close($conecta);  
-
-
-            ?>
+                mysqli_free_result($dataSet);
+                mysqli_close($conecta);  
 
 
+                ?>
 
-        </tbody>
-    </table>
 
+
+            </tbody>
+        </table>
+    </div>
 
 
 
@@ -465,7 +467,7 @@ if ($PERMISSAO == 'Administrador'){
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nome</label>
-                             <input type="hidden"  class="form-control border-input" id="administradorCod" name="administradorCod" >
+                            <input type="hidden"  class="form-control border-input" id="administradorCod" name="administradorCod" >
 
                             <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
                         </div>
@@ -496,7 +498,6 @@ if ($PERMISSAO == 'Administrador'){
                         <div class="form-group">
                             <label>Empresa</label>
                             <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
-                                <option value="">Selecione...</option>
                             </select>
                         </div>
                     </div>
@@ -543,75 +544,77 @@ if ($PERMISSAO == 'Administrador'){
 
         </div>
 
-        <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
-            <thead>
-                <tr>
-                    <th hidden>Código</th>
-                    <th>Nome</th>
-                    <th>Login</th>
-                    <th>Permissão</th>
-                    <th>Status</th>
-                    <th hidden>Email</th>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th hidden>Código</th>
+                        <th>Nome</th>
+                        <th>Login</th>
+                        <th>Permissão</th>
+                        <th>Status</th>
+                        <th hidden>Email</th>
 
-                    <th>Ações</th>
-
-
-
-                </tr>
-            </thead>
-
-            <tbody>
-
-               <?php
-
-               require 'src/conecta.php';
+                        <th>Ações</th>
 
 
-               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-               IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
-               REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
-               USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-               $dataSet = mysqli_query($conecta, $cSql);
-
-               while($oDados = mysqli_fetch_assoc($dataSet)){
-                echo "
-
-                <tr>
-                <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_COD']."</td>
-                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_NOME']."</td>
-                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_LOGIN']."</td>
-                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
-                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
-                <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
-
-
-                ";
-
-                
-                if($oDados['USR_PERMISSAO'] != "Administrador"){
-                    echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
                     </tr>
+                </thead>
+
+                <tbody>
+
+                   <?php
+
+                   require 'src/conecta.php';
+
+
+                   $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                   IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
+                   REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+                   USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+
+                   $dataSet = mysqli_query($conecta, $cSql);
+
+                   while($oDados = mysqli_fetch_assoc($dataSet)){
+                    echo "
+
+                    <tr>
+                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_COD']."</td>
+                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_NOME']."</td>
+                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_LOGIN']."</td>
+                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
+                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
+                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
+
+
                     ";
+
+
+                    if($oDados['USR_PERMISSAO'] != "Administrador"){
+                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
+                        </tr>
+                        ";
+                    }
+                    else{
+                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)' disabled>Alterar</button></td>
+                        </tr>
+                        ";
+                    }
+
+
                 }
-                else{
-                    echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)' disabled>Alterar</button></td>
-                    </tr>
-                    ";
-                }
 
-
-            }
-
-            mysqli_free_result($dataSet);
-            mysqli_close($conecta);  
+                mysqli_free_result($dataSet);
+                mysqli_close($conecta);  
 
 
 
-            ?>
+                ?>
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 </div> <!-- Card Administrador-->
