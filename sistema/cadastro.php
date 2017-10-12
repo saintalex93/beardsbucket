@@ -1,4 +1,8 @@
-<?php include_once('superior.php');?>
+<?php include_once('superior.php');
+require 'src/conecta.php';
+
+$cod =  $_SESSION['user']['id'];
+?>
 
 
 <div class="content">
@@ -189,7 +193,7 @@
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Empresa / Grupo</label>
-										<select value="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+										<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat">
 											
 										</select>
 									</div>
@@ -219,22 +223,42 @@
 
 
 					<div class="content"> <!--CONTENT TABELA -->
-						<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+						<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0" name="tableCategoria" id="tableCategoria" >
 							<thead>
 								<tr>
 									<th>Código</th>
 									<th>Nome</th>
 									<th>Status</th>
+									<th >Empresa</th>
+									<th >Acao</th>
+
 								</tr>
 							</thead>
 
-							<tbody>
+							<tbody >
 								<?php
-								for($nCont = 0; $nCont<=1; $nCont++){
+								require 'src/conecta.php';
 
-									echo "";
+								$cSql = "SELECT DISTINCT EMP_COD,CAT_COD,CAT_NOME, EMP_NOME_EMPRESA, IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUS  FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD AND EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+								
+								
+								$result = mysqli_query($conecta,$cSql);
 
+								while ($oDados = mysqli_fetch_assoc($result)) {
+									echo "
+
+									<tr>
+									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_COD']."</td>
+									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_NOME']."</td>
+									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_STATUS']."</td>
+									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+
+									<td><button class = 'btn' id = '".$oDados['CAT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+									</tr>
+									";
 								}
+								mysqli_free_result($result);
+								mysqli_close($conecta);  
 
 								?>
 
@@ -262,3 +286,5 @@
 
 
 <script src = "js/financas.js"></script>
+<script src = "js/crudAjaxCadastro.js"></script>
+

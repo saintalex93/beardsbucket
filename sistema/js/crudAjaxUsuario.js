@@ -648,15 +648,15 @@ function atualizaComboEmpresa(){
 			optionr.text = "Selecione...";
 			r.add(optionr);
 
-			var contador2 = document.getElementById("cmbEmpresaAdm").length;
+			// var contador2 = document.getElementById("cmbEmpresaAdm").length;
 
-			for (i = 0; i <=contador2; i++) {
-				var combinho2 = document.getElementById("cmbEmpresaAdm");	
-				combinho2.remove(combinho2.i);
-			}
+			// // for (i = 0; i <=contador2; i++) {
+			// // 	var combinho2 = document.getElementById("cmbEmpresaAdm");	
+			// // 	combinho2.remove(combinho2.i);
+			// // }
 
-			optionr.text = "Selecione...";
-			r.add(optionr);
+			// // optionr.text = "Selecione...";
+			// // r.add(optionr);
 
 			for (var i = 0; i<oDados.length; i++){
 				var r = document.getElementById("cmbEmpresaAdm");
