@@ -180,20 +180,28 @@
 
 							<div class="row">
 
-								<div class="col-md-8">
+								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Nome</label>
-										<input type="text" class="form-control border-input">
+										<input type="text" id="categoriaNome" name="categoriaNome" class="form-control border-input">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Empresa / Grupo</label>
-										<select value="" class="form-control border-input">
-											<option name="" id="">Selecione...</option>
-											<option name="" id="">Beards</option>
-											<option name="" id="">Pessoal</option>
-											<option name="" id="">Unas</option>
+										<select value="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+											
+										</select>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<div class="form-group">
+										<label for="">Status</label>
+										<select type="text" id="categoriaStatus" name="categoriaStatus" class="form-control border-input">
+
+											<option value="1">Ativo</option>
+											<option value="0">Inativo</option>
+
 										</select>
 									</div>
 								</div>
@@ -204,7 +212,7 @@
 
 
 						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selectionAcaoCategoria(this.value)">Cadastrar</button>
 						</div>
 
 					</div> <!--CONTENT CATEGORIA -->
@@ -216,7 +224,7 @@
 								<tr>
 									<th>Código</th>
 									<th>Nome</th>
-									<th>Usuário</th>
+									<th>Status</th>
 								</tr>
 							</thead>
 
@@ -224,15 +232,7 @@
 								<?php
 								for($nCont = 0; $nCont<=1; $nCont++){
 
-									echo "
-
-									<tr>
-									<td>$nCont</td>
-									<td>Pessoal</td>
-									<td>Alex</td>
-
-									</tr>
-									";
+									echo "";
 
 								}
 
