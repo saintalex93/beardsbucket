@@ -156,7 +156,7 @@ body {
 }
 
 
-#retornoFormEmpresa, #retornoFormConta, #retoroFormAdministrador, #retornoFormUsuario{
+#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario{
   display: none;
   text-align: center;
   font-weight: bold;

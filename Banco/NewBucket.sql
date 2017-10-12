@@ -106,9 +106,9 @@ ALTER TABLE LANCAMENTO ADD FOREIGN KEY(CAT_COD) REFERENCES CATEGORIA (CAT_COD);
 
 INSERT INTO USUARIO VALUES
 (0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1),
-(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 2,1),
+(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1),
 (0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1),
-(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 2,1);
+(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1);
 --
 
 INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",1),
@@ -217,3 +217,27 @@ EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = 2 order by (EMP_N
 
 SELECT DISTINCT CAT_NOME,CAT_COD, CAT_STATUS, EMP_NOME_EMPRESA  FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD AND EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = 4);
 				
+                
+                select * from USUARIO;
+                
+                
+                
+SELECT DISTINCT USR_LOGIN, USR_COD, USR_NOME, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
+		REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+		USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = 2);
+        
+
+
+SELECT DISTINCT COD_EMPR, USR_LOGIN, USR_COD,  USR_NOME, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                 IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
+                 REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+                 USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = 2)
+                 
+                 
+                 
+                 
+                 
+                   
+        
+        

@@ -20,7 +20,8 @@ if ($_GET['funcao'] == 'alteraUsuario'){
 
 
 		$cSql = "SELECT USR_COD, USR_SENHA, USR_LOGIN, USR_NOME, USR_EMAIL, IF(USR_STATUS = 1, REPLACE(1, USR_STATUS, 'Ativo'), REPLACE(0, USR_STATUS, 'INATIVO')) AS  USR_STATUS,
-		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USUARIO where USR_COD =".$cod;
+		IF(USR_PERMISSAO = 0, REPLACE(USR_PERMISSAO, 0, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USUARIO where USR_COD =
+        ".$cod;
 
 
 		$_SESSION['user']['name'] = $_GET['txtNome'];
@@ -267,9 +268,8 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 		mysqli_query($conecta,$cSql);
 
 		$cSql = "SELECT DISTINCT USR_LOGIN, USR_COD, USR_NOME, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
-		REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
-		USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+		IF(USR_PERMISSAO = 0, REPLACE(USR_PERMISSAO, 0, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+		USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = 2)";
 
 		$result = mysqli_query($conecta,$cSql);
 
@@ -279,13 +279,11 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 			$json_array[] = $row;  
 
 		}  	
-			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
-			
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+
 	}
 	else
-		echo mysqli_error($conecta);  
-
-
+		echo "Erro ao inserir";  
 
 }
 

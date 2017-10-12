@@ -19,7 +19,7 @@ $cod =  $_SESSION['user']['id'];
 
 
 $cSql = "SELECT USR_COD, USR_SENHA, USR_LOGIN, USR_NOME, USR_EMAIL, IF(USR_STATUS = 1, REPLACE(1, USR_STATUS, 'Ativo'), REPLACE(0, USR_STATUS, 'INATIVO')) AS  USR_STATUS,
-IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USUARIO where USR_COD =".$cod;
+IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USUARIO where USR_COD =".$cod;
 
 
 $dataSet = mysqli_query($conecta, $cSql);
@@ -53,7 +53,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-         <div class="col-lg-4 col-md-5">
+           <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:305px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -136,7 +136,7 @@ mysqli_close($conecta);
                 <div class="row">
 
                     <div class="col-md-12">
-                       <div class="form-group">
+                     <div class="form-group">
                         <output type="text" class="text-center" id="retornoFormUsuario"></output>
                     </div>
                 </div>
@@ -204,7 +204,7 @@ if ($PERMISSAO == 'Administrador'){
                     <div class="row">
 
                         <div class="col-md-12">
-                           <div class="form-group">
+                         <div class="form-group">
                             <output type="text" class="text-center" id="retornoFormEmpresa"></output>
                         </div>
                     </div>
@@ -306,16 +306,16 @@ if ($PERMISSAO == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                             <label for="">Empresa / Pefil</label>
-                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                               <label for="">Empresa / Pefil</label>
+                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
-                             </select>
-                         </div>
-                     </div>
+                               </select>
+                           </div>
+                       </div>
 
-                 </div>
+                   </div>
 
-                 <div class="row">
+                   <div class="row">
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -333,6 +333,7 @@ if ($PERMISSAO == 'Administrador'){
                         <div class="form-group">
                             <label>Tipo</label>
                             <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
+                                <option value="">Selecione...</option>
                                 <option value="CC">Conta Corrente</option>
                                 <option value="CP">Conta Poupança</option>
                                 <option value="CS">Conta Salário</option>
@@ -369,8 +370,8 @@ if ($PERMISSAO == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                   <div class="form-group">
-                    <output type="text" class="text-center" id="retornoFormConta">COLOCAR RETORNO SENDO POSItiVO OU NEGAtIVO</output>
+                 <div class="form-group">
+                    <output type="text" class="text-center" id="retornoFormConta"></output>
                 </div>
             </div>
 
@@ -379,7 +380,7 @@ if ($PERMISSAO == 'Administrador'){
         <div class="row">
 
             <div class="col-md-12">
-               <div class="form-group">
+             <div class="form-group">
                 <output type="text" class="text-center" id="retornoFormConta"></output>
             </div>
         </div>
@@ -462,7 +463,7 @@ if ($PERMISSAO == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-             <form>
+               <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -507,8 +508,7 @@ if ($PERMISSAO == 'Administrador'){
                             <label>Permissão</label>
                             <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao">
                                 <option value="">Selecione...</option>
-                                <option value="2">Administrador</option>
-                                <option value="1">Gerente</option>
+                                <option value="1">Administrador</option>
                                 <option value="0">Usuário</option>
                             </select>
                         </div>
@@ -532,13 +532,15 @@ if ($PERMISSAO == 'Administrador'){
 
             <div class="text-center">
                 <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)">Inserir</button>
+
+                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarConta">Cancelar</button>
             </div>
 
             <div class="row">
 
                 <div class="col-md-12">
-                   <div class="form-group">
-                    <output type="text" class="text-center" id="retornoFormAdministrador">OI</output>
+                 <div class="form-group">
+                    <output type="text" class="text-center" id="retornoFormAdministrador"></output>
                 </div>
             </div>
 
@@ -554,29 +556,28 @@ if ($PERMISSAO == 'Administrador'){
                         <th>Permissão</th>
                         <th>Status</th>
                         <th hidden>Email</th>
+                        <th hidden>CodEmpr</th>
+
 
                         <th>Ações</th>
-
-
 
                     </tr>
                 </thead>
 
                 <tbody>
 
-                   <?php
+                 <?php
 
-                   require 'src/conecta.php';
+                 require 'src/conecta.php';
 
 
-                   $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-                   IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
-                   REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
-                   USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+                 $cSql = "SELECT DISTINCT USR_COD,COD_EMPR, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                 IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 2, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+                 USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-                   $dataSet = mysqli_query($conecta, $cSql);
+                 $dataSet = mysqli_query($conecta, $cSql);
 
-                   while($oDados = mysqli_fetch_assoc($dataSet)){
+                 while($oDados = mysqli_fetch_assoc($dataSet)){
                     echo "
 
                     <tr>
@@ -586,18 +587,22 @@ if ($PERMISSAO == 'Administrador'){
                     <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
                     <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
                     <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
+                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_SENHA']."</td>
+                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['COD_EMPR']."</td>
+
+
 
 
                     ";
 
 
                     if($oDados['USR_PERMISSAO'] != "Administrador"){
-                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
+                        echo "<td><button class = 'btn' id = 'usr_admin".$oDados['USR_COD']."' onclick = 'selecionaUsuario(this.id)'>Alterar</button></td>
                         </tr>
                         ";
                     }
                     else{
-                        echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)' disabled>Alterar</button></td>
+                        echo "<td><button class = 'btn' id = 'usr_admin".$oDados['USR_COD']."' disabled>Alterar</button></td>
                         </tr>
                         ";
                     }
