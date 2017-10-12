@@ -53,7 +53,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-           <div class="col-lg-4 col-md-5">
+         <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:305px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -136,7 +136,7 @@ mysqli_close($conecta);
                 <div class="row">
 
                     <div class="col-md-12">
-                     <div class="form-group">
+                       <div class="form-group">
                         <output type="text" class="text-center" id="retornoFormUsuario"></output>
                     </div>
                 </div>
@@ -204,7 +204,7 @@ if ($PERMISSAO == 'Administrador'){
                     <div class="row">
 
                         <div class="col-md-12">
-                         <div class="form-group">
+                           <div class="form-group">
                             <output type="text" class="text-center" id="retornoFormEmpresa"></output>
                         </div>
                     </div>
@@ -305,16 +305,16 @@ if ($PERMISSAO == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                               <label for="">Empresa / Pefil</label>
-                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                             <label for="">Empresa / Pefil</label>
+                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
-                               </select>
-                           </div>
-                       </div>
+                             </select>
+                         </div>
+                     </div>
 
-                   </div>
+                 </div>
 
-                   <div class="row">
+                 <div class="row">
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -368,7 +368,7 @@ if ($PERMISSAO == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                 <div class="form-group">
+                   <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta">COLOCAR RETORNO SENDO POSItiVO OU NEGAtIVO</output>
                 </div>
             </div>
@@ -378,7 +378,7 @@ if ($PERMISSAO == 'Administrador'){
         <div class="row">
 
             <div class="col-md-12">
-             <div class="form-group">
+               <div class="form-group">
                 <output type="text" class="text-center" id="retornoFormConta"></output>
             </div>
         </div>
@@ -460,25 +460,25 @@ if ($PERMISSAO == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-               <form>
+             <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nome</label>
 
-                            <input type="text" class="form-control border-input" placeholder="Nome">
+                            <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Login</label>
-                            <input type="text" class="form-control border-input"  placeholder="beardsmaster">
+                            <input type="text" class="form-control border-input" id="AdministradorLogin" name="AdministradorLogin"  placeholder="beardsmaster">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="">Senha</label>
-                            <input type="email" class="form-control border-input" placeholder="****">
+                            <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
                         </div>
                     </div>
                 </div>
@@ -487,14 +487,14 @@ if ($PERMISSAO == 'Administrador'){
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="text" class="form-control border-input" placeholder="alex@beardsweb.com.br">
+                            <input type="email" class="form-control border-input" id="administradorEmail" name="administradorEmail" placeholder="alex@beardsweb.com.br">
                         </div>
                     </div>
 
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Permissão</label>
-                            <select placeholder="" class="form-control border-input">
+                            <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao">
                                 <option value="">Selecione...</option>
                                 <option value="2">Administrador</option>
                                 <option value="1">Gerente</option>
@@ -506,7 +506,7 @@ if ($PERMISSAO == 'Administrador'){
                     <div class="col-md-3">
                         <div class="form-group">
                             <label>Status</label>
-                            <select placeholder="" class="form-control border-input">
+                            <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
                                 <option value="">Selecione...</option>
                                 <option value="1">Ativo</option>
                                 <option value="0">Inativo</option>
@@ -517,13 +517,13 @@ if ($PERMISSAO == 'Administrador'){
             </form>
 
             <div class="text-center">
-                <button type="submit" class="btn btn-info btn-fill btn-wd">Inserir</button>
+                <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)">Inserir</button>
             </div>
 
             <div class="row">
 
                 <div class="col-md-12">
-                 <div class="form-group">
+                   <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta">OI</output>
                 </div>
             </div>
@@ -547,18 +547,18 @@ if ($PERMISSAO == 'Administrador'){
 
             <tbody>
 
-             <?php
+               <?php
 
-             require 'src/conecta.php';
-
-
-             $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-             COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+               require 'src/conecta.php';
 
 
-             $dataSet = mysqli_query($conecta, $cSql);
+               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
+               COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-             while($oDados = mysqli_fetch_assoc($dataSet)){
+
+               $dataSet = mysqli_query($conecta, $cSql);
+
+               while($oDados = mysqli_fetch_assoc($dataSet)){
                 echo "
 
                 <tr>

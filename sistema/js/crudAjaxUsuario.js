@@ -548,7 +548,68 @@ function selecionaAcaoAdministrador(param){
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 if(param == 1){
+	var oPagina = new XMLHttpRequest();
+	with(oPagina){
 
+		var admNome = document.getElementById("cmbStatusConta").value;	
+		var admLogin = document.getElementsByName("nomeConta")[0].value;
+		var admSenha = document.getElementsByName("nomeBanco")[0].value;
+		var admEmail = document.getElementsByName("cmbEmpresa")[0].value;
+		var admPermissao = document.getElementsByName("agenciaConta")[0].value;
+		var admStatus = document.getElementsByName("numeroConta")[0].value;
+		
+		open('GET', './src/CrudUsuario.php?funcao=insereAdministrador&administradorNome='+admNome+'&administradorLogin='+admLogin+'&administradorSenha='+admSenha+'&administradorEmail='+admEmail+'&administradorPermissao='+admPermissao+'&administradorStatus='+admStatus);
+
+		send();
+		onload = function(){
+
+			alert(responseText);
+			if(responseText != "Erro ao Inserir!"){
+
+				var oDados = JSON.parse(responseText);
+
+				var Contador = parseInt(oDados.length) -1;
+
+
+				var tableConta = document.getElementById("tableConta");
+
+
+
+				tableConta.insertAdjacentHTML('beforeend',
+					"<tr><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
+					"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
+					"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
+					"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+					"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL']+"</td> "+
+					"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
+
+
+					"<td><button class = 'btn' id = '"+oDados[Contador]['CNT_COD']+
+					"' onclick = 'selecionaConta(this.id)'>Alterar</button></tr> "
+					);
+
+				document.getElementById("retornoFormConta").style.display = "block";
+				document.getElementById("retornoFormConta").innerHTML = "Dados inseridos com sucesso!";
+				document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
+
+				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+				limparConta();
+			}
+
+			else{
+				document.getElementById("retornoFormConta").style.display = "block";
+				document.getElementById("retornoFormConta").innerHTML = "Não foi possível inserir a Conta";
+				document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
+
+				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+			}
+
+
+		}
+
+	}
 
 }
 
