@@ -171,8 +171,8 @@
 					</form>
 
 					<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd botao" onclick="selectConsulta()">Cadastrar</button>
-						</div>
+						<button type="submit" class="btn btn-info btn-fill btn-wd botao" onclick="selectConsulta()">Cadastrar</button>
+					</div>
 
 					<div class="content"> <!-- Content Tabela -->
 						<div class="table-responsive">
@@ -192,7 +192,7 @@
 								</thead>
 
 								<tbody id="tableConsulta">
-											
+									
 								</tbody>
 							</table>
 

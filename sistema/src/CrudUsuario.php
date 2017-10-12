@@ -5,6 +5,46 @@ session_start();
 $cod =  $_SESSION['user']['id'];
 
 
+// ATUALIZA USUARIO
+
+
+if ($_GET['funcao'] == 'alteraUsuario'){
+
+	$cSql = "UPDATE USUARIO SET USR_SENHA = '$_GET[txtSenha]', USR_LOGIN = '$_GET[txtLogin]', USR_NOME = '$_GET[txtNome]', USR_EMAIL = '$_GET[txtEmail]' WHERE USR_COD = $cod";
+	
+
+	$cSql = str_replace("''","NULL", $cSql);
+
+	
+	if (mysqli_query($conecta, $cSql)){
+
+
+		$cSql = "SELECT USR_COD, USR_SENHA, USR_LOGIN, USR_NOME, USR_EMAIL, IF(USR_STATUS = 1, REPLACE(1, USR_STATUS, 'Ativo'), REPLACE(0, USR_STATUS, 'INATIVO')) AS  USR_STATUS,
+		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USUARIO where USR_COD =".$cod;
+
+
+		$_SESSION['user']['name'] = $_GET['txtNome'];
+
+		$result = mysqli_query($conecta, $cSql); 
+
+		$json_array = array(); 
+
+		if($row = mysqli_fetch_assoc($result))  
+		{  
+			$json_array[] = $row;  
+		}  
+
+
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+
+	}
+
+
+	else{
+		echo "Erro ao alterar";
+	}	
+}
+
 // NSERT INTO CONTA VALUES (0,'teste','Itaubis','1234','123','CC',12000,'1',1)
 
 // 1 Inserir Empresa
@@ -203,8 +243,8 @@ else if($_GET['funcao'] == 'atualizaConta'){
 
 	}
 
-			else
-			echo "Erro ao atualizar";  
+	else
+		echo "Erro ao atualizar";  
 
 
 

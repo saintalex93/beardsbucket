@@ -24,6 +24,8 @@ $url = basename($_SERVER['PHP_SELF']);
 	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/faces/beards.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
+    <meta name="theme-color" content="#38eb47">
+
 	<title>Beards Bucket</title>
 	
 	<!--Temos que trocar o nome do css do login por que esta o nome de style.css-->

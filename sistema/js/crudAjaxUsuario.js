@@ -1,5 +1,65 @@
 //  --------------------------------------------USUÁRIO ------------------------------------------------
 
+function alteraUsuario(){
+
+	var form = document.getElementById("usuarioPerfil");
+
+	var nome = form.txtNomeUsr.value;
+
+	var senha = form.txtSenhaUsr.value;
+	var login = form.txtLoginUsr.value;
+	var email = form.txtEmailUsr.value;
+
+
+	var oPagina = new XMLHttpRequest();
+	with(oPagina){
+
+
+		open('GET', './src/CrudUsuario.php?funcao=alteraUsuario&txtSenha='+senha+'&txtLogin='+login+'&txtNome='+nome+'&txtEmail='+email);
+
+		send();
+		onload = function(){
+
+
+
+			if(responseText != "Erro ao alterar"){
+
+				var oDados = JSON.parse(responseText);
+
+				// Aproveira esses campos quando alterar um usuário, pois pode ser o próprio administrador
+				
+				form.txtNomeUsr.value = oDados[0]['USR_NOME'];
+				form.txtLoginUsr.value = oDados[0]['USR_LOGIN'];
+				form.txtSenhaUsr.value = oDados[0]['USR_SENHA'];
+				form.txtEmailUsr.value = oDados[0]['USR_EMAIL'];
+				document.getElementById("permissaoPagina").innerHTML = oDados[0]['USR_PERMISSAO'];
+				document.getElementById("nomePagina").innerHTML = oDados[0]['USR_NOME'];
+
+				// Aproveira esses campos quando alterar um usuário, pois pode ser o próprio administrador
+
+
+				document.getElementById("retornoFormUsuario").style.display = "block";
+				document.getElementById("retornoFormUsuario").setAttribute("class", "retSuccess");
+				document.getElementById("retornoFormUsuario").innerHTML = "Usuário atualizado com sucesso!";
+				setTimeout(function(){ document.getElementById("retornoFormUsuario").style.display = "none"; }, 3000);
+
+			}
+
+			else{
+
+				document.getElementById("retornoFormUsuario").style.display = "block";
+				document.getElementById("retornoFormUsuario").setAttribute("class", "retDanger");
+				document.getElementById("retornoFormUsuario").innerHTML = "Não foi atualizar o Usuário";
+				setTimeout(function(){ document.getElementById("retornoFormUsuario").style.display = "none"; }, 3000);
+
+			}
+
+		}
+
+
+	}
+
+}
 
 
 //  --------------------------------------------FIM USUÁRIO ------------------------------------------------
@@ -437,7 +497,7 @@ function selecionaConta(codConta){
 			document.getElementById("cmbStatusConta").value = oDados[0]['CNT_STATUS'];
 
 			document.getElementById("buttonCancelarConta").style.display = 'inline';
-				document.getElementById('cmbStatusConta').disabled = false;
+			document.getElementById('cmbStatusConta').disabled = false;
 
 
 
@@ -448,27 +508,27 @@ function selecionaConta(codConta){
 
 function limparConta(){
 
-				document.getElementById("buttonConta").value=1;
-				document.getElementById("buttonConta").innerHTML = "Inserir";
+	document.getElementById("buttonConta").value=1;
+	document.getElementById("buttonConta").innerHTML = "Inserir";
 
-				document.all.nomeConta.value = "";
-				document.all.nomeBanco.value="";
-				document.all.agenciaConta.value="";
-				document.all.numeroConta.value="";
-				document.all.saldoInicial.value="";
-				document.all.cmbEmpresa.selectedIndex = "0";
-				document.all.tipoConta.selectedIndex = "0";
-				document.all.cmbStatusConta.selectedIndex = "0";
+	document.all.nomeConta.value = "";
+	document.all.nomeBanco.value="";
+	document.all.agenciaConta.value="";
+	document.all.numeroConta.value="";
+	document.all.saldoInicial.value="";
+	document.all.cmbEmpresa.selectedIndex = "0";
+	document.all.tipoConta.selectedIndex = "0";
+	document.all.cmbStatusConta.selectedIndex = "0";
 
-				
-				document.getElementById('cmbStatusConta').disabled = true;
 
-				document.getElementById("buttonConta").innerHTML = "Inserir";
-				document.getElementById("buttonCancelarConta").style.display = 'none';
-				document.getElementById("buttonConta").value = 1;
+	document.getElementById('cmbStatusConta').disabled = true;
+
+	document.getElementById("buttonConta").innerHTML = "Inserir";
+	document.getElementById("buttonCancelarConta").style.display = 'none';
+	document.getElementById("buttonConta").value = 1;
 	
 
-				document.getElementById("cmbStatusConta").disabled = true;
+	document.getElementById("cmbStatusConta").disabled = true;
 
 
 }
@@ -487,10 +547,10 @@ function selecionaAcaoAdministrador(param){
 // ///////////////////////////////////////////////INSERE ADMINISTRADOR///////////////////////////////////////////////////// // 
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
-	if(param == 1){
+if(param == 1){
 
 
-	}
+}
 
 }
 

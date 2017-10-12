@@ -5,30 +5,36 @@ require 'src/conecta.php';
 $cod =  $_SESSION['user']['id'];
 
 
-if($_SESSION['user']['permission'] == 0)
-    $permissao = "Usuário";
-else if ($_SESSION['user']['permission'] == 1)
-    $permissao = "Gerente";
-else
-    $permissao = "Administrador";
+// if($_SESSION['user']['permission'] == 0)
+//     $permissao = "Usuário";
+// else if ($_SESSION['user']['permission'] == 1)
+//     $permissao = "Gerente";
+// else
+//     $permissao = "Administrador";
+
+// if($STATUS == 1)
+//     $STATUS = "Ativo";
+// else
+//     $STATUS = "Inativo";
 
 
-$cSql = "SELECT * FROM USUARIO WHERE USR_COD = ".$cod;
+$cSql = "SELECT USR_COD, USR_SENHA, USR_LOGIN, USR_NOME, USR_EMAIL, IF(USR_STATUS = 1, REPLACE(1, USR_STATUS, 'Ativo'), REPLACE(0, USR_STATUS, 'INATIVO')) AS  USR_STATUS,
+IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USUARIO where USR_COD =".$cod;
 
 
 $dataSet = mysqli_query($conecta, $cSql);
 
 if($oDados = mysqli_fetch_assoc($dataSet)){
     $SENHA =  $oDados['USR_SENHA'];
+    $PERMISSAO =  $oDados['USR_PERMISSAO'];
+    $NOME =  $oDados['USR_NOME'];
+    $LOGIN =  $oDados['USR_LOGIN'];
     $EMAIL =  $oDados['USR_EMAIL'];
     $STATUS = $oDados['USR_STATUS'];
 }
 
 
-if($STATUS == 1)
-    $STATUS = "Ativo";
-else
-    $STATUS = "Inativo";
+
 
 mysqli_free_result($dataSet);
 mysqli_close($conecta);
@@ -47,17 +53,17 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-         <div class="col-lg-4 col-md-5">
-            <div class="card card-user" style=" height:295px">
+           <div class="col-lg-4 col-md-5">
+            <div class="card card-user" style=" height:305px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
                 </div>
                 <div class="content">
                     <div class="author">
                       <img class="avatar border-white" src="assets/img/faces/beards.png" alt="..."/>
-                      <h4 class="title"><?php echo $_SESSION['user']['name']?></h4>
+                      <h4 class="title" id="nomePagina"><?php echo $NOME?></h4>
                   </div>
-                  <p class="description text-center"><?php echo $permissao;?></p>
+                  <p class="description text-center" id="permissaoPagina"><?php echo $PERMISSAO;?></p>
               </div>
 
           </div>
@@ -72,24 +78,24 @@ mysqli_close($conecta);
             </div>
 
             <div class="content">
-                <form>
+                <form name="usuarioPerfil" id="usuarioPerfil">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nome</label>
-                                <input type="text" class="form-control border-input" value = "<?php echo $_SESSION['user']['name']?>">
+                                <input type="text" class="form-control border-input" value = "<?php echo $NOME?>" name ="txtNomeUsr">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Login</label>
-                                <input type="text" class="form-control border-input"  value = "<?php echo $_SESSION['user']['username']?>">
+                                <input type="text" class="form-control border-input"  value = "<?php echo $LOGIN?>" name = "txtLoginUsr">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label for="">Senha</label>
-                                <input type="password" class="form-control border-input" value = "<?php echo $SENHA?>" >
+                                <input type="password" class="form-control border-input" value = "<?php echo $SENHA?>" name = "txtSenhaUsr">
                             </div>
                         </div>
                     </div>
@@ -98,21 +104,21 @@ mysqli_close($conecta);
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label>Email</label>
-                                <input type="text" class="form-control border-input"  value = "<?php echo $EMAIL?>">
+                                <input type="text" class="form-control border-input"  value = "<?php echo $EMAIL?>" name = "txtEmailUsr">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Permissão</label>
-                                <input type="text" class="form-control border-input" disabled value = "<?php echo $permissao?>">
+                                <input type="text" class="form-control border-input" disabled value = "<?php echo $PERMISSAO?>" name = "txtPermissaoUsr">
                             </div>
                         </div>
 
                         <div class="col-md-3">
                             <div class="form-group">
                                 <label>Status</label>
-                                <input type="text" class="form-control border-input" disabled value="<?php echo $STATUS?>" >
+                                <input type="text" class="form-control border-input" disabled value="<?php echo $STATUS?>" name = "txtStatusUsr" >
                             </div>
                         </div>
                     </div>
@@ -122,9 +128,17 @@ mysqli_close($conecta);
 
 
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Alterar</button>
+                    <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="alteraUsuario()">Alterar</button>
                     <br>
                     <div class="clearfix"></div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                     <div class="form-group">
+                        <output type="text" class="text-center" id="retornoFormUsuario"></output>
+                    </div>
                 </div>
 
             </div>
@@ -136,7 +150,7 @@ mysqli_close($conecta);
 
 <?php
 
-if ($permissao == 'Administrador'){
+if ($PERMISSAO == 'Administrador'){
 
     ?>
 
@@ -190,7 +204,7 @@ if ($permissao == 'Administrador'){
                     <div class="row">
 
                         <div class="col-md-12">
-                           <div class="form-group">
+                         <div class="form-group">
                             <output type="text" class="text-center" id="retornoFormEmpresa"></output>
                         </div>
                     </div>
@@ -291,16 +305,16 @@ if ($permissao == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                             <label for="">Empresa / Pefil</label>
-                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                               <label for="">Empresa / Pefil</label>
+                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
-                             </select>
-                         </div>
-                     </div>
+                               </select>
+                           </div>
+                       </div>
 
-                 </div>
+                   </div>
 
-                 <div class="row">
+                   <div class="row">
 
                     <div class="col-md-3">
                         <div class="form-group">
@@ -354,7 +368,7 @@ if ($permissao == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                   <div class="form-group">
+                 <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta">COLOCAR RETORNO SENDO POSItiVO OU NEGAtIVO</output>
                 </div>
             </div>
@@ -363,73 +377,73 @@ if ($permissao == 'Administrador'){
 
         <div class="row">
 
-                        <div class="col-md-12">
-                           <div class="form-group">
-                            <output type="text" class="text-center" id="retornoFormConta"></output>
-                        </div>
-                    </div>
+            <div class="col-md-12">
+             <div class="form-group">
+                <output type="text" class="text-center" id="retornoFormConta"></output>
+            </div>
+        </div>
 
-                </div>
+    </div>
 
-        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
-            <thead>
+    <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Banco</th>
+                <th>Empresa</th>
+                <th>Saldo Inicial</th>
+                <th>Status</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            <?php
+            require 'src/conecta.php';
+
+
+            $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
+            EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
+
+
+            $dataSet = mysqli_query($conecta, $cSql);
+
+            while($oDados = mysqli_fetch_assoc($dataSet)){
+                echo "
+
                 <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Banco</th>
-                    <th>Empresa</th>
-                    <th>Saldo Inicial</th>
-                    <th>Status</th>
-                    <th>Ações</th>
+                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
+                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
+                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
+                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
+                <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
+
+                <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
                 </tr>
-            </thead>
-
-            <tbody>
-
-                <?php
-                require 'src/conecta.php';
-
-
-                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
-                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
-
-
-                $dataSet = mysqli_query($conecta, $cSql);
-
-                while($oDados = mysqli_fetch_assoc($dataSet)){
-                    echo "
-
-                    <tr>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
-
-                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
-                    </tr>
-                    ";
+                ";
 
                     // for(var i = 0; i<document.getElementById('".$oDados['CNT_COD']."').length;i++){alert(document.getElementById('".$oDados['CNT_COD']."')[i].innerTEXT);}
 
-                }
+            }
 
-                mysqli_free_result($dataSet);
-                mysqli_close($conecta);  
-
-
-                ?>
+            mysqli_free_result($dataSet);
+            mysqli_close($conecta);  
 
 
-
-            </tbody>
-        </table>
+            ?>
 
 
 
+        </tbody>
+    </table>
 
-    </div> 
+
+
+
+</div> 
 </div>
 </div> <!-- Fim Conta -->
 </div> <!-- Fim ROW Conta -->
@@ -446,7 +460,7 @@ if ($permissao == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-             <form>
+               <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -509,7 +523,7 @@ if ($permissao == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                   <div class="form-group">
+                 <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta">OI</output>
                 </div>
             </div>
@@ -533,18 +547,18 @@ if ($permissao == 'Administrador'){
 
             <tbody>
 
-               <?php
+             <?php
 
-               require 'src/conecta.php';
-
-
-               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-               COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+             require 'src/conecta.php';
 
 
-               $dataSet = mysqli_query($conecta, $cSql);
+             $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
+             COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-               while($oDados = mysqli_fetch_assoc($dataSet)){
+
+             $dataSet = mysqli_query($conecta, $cSql);
+
+             while($oDados = mysqli_fetch_assoc($dataSet)){
                 echo "
 
                 <tr>
