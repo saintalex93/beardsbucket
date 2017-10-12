@@ -139,7 +139,7 @@ else if($_GET['funcao'] == 'atualizaEmpresa'){
 else if($_GET['funcao'] == 'comboConta'){
 
 
-	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN
+	$cSql = "SELECT DISTINCT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN
 	EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = $cod order by (EMP_NOME_EMPRESA) asc;";
 
 	
@@ -254,13 +254,13 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 	$cSql = "INSERT INTO USUARIO VALUES (0,'$_GET[administradorSenha]','$_GET[administradorLogin]','$_GET[administradorNome]','$_GET[administradorEmail]',$_GET[administradorPermissao],$_GET[administradorStatus])";
 	
 	$cSql = str_replace("''","NULL", $cSql);
-	echo $cSql;
-
 
 	if (mysqli_query($conecta,$cSql)) {
 
-		$cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-		COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+		$cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
+		REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+		USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
 		$result = mysqli_query($conecta,$cSql);
 
@@ -273,8 +273,8 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 		}  		
 	}
 	else
-		// echo mysql_error($conecta);  
-		echo "erro";
+		echo "Erro ao inserir";  
+
 
 
 }

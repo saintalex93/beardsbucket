@@ -465,6 +465,7 @@ if ($PERMISSAO == 'Administrador'){
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>Nome</label>
+                             <input type="hidden"  class="form-control border-input" id="administradorCod" name="administradorCod" >
 
                             <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
                         </div>
@@ -484,14 +485,23 @@ if ($PERMISSAO == 'Administrador'){
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" class="form-control border-input" id="administradorEmail" name="administradorEmail" placeholder="alex@beardsweb.com.br">
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Empresa</label>
+                            <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
+                                <option value="">Selecione...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Permissão</label>
                             <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao">
@@ -503,7 +513,7 @@ if ($PERMISSAO == 'Administrador'){
                         </div>
                     </div>
 
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <div class="form-group">
                             <label>Status</label>
                             <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
@@ -513,6 +523,9 @@ if ($PERMISSAO == 'Administrador'){
                             </select>
                         </div>
                     </div>
+
+                    
+
                 </div>
             </form>
 
@@ -533,10 +546,12 @@ if ($PERMISSAO == 'Administrador'){
         <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
             <thead>
                 <tr>
-                    <th>Código</th>
+                    <th hidden>Código</th>
                     <th>Nome</th>
                     <th>Login</th>
                     <th>Permissão</th>
+                    <th>Status</th>
+                    <th hidden>Email</th>
 
                     <th>Ações</th>
 
@@ -552,9 +567,10 @@ if ($PERMISSAO == 'Administrador'){
                require 'src/conecta.php';
 
 
-               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON USUARIO.USR_COD = USR_EMPR.COD_USR WHERE
-               COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
-
+               $cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+               IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
+               REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+               USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
                $dataSet = mysqli_query($conecta, $cSql);
 
@@ -562,25 +578,18 @@ if ($PERMISSAO == 'Administrador'){
                 echo "
 
                 <tr>
-                <td>".$oDados['USR_COD']."</td>
-                <td>".$oDados['USR_NOME']."</td>
-                <td>".$oDados['USR_LOGIN']."</td>
+                <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_COD']."</td>
+                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_NOME']."</td>
+                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_LOGIN']."</td>
+                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
+                <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
+                <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
 
-                
+
                 ";
 
-                if($oDados['USR_PERMISSAO'] == 0)
-                    $permissao = "Usuário";
-                else if ($oDados['USR_PERMISSAO'] == 1)
-                    $permissao = "Gerente";
-                else
-                    $permissao = "Administrador";
-
-                echo"
-                <td>".$permissao."</td>";
-
-
-                if($permissao != "Administrador"){
+                
+                if($oDados['USR_PERMISSAO'] != "Administrador"){
                     echo "<td><button class = 'btn' id = '".$oDados['USR_COD']."' onclick = 'alert(this.id)'>Alterar</button></td>
                     </tr>
                     ";

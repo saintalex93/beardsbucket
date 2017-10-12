@@ -26,7 +26,7 @@ function alteraUsuario(){
 
 				var oDados = JSON.parse(responseText);
 
-				// Aproveira esses campos quando alterar um usuário, pois pode ser o próprio administrador
+				// Aproveita esses campos quando alterar um usuário, pois pode ser o próprio administrador
 				
 				form.txtNomeUsr.value = oDados[0]['USR_NOME'];
 				form.txtLoginUsr.value = oDados[0]['USR_LOGIN'];
@@ -35,7 +35,7 @@ function alteraUsuario(){
 				document.getElementById("permissaoPagina").innerHTML = oDados[0]['USR_PERMISSAO'];
 				document.getElementById("nomePagina").innerHTML = oDados[0]['USR_NOME'];
 
-				// Aproveira esses campos quando alterar um usuário, pois pode ser o próprio administrador
+				// Aproveita esses campos quando alterar um usuário, pois pode ser o próprio administrador
 
 
 				document.getElementById("retornoFormUsuario").style.display = "block";
@@ -551,12 +551,12 @@ if(param == 1){
 	var oPagina = new XMLHttpRequest();
 	with(oPagina){
 
-		var admNome = document.getElementById("cmbStatusConta").value;	
-		var admLogin = document.getElementsByName("nomeConta")[0].value;
-		var admSenha = document.getElementsByName("nomeBanco")[0].value;
-		var admEmail = document.getElementsByName("cmbEmpresa")[0].value;
-		var admPermissao = document.getElementsByName("agenciaConta")[0].value;
-		var admStatus = document.getElementsByName("numeroConta")[0].value;
+		var admNome = document.getElementsByName("administradorNome")[0].value;	
+		var admLogin = document.getElementsByName("AdministradorLogin")[0].value;
+		var admSenha = document.getElementsByName("administradorSenha")[0].value;
+		var admEmail = document.getElementsByName("administradorEmail")[0].value;
+		var admPermissao = document.getElementsByName("administradorPermissao")[0].value;
+		var admStatus = document.getElementsByName("administradorStatus")[0].value;
 		
 		open('GET', './src/CrudUsuario.php?funcao=insereAdministrador&administradorNome='+admNome+'&administradorLogin='+admLogin+'&administradorSenha='+admSenha+'&administradorEmail='+admEmail+'&administradorPermissao='+admPermissao+'&administradorStatus='+admStatus);
 
@@ -564,7 +564,7 @@ if(param == 1){
 		onload = function(){
 
 			alert(responseText);
-			if(responseText != "Erro ao Inserir!"){
+			if(responseText != "Erro ao inserir"){
 
 				var oDados = JSON.parse(responseText);
 
@@ -637,13 +637,25 @@ function atualizaComboEmpresa(){
 
 			var oDados = JSON.parse(responseText);
 
-			for(var i = 0; i<oDados.length; i++){
+			for (i = 0; i <=document.getElementById("cmbEmpresa").length; i++) {
+				document.getElementById("cmbEmpresa").remove(i);
+			}
+
+
+
+			var x = document.getElementById("cmbEmpresa");
+			var option = document.createElement("option");
+			option.text = "Selecione...";
+			x.add(option);
+
+			for (var i = 0; i<oDados.length; i++){
 				var x = document.getElementById("cmbEmpresa");
 				var option = document.createElement("option");
 				option.text = oDados[i]['EMP_NOME_EMPRESA'];
 				option.value = oDados[i]['EMP_COD'];
 				x.add(option);
 			}
+			
 		}
 	}
 }
@@ -653,7 +665,6 @@ function atualizaComboEmpresa(){
 (function(){
 
 	atualizaComboEmpresa();
-
 
 }())
 
