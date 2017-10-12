@@ -561,8 +561,10 @@ if(param == 1){
 		var admEmail = document.getElementsByName("administradorEmail")[0].value;
 		var admPermissao = document.getElementsByName("administradorPermissao")[0].value;
 		var admStatus = document.getElementsByName("administradorStatus")[0].value;
+		var comboEmpresa = document.getElementById("cmbEmpresaAdm").value;
+
 		
-		open('GET', './src/CrudUsuario.php?funcao=insereAdministrador&administradorNome='+admNome+'&administradorLogin='+admLogin+'&administradorSenha='+admSenha+'&administradorEmail='+admEmail+'&administradorPermissao='+admPermissao+'&administradorStatus='+admStatus);
+		open('GET', './src/CrudUsuario.php?funcao=insereAdministrador&administradorNome='+admNome+'&administradorLogin='+admLogin+'&administradorSenha='+admSenha+'&administradorEmail='+admEmail+'&administradorPermissao='+admPermissao+'&administradorStatus='+admStatus+'&cmbEmpresaAdm='+comboEmpresa);
 
 		send();
 		onload = function(){
@@ -574,7 +576,7 @@ if(param == 1){
 				var Contador = parseInt(oDados.length) -1;
 
 
-				var tableConta = document.getElementById("tableConta");
+				var tableConta = document.getElementById("tableAdministrador");
 
 
 
@@ -688,11 +690,6 @@ function atualizaComboEmpresa(){
 				option.value = oDados[i]['EMP_COD'];
 				x.add(option);
 			}
-
-
-
-
-
 			
 		}
 	}

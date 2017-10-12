@@ -538,14 +538,14 @@ if ($PERMISSAO == 'Administrador'){
 
                 <div class="col-md-12">
                    <div class="form-group">
-                    <output type="text" class="text-center" id="retornoFormConta">OI</output>
+                    <output type="text" class="text-center" id="retornoFormAdministrador">OI</output>
                 </div>
             </div>
 
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+            <table class="table table-bordered table-striped text-center " width="100%" id="tableAdministrador" cellspacing="0">
                 <thead>
                     <tr>
                         <th hidden>Código</th>

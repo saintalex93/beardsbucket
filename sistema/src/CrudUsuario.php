@@ -257,7 +257,16 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 
 	if (mysqli_query($conecta,$cSql)) {
 
-		$cSql = "SELECT DISTINCT USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+
+		$cod_Usuario = mysqli_insert_id($conecta);
+		$cod_EmpresaUsuario = $_GET['cmbEmpresaAdm'];
+
+
+		$cSql = "INSERT INTO USR_EMPR VALUES (0,$cod_Usuario, $cod_EmpresaUsuario)";
+
+		mysqli_query($conecta,$cSql);
+
+		$cSql = "SELECT DISTINCT USR_LOGIN, USR_COD, USR_NOME, USR_PERMISSAO, USR_EMAIL, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
 		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), IF(USR_PERMISSAO = 1, REPLACE(1, USR_PERMISSAO, 'Gerente'), 
 		REPLACE(USR_PERMISSAO, 2, 'Administrador'))) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
 		USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
@@ -268,12 +277,13 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 		while($row = mysqli_fetch_assoc($result))  
 		{  
 			$json_array[] = $row;  
-			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
 
-		}  		
+		}  	
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+			
 	}
 	else
-		echo "Erro ao inserir";  
+		echo mysqli_error($conecta);  
 
 
 
