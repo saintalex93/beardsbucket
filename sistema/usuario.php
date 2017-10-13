@@ -53,7 +53,7 @@ mysqli_close($conecta);
     <div class="container-fluid" >
 
         <div class="row">
-           <div class="col-lg-4 col-md-5">
+         <div class="col-lg-4 col-md-5">
             <div class="card card-user" style=" height:305px">
                 <div class="image">
                     <img src="assets/img/background.jpg" alt="..."/>
@@ -136,32 +136,157 @@ mysqli_close($conecta);
                 <div class="row">
 
                     <div class="col-md-12">
-                     <div class="form-group">
-                        <output type="text" class="text-center" id="retornoFormUsuario"></output>
+                        <div class="form-group">
+                            <output type="text" class="text-center" id="retornoFormUsuario"></output>
+                        </div>
                     </div>
+
+                </div>
+            </div>  
+
+        </div> <!-- Fim Form Perfil -->
+
+    </div> <!-- Fim ROW Conjunto perfil -->
+
+    <?php
+
+    if ($PERMISSAO == 'Administrador'){
+
+        ?>
+
+        <div class="row" id="rowEmpresa"> <!-- ROW EMPRESA -->
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Empresa / Perfil</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nome</label>
+                                        <input type="hidden" name="codEmpresa" id="codEmpresa">
+                                        <input type="text" class="form-control border-input"  placeholder="Pessoal" name="txtNomeEmpresa" id="txtNomeEmpresa">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>CNPJ/CPF</label>
+                                        <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj" id="txtCnpj">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select class="form-control border-input" id="cmbStatusEmpresa" disabled>
+                                            <option value="Ativo">Ativo</option>
+                                            <option value="Inativo">Inativo</option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </form>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
+
+                            <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                               <div class="form-group">
+                                <output type="text" class="text-center" id="retornoFormEmpresa"></output>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>CNPJ</th>
+                                    <th>Status</th>
+                                    <th>Ações</th>
+
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                <?php
+
+                                require 'src/conecta.php';
+
+
+                                $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
+                                IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
+                                FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
+
+
+                                $dataSet = mysqli_query($conecta, $cSql);
+
+                                while($oDados = mysqli_fetch_assoc($dataSet)){
+                                    echo "
+
+                                    <tr>
+                                    <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
+                                    <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                                    <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
+                                    <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
+
+                                    <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
+                                    </tr>
+                                    ";
+
+                                }
+
+                                mysqli_free_result($dataSet);
+                                mysqli_close($conecta);  
+
+
+                                ?>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+
+
+
+
                 </div>
 
+
             </div>
-        </div>  
 
-    </div> <!-- Fim Form Perfil -->
+        </div> 
 
-</div> <!-- Fim ROW Conjunto perfil -->
+    </div> <!-- Fim ROW Empresa -->
 
-<?php
 
-if ($PERMISSAO == 'Administrador'){
-
-    ?>
-
-    <div class="row" id="rowEmpresa"> <!-- ROW EMPRESA -->
+    <div class="row" id="rowConta">  <!-- Conta -->
 
         <div class="col-lg-12 col-md-12">
             <div class="card">
                 <div class="header">
-                    <h4 class="title">Empresa / Perfil</h4>
+                    <h4 class="title">Conta</h4>
                 </div>
                 <div class="content">
+
                     <form>
 
                         <div class="row">
@@ -169,284 +294,159 @@ if ($PERMISSAO == 'Administrador'){
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label>Nome</label>
-                                    <input type="hidden" name="codEmpresa" id="codEmpresa">
-                                    <input type="text" class="form-control border-input"  placeholder="Pessoal" name="txtNomeEmpresa" id="txtNomeEmpresa">
+                                    <input type="hidden" name="codConta" id="codConta">
+                                    <input type="text" class="form-control border-input" id="nomeConta"  name="nomeConta" placeholder="Nome da Conta">
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>CNPJ/CPF</label>
-                                    <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj" id="txtCnpj">
+                                    <label>Banco</label>
+                                    <input type="text" class="form-control border-input" id="nomeBanco" name="nomeBanco" placeholder="Itaú">
                                 </div>
                             </div>
-
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="form-group">
-                                    <label>Status</label>
-                                    <select class="form-control border-input" id="cmbStatusEmpresa" disabled>
-                                        <option value="Ativo">Ativo</option>
-                                        <option value="Inativo">Inativo</option>
-                                    </select>
+                                 <label for="">Empresa / Pefil</label>
+                                 <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
-                                </div>
-                            </div>
+                                 </select>
+                             </div>
+                         </div>
 
-                        </div>
+                     </div>
 
-                    </form>
+                     <div class="row">
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
-
-                        <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-12">
-                         <div class="form-group">
-                            <output type="text" class="text-center" id="retornoFormEmpresa"></output>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>CNPJ</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <?php
-
-                            require 'src/conecta.php';
-
-
-                            $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
-                            IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
-                            FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
-
-
-                            $dataSet = mysqli_query($conecta, $cSql);
-
-                            while($oDados = mysqli_fetch_assoc($dataSet)){
-                                echo "
-
-                                <tr>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
-
-                                <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
-                                </tr>
-                                ";
-
-                            }
-
-                            mysqli_free_result($dataSet);
-                            mysqli_close($conecta);  
-
-
-                            ?>
-
-                        </tbody>
-                    </table>
-                </div>
-
-
-
-
-
-
-            </div>
-
-
-        </div>
-
-    </div> 
-
-</div> <!-- Fim ROW Empresa -->
-
-
-<div class="row" id="rowConta">  <!-- Conta -->
-
-    <div class="col-lg-12 col-md-12">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Conta</h4>
-            </div>
-            <div class="content">
-
-                <form>
-
-                    <div class="row">
-
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <div class="form-group">
-                                <label>Nome</label>
-                                <input type="hidden" name="codConta" id="codConta">
-                                <input type="text" class="form-control border-input" id="nomeConta"  name="nomeConta" placeholder="Nome da Conta">
+                                <label for="">Agência</label>
+                                <input type="email" class="form-control border-input" id="agenciaConta" name="agenciaConta" placeholder="Agencia">
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Banco</label>
-                                <input type="text" class="form-control border-input" id="nomeBanco" name="nomeBanco" placeholder="Itaú">
+                                <label>Conta Corrente</label>
+                                <input type="text" class="form-control border-input" id="numeroConta" name="numeroConta" placeholder="Conta">
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <div class="form-group">
-                               <label for="">Empresa / Pefil</label>
-                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                                <label>Tipo</label>
+                                <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
+                                    <option value="">Selecione...</option>
+                                    <option value="CC">Conta Corrente</option>
+                                    <option value="CP">Conta Poupança</option>
+                                    <option value="CS">Conta Salário</option>
+                                    <option value="SC">Sem Conta</option>
 
-                               </select>
-                           </div>
-                       </div>
-
-                   </div>
-
-                   <div class="row">
-
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">Agência</label>
-                            <input type="email" class="form-control border-input" id="agenciaConta" name="agenciaConta" placeholder="Agencia">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Saldo Incial</label>
+                                <input type="text" class="form-control border-input" id="saldoInicial" name="saldoInicial" placeholder="R$ 1.000,00">
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Status</label>
+                                <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" disabled>
+                                    <option value="1">Ativo</option>
+                                    <option value="0">Inativo</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Conta Corrente</label>
-                            <input type="text" class="form-control border-input" id="numeroConta" name="numeroConta" placeholder="Conta">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Tipo</label>
-                            <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
-                                <option value="">Selecione...</option>
-                                <option value="CC">Conta Corrente</option>
-                                <option value="CP">Conta Poupança</option>
-                                <option value="CS">Conta Salário</option>
-                                <option value="SC">Sem Conta</option>
+                </form>
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Saldo Incial</label>
-                            <input type="text" class="form-control border-input" id="saldoInicial" name="saldoInicial" placeholder="R$ 1.000,00">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" disabled>
-                                <option value="1">Ativo</option>
-                                <option value="0">Inativo</option>
-                            </select>
-                        </div>
+
+                <div class="text-center">
+                    <button  class="btn btn-info btn-fill btn-wd" value="1" id ="buttonConta" onclick="selecionaAcaoConta(this.value)">Inserir</button>
+
+                    <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarConta">Cancelar</button>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                       <div class="form-group">
+                        <output type="text" class="text-center" id="retornoFormConta"></output>
                     </div>
                 </div>
-            </form>
 
-
-            <div class="text-center">
-                <button  class="btn btn-info btn-fill btn-wd" value="1" id ="buttonConta" onclick="selecionaAcaoConta(this.value)">Inserir</button>
-
-                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarConta">Cancelar</button>
             </div>
 
             <div class="row">
 
                 <div class="col-md-12">
-                 <div class="form-group">
+                   <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormConta"></output>
                 </div>
             </div>
 
         </div>
+        <div class="table-responsive">
 
-        <div class="row">
-
-            <div class="col-md-12">
-             <div class="form-group">
-                <output type="text" class="text-center" id="retornoFormConta"></output>
-            </div>
-        </div>
-
-    </div>
-    <div class="table-responsive">
-
-        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Banco</th>
-                    <th>Empresa</th>
-                    <th>Saldo Inicial</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <?php
-                require 'src/conecta.php';
-
-
-                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
-                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
-
-
-                $dataSet = mysqli_query($conecta, $cSql);
-
-                while($oDados = mysqli_fetch_assoc($dataSet)){
-                    echo "
-
+            <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
+                <thead>
                     <tr>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
-
-                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+                        <th>Código</th>
+                        <th>Nome</th>
+                        <th>Banco</th>
+                        <th>Empresa</th>
+                        <th>Saldo Inicial</th>
+                        <th>Status</th>
+                        <th>Ações</th>
                     </tr>
-                    ";
+                </thead>
+
+                <tbody>
+
+                    <?php
+                    require 'src/conecta.php';
+
+
+                    $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
+                    EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
+
+
+                    $dataSet = mysqli_query($conecta, $cSql);
+
+                    while($oDados = mysqli_fetch_assoc($dataSet)){
+                        echo "
+
+                        <tr>
+                        <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
+                        <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
+                        <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
+                        <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                        <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
+                        <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
+
+                        <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+                        </tr>
+                        ";
 
                     // for(var i = 0; i<document.getElementById('".$oDados['CNT_COD']."').length;i++){alert(document.getElementById('".$oDados['CNT_COD']."')[i].innerTEXT);}
 
-                }
+                    }
 
-                mysqli_free_result($dataSet);
-                mysqli_close($conecta);  
-
-
-                ?>
+                    mysqli_free_result($dataSet);
+                    mysqli_close($conecta);  
 
 
-
-            </tbody>
-        </table>
-    </div>
+                    ?>
 
 
 
-</div> 
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div> 
 </div>
 </div> <!-- Fim Conta -->
 </div> <!-- Fim ROW Conta -->
@@ -463,7 +463,7 @@ if ($PERMISSAO == 'Administrador'){
                 <h4 class="title">Administrador</h4>
             </div>
             <div class="content">
-               <form>
+             <form>
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -539,7 +539,7 @@ if ($PERMISSAO == 'Administrador'){
             <div class="row">
 
                 <div class="col-md-12">
-                 <div class="form-group">
+                   <div class="form-group">
                     <output type="text" class="text-center" id="retornoFormAdministrador"></output>
                 </div>
             </div>
@@ -566,18 +566,18 @@ if ($PERMISSAO == 'Administrador'){
 
                 <tbody>
 
-                 <?php
+                   <?php
 
-                 require 'src/conecta.php';
+                   require 'src/conecta.php';
 
 
-                 $cSql = "SELECT DISTINCT USR_COD,COD_EMPR, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-                 IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 2, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
-                 USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+                   $cSql = "SELECT DISTINCT USR_COD,COD_EMPR, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                   IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 2, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+                   USUARIO.USR_COD = USR_EMPR.COD_USR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 
-                 $dataSet = mysqli_query($conecta, $cSql);
+                   $dataSet = mysqli_query($conecta, $cSql);
 
-                 while($oDados = mysqli_fetch_assoc($dataSet)){
+                   while($oDados = mysqli_fetch_assoc($dataSet)){
                     echo "
 
                     <tr>

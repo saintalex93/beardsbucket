@@ -121,6 +121,7 @@ $cod =  $_SESSION['user']['id'];
 
 						<div class="text-center">
 							<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+
 						</div>
 
 					</div> <!--CONTENT CADASTRO -->
@@ -187,6 +188,7 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Nome</label>
+										<input type="hidden" name="categoriaCod" id="categoriaCod">
 										<input type="text" id="categoriaNome" name="categoriaNome" class="form-control border-input">
 									</div>
 								</div>
@@ -217,13 +219,24 @@ $cod =  $_SESSION['user']['id'];
 
 						<div class="text-center">
 							<button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selectionAcaoCategoria(this.value)">Cadastrar</button>
+
+							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
+						</div>
+						<div class="row">
+
+							<div class="col-md-12">
+								<div class="form-group">
+									<output type="text" class="text-center" id="retornoFormCategoria"></output>
+								</div>
+							</div>
+
 						</div>
 
 					</div> <!--CONTENT CATEGORIA -->
 
 
 					<div class="content"> <!--CONTENT TABELA -->
-						<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0" name="tableCategoria" id="tableCategoria" >
+						<table class="table table-bordered table-striped text-center " width="100%" id="tableCategoria" cellspacing="0" name="tableCategoria">
 							<thead>
 								<tr>
 									<th>Código</th>
