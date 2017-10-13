@@ -151,8 +151,51 @@ else if(param == 2){
 
 //  -------------------------------------------- FIM -------------------------------------------------------
 
+//  --------------------------------------------ATUALIZAÇÃO TABELA CATEGORIA------------------------------------------
+function buscaCategorias(param){
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open ('GET','./src/CrudCadastro.php?funcao=buscaCategoriaEmpresa&cmbEmpresaCat='+param);
+
+		send();
+
+		onload = function(){
+
+			alert(responseText);
+			
+			var oDados = JSON.parse(responseText);
+
+			var Contador = parseInt(oDados.length) -1;
+
+			var tableCategoria = document.getElementById("tableCategoria");
+
+
+
+			tableCategoria = "<tr><td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_COD'] + "</td>"+
+				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_NOME'] + "</td> "+
+				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUS']+ "</td>"+
+				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUSDESC'] + "</td> "+
+				"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td> "+
+				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+
+				"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+				;
+
+		}
+
+		
+	}
+
+}
+
+
+//  ---------------------------------------------FIM------------------------------------------------------------------
+
 //  --------------------------------------------ATUALIZAÇÃO DA PÁGINA ------------------------------------------------
-// ATUALIZA COMBO EMPRESA DA CONTA
+// ATUALIZA COMBO EMPRESA DA CATEGORIA
 
 function atualizaComboEmpresaCadastro(){
 	var oPagina = new XMLHttpRequest();
@@ -189,6 +232,28 @@ function atualizaComboEmpresaCadastro(){
 				optionr.text = oDados[i]['EMP_NOME_EMPRESA'];
 				optionr.value = oDados[i]['EMP_COD'];
 				r.add(optionr);
+			}
+			var x = document.getElementById("cmbEmpresaCat2");
+			var option = document.createElement("option");
+			option.text = "Selecione...";
+			x.add(option);
+
+			var contador = document.getElementById("cmbEmpresaCat2").length;
+
+			for (i = 0; i <=contador; i++) {
+				var combinho = document.getElementById("cmbEmpresaCat2");	
+				combinho.remove(combinho.i);
+			}
+
+			option.text = "Selecione...";
+			x.add(option);
+
+			for (var i = 0; i<oDados.length; i++){
+				var x = document.getElementById("cmbEmpresaCat2");
+				var option = document.createElement("option");
+				option.text = oDados[i]['EMP_NOME_EMPRESA'];
+				option.value = oDados[i]['EMP_COD'];
+				x.add(option);
 			}
 			
 		}

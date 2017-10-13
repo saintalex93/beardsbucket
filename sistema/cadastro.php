@@ -184,6 +184,14 @@ $cod =  $_SESSION['user']['id'];
 						<form id="">
 
 							<div class="row">
+								<div class="col-md-6 col-md-offset-3 text-center">
+									<div class="form-group">
+										<label>Busca Categoria</label>
+										<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
+											
+										</select>
+									</div>
+								</div>
 
 								<div class="col-md-6">
 									<div class="form-group">
@@ -195,7 +203,7 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Empresa / Grupo</label>
-										<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat">
+										<select value="" class="form-control border-input" id="cmbEmpresaCat2" name="cmbEmpresaCat">
 											
 										</select>
 									</div>
@@ -248,36 +256,8 @@ $cod =  $_SESSION['user']['id'];
 								</tr>
 							</thead>
 
-							<tbody >
-								<?php
-								require 'src/conecta.php';
-
-								$cSql = "SELECT DISTINCT EMP_COD,CAT_COD,CAT_NOME, CAT_STATUS, EMP_NOME_EMPRESA, IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC  FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD AND EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+							<tbody>
 								
-								
-								$result = mysqli_query($conecta,$cSql);
-
-								while ($oDados = mysqli_fetch_assoc($result)) {
-									echo "
-
-									<tr>
-									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_COD']."</td>
-									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_NOME']."</td>
-									<td hidden name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_STATUS']."</td>
-									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_STATUSDESC']."</td>
-									<td hidden name = 'categ".$oDados['CAT_COD']."'>".$oDados['EMP_COD']."</td>
-
-									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-
-									<td><button class = 'btn' id = 'categ".$oDados['CAT_COD']."' onclick = 'selecionaCategoria(this.id)' >Alterar</button></td>
-									</tr>
-									";
-								}
-								mysqli_free_result($result);
-								mysqli_close($conecta);  
-
-								?>
-
 							</tbody>
 						</table>
 					</div> <!-- CONTENT TABELA -->
