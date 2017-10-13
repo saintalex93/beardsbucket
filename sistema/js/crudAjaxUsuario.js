@@ -121,7 +121,7 @@ if(param == 1){
 
 
 					tableEmpresa.insertAdjacentHTML('beforeend',
-						"<tr><td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td>"+
+						"<tr class = 'registroInserido'><td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td>"+
 						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
 						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
 						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_STATUS'] + "</td> "+
@@ -354,7 +354,7 @@ function selecionaAcaoConta(param){
 
 
 					tableConta.insertAdjacentHTML('beforeend',
-						"<tr><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
+						"<tr class = 'registroInserido'><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
 						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
@@ -578,10 +578,13 @@ if(param == 1){
 
 				var tableAdministrador = document.getElementById("tableAdministrador");
 
+				alert(oDados[Contador]['EMP_NOME_EMPRESA']);
+
 				if(oDados[Contador]['USR_PERMISSAO'] != "Administrador")	{
 
 					tableAdministrador.insertAdjacentHTML('beforeend',
-						"<tr><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
+						"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
+						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
 						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
 						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
 						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
@@ -598,7 +601,8 @@ if(param == 1){
 				}
 				else{
 					tableAdministrador.insertAdjacentHTML('beforeend',
-						"<tr><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
+						"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
+						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
 						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
 						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
 						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
@@ -644,31 +648,29 @@ function selecionaUsuario(codUsuario){
 	
 	var permissao, status;
 
-	if(admTabela[3].innerText == "Administrador")
-		permissao = 2;
-	else if(admTabela[3].innerText == "Gerente")
+	if(admTabela[4].innerText == "Administrador")
 		permissao = 1;
 	else
 		permissao = 0;
 
 
-	if(admTabela[4].innerText == "Ativo")
+	if(admTabela[5].innerText == "Ativo")
 		status = 1;
 	else
 		status = 0;
 
 	document.getElementById("administradorCod").value = admTabela[0].innerText;
-	document.getElementById("administradorNome").value = admTabela[1].innerText;
-	document.getElementById("AdministradorLogin").value = admTabela[2].innerText;
-	document.getElementById("administradorSenha").value = admTabela[6].innerText;
-	document.getElementById("administradorEmail").value = admTabela[5].innerText;
+	document.getElementById("administradorNome").value = admTabela[2].innerText;
+	document.getElementById("AdministradorLogin").value = admTabela[3].innerText;
+	document.getElementById("administradorSenha").value = admTabela[7].innerText;
+	document.getElementById("administradorEmail").value = admTabela[6].innerText;
 	document.getElementById("administradorPermissao").value = permissao;
 	document.getElementById("administradorStatus").value = status;
-	document.getElementById("cmbEmpresaAdm").value = admTabela[7].innerText;
+	document.getElementById("cmbEmpresaAdm").value = admTabela[8].innerText;
 
 
-	document.getElementById("buttonCancelarConta").style.display = 'inline';
-	document.getElementById('cmbStatusConta').disabled = false;
+	document.getElementById("buttonCancelarUsr").style.display = 'inline';
+	document.getElementById('cmbEmpresaAdm').disabled = false;
 
 
 
