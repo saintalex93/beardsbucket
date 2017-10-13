@@ -502,6 +502,9 @@ function selecionaConta(codConta){
 
 			document.getElementById("buttonCancelarConta").style.display = 'inline';
 			document.getElementById('cmbStatusConta').disabled = false;
+			document.getElementById('buttonConta').value = 2;
+			document.getElementById('buttonConta').innerText = "Alterar";
+
 
 
 
@@ -578,9 +581,7 @@ if(param == 1){
 
 				var tableAdministrador = document.getElementById("tableAdministrador");
 
-				alert(oDados[Contador]['EMP_NOME_EMPRESA']);
-
-				if(oDados[Contador]['USR_PERMISSAO'] != "Administrador")	{
+				if(oDados[Contador]['USR_PERMISSAO'] != "Administrador"){
 
 					tableAdministrador.insertAdjacentHTML('beforeend',
 						"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
@@ -640,6 +641,74 @@ if(param == 1){
 	}
 
 }
+
+else if(param == 2){
+	var oPagina = new XMLHttpRequest();
+	with(oPagina){
+
+		var admNome = document.getElementsByName("administradorNome")[0].value;	
+		var admLogin = document.getElementsByName("AdministradorLogin")[0].value;
+		var admSenha = document.getElementsByName("administradorSenha")[0].value;
+		var admEmail = document.getElementsByName("administradorEmail")[0].value;
+		var admPermissao = document.getElementsByName("administradorPermissao")[0].value;
+		var admStatus = document.getElementsByName("administradorStatus")[0].value;
+		var comboEmpresa = document.getElementById("cmbEmpresaAdm").value;
+		var codUsuario = document.getElementById("administradorCod").value;
+
+		
+		open('GET', './src/CrudUsuario.php?funcao=alteraUsuarioAdministrador&txtSenha='+admSenha+'&txtLogin='+admLogin+'&txtNome='+admNome+'&txtEmail='+admEmail+'&txtStatus='+admStatus+'&txtPermissao='+admPermissao+'&txtCodUsuario='+codUsuario);
+
+		send();
+		onload = function(){
+
+			if(responseText != "Erro ao alterar"){
+
+				var oDados = JSON.parse(responseText);
+
+				var Contador = parseInt(oDados.length) -1;
+
+				var tableAdmin = document.getElementById("tableAdministrador");
+
+				var codUsuario = 'usr_admin'+oDados[0]['USR_COD'];
+
+				alert(oDados[0]['USR_STATUS']);
+
+				document.getElementsByName(codUsuario)[0].innerText = oDados[0]['USR_COD'];
+				document.getElementsByName(codUsuario)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+				document.getElementsByName(codUsuario)[2].innerText = oDados[0]['USR_NOME'];
+				document.getElementsByName(codUsuario)[3].innerText = oDados[0]['USR_LOGIN'];
+				document.getElementsByName(codUsuario)[4].innerText = oDados[0]['USR_PERMISSAO'];
+				document.getElementsByName(codUsuario)[5].innerText = oDados[0]['USR_STATUS'];
+				document.getElementsByName(codUsuario)[6].innerText = oDados[0]['USR_EMAIL'];
+				document.getElementsByName(codUsuario)[7].innerText = oDados[0]['COD_EMPR'];
+
+
+				document.getElementById("retornoFormAdministrador").style.display = "block";
+				document.getElementById("retornoFormAdministrador").innerHTML = "Usuário alterado com sucesso!";
+				document.getElementById("retornoFormAdministrador").setAttribute("class", "retSuccess");
+
+				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
+
+				limpaAdministrador();
+			}
+
+			else{
+				document.getElementById("retornoFormAdministrador").style.display = "block";
+				document.getElementById("retornoFormAdministrador").innerHTML = "Não foi possível alterar o Usuário";
+				document.getElementById("retornoFormAdministrador").setAttribute("class", "retDanger");
+
+				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
+
+			}
+
+
+		}
+
+	}
+
+
+}
+
 }
 
 function selecionaUsuario(codUsuario){
@@ -670,9 +739,32 @@ function selecionaUsuario(codUsuario){
 
 
 	document.getElementById("buttonCancelarUsr").style.display = 'inline';
+	document.getElementById('cmbEmpresaAdm').disabled = true;
+	document.getElementById('buttonUsuario').value = 2;
+	document.getElementById('buttonUsuario').innerText = "Alterar";
+
+
+}
+
+function limpaAdministrador(){
+
+	document.getElementById("buttonUsuario").value=1;
+	document.getElementById("buttonUsuario").innerHTML = "Inserir";
+
+	document.getElementById("administradorCod").value = "";
+	document.getElementById("administradorNome").value = "";
+	document.getElementById("AdministradorLogin").value = "";
+	document.getElementById("administradorSenha").value = "";
+	document.getElementById("administradorEmail").value = "";
+	document.getElementById("administradorPermissao").selectedIndex = "0";
+	document.getElementById("administradorStatus").selectedIndex = "0";
+	document.getElementById("cmbEmpresaAdm").selectedIndex = "0";
+
 	document.getElementById('cmbEmpresaAdm').disabled = false;
 
-
+	document.getElementById("buttonUsuario").innerHTML = "Inserir";
+	document.getElementById("buttonCancelarUsr").style.display = 'none';
+	document.getElementById("buttonUsuario").value = 1;
 
 }
 
