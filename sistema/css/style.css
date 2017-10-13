@@ -174,7 +174,7 @@ body {
 
 
 
-#buttonCancelarEmpresa, #buttonCancelarConta{
+#buttonCancelarEmpresa, #buttonCancelarConta, #buttonCancelarUsr{
   display: none;
 }
 
@@ -419,6 +419,10 @@ padding-bottom: 40px;
 table th{
   text-align: center;
   background: #fffdf6;
+}
+
+.registroInserido td{
+  background: #95e095;
 }
 
 
