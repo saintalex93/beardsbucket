@@ -288,6 +288,40 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 }
 
 
+else if($_GET['funcao'] == 'alteraUsuarioAdministrador'){
+	$cSql = "UPDATE USUARIO SET USR_SENHA = '$_GET[txtSenha]', USR_LOGIN = '$_GET[txtLogin]', USR_NOME = '$_GET[txtNome]', USR_EMAIL = '$_GET[txtEmail]', USR_STATUS = $_GET[txtStatus], USR_PERMISSAO = $_GET[txtPermissao] WHERE USR_COD = $_GET[txtCodUsuario]";
+
+	$cSql = str_replace("''","NULL", $cSql);
+
+	if (mysqli_query($conecta,$cSql)) {
+
+		$cSql = "SELECT DISTINCT USR_COD,COD_EMPR,EMP_NOME_EMPRESA, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+		IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+		USUARIO.USR_COD = USR_EMPR.COD_USR join EMPRESA on COD_EMPR = EMP_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $_GET[txtCodUsuario])";
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+		while($row = mysqli_fetch_assoc($result))  
+		{  
+			$json_array[] = $row;  
+
+		}  	
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+
+	}
+	else
+		echo "Erro ao alterar";  
+
+}
+
+
+
+
+
+
+
+
 
 
 

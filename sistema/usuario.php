@@ -547,9 +547,9 @@ if ($PERMISSAO == 'Administrador'){
     </form>
 
     <div class="text-center">
-        <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)">Inserir</button>
+        <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)" id="buttonUsuario">Inserir</button>
 
-        <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarUsr">Cancelar</button>
+        <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="limpaAdministrador()" id="buttonCancelarUsr">Cancelar</button>
     </div>
 
     <div class="row">
@@ -563,7 +563,7 @@ if ($PERMISSAO == 'Administrador'){
 </div>
 
 <div class="table-responsive">
-    <table class="table table-bordered table-striped text-center " width="100%" id="tableAdministrador" cellspacing="0">
+    <table class="table table-bordered table-striped text-center " width="100%" name = "tableAdministrador" id="tableAdministrador" cellspacing="0">
         <thead>
             <tr>
                 <th hidden>Código</th>
@@ -689,15 +689,15 @@ if ($PERMISSAO == 'Administrador'){
 
 
 
-</form>
+    </form>
 
 
-    </div>
+</div>
 
 <div class="text-center">
-    <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)">Inserir</button>
+    <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="funcao(this.value)" id="">Inserir</button>
 
-    <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarConta">Cancelar</button>
+    <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoAdministrador(3)" id="">Cancelar</button>
 </div>
 
 <div class="row">
@@ -730,10 +730,10 @@ if ($PERMISSAO == 'Administrador'){
 
         <tbody>
 
-           
 
-    </tbody>
-</table>
+
+        </tbody>
+    </table>
 </div>
 
 </div>

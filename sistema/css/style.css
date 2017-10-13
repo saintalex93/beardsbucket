@@ -49,7 +49,7 @@ body {
 
 /*Form*/
 .formulario{
-    position: relative;
+  position: relative;
   background: #ffffff;
   max-width: 600px;
   width: 100%;
@@ -372,8 +372,8 @@ body {
 
 
 .espaco{
-overflow: hidden;
-height: 350px;
+  overflow: hidden;
+  height: 350px;
 
 
 }
@@ -390,7 +390,7 @@ height: 350px;
 
 .NavegadorSuperior{
 
-padding-bottom: 40px;
+  padding-bottom: 40px;
 }
 
 
@@ -433,21 +433,21 @@ table th{
 
 
 .btn-info.btn-fill{
-    border: #18d918;
+  border: #18d918;
 }
 
 .btn-info.btn-fill:hover{
-    border: #38eb47;
+  border: #38eb47;
 }
 
 
 
 .nav-pills>li.active>a{
-    background-color: #28bd28;
+  background-color: #28bd28;
 }
 
 .nav-pills>li.active>a:hover{
-    background-color: #38eb47;
+  background-color: #38eb47;
 }
 
 #categ a {
@@ -456,7 +456,7 @@ table th{
 
 
 .btn-info.btn-fill:hover{
-    background: #38eb47;
+  background: #38eb47;
 }
 
 
