@@ -33,14 +33,15 @@ if(param == 1){
 
 
 
-				tableCategoria.insertAdjacentHTML('beforeend',
-					"<tr><td name = 'cat"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_COD'] + "</td>"+
-					"<td name = 'cat"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_NOME'] + "</td> "+
-					"<td name = 'cat"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUS'] + "</td> "+
-					"<td name = 'cat"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+				tableCategoria.insertAdjacentHTML('afterbegin',
+					"<tr><td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_COD'] + "</td>"+
+					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_NOME'] + "</td> "+
+					"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUS'] + "</td> "+
+					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUSDESC'] + "</td> "+
+					"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td> "+
+					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
 
-					"<td><button class = 'btn' id = '"+oDados[Contador]['CAT_COD']+
-					"' onclick = 'selecionaEmpresa(this.id)'>Alterar</button></tr> "
+					"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
 					);
 
 				document.getElementById("retornoFormCategoria").style.display = "block";
@@ -72,9 +73,11 @@ if(param == 1){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 else if(param == 2){
 	
-	var codEmpresa = document.getElementsByName("categoriaNome")[0].value, 
-	nomeEmpresa = document.getElementsByName("categoriaStatus")[0].value,
-	cnpjEmpresa = document.getElementsByName("cmbEmpresaCat")[0].value;
+	var
+	codCategoria = document.getElementsByName("categoriaCod")[0].value, 
+	categNome = document.getElementsByName("categoriaNome")[0].value, 
+	categStatus = document.getElementsByName("categoriaStatus")[0].value,
+	categEmpresa = document.getElementsByName("cmbEmpresaCat")[0].value;
 
 
 
@@ -82,7 +85,7 @@ else if(param == 2){
 
 	with(oPagina){
 
-		open('GET', './src/CrudUsuario.php?funcao=atualizaCategoria&empresa='+nomeEmpresa+'&cnpj='+cnpjEmpresa+'&status='+document.getElementById("cmbStatusEmpresa").value+'&codEmpresa='+codEmpresa);
+		open('GET', './src/CrudUsuario.php?funcao=atualizaCategoria&categoriaNome='+categNome+'&cmbEmpresaCat='+categEmpresa+'&categoriaStatus='+categStatus);
 
 		send();
 
@@ -95,14 +98,14 @@ else if(param == 2){
 
 				var oDados = JSON.parse(responseText);
 
-				var codEmpresa = 'emp'+oDados[0]['EMP_COD'];
+				var codCategoria = 'categ'+oDados[0]['CAT_COD'];
 
-				document.getElementsByName(codEmpresa)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
-				document.getElementsByName(codEmpresa)[2].innerText = oDados[0]['EMP_CNPJ'];
-				document.getElementsByName(codEmpresa)[3].innerText = oDados[0]['EMP_STATUS'];
+				document.getElementsByName(codCategoria)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+				document.getElementsByName(codCategoria)[2].innerText = oDados[0]['EMP_CNPJ'];
+				document.getElementsByName(codCategoria)[3].innerText = oDados[0]['EMP_STATUS'];
 
 				document.getElementById("buttonEmpresa").innerHTML = "Inserir";
-				document.getElementById("buttonCancelarEmpresa").style.display = 'none';
+				document.getElementById("buttonCancelarCategoria").style.display = 'none';
 				document.getElementById("buttonEmpresa").value = 1;
 
 				document.getElementById("retornoFormEmpresa").style.display = "block";
@@ -113,7 +116,7 @@ else if(param == 2){
 
 				document.getElementById("cmbStatusEmpresa").disabled = true;
 
-				cmbStatusEmpresa
+				
 
 				setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
 
@@ -205,3 +208,23 @@ function atualizaComboEmpresaCadastro(){
 //  --------------------------------------------FIM ATUALIZAÇÃO ------------------------------------------------
 
 
+function selecionaCategoria(codCategoria){
+
+	var catTabela = document.getElementsByName(codCategoria);
+
+
+	document.getElementById("categoriaCod").value = catTabela[0].innerText;	
+	document.getElementById("categoriaNome").value = catTabela[1].innerText;
+	document.getElementById("cmbEmpresaCat").value = catTabela[4].innerText;
+	document.getElementById("categoriaStatus").value = catTabela[2].innerText;
+	
+
+
+	document.getElementById("buttonCancelarCategoria").style.display = 'inline';
+	document.getElementById("buttonCategoria").innerText= 'Alterar';
+	document.getElementById("buttonCategoria").value = 2;
+	document.getElementById('cmbEmpresaAdm').disabled = false;
+
+
+
+}

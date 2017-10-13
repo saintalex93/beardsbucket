@@ -218,9 +218,9 @@ $cod =  $_SESSION['user']['id'];
 
 
 						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selectionAcaoCategoria(this.value)">Cadastrar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd"  value="1" onclick="selectionAcaoCategoria(this.value)" id="buttonCategoria">Cadastrar</button>
 
-							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarCategoria">Cancelar</button>
 						</div>
 						<div class="row">
 
@@ -252,7 +252,7 @@ $cod =  $_SESSION['user']['id'];
 								<?php
 								require 'src/conecta.php';
 
-								$cSql = "SELECT DISTINCT EMP_COD,CAT_COD,CAT_NOME, EMP_NOME_EMPRESA, IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUS  FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD AND EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+								$cSql = "SELECT DISTINCT EMP_COD,CAT_COD,CAT_NOME, CAT_STATUS, EMP_NOME_EMPRESA, IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC  FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD AND EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 								
 								
 								$result = mysqli_query($conecta,$cSql);
@@ -263,10 +263,13 @@ $cod =  $_SESSION['user']['id'];
 									<tr>
 									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_COD']."</td>
 									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_NOME']."</td>
-									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_STATUS']."</td>
+									<td hidden name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_STATUS']."</td>
+									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['CAT_STATUSDESC']."</td>
+									<td hidden name = 'categ".$oDados['CAT_COD']."'>".$oDados['EMP_COD']."</td>
+
 									<td name = 'categ".$oDados['CAT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
 
-									<td><button class = 'btn' id = '".$oDados['CAT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+									<td><button class = 'btn' id = 'categ".$oDados['CAT_COD']."' onclick = 'selecionaCategoria(this.id)' >Alterar</button></td>
 									</tr>
 									";
 								}
