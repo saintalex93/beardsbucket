@@ -164,25 +164,25 @@ function buscaCategorias(param){
 
 		onload = function(){
 
-			alert(responseText);
+			
 			
 			var oDados = JSON.parse(responseText);
 
 			var Contador = parseInt(oDados.length) -1;
 
 			var tableCategoria = document.getElementById("tableCategoria");
-
-
-
-			tableCategoria = "<tr><td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_COD'] + "</td>"+
-				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_NOME'] + "</td> "+
-				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUS']+ "</td>"+
-				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUSDESC'] + "</td> "+
-				"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td> "+
-				"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-
-				"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
-				;
+			
+			for(i = 0; i<=oDados.length; i++){
+				tableCategoria.insertAdjacentHTML('afterbegin', 
+					"<tr><td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+					"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS']+ "</td>"+
+					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
+					"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+					"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+					);
+			}
 
 		}
 
