@@ -1,0 +1,39 @@
+<html>
+<head>
+<script type="text/javascript">
+function deleteRow(){
+
+var linhas = document.getElementById('myTable').rows;
+for (i= linhas.length-1; i>=0; i--){
+document.getElementById('myTable').deleteRow(i);
+}
+
+
+
+}
+</script>
+</head>
+
+<body>
+<table id="myTable" border="1">
+<tr>
+  <td>Row 1</td>
+  <td>TEste</td>
+</tr>
+<tr>
+  <td>Row 2</td>
+  <td>TEste</td>
+
+</tr>
+<tr>
+  <td>TEste</td>
+  <td>Row 3</td>
+</tr>
+</table>
+
+<button onclick="deleteRow()">LIMPA CARALHO</button>
+</body>
+
+</html>
+
+           

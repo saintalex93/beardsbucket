@@ -37,7 +37,7 @@ if($_GET['funcao'] == 'insereCategoria'){
 
 else if($_GET['funcao']=="buscaCategoriaEmpresa"){
 
-	$cSql ="SELECT DISTINCT  CAT_NOME,CAT_COD,EMP_NOME_EMPRESA,CAT_STATUS,EMP_COD,IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC FROM CATEGORIA INNER JOIN EMPRESA ON EMP_COD= COD_EMPRESA WHERE EMP_COD = $_GET[cmbEmpresaCat]";
+	$cSql ="SELECT DISTINCT CAT_NOME,CAT_COD,EMP_NOME_EMPRESA,CAT_STATUS,EMP_COD,IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC FROM CATEGORIA INNER JOIN EMPRESA ON EMP_COD= COD_EMPRESA WHERE EMP_COD = $_GET[cmbEmpresaCat]";
 
 	$cSql = str_replace("''","NULL", $cSql);
 
@@ -50,6 +50,7 @@ else if($_GET['funcao']=="buscaCategoriaEmpresa"){
 		$json_array[] = $row;
 
 	}
+	
 	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
 	
 

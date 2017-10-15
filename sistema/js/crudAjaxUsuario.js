@@ -43,6 +43,7 @@ function alteraUsuario(){
 				document.getElementById("retornoFormUsuario").innerHTML = "Usuário atualizado com sucesso!";
 				setTimeout(function(){ document.getElementById("retornoFormUsuario").style.display = "none"; }, 3000);
 
+				comboUsuario();
 			}
 
 			else{
@@ -624,6 +625,7 @@ if(param == 1){
 
 				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
 
+				comboUsuario();
 			}
 
 			else{
@@ -671,8 +673,6 @@ else if(param == 2){
 
 				var codUsuario = 'usr_admin'+oDados[0]['USR_COD'];
 
-				alert(oDados[0]['USR_STATUS']);
-
 				document.getElementsByName(codUsuario)[0].innerText = oDados[0]['USR_COD'];
 				document.getElementsByName(codUsuario)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
 				document.getElementsByName(codUsuario)[2].innerText = oDados[0]['USR_NOME'];
@@ -690,6 +690,7 @@ else if(param == 2){
 				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
 
 				limpaAdministrador();
+				comboUsuario();
 			}
 
 			else{
@@ -742,7 +743,6 @@ function selecionaUsuario(codUsuario){
 	document.getElementById('cmbEmpresaAdm').disabled = true;
 	document.getElementById('buttonUsuario').value = 2;
 	document.getElementById('buttonUsuario').innerText = "Alterar";
-
 
 }
 
@@ -798,15 +798,6 @@ function atualizaComboEmpresa(){
 			optionr.text = "Selecione...";
 			r.add(optionr);
 
-			// var contador2 = document.getElementById("cmbEmpresaAdm").length;
-
-			// // for (i = 0; i <=contador2; i++) {
-			// // 	var combinho2 = document.getElementById("cmbEmpresaAdm");	
-			// // 	combinho2.remove(combinho2.i);
-			// // }
-
-			// // optionr.text = "Selecione...";
-			// // r.add(optionr);
 
 			for (var i = 0; i<oDados.length; i++){
 				var r = document.getElementById("cmbEmpresaAdm");
@@ -846,12 +837,202 @@ function atualizaComboEmpresa(){
 }
 
 
+function comboUsuario(){
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open('GET', './src/CrudUsuario.php?funcao=atualizaComboUsuario');
+
+		send();
+
+		onload = function(){
+
+			var oDados = JSON.parse(responseText);
+
+			var contador = document.getElementById("nomeUsuario").length;
+
+			for (i = 0; i <=contador; i++) {
+				var combinho = document.getElementById("nomeUsuario");	
+				combinho.remove(combinho.i);
+			}
+
+
+			var r = document.getElementById("nomeUsuario");
+			var optionr = document.createElement("option");
+			optionr.text = "Selecione...";
+			r.add(optionr);
+
+			
+			for (var i = 0; i<oDados.length; i++){
+				var r = document.getElementById("nomeUsuario");
+				var optionr = document.createElement("option");
+				optionr.text = oDados[i]['USR_NOME'];
+				optionr.value = oDados[i]['USR_COD'];
+				r.add(optionr);
+			}
+
+
+
+
+			
+		}
+	}
+}
+
+
+function montaTabela(codUsr){
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open('GET', './src/CrudUsuario.php?funcao=montaTabelaUsuario&codUsuario='+codUsr);
+		
+
+		send();
+
+		onload = function(){
+
+
+
+			
+			var oDados = JSON.parse(responseText);
+
+			var tableUsuarioAdm = document.getElementById("tableUsuarioAdministrador");
+
+			var linhas = document.getElementById("tableUsuarioAdministrador").rows;
+			for (i= linhas.length-1; i>=1; i--){
+				document.getElementById("tableUsuarioAdministrador").deleteRow(i);
+
+			}
+			
+			for(i = 0; i<=oDados.length; i++){
+
+				if(oDados[i]['COD_USR'] == null)
+				{
+					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+						"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
+						);
+
+				}
+
+				else{
+					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+						"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
+						);
+				}
+
+
+			}
+
+		}
+
+		
+	}
+
+}
+
+
+
+function vinculaUsuario(acao, codUsuario){
+
+	var admTabela = document.getElementsByName(codUsuario);
+
+	var codEmpresa = admTabela[0].innerText;
+	var codUsuario = document.getElementById("nomeUsuario").value;
+
+	var codTabelaEmpresa = admTabela[2].innerText;
+
+// 1 vincula
+
+if(acao == 1){
+
+
+
+}
+
+// 2 Deleta
+else{
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open('GET', './src/CrudUsuario.php?funcao=deletaUsuario&CODUSREMPR='+codTabelaEmpresa);
+		
+
+		send();
+
+		onload = function(){
+			
+			var oDados = JSON.parse(responseText);
+
+			var tableUsuarioAdm = document.getElementById("tableUsuarioAdministrador");
+
+			var linhas = document.getElementById("tableUsuarioAdministrador").rows;
+			for (i= linhas.length-1; i>=1; i--){
+				document.getElementById("tableUsuarioAdministrador").deleteRow(i);
+
+			}
+			
+			for(i = 0; i<=oDados.length; i++){
+
+				if(oDados[i]['COD_USR'] == null)
+				{
+					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+						"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
+						);
+
+				}
+
+				else{
+					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+						"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
+						);
+				}
+
+
+			}
+
+		}
+
+		
+	}
+
+
+}
+
+	// document.getElementById("administradorNome").value = admTabela[2].innerText;
+	// document.getElementById("AdministradorLogin").value = admTabela[3].innerText;
+	
+
+}
+
+
 
 
 
 (function(){
 
 	atualizaComboEmpresa();
+	comboUsuario();
 
 }())
 

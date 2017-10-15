@@ -128,34 +128,36 @@ $cod =  $_SESSION['user']['id'];
 
 
 					<div class="content"> <!--CONTENT TABELA -->
+						<div class="table-responsive">
 
-						<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
-							<thead>
-								<tr>
-									<th>Código</th>
-									<th>Nome</th>
-								</tr>
-							</thead>
-
-							<tbody>
-
-								<?php
-								for($nCont = 0; $nCont<=1; $nCont++){
-
-									echo "
-
+							<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+								<thead>
 									<tr>
-									<td>$nCont</td>
-									<td>Pessoal</td>
+										<th>Código</th>
+										<th>Nome</th>
 									</tr>
-									";
+								</thead>
 
-								}
+								<tbody>
 
-								?>
+									<?php
+									for($nCont = 0; $nCont<=1; $nCont++){
 
-							</tbody>
-						</table>
+										echo "
+
+										<tr>
+										<td>$nCont</td>
+										<td>Pessoal</td>
+										</tr>
+										";
+
+									}
+
+									?>
+
+								</tbody>
+							</table>
+						</div>
 
 					</div> <!-- CONTENT TABELA -->
 
@@ -184,15 +186,6 @@ $cod =  $_SESSION['user']['id'];
 						<form id="">
 
 							<div class="row">
-								<div class="col-md-6 col-md-offset-3 text-center">
-									<div class="form-group">
-										<label>Busca Categoria</label>
-										<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
-											
-										</select>
-									</div>
-								</div>
-
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Nome</label>
@@ -203,7 +196,7 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-4">
 									<div class="form-group">
 										<label>Empresa / Grupo</label>
-										<select value="" class="form-control border-input" id="cmbEmpresaCat2" name="cmbEmpresaCat">
+										<select value="" class="form-control border-input" id="cmbEmpresaCat2" name="cmbEmpresaCat2">
 											
 										</select>
 									</div>
@@ -220,6 +213,17 @@ $cod =  $_SESSION['user']['id'];
 									</div>
 								</div>
 								
+							</div>
+
+							<div class="row">
+								<div class="col-md-6 col-md-offset-3 text-center">
+									<div class="form-group">
+										<label>Busca Categoria</label>
+										<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
+											
+										</select>
+									</div>
+								</div>
 							</div>
 
 						</form>
@@ -244,30 +248,31 @@ $cod =  $_SESSION['user']['id'];
 
 
 					<div class="content"> <!--CONTENT TABELA -->
-						<table class="table table-bordered table-striped text-center " width="100%" id="tableCategoria" cellspacing="0" name="tableCategoria">
-							<thead>
-								<tr>
-									<th>Código</th>
-									<th>Nome</th>
-									<th>Status</th>
-									<th >Empresa</th>
-									<th >Acao</th>
+						<div class="table-responsive">
 
-								</tr>
-							</thead>
+							<table class="table table-bordered table-striped text-center " width="100%" id="tableCategoria" cellspacing="0" name="tableCategoria">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Nome</th>
+										<th>Status</th>
+										<th >Empresa</th>
+										<th >Acao</th>
 
-							<tbody>
-								<tr>
-									
-									
-								</tr>
-								
-							</tbody>
-						</table>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+
+
+									</tr>
+
+								</tbody>
+							</table>
 					</div> <!-- CONTENT TABELA -->
 				</div> <!--CARD CATEGORIA-->
 			</div> <!-- COL -->
-
 
 
 		</div> <!-- ROW CATEGORIA -->

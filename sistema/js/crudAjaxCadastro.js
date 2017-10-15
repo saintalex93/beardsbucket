@@ -164,23 +164,30 @@ function buscaCategorias(param){
 
 		onload = function(){
 
-			
+
+
 			
 			var oDados = JSON.parse(responseText);
 
-			var Contador = parseInt(oDados.length) -1;
+
 
 			var tableCategoria = document.getElementById("tableCategoria");
+
+			var linhas = document.getElementById("tableCategoria").rows;
+			for (i= linhas.length-1; i>=1; i--){
+				document.getElementById("tableCategoria").deleteRow(i);
+
+			}
 			
 			for(i = 0; i<=oDados.length; i++){
 				tableCategoria.insertAdjacentHTML('afterbegin', 
-					"<tr><td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
-					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-					"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS']+ "</td>"+
-					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
-					"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
-					"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-					"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+					"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+					"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+					"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS']+ "</td>"+
+					"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
+					"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+					"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+					"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
 					);
 			}
 
@@ -275,12 +282,13 @@ function atualizaComboEmpresaCadastro(){
 
 function selecionaCategoria(codCategoria){
 
+
 	var catTabela = document.getElementsByName(codCategoria);
 
 
 	document.getElementById("categoriaCod").value = catTabela[0].innerText;	
 	document.getElementById("categoriaNome").value = catTabela[1].innerText;
-	document.getElementById("cmbEmpresaCat").value = catTabela[4].innerText;
+	document.getElementById("cmbEmpresaCat2").value = catTabela[4].innerText;
 	document.getElementById("categoriaStatus").value = catTabela[2].innerText;
 	
 
@@ -288,8 +296,19 @@ function selecionaCategoria(codCategoria){
 	document.getElementById("buttonCancelarCategoria").style.display = 'inline';
 	document.getElementById("buttonCategoria").innerText= 'Alterar';
 	document.getElementById("buttonCategoria").value = 2;
-	document.getElementById('cmbEmpresaAdm').disabled = false;
 
 
+
+}
+
+
+
+function deleteRows(id){
+
+	var linhas = document.getElementById(id).rows;
+	for (i= linhas.length-1; i>=0; i--){
+		document.getElementById(id).deleteRow(i);
+
+	}
 
 }
