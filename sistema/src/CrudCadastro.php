@@ -64,9 +64,30 @@ else if($_GET['funcao'] == 'atualizaCategoria'){
 
 	$cSql = "UPDATE CATEGORIA SET CAT_NOME = '$_GET[categoriaNome]' , CAT_STATUS = $_GET[categoriaStatus], COD_EMPRESA = $_GET[cmbEmpresaCat] WHERE CAT_COD = $_GET[categoriaCod]";
 
-	echo $cSql;
+	$cSql = str_replace("''","NULL", $cSql);
 
+	
+	if(mysqli_query($conecta,$cSql)){
+
+		$cSql = "SELECT DISTINCT CAT_NOME,CAT_COD,EMP_NOME_EMPRESA,CAT_STATUS,EMP_COD,IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC FROM CATEGORIA INNER JOIN EMPRESA ON EMP_COD= COD_EMPRESA WHERE EMP_COD = $_GET[cmbEmpresaCat]";
+
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+
+		while ($row = mysqli_fetch_assoc($result)){
+
+			$json_array[] = $row;
+		}
+
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+
+	}
+	else
+		echo "Erro ao Atualizar";
 }
+
 //FIM DO ATUALIZA CATEGORIA
 
 //COMBO CARREGA EMPRESAS

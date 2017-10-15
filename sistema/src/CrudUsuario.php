@@ -372,14 +372,13 @@ else if($_GET['funcao'] == 'deletaUsuario'){
 
 	$cSql = "DELETE FROM USR_EMPR WHERE COD_USR_EMPR = $_GET[CODUSREMPR]";
 
+	mysqli_query($conecta,$cSql);
+
+	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA EMPRESA, COD_USR, COD_USR_EMPR FROM EMPRESA LEFT JOIN USR_EMPR ON COD_EMPR = EMP_COD and COD_USR = $_GET[codUsuario] 
+		WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 	
 
-	if (mysqli_query($conecta,$cSql)) {
-
-		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA EMPRESA, COD_USR, COD_USR_EMPR FROM EMPRESA LEFT JOIN USR_EMPR ON COD_EMPR = EMP_COD and COD_USR = $_GET[codUsuario] 
-		WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
-
-		mysqli_query($conecta,$cSql);
+	if (mysqli_query($conecta,$cSql)){
 
 		$result = mysqli_query($conecta,$cSql);
 
@@ -393,10 +392,39 @@ else if($_GET['funcao'] == 'deletaUsuario'){
 
 	}
 	else
-		echo "Erro ao deletar";  
+		echo "Erro ao atualizar";  
 
 }
 
+
+
+else if($_GET['funcao'] == 'insereUsuario'){
+
+	$cSql = "INSERT INTO USR_EMPR (COD_USR, COD_EMPR) VALUES ($_GET[COD_USR],$_GET[COD_EMPR]);";
+
+	mysqli_query($conecta,$cSql);
+
+	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA EMPRESA, COD_USR, COD_USR_EMPR FROM EMPRESA LEFT JOIN USR_EMPR ON COD_EMPR = EMP_COD and COD_USR = $_GET[codUsuario] 
+		WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+	
+
+	if (mysqli_query($conecta,$cSql)){
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+		while($row = mysqli_fetch_assoc($result))  
+		{  
+			$json_array[] = $row;  
+
+		}  	
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+
+	}
+	else
+		echo "Erro ao atualizar";  
+
+}
 
 
 

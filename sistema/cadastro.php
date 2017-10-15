@@ -195,7 +195,7 @@ $cod =  $_SESSION['user']['id'];
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Empresa / Grupo</label>
+										<label>Empresa / Perfil</label>
 										<select value="" class="form-control border-input" id="cmbEmpresaCat2" name="cmbEmpresaCat2">
 											
 										</select>
@@ -205,7 +205,7 @@ $cod =  $_SESSION['user']['id'];
 									<div class="form-group">
 										<label for="">Status</label>
 										<select type="text" id="categoriaStatus" name="categoriaStatus" class="form-control border-input">
-
+											<option value="">Selecione...</option>
 											<option value="1">Ativo</option>
 											<option value="0">Inativo</option>
 
@@ -232,7 +232,7 @@ $cod =  $_SESSION['user']['id'];
 						<div class="text-center">
 							<button type="submit" class="btn btn-info btn-fill btn-wd"  value="1" onclick="selectionAcaoCategoria(this.value)" id="buttonCategoria">Cadastrar</button>
 
-							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarCategoria">Cancelar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCategoria()" id="buttonCancelarCategoria">Cancelar</button>
 						</div>
 						<div class="row">
 
@@ -290,6 +290,6 @@ $cod =  $_SESSION['user']['id'];
 <?php include_once('inferior.php');?>
 
 
-<script src = "js/financas.js"></script>
+<script src = "js/interatividades.js"></script>
 <script src = "js/crudAjaxCadastro.js"></script>
 

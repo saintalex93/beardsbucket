@@ -460,11 +460,11 @@ if ($PERMISSAO == 'Administrador'){
 <ul class="nav nav-pills " style="
 padding-bottom: 20px">
 <li class="active" id = "cadastro" onclick="fnBotoes(this)">
-    <a href="#"><span class="ti-server"></span> Cadastrar</a>
+    <a href="#"><span class="ti-user"></span> Cadastrar</a>
 </li>
 
 <li class="" id="vinculo" onclick="fnBotoes(this)">
-    <a href="#"><span class="ti-bookmark"></span> Vincular</a>
+    <a href="#"><span class="ti-link"></span> Vincular</a>
 </li>
 
 </ul>
@@ -522,7 +522,7 @@ padding-bottom: 20px">
                     <div class="col-md-2">
                         <div class="form-group">
                             <label>Permissão</label>
-                            <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao">
+                            <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao" onchange="if(this.selectedIndex == 1) alert('Usuários com permissão Administrador não poderão ser alterados futuramente.')">
                                 <option value="">Selecione...</option>
                                 <option value="1">Administrador</option>
                                 <option value="0">Usuário</option>
@@ -735,7 +735,14 @@ padding-bottom: 20px">
 
 <?php include_once('inferior.php');?>
 <script src = "js/crudAjaxUsuario.js"></script>
-<script src = "js/opcoesUsuario.js"></script>
+<script src = "js/interatividades.js"></script>
+<script src = "js/jquery.maskMoney.min.js"></script>
 
 
 
+
+<script>
+
+$("#saldoInicial").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+
+</script>

@@ -37,8 +37,3 @@ function selectLogin(usuario, senha){
 	}
 
 }
-
-
-
-
-// http://localhost/beardsbucket/sistema/src/verifica_login.php?usuario=antunes&senha=123456

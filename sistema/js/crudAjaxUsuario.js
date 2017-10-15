@@ -10,21 +10,40 @@ function alteraUsuario(){
 	var login = form.txtLoginUsr.value;
 	var email = form.txtEmailUsr.value;
 
+	if(form.txtNomeUsr.value.trim().length<=0){
+		alert("Informe o seu nome");
+		document.getElementsByName('txtNomeUsr')[0].focus();
+	}
 
-	var oPagina = new XMLHttpRequest();
-	with(oPagina){
+	else if(form.txtLoginUsr.value.trim().length<=0){
+		alert("Informe o seu novo login");
+		document.getElementsByName('txtLoginUsr')[0].focus();
+
+	}
+
+	else if(form.txtSenhaUsr.value.trim().length<=0){
+		alert("Informe a sua nova senha");
+		document.getElementsByName('txtSenhaUsr')[0].focus();
+
+	}
+
+	else{
 
 
-		open('GET', './src/CrudUsuario.php?funcao=alteraUsuario&txtSenha='+senha+'&txtLogin='+login+'&txtNome='+nome+'&txtEmail='+email);
-
-		send();
-		onload = function(){
+		var oPagina = new XMLHttpRequest();
+		with(oPagina){
 
 
+			open('GET', './src/CrudUsuario.php?funcao=alteraUsuario&txtSenha='+senha+'&txtLogin='+login+'&txtNome='+nome+'&txtEmail='+email);
 
-			if(responseText != "Erro ao alterar"){
+			send();
+			onload = function(){
 
-				var oDados = JSON.parse(responseText);
+
+
+				if(responseText != "Erro ao alterar"){
+
+					var oDados = JSON.parse(responseText);
 
 				// Aproveita esses campos quando alterar um usuário, pois pode ser o próprio administrador
 				
@@ -62,6 +81,8 @@ function alteraUsuario(){
 
 }
 
+}
+
 
 //  --------------------------------------------FIM USUÁRIO ------------------------------------------------
 
@@ -81,9 +102,8 @@ function selecionaAcao(param){
 if(param == 1){
 
 	if(document.getElementsByName("txtNomeEmpresa")[0].value.trim().length<=0){
-		alert("Preencha o nome da Empresa");
+		alert("Preencha o nome da Empresa");                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
 		document.getElementsByName("txtNomeEmpresa")[0].focus()	;
-
 	}
 
 	else{
@@ -320,74 +340,95 @@ function selecionaEmpresa(codEmpresa){
 function selecionaAcaoConta(param){
 
 	if(param == 1){
-		
 
-		var oPagina = new XMLHttpRequest();
-		with(oPagina){
+		if(document.getElementsByName("nomeConta")[0].value.trim().length<=0){
+			alert("Digite o nome da conta");
+			document.getElementsByName("nomeConta")[0].focus();
+		}
 
-			var statusEmpresa = document.getElementById("cmbStatusConta").value;	
-			var nomeConta = document.getElementsByName("nomeConta")[0].value;
-			var nomeBanco = document.getElementsByName("nomeBanco")[0].value;
-			var empresa = document.getElementsByName("cmbEmpresa")[0].value;
-			var agenciaConta = document.getElementsByName("agenciaConta")[0].value;
-			var conta = document.getElementsByName("numeroConta")[0].value;
-			var tipo = document.getElementsByName("tipoConta")[0].value;
-			var saldo = document.getElementsByName("saldoInicial")[0].value;
-			saldo = saldo.replace('R$ ','').replace('.','').replace(',','.').trim();
+		else if(document.getElementsByName("cmbEmpresa")[0].selectedIndex == 0){
+			alert("Selecione uma Empresa ou Perfil");
+			document.getElementsByName("cmbEmpresa")[0].focus();
+
+		}
 
 
 
-			open('GET', './src/CrudUsuario.php?funcao=insereConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&agenciaConta='+agenciaConta+'&numeroConta='+conta+'&tipoConta='+tipo+'&cmbStatusConta='+statusEmpresa+'&saldoInicial='+saldo+'&cmbEmpresa='+empresa);
 
-			send();
-			onload = function(){
+		else{
 
 
-				if(responseText != "Erro ao Inserir!"){
+			var oPagina = new XMLHttpRequest();
+			with(oPagina){
 
-					var oDados = JSON.parse(responseText);
+				var statusEmpresa = document.getElementById("cmbStatusConta").value;	
+				var nomeConta = document.getElementsByName("nomeConta")[0].value;
+				var nomeBanco = document.getElementsByName("nomeBanco")[0].value;
+				var empresa = document.getElementsByName("cmbEmpresa")[0].value;
+				var agenciaConta = document.getElementsByName("agenciaConta")[0].value;
+				var conta = document.getElementsByName("numeroConta")[0].value;
+				var tipo = document.getElementsByName("tipoConta")[0].value;
+				var saldo = document.getElementsByName("saldoInicial")[0].value;
 
-					var Contador = parseInt(oDados.length) -1;
-
-
-					var tableConta = document.getElementById("tableConta");
-
-
-
-					tableConta.insertAdjacentHTML('beforeend',
-						"<tr class = 'registroInserido'><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL']+"</td> "+
-						"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
-
-
-						"<td><button class = 'btn' id = '"+oDados[Contador]['CNT_COD']+
-						"' onclick = 'selecionaConta(this.id)'>Alterar</button></tr> "
-						);
-
-					document.getElementById("retornoFormConta").style.display = "block";
-					document.getElementById("retornoFormConta").innerHTML = "Dados inseridos com sucesso!";
-					document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
-					
-					setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
-
-					limparConta();
+				if(document.getElementsByName("saldoInicial")[0].value.trim().length<=0){
+					saldo = "0.00";
+				}
+				else{	
+					saldo = saldo.replace('R$','').replace('.','').replace(',','.').trim();
 				}
 
-				else{
-					document.getElementById("retornoFormConta").style.display = "block";
-					document.getElementById("retornoFormConta").innerHTML = "Não foi possível inserir a Conta";
-					document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
+				open('GET', './src/CrudUsuario.php?funcao=insereConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&agenciaConta='+agenciaConta+'&numeroConta='+conta+'&tipoConta='+tipo+'&cmbStatusConta='+statusEmpresa+'&saldoInicial='+saldo+'&cmbEmpresa='+empresa);
 
-					setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+				send();
+				onload = function(){
+
+
+					if(responseText != "Erro ao Inserir!"){
+
+						var oDados = JSON.parse(responseText);
+
+						var Contador = parseInt(oDados.length) -1;
+
+
+						var tableConta = document.getElementById("tableConta");
+
+
+
+						tableConta.insertAdjacentHTML('beforeend',
+							"<tr class = 'registroInserido'><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
+							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
+							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
+							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL']+"</td> "+
+							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
+
+
+							"<td><button class = 'btn' id = '"+oDados[Contador]['CNT_COD']+
+							"' onclick = 'selecionaConta(this.id)'>Alterar</button></tr> "
+							);
+
+						document.getElementById("retornoFormConta").style.display = "block";
+						document.getElementById("retornoFormConta").innerHTML = "Dados inseridos com sucesso!";
+						document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
+
+						setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+						limparConta();
+					}
+
+					else{
+						document.getElementById("retornoFormConta").style.display = "block";
+						document.getElementById("retornoFormConta").innerHTML = "Não foi possível inserir a Conta";
+						document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
+
+						setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+					}
+
 
 				}
-
 
 			}
-
 		}
 	}
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -397,64 +438,83 @@ function selecionaAcaoConta(param){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 if(param == 2){
 
+	if(document.getElementsByName("nomeConta")[0].value.trim().length<=0){
+		alert("Digite o nome da conta");
+		document.getElementsByName("nomeConta")[0].focus();
+	}
 
-	var oPagina = new XMLHttpRequest();
-	with(oPagina){
+	else if(document.getElementsByName("cmbEmpresa")[0].selectedIndex == 0){
+		alert("Selecione uma Empresa ou Perfil");
+		document.getElementsByName("cmbEmpresa")[0].focus();
 
-		var nomeConta = document.getElementById("nomeConta").value;
-		var nomeBanco = document.getElementById("nomeBanco").value;
-		var agencia = document.getElementById("agenciaConta").value;
-		var conta = document.getElementById("numeroConta").value;
-		var tipoConta = document.getElementById("tipoConta").value;
-		var statusEmpresa = document.getElementById("cmbStatusConta").value;
-		var saldoInicial = document.getElementById("saldoInicial").value;
-		saldoInicial = saldoInicial.replace('R$ ','').replace('.','').replace(',','.').trim();
-		var codEmpresa = document.getElementById("cmbEmpresa").value;
-		var codConta = document.getElementById("codConta").value;
+	}
 
-		open('GET', './src/CrudUsuario.php?funcao=atualizaConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&agencia='+agencia+'&conta='+conta+'&tipoConta='+tipoConta+'&statusEmpresa='+statusEmpresa+'&saldoInicial='+saldoInicial+'&codEmpresa='+codEmpresa+'&codConta='+codConta);
+	else{
 
-		send();
-		onload = function(){
+		var oPagina = new XMLHttpRequest();
+		with(oPagina){
 
-			if(responseText != "Erro ao atualizar"){
+			var nomeConta = document.getElementById("nomeConta").value;
+			var nomeBanco = document.getElementById("nomeBanco").value;
+			var agencia = document.getElementById("agenciaConta").value;
+			var conta = document.getElementById("numeroConta").value;
+			var tipoConta = document.getElementById("tipoConta").value;
+			var statusEmpresa = document.getElementById("cmbStatusConta").value;
+			var saldoInicial = document.getElementById("saldoInicial").value;
+			var codEmpresa = document.getElementById("cmbEmpresa").value;
+			var codConta = document.getElementById("codConta").value;
 
-
-				var oDados = JSON.parse(responseText);
-
-				var Contador = parseInt(oDados.length) -1;
-
-				var tableConta = document.getElementById("tableConta");
-
-				var codConta = 'conta'+oDados[0]['CNT_COD'];
-
-				document.getElementsByName(codConta)[0].innerText = oDados[0]['CNT_COD'];
-				document.getElementsByName(codConta)[1].innerText = oDados[0]['CNT_NOME'];
-				document.getElementsByName(codConta)[2].innerText = oDados[0]['CNT_BANCO'];
-				document.getElementsByName(codConta)[3].innerText = oDados[0]['EMP_NOME_EMPRESA'];
-				document.getElementsByName(codConta)[4].innerText = oDados[0]['CNT_SALDOINICIAL'];
-				document.getElementsByName(codConta)[5].innerText = oDados[0]['CNT_STATUS'];
-				
-
-				
-				document.getElementById("retornoFormConta").style.display = "block";
-				document.getElementById("buttonCancelarConta").style.display = 'none';
-				document.getElementById("retornoFormConta").innerHTML = "Dados Alterados com sucesso!";
-				document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
-
-				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
-				
-				
-				limparConta();
-
+			if(document.getElementsByName("saldoInicial")[0].value.trim().length<=0){
+				saldoInicial = "0.00";
+			}
+			else{	
+				saldoInicial = saldoInicial.replace('R$','').replace('.','').replace(',','.').trim();
 			}
 
-			else {
-				document.getElementById("retornoFormConta").style.display = "block";
-				document.getElementById("retornoFormConta").innerHTML = "Não foi possível alterar a Conta";
-				document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
+			open('GET', './src/CrudUsuario.php?funcao=atualizaConta&nomeConta='+nomeConta+'&nomeBanco='+nomeBanco+'&agencia='+agencia+'&conta='+conta+'&tipoConta='+tipoConta+'&statusEmpresa='+statusEmpresa+'&saldoInicial='+saldoInicial+'&codEmpresa='+codEmpresa+'&codConta='+codConta);
 
-				setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+			send();
+			onload = function(){
+
+				if(responseText != "Erro ao atualizar"){
+
+
+					var oDados = JSON.parse(responseText);
+
+					var Contador = parseInt(oDados.length) -1;
+
+					var tableConta = document.getElementById("tableConta");
+
+					var codConta = 'conta'+oDados[0]['CNT_COD'];
+
+					document.getElementsByName(codConta)[0].innerText = oDados[0]['CNT_COD'];
+					document.getElementsByName(codConta)[1].innerText = oDados[0]['CNT_NOME'];
+					document.getElementsByName(codConta)[2].innerText = oDados[0]['CNT_BANCO'];
+					document.getElementsByName(codConta)[3].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+					document.getElementsByName(codConta)[4].innerText = oDados[0]['CNT_SALDOINICIAL'];
+					document.getElementsByName(codConta)[5].innerText = oDados[0]['CNT_STATUS'];
+
+
+
+					document.getElementById("retornoFormConta").style.display = "block";
+					document.getElementById("buttonCancelarConta").style.display = 'none';
+					document.getElementById("retornoFormConta").innerHTML = "Dados Alterados com sucesso!";
+					document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
+
+					setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+
+					limparConta();
+
+				}
+
+				else {
+					document.getElementById("retornoFormConta").style.display = "block";
+					document.getElementById("retornoFormConta").innerHTML = "Não foi possível alterar a Conta";
+					document.getElementById("retornoFormConta").setAttribute("class", "retDanger");
+
+					setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+				}
 			}
 		}
 	}
@@ -472,11 +532,6 @@ else if(param == 3){
 
 
 }
-
-
-
-
-
 
 
 function selecionaConta(codConta){
@@ -556,87 +611,128 @@ function selecionaAcaoAdministrador(param){
 
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 if(param == 1){
-	var oPagina = new XMLHttpRequest();
-	with(oPagina){
 
-		var admNome = document.getElementsByName("administradorNome")[0].value;	
-		var admLogin = document.getElementsByName("AdministradorLogin")[0].value;
-		var admSenha = document.getElementsByName("administradorSenha")[0].value;
-		var admEmail = document.getElementsByName("administradorEmail")[0].value;
-		var admPermissao = document.getElementsByName("administradorPermissao")[0].value;
-		var admStatus = document.getElementsByName("administradorStatus")[0].value;
-		var comboEmpresa = document.getElementById("cmbEmpresaAdm").value;
+	if(document.getElementsByName("administradorNome")[0].value.trim().length<=0){
+		alert("Digite o nome do usuário");
+		document.getElementsByName("administradorNome")[0].focus();
+	}
 
-		
-		open('GET', './src/CrudUsuario.php?funcao=insereAdministrador&administradorNome='+admNome+'&administradorLogin='+admLogin+'&administradorSenha='+admSenha+'&administradorEmail='+admEmail+'&administradorPermissao='+admPermissao+'&administradorStatus='+admStatus+'&cmbEmpresaAdm='+comboEmpresa);
+	else if(document.getElementsByName("AdministradorLogin")[0].value.trim().length<=0){
+		alert("Digite o Login");
+		document.getElementsByName("AdministradorLogin")[0].focus();
+	}
 
-		send();
-		onload = function(){
-
-			if(responseText != "Erro ao inserir"){
-
-				var oDados = JSON.parse(responseText);
-
-				var Contador = parseInt(oDados.length) -1;
+	else if(document.getElementsByName("administradorSenha")[0].value.trim().length<=0){
+		alert("Digite a Senha");
+		document.getElementsByName("administradorSenha")[0].focus();
+	}
 
 
-				var tableAdministrador = document.getElementById("tableAdministrador");
+	else if(document.getElementsByName("cmbEmpresaAdm")[0].selectedIndex == 0){
+		alert("Selecione uma Empresa ou Perfil");
+		document.getElementsByName("cmbEmpresaAdm")[0].focus();
 
-				if(oDados[Contador]['USR_PERMISSAO'] != "Administrador"){
-
-					tableAdministrador.insertAdjacentHTML('beforeend',
-						"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
-						"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
-						"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+	}
 
 
+	else if(document.getElementsByName("administradorStatus")[0].selectedIndex == 0){
+		alert("Selecione um Status");
+		document.getElementsByName("administradorStatus")[0].focus();
 
-						"<td><button class = 'btn' id = 'usr_admin"+oDados[Contador]['USR_COD']+
-						"' onclick = 'selecionaUsuario(this.id)'>Alterar</button></tr> "
-						);
+	}
 
+	else if(document.getElementsByName("administradorPermissao")[0].selectedIndex == 0){
+		alert("Selecione a permissão");
+		document.getElementsByName("administradorPermissao")[0].focus();
+
+	}
+
+	else{
+
+		var oPagina = new XMLHttpRequest();
+
+		with(oPagina){
+
+			var admNome = document.getElementsByName("administradorNome")[0].value;	
+			var admLogin = document.getElementsByName("AdministradorLogin")[0].value;
+			var admSenha = document.getElementsByName("administradorSenha")[0].value;
+			var admEmail = document.getElementsByName("administradorEmail")[0].value;
+			var admPermissao = document.getElementsByName("administradorPermissao")[0].value;
+			var admStatus = document.getElementsByName("administradorStatus")[0].value;
+			var comboEmpresa = document.getElementById("cmbEmpresaAdm").value;
+
+
+			open('GET', './src/CrudUsuario.php?funcao=insereAdministrador&administradorNome='+admNome+'&administradorLogin='+admLogin+'&administradorSenha='+admSenha+'&administradorEmail='+admEmail+'&administradorPermissao='+admPermissao+'&administradorStatus='+admStatus+'&cmbEmpresaAdm='+comboEmpresa);
+
+			send();
+			onload = function(){
+
+				if(responseText != "Erro ao inserir"){
+
+					var oDados = JSON.parse(responseText);
+
+					var Contador = parseInt(oDados.length) -1;
+
+
+					var tableAdministrador = document.getElementById("tableAdministrador");
+
+					if(oDados[Contador]['USR_PERMISSAO'] != "Administrador"){
+
+						tableAdministrador.insertAdjacentHTML('beforeend',
+							"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
+							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
+							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+
+
+
+							"<td><button class = 'btn' id = 'usr_admin"+oDados[Contador]['USR_COD']+
+							"' onclick = 'selecionaUsuario(this.id)'>Alterar</button></tr> "
+							);
+
+					}
+					else{
+						tableAdministrador.insertAdjacentHTML('beforeend',
+							"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
+							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
+							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+
+
+
+							"<td><button class = 'btn' id = 'usr_admin"+oDados[Contador]['USR_COD']+
+							"' onclick = 'selecionaUsuario(this.id)' disabled>Alterar</button></tr> "
+							);
+					}
+
+					document.getElementById("retornoFormAdministrador").style.display = "block";
+					document.getElementById("retornoFormAdministrador").innerHTML = "Usuário inserido com sucesso!";
+					document.getElementById("retornoFormAdministrador").setAttribute("class", "retSuccess");
+
+					setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
+
+					comboUsuario();
 				}
+
 				else{
-					tableAdministrador.insertAdjacentHTML('beforeend',
-						"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
-						"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
-						"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
-						"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+					document.getElementById("retornoFormAdministrador").style.display = "block";
+					document.getElementById("retornoFormAdministrador").innerHTML = "Não foi possível inserir o Usuário";
+					document.getElementById("retornoFormAdministrador").setAttribute("class", "retDanger");
 
+					setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
 
-
-						"<td><button class = 'btn' id = 'usr_admin"+oDados[Contador]['USR_COD']+
-						"' onclick = 'selecionaUsuario(this.id)' disabled>Alterar</button></tr> "
-						);
 				}
 
-				document.getElementById("retornoFormAdministrador").style.display = "block";
-				document.getElementById("retornoFormAdministrador").innerHTML = "Usuário inserido com sucesso!";
-				document.getElementById("retornoFormAdministrador").setAttribute("class", "retSuccess");
-
-				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
-
-				comboUsuario();
-			}
-
-			else{
-				document.getElementById("retornoFormAdministrador").style.display = "block";
-				document.getElementById("retornoFormAdministrador").innerHTML = "Não foi possível inserir o Usuário";
-				document.getElementById("retornoFormAdministrador").setAttribute("class", "retDanger");
-
-				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
 
 			}
-
 
 		}
 
@@ -872,10 +968,6 @@ function comboUsuario(){
 				r.add(optionr);
 			}
 
-
-
-
-			
 		}
 	}
 }
@@ -883,62 +975,76 @@ function comboUsuario(){
 
 function montaTabela(codUsr){
 
-	var oPagina = new XMLHttpRequest();
 
-	with(oPagina){
+	if(document.getElementById("nomeUsuario").selectedIndex == 0){
+		var tableUsuarioAdm = document.getElementById("tableUsuarioAdministrador");
 
-		open('GET', './src/CrudUsuario.php?funcao=montaTabelaUsuario&codUsuario='+codUsr);
-		
+		var linhas = document.getElementById("tableUsuarioAdministrador").rows;
+		for (i= linhas.length-1; i>=1; i--){
+			document.getElementById("tableUsuarioAdministrador").deleteRow(i);
 
-		send();
+		}
+	}
 
-		onload = function(){
+	else{
+
+		var oPagina = new XMLHttpRequest();
+
+		with(oPagina){
+
+			open('GET', './src/CrudUsuario.php?funcao=montaTabelaUsuario&codUsuario='+codUsr);
+
+
+			send();
+
+			onload = function(){
 
 
 
-			
-			var oDados = JSON.parse(responseText);
 
-			var tableUsuarioAdm = document.getElementById("tableUsuarioAdministrador");
+				var oDados = JSON.parse(responseText);
 
-			var linhas = document.getElementById("tableUsuarioAdministrador").rows;
-			for (i= linhas.length-1; i>=1; i--){
-				document.getElementById("tableUsuarioAdministrador").deleteRow(i);
+				var tableUsuarioAdm = document.getElementById("tableUsuarioAdministrador");
 
-			}
-			
-			for(i = 0; i<=oDados.length; i++){
-
-				if(oDados[i]['COD_USR'] == null)
-				{
-					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
-						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
-						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
-						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
-
-						"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
-						);
+				var linhas = document.getElementById("tableUsuarioAdministrador").rows;
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableUsuarioAdministrador").deleteRow(i);
 
 				}
 
-				else{
-					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
-						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
-						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
-						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+				for(i = 0; i<=oDados.length; i++){
 
-						"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
-						);
+					if(oDados[i]['COD_USR'] == null)
+					{
+						tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+							"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+							"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+							"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+							"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
+							);
+
+					}
+
+					else{
+						tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+							"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+							"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+							"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+							"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
+							);
+					}
+
+
 				}
 
-
 			}
+
 
 		}
 
-		
 	}
-
 }
 
 
@@ -956,18 +1062,80 @@ function vinculaUsuario(acao, codUsuario){
 
 if(acao == 1){
 
+	if(confirm("Ao vincular o Usuario, ele terá acesso as informações da sua empresa.\nDeseja continuar?"))
+	{
+
+		var oPagina = new XMLHttpRequest();
+
+		with(oPagina){
+
+			open('GET', './src/CrudUsuario.php?funcao=insereUsuario&COD_USR='+codUsuario+'&COD_EMPR='+codEmpresa+'&codUsuario='+codUsuario);
+
+
+			send();
+
+			onload = function(){
+
+				var oDados = JSON.parse(responseText);
+
+				var tableUsuarioAdm = document.getElementById("tableUsuarioAdministrador");
+
+				var linhas = document.getElementById("tableUsuarioAdministrador").rows;
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableUsuarioAdministrador").deleteRow(i);
+
+				}
+
+
+				if(responseText != "Erro ao atualizar"){
+
+					for(i = 0; i<=oDados.length; i++){
+
+						if(oDados[i]['COD_USR'] == null)
+						{
+							tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+								"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+								"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+								"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+								"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
+								);
+
+						}
+
+						else{
+							tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+								"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+								"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+								"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+								"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
+								);
+						}
+
+
+					}
+
+				}
+
+			}
+
+
+		}
+	}
 
 
 }
 
 // 2 Deleta
 else{
+	if(confirm("Ao desvincular o Usuário não será possível desfazer a ação.\nDeseja continuar?"))
 
 	var oPagina = new XMLHttpRequest();
 
 	with(oPagina){
 
-		open('GET', './src/CrudUsuario.php?funcao=deletaUsuario&CODUSREMPR='+codTabelaEmpresa);
+		open('GET', './src/CrudUsuario.php?funcao=deletaUsuario&CODUSREMPR='+codTabelaEmpresa+'&codUsuario='+codUsuario);
 		
 
 		send();
@@ -983,31 +1151,36 @@ else{
 				document.getElementById("tableUsuarioAdministrador").deleteRow(i);
 
 			}
-			
-			for(i = 0; i<=oDados.length; i++){
 
-				if(oDados[i]['COD_USR'] == null)
-				{
-					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
-						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
-						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
-						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
 
-						"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
-						);
+			if(responseText != "Erro ao atualizar"){
+
+				for(i = 0; i<=oDados.length; i++){
+
+					if(oDados[i]['COD_USR'] == null)
+					{
+						tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+							"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+							"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+							"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+							"<td><button class = 'btn btn-info btn-fill btn-wd' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(1, this.id)'>Vincular</button></tr> "
+							);
+
+					}
+
+					else{
+						tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
+							"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+							"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
+							"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
+
+							"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
+							);
+					}
+
 
 				}
-
-				else{
-					tableUsuarioAdm.insertAdjacentHTML('afterbegin', 
-						"<tr><td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
-						"<td name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['EMPRESA'] + "</td> "+
-						"<td hidden name = 'ADM"+oDados[i]['EMP_COD']+"'>" + oDados[i]['COD_USR_EMPR'] + "</td> "+
-
-						"<td><button class = 'btn btn-info btn-fill btn-wd danger' id = 'ADM"+ oDados[i]['EMP_COD'] +"' onclick = 'vinculaUsuario(2,this.id)'>Remover</button></tr> "
-						);
-				}
-
 
 			}
 

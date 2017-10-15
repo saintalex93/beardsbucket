@@ -156,7 +156,7 @@ body {
 }
 
 
-#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario{
+#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, #retornoFormCategoria{
   display: none;
   text-align: center;
   font-weight: bold;
@@ -192,6 +192,20 @@ body {
 }
 
 
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+  color: #ffffff;
+  background-color: #38eb47;
+  text-shadow: 1px 0px 0px #999, -1px 0px 0px #999,0px 1px 0px #999,0px -1px 0px #999;
+}
+
+
+.nav-pills a {
+  font-size: 15px;
+    color: #333;
+    text-decoration: none;
+  /*text-shadow: 1px 0px 0px #ccc, -1px 0px 0px #ccc,0px 1px 0px #ccc,0px -1px 0px #ccc;*/
+
+}
 
 
 
@@ -368,9 +382,6 @@ body {
 
 
 
-
-
-
 /* usuario */
 
 
@@ -389,10 +400,6 @@ body {
 /*CADASTRO*/
 
 
-
-
-
-
 .NavegadorSuperior{
 
   padding-bottom: 40px;
@@ -405,9 +412,6 @@ body {
 .botoes{
   margin-bottom: 30px;
 }
-
-
-
 
 
 .tituloSiteBeards{
@@ -435,7 +439,11 @@ table th{
   display: none;
 }
 
+.btn-info.btn-fill.danger:hover{
+  background-color: #fb7d4d;
+  border: #000;
 
+}
 
 .btn-info.btn-fill{
   border: #18d918;
@@ -446,17 +454,12 @@ table th{
 }
 
 
-
 .nav-pills>li.active>a{
   background-color: #28bd28;
 }
 
 .nav-pills>li.active>a:hover{
   background-color: #38eb47;
-}
-
-#categ a {
- color: #28bd28;  
 }
 
 
