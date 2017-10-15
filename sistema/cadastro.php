@@ -63,17 +63,34 @@ $cod =  $_SESSION['user']['id'];
 							</div>
 
 							<div class="row">
-
-								<div class="col-md-6">
+								<div class="col-md-3">
 									<div class="form-group">
 										<label>Telefone</label>
 										<input type="text" class="form-control border-input" placeholder="(11) 3333-3333">
 									</div>
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-3">
 									<div class="form-group">
 										<label>Email</label>
 										<input type="text" class="form-control border-input" placeholder="beardsbucket@beardsweb.com.br" >
+									</div>
+								</div>
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="">Empresa / Perfil</label>
+										<select value="" class="form-control border-input" id="cmbEmpresaSelecao">
+										</select>
+									</div>
+								</div>
+
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="">Status</label>
+										<select value="" class="form-control border-input">
+											<option name="" id="">Selecione...</option>
+											<option name="" id="" value="1">Ativo</option>
+											<option name="" id="" value="0">Inativo</option>
+										</select>
 									</div>
 								</div>
 
@@ -114,8 +131,6 @@ $cod =  $_SESSION['user']['id'];
 								</div>
 
 							</div>
-
-
 						</form>
 
 
@@ -128,6 +143,15 @@ $cod =  $_SESSION['user']['id'];
 
 
 					<div class="content"> <!--CONTENT TABELA -->
+
+						<div class="col-md-6 col-md-offset-3 text-center" style="margin-bottom: 15px;">
+							<div class="form-group">
+								<label for="">Empresa / Perfil</label>
+								<select value="" class="form-control border-input" id="cmbEmpresaFiltro">
+								</select>
+							</div>
+						</div>
+
 						<div class="table-responsive">
 
 							<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
@@ -270,26 +294,26 @@ $cod =  $_SESSION['user']['id'];
 
 								</tbody>
 							</table>
-					</div> <!-- CONTENT TABELA -->
-				</div> <!--CARD CATEGORIA-->
-			</div> <!-- COL -->
+						</div> <!-- CONTENT TABELA -->
+					</div> <!--CARD CATEGORIA-->
+				</div> <!-- COL -->
 
 
-		</div> <!-- ROW CATEGORIA -->
-
-
-
-	</div> <!-- CONTENT FLUID -->
-
-</div> <!-- CONTENT -->
+			</div> <!-- ROW CATEGORIA -->
 
 
 
+		</div> <!-- CONTENT FLUID -->
+
+	</div> <!-- CONTENT -->
 
 
-<?php include_once('inferior.php');?>
 
 
-<script src = "js/interatividades.js"></script>
-<script src = "js/crudAjaxCadastro.js"></script>
+
+	<?php include_once('inferior.php');?>
+
+
+	<script src = "js/interatividades.js"></script>
+	<script src = "js/crudAjaxCadastro.js"></script>
 

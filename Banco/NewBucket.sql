@@ -41,7 +41,9 @@ CLI_BANCO VARCHAR(15),
 CLI_AGENCIA VARCHAR(15),
 CLI_CONTA VARCHAR(15),
 CLI_TIPOCONTA CHAR(2),
-CLI_STATUS TINYINT
+CLI_STATUS TINYINT,
+COD_EMPR INT NOT NULL,
+FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
 );
 
 
@@ -53,7 +55,8 @@ USR_LOGIN VARCHAR(50) UNIQUE,
 USR_NOME VARCHAR(200),
 USR_EMAIL VARCHAR(200),
 USR_PERMISSAO TINYINT,
-USR_STATUS TINYINT
+USR_STATUS TINYINT,
+USR_PONTUACAO INT
 );
  
 
@@ -102,10 +105,10 @@ ALTER TABLE LANCAMENTO ADD FOREIGN KEY(CAT_COD) REFERENCES CATEGORIA (CAT_COD);
 /*---------------------------INSERTS--------------------------------------*/
 
 INSERT INTO USUARIO VALUES
-(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1),
-(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1),
-(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1),
-(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1);
+(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
+(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,0),
+(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
+(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
 --
 
 INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",1),
@@ -139,8 +142,8 @@ insert into CATEGORIA VALUES
 -- 
 
 -- 
-INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1),
-(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',0);
+INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1,1),
+(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',0,2);
 
 
 INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);

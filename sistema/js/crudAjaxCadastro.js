@@ -341,6 +341,59 @@ function atualizaComboEmpresaCadastro(){
 				option.value = oDados[i]['EMP_COD'];
 				x.add(option);
 			}
+
+
+			// Atualiza combo Cliente fornecedor
+
+
+			var b = document.getElementById("cmbEmpresaSelecao");
+			var optionb = document.createElement("option");
+			optionb.text = "Selecione...";
+			b.add(optionb);
+
+			var contador3 = document.getElementById("cmbEmpresaSelecao").length;
+
+			for (i = 0; i <=contador3; i++) {
+				var combinho3 = document.getElementById("cmbEmpresaSelecao");	
+				combinho3.remove(combinho3.i);
+			}
+
+			optionb.text = "Selecione...";
+			b.add(optionb);
+
+			for (var i = 0; i<oDados.length; i++){
+				var b = document.getElementById("cmbEmpresaSelecao");
+				var optionb = document.createElement("option");
+				optionb.text = oDados[i]['EMP_NOME_EMPRESA'];
+				optionb.value = oDados[i]['EMP_COD'];
+				b.add(optionb);
+			}
+
+			// 
+
+
+			var a = document.getElementById("cmbEmpresaFiltro");
+			var optiona = document.createElement("option");
+			optiona.text = "Selecione...";
+			a.add(optiona);
+
+			var contado4 = document.getElementById("cmbEmpresaFiltro").length;
+
+			for (i = 0; i <=contado4; i++) {
+				var combinhoa = document.getElementById("cmbEmpresaFiltro");	
+				combinhoa.remove(combinhoa.i);
+			}
+
+			optiona.text = "Selecione...";
+			a.add(optiona);
+
+			for (var i = 0; i<oDados.length; i++){
+				var a = document.getElementById("cmbEmpresaFiltro");
+				var optiona = document.createElement("option");
+				optiona.text = oDados[i]['EMP_NOME_EMPRESA'];
+				optiona.value = oDados[i]['EMP_COD'];
+				a.add(optiona);
+			}
 			
 		}
 	}
@@ -351,7 +404,6 @@ function atualizaComboEmpresaCadastro(){
 
 
 (function(){
-
 	atualizaComboEmpresaCadastro();
 
 }())
