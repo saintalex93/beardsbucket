@@ -194,8 +194,8 @@ body {
 
 .nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
   color: #ffffff;
-  background-color: #38eb47;
-  text-shadow: 1px 0px 0px #999, -1px 0px 0px #999,0px 1px 0px #999,0px -1px 0px #999;
+  background-color: #28bd28;
+  /*text-shadow: 1px 0px 0px #999, -1px 0px 0px #999,0px 1px 0px #999,0px -1px 0px #999;*/
 }
 
 
