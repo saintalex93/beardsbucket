@@ -28,7 +28,7 @@ if(param == 1){
 	else{
 
 		document.getElementById("cmbEmpresaCat2").disabled = false;
-		document.getElementById("cmbEmpresaCat").disabled = true;
+		document.getElementById("cmbEmpresaCat").disabled = false;
 
 
 
@@ -69,6 +69,11 @@ if(param == 1){
 						"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
 						);
 
+					
+					document.getElementById("categoriaNome").value = "";
+					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
+					document.getElementById("categoriaStatus").selectedIndex = 0;
+
 					document.getElementById("retornoFormCategoria").style.display = "block";
 					document.getElementById("retornoFormCategoria").innerHTML = "Dados inseridos com sucesso!";
 					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
@@ -84,6 +89,12 @@ if(param == 1){
 
 					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
 
+					document.getElementById("cmbEmpresaCat2").disabled = false;
+					document.getElementById("cmbEmpresaCat").disabled = false;
+
+					document.getElementById("categoriaNome").value = "";
+					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
+					document.getElementById("categoriaStatus").selectedIndex = 0;
 				}
 
 
