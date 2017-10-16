@@ -29,7 +29,7 @@
 	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
 	<link href="assets/css/themify-icons.css" rel="stylesheet">
 
-	<meta name="theme-color" content="#38eb47">
+	<meta name="theme-color" content="#c5f3c5">
 
 	<link rel="stylesheet" href="css/style.css">
 
@@ -66,7 +66,6 @@
 
 							<div class="content">
 
-
 								<form>
 									<div class="row">
 
@@ -101,6 +100,10 @@
 						</div>
 					</div>
 					<!-- Login -->
+
+
+
+
 					<!-- Cadastro -->
 					<div class="col-md-10 col-md-offset-1 text-center cardCadastro" id="cardCadastro">
 
@@ -117,8 +120,8 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="">Nome</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+												<label for=""><span id = "cmpObrgt">* </span>Nome</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder=""  required>
 											</div>
 										</div>
 
@@ -136,15 +139,15 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="">Login</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+												<label for=""><span id = "cmpObrgt">* </span>Login</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="" required>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="">Senha</label>
-												<input type="password" class="form-control border-input" name='' id="" placeholder="">
+												<label for=""><span id = "cmpObrgt">* </span>Senha</label>
+												<input type="password" class="form-control border-input" name='' id="" placeholder="" required>
 											</div>
 										</div>
 
@@ -158,8 +161,8 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="">Empresa / Perfil</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="Pessoal / Nome da Empresa">
+												<label for=""><span id = "cmpObrgt">* </span>Empresa / Perfil</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="Pessoal / Nome da Empresa" required>
 											</div>
 										</div>
 
@@ -180,8 +183,8 @@
 
 										<div class="col-md-6">
 											<div class="form-group">
-												<label for="">Nome</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+												<label for=""><span id = "cmpObrgt">* </span>Nome</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="" required>
 											</div>
 										</div>
 
@@ -213,7 +216,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="">Tipo da Conta</label>
-												<select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
+												<select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta" >
 													<option value="">Selecione...</option>
 													<option value="CC">Conta Corrente</option>
 													<option value="CP">Conta Poupança</option>
@@ -225,17 +228,19 @@
 
 										<div class="col-md-3">
 											<div class="form-group">
-												<label for="">Saldo Inicial</label>
-												<input type="text" class="form-control border-input" name='' id="">
+												<label for=""><span id = "cmpObrgt">* </span>Saldo Inicial</label>
+												<input type="text" class="form-control border-input" name='' id="" required>
 											</div>
 										</div>
 
 									</div>
 
+									<button class = "btn btn-info btn-fill botao" onclick="">Cadastrar</button>
+
+
 								</form>
 
-								<button class = "btn btn-info btn-fill botao" onclick="selectLogin(document.all.usuario.value, document.all.senha.value)">Cadastrar</button>
-
+								
 
 
 

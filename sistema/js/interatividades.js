@@ -65,7 +65,7 @@ function fnMenuLogin(button){
 		button.setAttribute('class', 'active');
 		document.getElementById("cadastrar").setAttribute('class', '');
 
-		document.getElementById("imagemLogin").style.marginTop = "0px";
+		document.getElementById("imagemLogin").style.marginTop = "";
 		document.getElementById("cardLogin").style.marginBottom = "";
 
 		document.getElementById("cardCadastro").style.display = "none";

@@ -25,7 +25,7 @@ $url = basename($_SERVER['PHP_SELF']);
 	<link rel="icon" type="image/png" sizes="96x96" href="img/beards.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta name="theme-color" content="#38eb47">
+    <meta name="theme-color" content="#c5f3c5">
 
 	<title>Beards Bucket</title>
 	

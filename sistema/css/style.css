@@ -488,7 +488,7 @@ table th{
 }
 
 .cardCadastro{
-display: none;
+  display: none;
 }
 
 #cardLogin{
@@ -511,6 +511,35 @@ display: none;
   height: 28px;
   border-bottom: 1px solid #ccc;
 
+}
+
+#cmpObrgt{
+  color: red;
+}
+
+
+
+@media  (max-width: 768px){
+
+  .cardCadastro{
+    display: none;
+    margin-top: 530px;
+  }
+
+  .Navegadorlogin{
+    margin-top: 50px;
+    margin-bottom: 30px;
+    z-index: 99;
+  }
+
+  .title.tituloCadastro{
+  margin-bottom: 30px;
+
+
+  }
+
+
+  
 }
 
 
