@@ -239,7 +239,16 @@ $cod =  $_SESSION['user']['id'];
 								
 							</div>
 
-							<div class="row">
+						</form>
+
+
+						<div class="text-center">
+							<button type="submit" class="btn btn-info btn-fill btn-wd"  value="1" onclick="selectionAcaoCategoria(this.value)" id="buttonCategoria">Cadastrar</button>
+
+							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCategoria()" id="buttonCancelarCategoria">Cancelar</button>
+						</div>
+
+						<div class="row" style="margin-top: 30px;">
 								<div class="col-md-6 col-md-offset-3 text-center">
 									<div class="form-group">
 										<label>Busca Categoria</label>
@@ -249,15 +258,6 @@ $cod =  $_SESSION['user']['id'];
 									</div>
 								</div>
 							</div>
-
-						</form>
-
-
-						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd"  value="1" onclick="selectionAcaoCategoria(this.value)" id="buttonCategoria">Cadastrar</button>
-
-							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCategoria()" id="buttonCancelarCategoria">Cancelar</button>
-						</div>
 						<div class="row">
 
 							<div class="col-md-12">
