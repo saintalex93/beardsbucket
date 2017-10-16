@@ -1,3 +1,100 @@
+//----------------------------------------INSERE CLIENTE E FORNCEDOR--------------------------------------//
+function selecionaAcaoCadClienteForncedor(param){
+	if(param == 1){
+
+		var oPagina = new XMLHttpRequest();
+		with(oPagina){
+			var cadCliFornNome = document.getElementById('cadCliFornName');
+			var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF');
+			var cadCliTipo = document.getElementById('cadCliFornTipo');
+			var cadCliTel = document.getElementById('cadCliFornTel');
+			var cadCliEmail = document.getElementById('cadCliFornEmail');
+			var empresa = document.getElementById('cmbEmpresaSelecao');
+			var cadCliFornStatus = document.getElementById('cadCliFornStatus');
+			var cadCliFornBanco = document.getElementById('cadCliFornBanco');
+			var cadCliFornAg = document.getElementById('cadCliFornAg');
+			var cadCliFornConta = document.getElementById('cadCliFornConta');
+			var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta');
+
+			open('GET', './src/CrudCadastro.php?funcao=insereCliForn&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa);
+
+			send();
+
+			onload = function(){
+
+		
+				if(responseText != "Erro ao inserir Cliente ou Fornecedor"){
+
+
+
+					var oDados = JSON.parse(responseText);
+
+					var Contador = parseInt(oDados.length) -1;
+
+					var tableCategoria = document.getElementById("tableCliForn");
+
+					var linhas = document.getElementById("tableCliForn").rows;
+
+					for (i= linhas.length-1; i>=1; i--){
+						document.getElementById("tableCliForn").deleteRow(i);
+
+					}
+
+					for(i = 0; i<=oDados.length; i++){
+
+						tableCategoria.insertAdjacentHTML('afterbegin', 
+							"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+							"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
+							"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+							);
+					}					
+
+					document.getElementById("retornoFormCliForn").style.display = "block";
+					document.getElementById("retornoFormCliForn").innerHTML = "Dados inseridos com sucesso!";
+					document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
+
+					setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+
+					document.getElementById("cadCliFornName").value = "";
+					document.getElementById("cadCliFornCNPJCPF").value = "";
+					document.getElementById("cadCliFornTel").value = "";
+					document.getElementById("cadCliFornEmail").value = "";
+					document.getElementById("cadCliFornBanco").value = "";					
+					document.getElementById("cadCliFornAg").value = "";
+					document.getElementById("cadCliFornConta").value = "";
+					empresa.selectedIndex = "";
+					cadCliFornStatus.selectedIndex = "";
+					cadCliFornTipoConta.selectedIndex = "";
+					cadCliTipo.selectedIndex = "";					
+				}
+				else {
+					document.getElementById("retornoFormCliForn").style.display = "block";
+					document.getElementById("retornoFormCliForn").innerHTML = "Não foi possível inserir a Categoria";
+					document.getElementById("retornoFormCliForn").setAttribute("class", "retDanger");
+
+					setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+
+					document.getElementById("cmbEmpresaSelecao").disabled = false;
+
+					document.getElementById("cadCliFornName").value = "";
+					document.getElementById("cadCliFornCNPJCPF").value = "";
+					document.getElementById("cadCliFornTel").value = "";
+					document.getElementById("cadCliFornEmail").value = "";
+					document.getElementById("cadCliFornBanco").value = "";					
+					document.getElementById("cadCliFornAg").value = "";
+					document.getElementById("cadCliFornConta").value = "";
+					empresa.selectedIndex = "";
+					cadCliFornStatus.selectedIndex = "";
+					cadCliFornTipoConta.selectedIndex = "";
+					cadCliTipo.selectedIndex = "";									
+				}
+			}
+		}
+	}
+}
+//------------------------------------------FIM----------------------------------------------------------//
+
+
 //  ------------------------------------------CATEGORIA ----------------------------------------------------
 function selectionAcaoCategoria(param){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
