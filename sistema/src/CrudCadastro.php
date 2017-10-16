@@ -115,6 +115,8 @@ else if($_GET['funcao'] == 'comboCadastro'){
 else if ($_GET['funcao'] == 'insereCliForn'){
 
 	$cSql = "INSERT INTO CLIENTE VALUES (0, '$_GET[cadCliFornName]', '$_GET[cadCliFornTipo]', '$_GET[cadCliFornCNPJCPF]', '$_GET[cadCliFornTel]', '$_GET[cadCliFornEmail]','$_GET[cadCliFornBanco]','$_GET[cadCliFornAg]','$_GET[cadCliFornConta]','$_GET[cadCliFornTipoConta]', $_GET[cadCliFornStatus], $_GET[cmbEmpresaSelecao])";
+
+
 	
 	$cSql = str_replace("''","NULL", $cSql);
 
@@ -132,7 +134,7 @@ else if ($_GET['funcao'] == 'insereCliForn'){
 
 		}
 
-		// echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
 	}
 	
 	else

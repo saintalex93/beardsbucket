@@ -4,23 +4,27 @@ function selecionaAcaoCadClienteForncedor(param){
 
 		var oPagina = new XMLHttpRequest();
 		with(oPagina){
-			var cadCliFornNome = document.getElementById('cadCliFornName');
-			var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF');
-			var cadCliTipo = document.getElementById('cadCliFornTipo');
-			var cadCliTel = document.getElementById('cadCliFornTel');
-			var cadCliEmail = document.getElementById('cadCliFornEmail');
-			var empresa = document.getElementById('cmbEmpresaSelecao');
-			var cadCliFornStatus = document.getElementById('cadCliFornStatus');
-			var cadCliFornBanco = document.getElementById('cadCliFornBanco');
-			var cadCliFornAg = document.getElementById('cadCliFornAg');
-			var cadCliFornConta = document.getElementById('cadCliFornConta');
-			var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta');
+			var cadCliFornNome = document.getElementById('cadCliFornName').value;
+			var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF').value;
+			var cadCliTipo = document.getElementById('cadCliFornTipo').value;
+			var cadCliTel = document.getElementById('cadCliFornTel').value;
+			var cadCliEmail = document.getElementById('cadCliFornEmail').value;
+			var empresa = document.getElementById('cmbEmpresaSelecao').value;
+			var cadCliFornStatus = document.getElementById('cadCliFornStatus').value;
+			var cadCliFornBanco = document.getElementById('cadCliFornBanco').value;
+			var cadCliFornAg = document.getElementById('cadCliFornAg').value;
+			var cadCliFornConta = document.getElementById('cadCliFornConta').value;
+			var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta').value;
+
 
 			open('GET', './src/CrudCadastro.php?funcao=insereCliForn&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa);
-
 			send();
 
+			alert(responseText);
+
 			onload = function(){
+
+			alert(responseText);
 
 		
 				if(responseText != "Erro ao inserir Cliente ou Fornecedor"){
