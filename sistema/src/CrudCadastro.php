@@ -109,7 +109,37 @@ else if($_GET['funcao'] == 'comboCadastro'){
 	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
 
 
+}
+//INSERE CLIENTE E FORNECEDOR
+
+else if ($_GET['funcao'] == 'insereCliForn'){
+
+	$cSql = "INSERT INTO CLIENTE VALUES (0, '$_GET[cadCliFornName]', '$_GET[cadCliFornTipo]', '$_GET[cadCliFornCNPJCPF]', '$_GET[cadCliFornTel]', '$_GET[cadCliFornEmail]','$_GET[cadCliFornBanco]','$_GET[cadCliFornAg]','$_GET[cadCliFornConta]','$_GET[cadCliFornTipoConta]', $_GET[cadCliFornStatus], $_GET[cmbEmpresaSelecao])";
+	
+	$cSql = str_replace("''","NULL", $cSql);
+
+	if(mysqli_query($conecta,$cSql)){
+
+		$cSql = "SELECT DISTINCT CLI_NOME,CLI_COD FROM CLIENTE INNER JOIN EMPRESA ON COD_EMPR = EMP_COD WHERE EMP_COD = $_GET[cmbEmpresaSelecao]";
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+
+		while ($row = mysqli_fetch_assoc($result)) {
+
+			$json_array[] = $row;	
+
+		}
+
+		// echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
+	}
+	
+	else
+		echo "Erro ao inserir Cliente ou Fornecedor";
+
 }    
+//FIM DO INSERE CLIENTE E FORNECEDOR
 
 
 

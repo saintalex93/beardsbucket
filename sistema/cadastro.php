@@ -40,22 +40,23 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-6">
 									<div class="form-group">
 										<label>Nome</label>
-										<input type="text" class="form-control border-input" placeholder="Eletropaulo">
+										<input type="hidden" name="cadastroCliFornCod" id="cadastroCliFornCod">
+										<input type="text" class="form-control border-input" name="cadCliFornName" id="cadCliFornName" placeholder="Nome">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>CNPJ / CPF</label>
-										<input type="text" class="form-control border-input" placeholder="07.833.690/00001-09" >
+										<input type="text" class="form-control border-input" name="cadCliFornCNPJCPF" id="cadCliFornCNPJCPF" placeholder="07.833.690/00001-09" >
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Tipo</label>
-										<select value="" class="form-control border-input">
-											<option name="" id="">Selecione...</option>
-											<option name="" id="">Pessoa Física</option>
-											<option name="" id="">Pessoa Jurídica</option>
+										<select value="" class="form-control border-input" name="cadCliFornTipo" id="cadCliFornTipo">
+											<option value="">Selecione...</option>
+											<option value="PF">Pessoa Física</option>
+											<option value="PJ">Pessoa Jurídica</option>
 										</select>
 									</div>
 								</div>
@@ -66,19 +67,19 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Telefone</label>
-										<input type="text" class="form-control border-input" placeholder="(11) 3333-3333">
+										<input type="text" class="form-control border-input" name="cadCliFornTel" id="cadCliFornTel" placeholder="(11) 3333-3333">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Email</label>
-										<input type="text" class="form-control border-input" placeholder="beardsbucket@beardsweb.com.br" >
+										<input type="text" class="form-control border-input" name="cadCliFornEmail" id="cadCliFornEmail" placeholder="beardsbucket@beardsweb.com.br" >
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Empresa / Perfil</label>
-										<select value="" class="form-control border-input" id="cmbEmpresaSelecao">
+										<select value="" class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao">
 										</select>
 									</div>
 								</div>
@@ -86,10 +87,10 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Status</label>
-										<select value="" class="form-control border-input">
-											<option name="" id="">Selecione...</option>
-											<option name="" id="" value="1">Ativo</option>
-											<option name="" id="" value="0">Inativo</option>
+										<select value="" class="form-control border-input" name="cadCliFornStatus" id="cadCliFornStatus">
+											<option value="">Selecione...</option>
+											<option value="1">Ativo</option>
+											<option value="0">Inativo</option>
 										</select>
 									</div>
 								</div>
@@ -101,31 +102,32 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Banco</label>
-										<input type="text" class="form-control border-input" placeholder="Itaú" >
+										<input type="text" class="form-control border-input" placeholder="Itaú" name="cadCliFornBanco" id="cadCliFornBanco">
 									</div>
 								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Agência</label>
-										<input type="text" class="form-control border-input" placeholder="5607" >
+										<input type="text" class="form-control border-input" placeholder="5607" name="cadCliFornAg" id="cadCliFornAg">
 									</div>
 								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Conta</label>
-										<input type="text" class="form-control border-input" placeholder="00657-3" >
+										<input type="text" class="form-control border-input" placeholder="00657-3" name="cadCliFornConta" id="cadCliFornConta">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Tipo da Conta</label>
-										<select value="" class="form-control border-input">
-											<option name="" id="">Selecione...</option>
-											<option name="" id="">Corrente</option>
-											<option name="" id="">Poupança</option>
-											<option name="" id="">Salário</option>
+										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta">
+											<option value="">Selecione...</option>
+											<option value="CC">Corrente</option>
+											<option value="CP">Poupança</option>
+											<option value="CS">Salário</option>
+											<option value="SC">Sem Conta</option>
 										</select>
 									</div>
 								</div>
@@ -135,7 +137,17 @@ $cod =  $_SESSION['user']['id'];
 
 
 						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd">Cadastrar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd" name="buttoncadClienteForncedor" id="buttoncadClienteForncedor" value="1" onclick="selecionaAcaoCadClienteForncedor(this.value)">Cadastrar</button>
+
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-12">
+								<div class="form-group">
+									<output type="text" class="text-center" id="retornoFormCliForn"></output>
+								</div>
+							</div>
 
 						</div>
 
@@ -154,7 +166,7 @@ $cod =  $_SESSION['user']['id'];
 
 						<div class="table-responsive">
 
-							<table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+							<table class="table table-bordered table-striped text-center "  width="100%" id="tableCliForn" name="tableCliForn" cellspacing="0">
 								<thead>
 									<tr>
 										<th>Código</th>
@@ -163,21 +175,6 @@ $cod =  $_SESSION['user']['id'];
 								</thead>
 
 								<tbody>
-
-									<?php
-									for($nCont = 0; $nCont<=1; $nCont++){
-
-										echo "
-
-										<tr>
-										<td>$nCont</td>
-										<td>Pessoal</td>
-										</tr>
-										";
-
-									}
-
-									?>
 
 								</tbody>
 							</table>
@@ -249,15 +246,15 @@ $cod =  $_SESSION['user']['id'];
 						</div>
 
 						<div class="row" style="margin-top: 30px;">
-								<div class="col-md-6 col-md-offset-3 text-center">
-									<div class="form-group">
-										<label>Busca Categoria</label>
-										<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
-											
-										</select>
-									</div>
+							<div class="col-md-6 col-md-offset-3 text-center">
+								<div class="form-group">
+									<label>Busca Categoria</label>
+									<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
+
+									</select>
 								</div>
 							</div>
+						</div>
 						<div class="row">
 
 							<div class="col-md-12">
