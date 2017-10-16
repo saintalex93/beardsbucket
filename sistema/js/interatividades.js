@@ -55,3 +55,41 @@ function fnMenuFinancas(button){
 
 }
 
+
+function fnMenuLogin(button){
+
+
+
+	if(button.id == "entrar"){
+
+		button.setAttribute('class', 'active');
+		document.getElementById("cadastrar").setAttribute('class', '');
+
+		document.getElementById("imagemLogin").style.marginTop = "0px";
+		document.getElementById("cardLogin").style.marginBottom = "";
+
+		document.getElementById("cardCadastro").style.display = "none";
+		
+
+
+
+	}
+
+	if(button.id == "cadastrar"){
+
+		button.setAttribute('class', 'active');
+		document.getElementById("entrar").setAttribute('class', '');
+		document.getElementById("cardLogin").style.marginBottom = "-800px";
+
+		document.getElementById("imagemLogin").style.marginTop = "-250px";
+
+		document.getElementById("cardCadastro").style.display = "block";
+
+
+		
+
+
+	}
+
+}
+

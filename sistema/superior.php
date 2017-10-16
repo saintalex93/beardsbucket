@@ -6,7 +6,7 @@ session_start();
 
 if( !isset($_SESSION['user']) )
 {
-    header("Location: index.html");
+    header("Location: index.htm");
 
     exit;
 }
@@ -20,8 +20,9 @@ $url = basename($_SERVER['PHP_SELF']);
 <html lang="pt-br">
 <head>
 	<meta charset="utf-8" />
-	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/faces/beards.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/faces/beards.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/beards.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <meta name="theme-color" content="#38eb47">

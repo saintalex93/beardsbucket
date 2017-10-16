@@ -201,8 +201,8 @@ body {
 
 .nav-pills a {
   font-size: 15px;
-    color: #333;
-    text-decoration: none;
+  color: #333;
+  text-decoration: none;
   /*text-shadow: 1px 0px 0px #ccc, -1px 0px 0px #ccc,0px 1px 0px #ccc,0px -1px 0px #ccc;*/
 
 }
@@ -476,3 +476,41 @@ table th{
 .navbar-default .navbar-nav > li > a:not(.btn):hover{
  color: #28bd28;
 }
+
+.imagemLogin{
+  margin-bottom: 20px;
+  transition: all 1s;
+}
+
+.Navegadorlogin{
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.cardCadastro{
+display: none;
+}
+
+#cardLogin{
+  transition: all 2s;
+}
+
+#cardCadastro{
+  transition: all 1s;
+}
+
+.btn.btn-info.btn-fill.botao{
+  border-radius: 5px;
+  font-size: 17px;
+}
+
+.title.tituloCadastro{
+  margin-top: 5px;
+  margin-bottom: 10px;
+  background: #fffcf5;
+  height: 28px;
+  border-bottom: 1px solid #ccc;
+
+}
+
+

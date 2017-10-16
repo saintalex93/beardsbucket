@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Beards Bucket</title>
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+
+    <link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="img/beards.png">
+	
+
+	<!-- Bootstrap core CSS     -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Animation library for notifications   -->
+	<link href="assets/css/animate.min.css" rel="stylesheet"/>
+
+	<!--  Paper Dashboard core CSS    -->
+	<link href="assets/css/paper-dashboard.css" rel="stylesheet"/>
+
+	<!--  CSS for Demo Purpose, don't include it in your project     -->
+	<link href="assets/css/demo.css" rel="stylesheet" />
+
+	<!--  Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link href="assets/css/themify-icons.css" rel="stylesheet">
+
+	<meta name="theme-color" content="#38eb47">
+
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+
+	<div class="content">
+		<div class="container-fluid">
+			<div class="row">
+
+				<div class="header text-center imagemLogin" id="imagemLogin">
+					<h3 class="title">Beards Bucket</h4>
+						<img src="img/beards.png" alt="Logo Beards Web">
+					</div>
+
+					<div class="col-md-4 col-md-offset-5 text-center">
+
+						<ul class="nav nav-pills Navegadorlogin">
+							<li class="active" id = "entrar" onclick="fnMenuLogin(this)">
+								<a href="#"><span class="ti-arrow-right"></span> Entrar</a>
+							</li>
+
+							<li class="" id="cadastrar" onclick="fnMenuLogin(this)">
+								<a href="#"><span class="ti-pencil"></span> Cadastrar</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<!-- Login -->
+					<div class="col-md-4 col-md-offset-4 text-center cardLogin" id="cardLogin">
+
+						<div class="card">
+
+							<div class="content">
+
+
+								<form>
+									<div class="row">
+
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="">Login</label>
+												<input type="text" class="form-control border-input" name='usuario' id="usuario" placeholder="Usuário">
+											</div>
+										</div>
+
+									</div>
+									<div class="row">
+
+
+										<div class="col-md-12">
+											<div class="form-group">
+												<label for="">Senha</label>
+												<input type="password" class="form-control border-input" name='senha' id="senha" placeholder="Senha">
+											</div>
+										</div>
+
+									</div> 
+
+								</form>
+
+								<button class = "btn btn-info btn-fill botao" onclick="selectLogin(document.all.usuario.value, document.all.senha.value)">Entrar</button>
+
+								<div id="message"></div>
+
+
+							</div>
+						</div>
+					</div>
+					<!-- Login -->
+					<!-- Cadastro -->
+					<div class="col-md-10 col-md-offset-1 text-center cardCadastro" id="cardCadastro">
+
+						<div class="card">
+
+							<div class="content">
+
+
+								<form>
+
+									<h4 class="title tituloCadastro">Acesso:</h4>
+
+									<div class="row">
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Nome</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Email</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+											</div>
+										</div>
+
+
+
+									</div>
+									<div class="row">
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Login</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Senha</label>
+												<input type="password" class="form-control border-input" name='' id="" placeholder="">
+											</div>
+										</div>
+
+									</div>
+
+									<h4 class="title tituloCadastro">Empresa / Pefil</h4>
+
+
+									<div class="row">
+
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Empresa / Perfil</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="Pessoal / Nome da Empresa">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">CNPJ / CPF</label>
+												<input type="text" class="form-control border-input" name='' 
+												id="">	
+											</div>
+										</div>
+
+									</div> 
+
+									<h4 class="title tituloCadastro">Conta</h4>
+
+
+									<div class="row">
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Nome</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="">Banco</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+											</div>
+										</div>
+
+									</div> 
+
+									<div class="row">
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="">Agência</label>
+												<input type="text" class="form-control border-input" name='' id="" placeholder="Pessoal / Nome da Empresa">
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="">Número da Conta</label>
+												<input type="text" class="form-control border-input" name='' id="">
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="">Tipo da Conta</label>
+												<select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
+													<option value="">Selecione...</option>
+													<option value="CC">Conta Corrente</option>
+													<option value="CP">Conta Poupança</option>
+													<option value="CS">Conta Salário</option>
+													<option value="SC">Sem Conta</option>
+												</select>
+											</div>
+										</div>
+
+										<div class="col-md-3">
+											<div class="form-group">
+												<label for="">Saldo Inicial</label>
+												<input type="text" class="form-control border-input" name='' id="">
+											</div>
+										</div>
+
+									</div>
+
+								</form>
+
+								<button class = "btn btn-info btn-fill botao" onclick="selectLogin(document.all.usuario.value, document.all.senha.value)">Cadastrar</button>
+
+
+
+
+							</div>
+						</div>
+					</div> <!-- Cadastro -->
+
+				</div> <!--FINAL ROW -->
+
+			</div>
+		</div>
+
+
+
+	</body>
+	<script src="js/ajaxLogin.js"></script>
+	<script src="js/interatividades.js"></script>
+
+
+	</html>

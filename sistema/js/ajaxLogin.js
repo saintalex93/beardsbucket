@@ -15,11 +15,17 @@ function selectLogin(usuario, senha){
 
 			
 			if(oDados == 0){
+				document.getElementById("message").style.display = "block";
 				document.all.message.innerHTML = "Usuário não encontrado";
+				setTimeout(function(){ document.getElementById("message").style.display = "none"; }, 3000);
+
 			}
 
 			else if(oDados == -1){
+				document.getElementById("message").style.display = "block";
 				document.all.message.innerHTML = "Senha Inválida";
+				setTimeout(function(){ document.getElementById("message").style.display = "none"; }, 3000);
+
 				
 			}
 
