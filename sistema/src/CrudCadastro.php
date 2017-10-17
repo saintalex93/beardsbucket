@@ -166,8 +166,8 @@ else if ($_GET['funcao'] == 'atualizaClientesFornecedor'){
 		}
 
 		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
-	}else{
-
+	}
+	else{
 		echo "Erro ao Atualizar";
 	}
 }
@@ -178,7 +178,7 @@ else if ($_GET['funcao'] == 'atualizaClientesFornecedor'){
 //BUSCA CLIENTE FORNECEDOR
 else if($_GET['funcao'] == 'buscaClienteFornecedor'){
 
-	$cSql = "SELECT DISTINCT CLI_NOME, CLI_COD ,CLI_TIPO, CLI_CPF_CNPJ,CLI_TELEFONE,CLI_EMAIL,CLI_BANCO,CLI_AGENCIA,CLI_CONTA,CLI_TIPOCONTA, CLI_STATUS,EMP_COD,EMP_NOME_EMPRESA FROM CLIENTE INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[cmbEmpresaFiltro]";
+	$cSql = "SELECT DISTINCT CLI_NOME, CLI_COD ,CLI_TIPO, CLI_CPF_CNPJ,CLI_TELEFONE,CLI_EMAIL,CLI_BANCO,CLI_AGENCIA,CLI_CONTA,CLI_TIPOCONTA, IF(CLI_STATUS = 1,REPLACE( CLI_STATUS,1,'Ativo'),REPLACE( CLI_STATUS,0,'Inativo')) as CLI_STATUS,EMP_COD,EMP_NOME_EMPRESA FROM CLIENTE INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[cmbEmpresaFiltro]";
 
 	$result = mysqli_query($conecta,$cSql);
 

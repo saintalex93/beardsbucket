@@ -201,7 +201,7 @@ else if(param == 2){
 					document.getElementById('cadCliFornStatus').selectedIndex = "";
 					document.getElementById('cadCliFornTipoConta').selectedIndex = "";
 					document.getElementById('cadCliFornTipo').selectedIndex = "";
-					
+
 					document.getElementById("cmbEmpresaSelecao").disabled = false;
 					document.getElementById("cadCliFornStatus").disabled = false;
 
@@ -251,7 +251,7 @@ function selecionaCliForn(codCliForn){
 
 	
 	document.getElementById("cmbEmpresaSelecao").disabled = true;
-	document.getElementById("cadCliFornStatus").disabled = true;
+	// document.getElementById("cadCliFornStatus").disabled = true;
 
 
 	var catTabela = document.getElementsByName(codCliForn);
