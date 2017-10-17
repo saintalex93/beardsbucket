@@ -128,6 +128,7 @@ else if(param == 2){
 
 	with(oPagina){
 
+		var cadCliCod = document.getElementById('cadastroCliFornCod').value;
 		var cadCliFornNome = document.getElementById('cadCliFornName').value;
 		var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF').value;
 		var cadCliTipo = document.getElementById('cadCliFornTipo').value;
@@ -140,28 +141,19 @@ else if(param == 2){
 		var cadCliFornConta = document.getElementById('cadCliFornConta').value;
 		var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta').value;
 
-		open('GET', './src/CrudCadastro.php?funcao=atualizaClientesFornecedor&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa);
+		open('GET', './src/CrudCadastro.php?funcao=atualizaClientesFornecedor&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa+'&cadastroCliFornCod='+cadCliCod);
 		
 		send();
 
+		alert(responseText);
+
 		onload = function(){
+
+			alert("passou")
 
 			if(responseText != "Erro ao Atualizar"){
 
 				var oDados = JSON.parse(responseText);
-
-
-				document.getElementById("cadCliFornName").value = "";
-				document.getElementById("cadCliFornCNPJCPF").value = "";
-				document.getElementById("cadCliFornTel").value = "";
-				document.getElementById("cadCliFornEmail").value = "";
-				document.getElementById("cadCliFornBanco").value = "";					
-				document.getElementById("cadCliFornAg").value = "";
-				document.getElementById("cadCliFornConta").value = "";
-				empresa.selectedIndex = "";
-				cadCliFornStatus.selectedIndex = "";
-				cadCliFornTipoConta.selectedIndex = "";
-				cadCliTipo.selectedIndex = "";
 
 				document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
 				document.getElementById("buttonCancelarCliForn").style.display = 'none';
@@ -198,7 +190,26 @@ else if(param == 2){
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
 						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
 						);
+					document.getElementById("cadCliFornName").value = "";
+					document.getElementById("cadCliFornCNPJCPF").value = "";
+					document.getElementById("cadCliFornTel").value = "";
+					document.getElementById("cadCliFornEmail").value = "";
+					document.getElementById("cadCliFornBanco").value = "";					
+					document.getElementById("cadCliFornAg").value = "";
+					document.getElementById("cadCliFornConta").value = "";
+					document.getElementById('cmbEmpresaSelecao').selectedIndex = "";
+					document.getElementById('cadCliFornStatus').selectedIndex = "";
+					document.getElementById('cadCliFornTipoConta').selectedIndex = "";
+					document.getElementById('cadCliFornTipo').selectedIndex = "";
+					
+					document.getElementById("cmbEmpresaSelecao").disabled = false;
+					document.getElementById("cadCliFornStatus").disabled = false;
+
+
 				}
+
+
+
 			}
 
 			else{
@@ -218,10 +229,10 @@ else if(param == 2){
 				document.getElementById("cadCliFornBanco").value = "";					
 				document.getElementById("cadCliFornAg").value = "";
 				document.getElementById("cadCliFornConta").value = "";
-				empresa.selectedIndex = "";
-				cadCliFornStatus.selectedIndex = "";
-				cadCliFornTipoConta.selectedIndex = "";
-				cadCliTipo.selectedIndex = "";
+				document.getElementById('cmbEmpresaSelecao').selectedIndex = "";
+				document.getElementById('cadCliFornStatus').selectedIndex = "";
+				document.getElementById('cadCliFornTipoConta').selectedIndex = "";
+				document.getElementById('cadCliFornTipo').selectedIndex = "";
 			}
 		}
 	}

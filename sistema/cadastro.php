@@ -139,7 +139,7 @@ $cod =  $_SESSION['user']['id'];
 						<div class="text-center">
 							<button type="submit" class="btn btn-info btn-fill btn-wd" name="buttoncadClienteForncedor" id="buttoncadClienteForncedor" value="1" onclick="selecionaAcaoCadClienteForncedor(this.value)">Cadastrar</button>
 
-							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCliForn()" id="buttonCancelarCliForn">Cancelar</button>
+							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCliForn()" name="buttonCancelarCliForn" id="buttonCancelarCliForn">Cancelar</button>
 
 						</div>
 
@@ -147,7 +147,7 @@ $cod =  $_SESSION['user']['id'];
 
 							<div class="col-md-12">
 								<div class="form-group">
-									<output type="text" class="text-center" id="retornoFormCliForn"></output>
+									<output type="text" class="text-center" name="retornoFormCliForn" id="retornoFormCliForn"></output>
 								</div>
 							</div>
 

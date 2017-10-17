@@ -166,11 +166,10 @@ else if ($_GET['funcao'] == 'atualizaClientesFornecedor'){
 		}
 
 		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
+	}else{
 
-
+		echo "Erro ao Atualizar";
 	}
-
-
 }
 
 //FIM DO ATUALIZA DADOS CLIENTE FORNECEDOR

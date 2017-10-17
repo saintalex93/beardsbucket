@@ -156,7 +156,7 @@ body {
 }
 
 
-#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, #retornoFormCategoria{
+#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, #retornoFormCategoria,#retornoFormCliForn{
   display: none;
   text-align: center;
   font-weight: bold;
