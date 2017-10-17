@@ -104,10 +104,10 @@ $cod =  $_SESSION['user']['id'];
 										<label for="">Tipo da Conta</label>
 										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta">
 											<option value="">Selecione...</option>
+											<option value="SC">Sem Conta</option>
 											<option value="CC">Corrente</option>
 											<option value="CP">Poupança</option>
 											<option value="CS">Salário</option>
-											<option value="SC">Sem Conta</option>
 										</select>
 									</div>
 								</div>
