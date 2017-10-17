@@ -122,7 +122,7 @@ else if ($_GET['funcao'] == 'insereCliForn'){
 
 	if(mysqli_query($conecta,$cSql)){
 
-		$cSql = "SELECT DISTINCT CLI_NOME,CLI_COD FROM CLIENTE INNER JOIN EMPRESA ON COD_EMPR = EMP_COD WHERE EMP_COD = $_GET[cmbEmpresaSelecao]";
+		$cSql = "SELECT DISTINCT CLI_NOME,CLI_COD,CLI_TIPO,CLI_CPF_CNPJ,CLI_TELEFONE,CLI_EMAIL,CLI_BANCO,CLI_AGENCIA,CLI_CONTA,CLI_TIPOCONTA,IF(CLI_STATUS = 1,REPLACE( CLI_STATUS,1,'Ativo'),REPLACE( CLI_STATUS,0,'Inativo')) as CLI_STATUS,EMP_COD,EMP_NOME_EMPRESA FROM CLIENTE INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[cmbEmpresaSelecao]";
 
 		$result = mysqli_query($conecta,$cSql);
 
@@ -143,7 +143,57 @@ else if ($_GET['funcao'] == 'insereCliForn'){
 }    
 //FIM DO INSERE CLIENTE E FORNECEDOR
 
+//ATUALIZA DADOS CLIENTE FORNECEDOR
+
+else if ($_GET['funcao'] == 'atualizaClientesFornecedor'){
+
+	$cSql = "UPDATE CLIENTE SET CLI_NOME = '$_GET[cadCliFornName]',CLI_TIPO = '$_GET[cadCliFornTipo]', CLI_CPF_CNPJ = '$_GET[cadCliFornCNPJCPF]',CLI_TELEFONE = '$_GET[cadCliFornTel]',CLI_EMAIL = '$_GET[cadCliFornEmail]', CLI_BANCO = '$_GET[cadCliFornBanco]', CLI_AGENCIA = '$_GET[cadCliFornAg]', CLI_CONTA = '$_GET[cadCliFornConta]', CLI_TIPOCONTA = '$_GET[cadCliFornTipoConta]', CLI_STATUS = $_GET[cadCliFornStatus], COD_EMPR = $_GET[cmbEmpresaSelecao] WHERE CLI_COD = $_GET[cadastroCliFornCod]";
+
+	$cSql = str_replace("''","NULL", $cSql);
+
+	if (mysqli_query($conecta,$cSql)) {
+
+		$cSql = "SELECT DISTINCT CLI_NOME,CLI_COD,CLI_TIPO,CLI_CPF_CNPJ,CLI_TELEFONE,CLI_EMAIL,CLI_BANCO,CLI_AGENCIA,CLI_CONTA,CLI_TIPOCONTA,IF(CLI_STATUS = 1,REPLACE( CLI_STATUS,1,'Ativo'),REPLACE( CLI_STATUS,0,'Inativo')) as CLI_STATUS,EMP_COD,EMP_NOME_EMPRESA FROM CLIENTE INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[cmbEmpresaSelecao]";
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+
+		while ($row = mysqli_fetch_assoc($result)){
+
+			$json_array[]=$row;
+
+		}
+
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
 
 
+	}
+
+
+}
+
+//FIM DO ATUALIZA DADOS CLIENTE FORNECEDOR
+
+
+//BUSCA CLIENTE FORNECEDOR
+else if($_GET['funcao'] == 'buscaClienteFornecedor'){
+
+	$cSql = "SELECT DISTINCT CLI_NOME, CLI_COD ,CLI_TIPO, CLI_CPF_CNPJ,CLI_TELEFONE,CLI_EMAIL,CLI_BANCO,CLI_AGENCIA,CLI_CONTA,CLI_TIPOCONTA, CLI_STATUS,EMP_COD,EMP_NOME_EMPRESA FROM CLIENTE INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE EMP_COD = $_GET[cmbEmpresaFiltro]";
+
+	$result = mysqli_query($conecta,$cSql);
+
+	$json_array = array();
+
+	while ($row = mysqli_fetch_assoc($result)) {
+		
+		$json_array[] = $row;
+
+	}
+
+	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
+}
+
+//FIM DO BUSCA CLIENTE FORNECEDOR
 
 ?>

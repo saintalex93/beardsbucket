@@ -1,102 +1,369 @@
 //----------------------------------------INSERE CLIENTE E FORNCEDOR--------------------------------------//
 function selecionaAcaoCadClienteForncedor(param){
-	if(param == 1){
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
-		var oPagina = new XMLHttpRequest();
-		with(oPagina){
-			var cadCliFornNome = document.getElementById('cadCliFornName').value;
-			var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF').value;
-			var cadCliTipo = document.getElementById('cadCliFornTipo').value;
-			var cadCliTel = document.getElementById('cadCliFornTel').value;
-			var cadCliEmail = document.getElementById('cadCliFornEmail').value;
-			var empresa = document.getElementById('cmbEmpresaSelecao').value;
-			var cadCliFornStatus = document.getElementById('cadCliFornStatus').value;
-			var cadCliFornBanco = document.getElementById('cadCliFornBanco').value;
-			var cadCliFornAg = document.getElementById('cadCliFornAg').value;
-			var cadCliFornConta = document.getElementById('cadCliFornConta').value;
-			var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta').value;
+// ///////////////////////////////////////////////INSERE CLIENTES FORNECEDOR/////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+if(param == 1){
+
+	var oPagina = new XMLHttpRequest();
+	with(oPagina){
+		var cadCliFornNome = document.getElementById('cadCliFornName').value;
+		var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF').value;
+		var cadCliTipo = document.getElementById('cadCliFornTipo').value;
+		var cadCliTel = document.getElementById('cadCliFornTel').value;
+		var cadCliEmail = document.getElementById('cadCliFornEmail').value;
+		var empresa = document.getElementById('cmbEmpresaSelecao').value;
+		var cadCliFornStatus = document.getElementById('cadCliFornStatus').value;
+		var cadCliFornBanco = document.getElementById('cadCliFornBanco').value;
+		var cadCliFornAg = document.getElementById('cadCliFornAg').value;
+		var cadCliFornConta = document.getElementById('cadCliFornConta').value;
+		var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta').value;
 
 
-			open('GET', './src/CrudCadastro.php?funcao=insereCliForn&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa);
-			send();
+		open('GET', './src/CrudCadastro.php?funcao=insereCliForn&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa);
+		send();
 
-			alert(responseText);
 
-			onload = function(){
 
-			alert(responseText);
+		onload = function(){
 
+
+
+
+			if(responseText != "Erro ao inserir Cliente ou Fornecedor"){
+
+
+
+				var oDados = JSON.parse(responseText);
+
+				var Contador = parseInt(oDados.length) -1;
+
+				var tableCategoria = document.getElementById("tableCliForn");
+
+				var linhas = document.getElementById("tableCliForn").rows;
+
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableCliForn").deleteRow(i);
+
+				}
+
+				for(i = 0; i<=oDados.length; i++){
+
+					tableCategoria.insertAdjacentHTML('afterbegin', 
+						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TELEFONE'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_EMAIL'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
+						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
+
+						);
+
+					document.getElementById("cadCliFornName").value = "";
+					document.getElementById("cadCliFornCNPJCPF").value = "";
+					document.getElementById("cadCliFornTel").value = "";
+					document.getElementById("cadCliFornEmail").value = "";
+					document.getElementById("cadCliFornBanco").value = "";					
+					document.getElementById("cadCliFornAg").value = "";
+					document.getElementById("cadCliFornConta").value = "";
+					empresa.selectedIndex = "";
+					cadCliFornStatus.selectedIndex = "";
+					cadCliFornTipoConta.selectedIndex = "";
+					cadCliTipo.selectedIndex = "";
+				}					
+
+				document.getElementById("retornoFormCliForn").style.display = "block";
+				document.getElementById("retornoFormCliForn").innerHTML = "Dados inseridos com sucesso!";
+				document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
+
+				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+
+
+			}
+			else {
+				document.getElementById("retornoFormCliForn").style.display = "block";
+				document.getElementById("retornoFormCliForn").innerHTML = "Não foi possível inserir a Categoria";
+				document.getElementById("retornoFormCliForn").setAttribute("class", "retDanger");
+
+				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+
+				document.getElementById("cmbEmpresaSelecao").disabled = false;
+
+				document.getElementById("cadCliFornName").value = "";
+				document.getElementById("cadCliFornCNPJCPF").value = "";
+				document.getElementById("cadCliFornTel").value = "";
+				document.getElementById("cadCliFornEmail").value = "";
+				document.getElementById("cadCliFornBanco").value = "";					
+				document.getElementById("cadCliFornAg").value = "";
+				document.getElementById("cadCliFornConta").value = "";
+				empresa.selectedIndex = "";
+				cadCliFornStatus.selectedIndex = "";
+				cadCliFornTipoConta.selectedIndex = "";
+				cadCliTipo.selectedIndex = "";							
+			}
+
+
+		}
+	}
+}
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////INSERE CLIENTES FORNECEDOR/////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+else if(param == 2){
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		var cadCliFornNome = document.getElementById('cadCliFornName').value;
+		var cadCliForCNPJCPF = document.getElementById('cadCliFornCNPJCPF').value;
+		var cadCliTipo = document.getElementById('cadCliFornTipo').value;
+		var cadCliTel = document.getElementById('cadCliFornTel').value;
+		var cadCliEmail = document.getElementById('cadCliFornEmail').value;
+		var empresa = document.getElementById('cmbEmpresaSelecao').value;
+		var cadCliFornStatus = document.getElementById('cadCliFornStatus').value;
+		var cadCliFornBanco = document.getElementById('cadCliFornBanco').value;
+		var cadCliFornAg = document.getElementById('cadCliFornAg').value;
+		var cadCliFornConta = document.getElementById('cadCliFornConta').value;
+		var cadCliFornTipoConta = document.getElementById('cadCliFornTipoConta').value;
+
+		open('GET', './src/CrudCadastro.php?funcao=atualizaClientesFornecedor&cadCliFornName='+cadCliFornNome+'&cadCliFornTipo='+cadCliTipo+'&cadCliFornCNPJCPF='+cadCliForCNPJCPF+'&cadCliFornTel='+cadCliTel+'&cadCliFornEmail='+cadCliEmail+'&cadCliFornBanco='+cadCliFornBanco+'&cadCliFornAg='+cadCliFornAg+'&cadCliFornConta='+cadCliFornConta+'&cadCliFornTipoConta='+cadCliFornTipoConta+'&cadCliFornStatus='+cadCliFornStatus+'&cmbEmpresaSelecao='+empresa);
 		
-				if(responseText != "Erro ao inserir Cliente ou Fornecedor"){
+		send();
+
+		onload = function(){
+
+			if(responseText != "Erro ao Atualizar"){
+
+				var oDados = JSON.parse(responseText);
+
+
+				document.getElementById("cadCliFornName").value = "";
+				document.getElementById("cadCliFornCNPJCPF").value = "";
+				document.getElementById("cadCliFornTel").value = "";
+				document.getElementById("cadCliFornEmail").value = "";
+				document.getElementById("cadCliFornBanco").value = "";					
+				document.getElementById("cadCliFornAg").value = "";
+				document.getElementById("cadCliFornConta").value = "";
+				empresa.selectedIndex = "";
+				cadCliFornStatus.selectedIndex = "";
+				cadCliFornTipoConta.selectedIndex = "";
+				cadCliTipo.selectedIndex = "";
+
+				document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
+				document.getElementById("buttonCancelarCliForn").style.display = 'none';
+				document.getElementById("buttonCancelarCliForn").value = 1;
+				document.getElementById("retornoFormCliForn").style.display = "block";
+				document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
+				document.getElementById("retornoFormCliForn").innerHTML = "Dados atualizados com sucesso";
+				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
 
 
 
-					var oDados = JSON.parse(responseText);
+				var tableCliForn = document.getElementById("tableCliForn");
 
-					var Contador = parseInt(oDados.length) -1;
+				var linhas = document.getElementById("tableCliForn").rows;
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableCliForn").deleteRow(i);
 
-					var tableCategoria = document.getElementById("tableCliForn");
-
-					var linhas = document.getElementById("tableCliForn").rows;
-
-					for (i= linhas.length-1; i>=1; i--){
-						document.getElementById("tableCliForn").deleteRow(i);
-
-					}
-
-					for(i = 0; i<=oDados.length; i++){
-
-						tableCategoria.insertAdjacentHTML('afterbegin', 
-							"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
-							"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
-							"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
-							);
-					}					
-
-					document.getElementById("retornoFormCliForn").style.display = "block";
-					document.getElementById("retornoFormCliForn").innerHTML = "Dados inseridos com sucesso!";
-					document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
-
-					setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
-
-					document.getElementById("cadCliFornName").value = "";
-					document.getElementById("cadCliFornCNPJCPF").value = "";
-					document.getElementById("cadCliFornTel").value = "";
-					document.getElementById("cadCliFornEmail").value = "";
-					document.getElementById("cadCliFornBanco").value = "";					
-					document.getElementById("cadCliFornAg").value = "";
-					document.getElementById("cadCliFornConta").value = "";
-					empresa.selectedIndex = "";
-					cadCliFornStatus.selectedIndex = "";
-					cadCliFornTipoConta.selectedIndex = "";
-					cadCliTipo.selectedIndex = "";					
 				}
-				else {
-					document.getElementById("retornoFormCliForn").style.display = "block";
-					document.getElementById("retornoFormCliForn").innerHTML = "Não foi possível inserir a Categoria";
-					document.getElementById("retornoFormCliForn").setAttribute("class", "retDanger");
 
-					setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
-
-					document.getElementById("cmbEmpresaSelecao").disabled = false;
-
-					document.getElementById("cadCliFornName").value = "";
-					document.getElementById("cadCliFornCNPJCPF").value = "";
-					document.getElementById("cadCliFornTel").value = "";
-					document.getElementById("cadCliFornEmail").value = "";
-					document.getElementById("cadCliFornBanco").value = "";					
-					document.getElementById("cadCliFornAg").value = "";
-					document.getElementById("cadCliFornConta").value = "";
-					empresa.selectedIndex = "";
-					cadCliFornStatus.selectedIndex = "";
-					cadCliFornTipoConta.selectedIndex = "";
-					cadCliTipo.selectedIndex = "";									
+				for(i = 0; i<=oDados.length; i++){
+					tableCliForn.insertAdjacentHTML('afterbegin', 
+						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TELEFONE'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_EMAIL'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
+						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
+						);
 				}
+			}
+
+			else{
+
+				document.getElementById("retornoFormCliForn").style.display = "block";
+				document.getElementById("retornoFormCliForn").innerHTML = "Não foi possível Atualizar a Categoria";
+				document.getElementById("retornoFormCliForn").setAttribute("class", "retDanger");
+
+				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+
+				document.getElementById("cmbEmpresaSelecao").disabled = false;
+
+				document.getElementById("cadCliFornName").value = "";
+				document.getElementById("cadCliFornCNPJCPF").value = "";
+				document.getElementById("cadCliFornTel").value = "";
+				document.getElementById("cadCliFornEmail").value = "";
+				document.getElementById("cadCliFornBanco").value = "";					
+				document.getElementById("cadCliFornAg").value = "";
+				document.getElementById("cadCliFornConta").value = "";
+				empresa.selectedIndex = "";
+				cadCliFornStatus.selectedIndex = "";
+				cadCliFornTipoConta.selectedIndex = "";
+				cadCliTipo.selectedIndex = "";
 			}
 		}
 	}
 }
+}
+
 //------------------------------------------FIM----------------------------------------------------------//
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////SELECIONA CLIENTE FORNECEDOR///////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+function selecionaCliForn(codCliForn){
+
+	
+	document.getElementById("cmbEmpresaSelecao").disabled = true;
+	document.getElementById("cadCliFornStatus").disabled = true;
+
+
+	var catTabela = document.getElementsByName(codCliForn);
+
+
+	document.getElementById("cadastroCliFornCod").value = catTabela[0].innerText;	
+	document.getElementById("cadCliFornName").value = catTabela[1].innerText;
+	document.getElementById("cadCliFornCNPJCPF").value = catTabela[2].innerText;
+	document.getElementById("cadCliFornTipo").value = catTabela[3].innerText;
+	document.getElementById("cadCliFornTel").value = catTabela[4].innerText;
+	document.getElementById("cadCliFornEmail").value = catTabela[5].innerText;
+	document.getElementById("cmbEmpresaSelecao").value = catTabela[6].innerText;
+	document.getElementById("cadCliFornStatus").value = catTabela[8].innerText;
+	document.getElementById("cadCliFornBanco").value = catTabela[9].innerText;
+	document.getElementById("cadCliFornAg").value = catTabela[10].innerText;
+	document.getElementById("cadCliFornConta").value = catTabela[11].innerText;
+	document.getElementById("cadCliFornTipoConta").value = catTabela[12].innerText;
+
+	
+
+
+	document.getElementById("buttonCancelarCliForn").style.display = 'inline';
+	document.getElementById("buttoncadClienteForncedor").innerText= 'Alterar';
+	document.getElementById("buttoncadClienteForncedor").value = 2;
+
+
+
+}
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////CANCELA CLIENTE FORNECEDOR/////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+function cancelaCliForn(){
+
+	document.getElementById("cadastroCliFornCod").value = "";
+	document.getElementById("cadCliFornName").value = "";
+	document.getElementById("cadCliFornCNPJCPF").value = "";
+	document.getElementById("cadCliFornTel").value = "";
+	document.getElementById("cadCliFornEmail").value = "";
+	document.getElementById("cadCliFornBanco").value = "";					
+	document.getElementById("cadCliFornAg").value = "";
+	document.getElementById("cadCliFornConta").value = "";
+	document.getElementById('cmbEmpresaSelecao').selectedIndex = "";
+	document.getElementById('cadCliFornStatus').selectedIndex = "";
+	document.getElementById('cadCliFornTipoConta').selectedIndex = "";
+	document.getElementById('cadCliFornTipo').selectedIndex = "";
+	
+	document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
+	document.getElementById("buttonCancelarCliForn").style.display = 'none';
+	document.getElementById("buttonCancelarCliForn").value = 1;
+	document.getElementById("retornoFormCliForn").style.display = "block";
+
+	document.getElementById("cmbEmpresaSelecao").disabled = false;
+	document.getElementById("cadCliFornStatus").disabled = false;
+
+
+
+
+}
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////BUSCA CLIENTE FORNECEDOR///////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+function buscaClienteForn(param){
+
+
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open ('GET','./src/CrudCadastro.php?funcao=buscaClienteFornecedor&cmbEmpresaFiltro='+param);
+
+		send();
+
+		
+		onload = function(){
+
+			var oDados = JSON.parse(responseText);
+
+			
+
+			var tableCliForn = document.getElementById("tableCliForn");
+
+			var linhas = document.getElementById("tableCliForn").rows;
+			for (i= linhas.length-1; i>=1; i--){
+				document.getElementById("tableCliForn").deleteRow(i);
+
+			}
+			
+			for(i = 0; i<=oDados.length; i++){
+				tableCliForn.insertAdjacentHTML('afterbegin', 
+					"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TELEFONE'] + "</td> "+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_EMAIL'] + "</td> "+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
+					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
+					"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
+					);
+			}
+
+		}
+
+		
+	}
+
+}
+
 
 
 //  ------------------------------------------CATEGORIA ----------------------------------------------------

@@ -70,7 +70,7 @@ $cod =  $_SESSION['user']['id'];
 										<input type="text" class="form-control border-input" name="cadCliFornTel" id="cadCliFornTel" placeholder="(11) 3333-3333">
 									</div>
 								</div>
-								<div class="col-md-3">
+								<div class="col-md-4">
 									<div class="form-group">
 										<label>Email</label>
 										<input type="text" class="form-control border-input" name="cadCliFornEmail" id="cadCliFornEmail" placeholder="beardsbucket@beardsweb.com.br" >
@@ -79,12 +79,12 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Empresa / Perfil</label>
-										<select value="" class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao">
+										<select value="" class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" >
 										</select>
 									</div>
 								</div>
 
-								<div class="col-md-3">
+								<div class="col-md-2">
 									<div class="form-group">
 										<label for="">Status</label>
 										<select value="" class="form-control border-input" name="cadCliFornStatus" id="cadCliFornStatus">
@@ -139,6 +139,8 @@ $cod =  $_SESSION['user']['id'];
 						<div class="text-center">
 							<button type="submit" class="btn btn-info btn-fill btn-wd" name="buttoncadClienteForncedor" id="buttoncadClienteForncedor" value="1" onclick="selecionaAcaoCadClienteForncedor(this.value)">Cadastrar</button>
 
+							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCliForn()" id="buttonCancelarCliForn">Cancelar</button>
+
 						</div>
 
 						<div class="row">
@@ -159,7 +161,7 @@ $cod =  $_SESSION['user']['id'];
 						<div class="col-md-6 col-md-offset-3 text-center" style="margin-bottom: 15px;">
 							<div class="form-group">
 								<label for="">Empresa / Perfil</label>
-								<select value="" class="form-control border-input" id="cmbEmpresaFiltro">
+								<select value="" class="form-control border-input" name="cmbEmpresaFiltro" id="cmbEmpresaFiltro" onchange="buscaClienteForn(this.value)">
 								</select>
 							</div>
 						</div>
@@ -171,6 +173,8 @@ $cod =  $_SESSION['user']['id'];
 									<tr>
 										<th>Código</th>
 										<th>Nome</th>
+										<th>Empresa</th>
+										<th>Ação</th>
 									</tr>
 								</thead>
 
@@ -249,7 +253,7 @@ $cod =  $_SESSION['user']['id'];
 							<div class="col-md-6 col-md-offset-3 text-center">
 								<div class="form-group">
 									<label>Busca Categoria</label>
-									<select value="" class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
+									<select class="form-control border-input" id="cmbEmpresaCat" name="cmbEmpresaCat" onchange="buscaCategorias(this.value)">
 
 									</select>
 								</div>
@@ -278,7 +282,7 @@ $cod =  $_SESSION['user']['id'];
 										<th>Nome</th>
 										<th>Status</th>
 										<th >Empresa</th>
-										<th >Acao</th>
+										<th >Ação</th>
 
 									</tr>
 								</thead>

@@ -174,7 +174,7 @@ body {
 
 
 
-#buttonCancelarEmpresa, #buttonCancelarConta, #buttonCancelarUsr, #buttonCancelarCategoria{
+#buttonCancelarEmpresa, #buttonCancelarConta, #buttonCancelarUsr, #buttonCancelarCategoria,#buttonCancelarCliForn{
   display: none;
 }
 
