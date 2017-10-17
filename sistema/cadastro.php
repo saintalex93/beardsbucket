@@ -98,6 +98,19 @@ $cod =  $_SESSION['user']['id'];
 							</div>
 
 							<div class="row">
+								
+								<div class="col-md-3">
+									<div class="form-group">
+										<label for="">Tipo da Conta</label>
+										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta">
+											<option value="">Selecione...</option>
+											<option value="CC">Corrente</option>
+											<option value="CP">Poupança</option>
+											<option value="CS">Salário</option>
+											<option value="SC">Sem Conta</option>
+										</select>
+									</div>
+								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
@@ -119,18 +132,7 @@ $cod =  $_SESSION['user']['id'];
 										<input type="text" class="form-control border-input" placeholder="00657-3" name="cadCliFornConta" id="cadCliFornConta">
 									</div>
 								</div>
-								<div class="col-md-3">
-									<div class="form-group">
-										<label for="">Tipo da Conta</label>
-										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta">
-											<option value="">Selecione...</option>
-											<option value="CC">Corrente</option>
-											<option value="CP">Poupança</option>
-											<option value="CS">Salário</option>
-											<option value="SC">Sem Conta</option>
-										</select>
-									</div>
-								</div>
+								
 
 							</div>
 						</form>
@@ -174,6 +176,7 @@ $cod =  $_SESSION['user']['id'];
 										<th>Código</th>
 										<th>Nome</th>
 										<th>Empresa</th>
+										<th>Status</th>
 										<th>Ação</th>
 									</tr>
 								</thead>

@@ -61,6 +61,7 @@ if(param == 1){
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
 						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUSDESC'] + "</td> "+					
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
@@ -145,11 +146,9 @@ else if(param == 2){
 		
 		send();
 
-		alert(responseText);
 
 		onload = function(){
 
-			alert("passou")
 
 			if(responseText != "Erro ao Atualizar"){
 
@@ -184,6 +183,7 @@ else if(param == 2){
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
 						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUSDESC'] + "</td> "+					
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
@@ -265,10 +265,10 @@ function selecionaCliForn(codCliForn){
 	document.getElementById("cadCliFornEmail").value = catTabela[5].innerText;
 	document.getElementById("cmbEmpresaSelecao").value = catTabela[6].innerText;
 	document.getElementById("cadCliFornStatus").value = catTabela[8].innerText;
-	document.getElementById("cadCliFornBanco").value = catTabela[9].innerText;
-	document.getElementById("cadCliFornAg").value = catTabela[10].innerText;
-	document.getElementById("cadCliFornConta").value = catTabela[11].innerText;
-	document.getElementById("cadCliFornTipoConta").value = catTabela[12].innerText;
+	document.getElementById("cadCliFornBanco").value = catTabela[10].innerText;
+	document.getElementById("cadCliFornAg").value = catTabela[11].innerText;
+	document.getElementById("cadCliFornConta").value = catTabela[12].innerText;
+	document.getElementById("cadCliFornTipoConta").value = catTabela[13].innerText;
 
 	
 
@@ -360,6 +360,7 @@ function buscaClienteForn(param){
 					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
 					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUSDESC'] + "</td> "+					
 					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
 					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
 					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
