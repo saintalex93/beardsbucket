@@ -169,7 +169,7 @@ if ($PERMISSAO == 'Administrador'){
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Nome</label>
+                                    <label><span id = "cmpObrgt">* </span>Nome</label>
                                     <input type="hidden" name="codEmpresa" id="codEmpresa">
                                     <input type="text" class="form-control border-input"  placeholder="Pessoal" name="txtNomeEmpresa" id="txtNomeEmpresa">
                                 </div>
@@ -294,7 +294,7 @@ if ($PERMISSAO == 'Administrador'){
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label>Nome</label>
+                                <label><span id = "cmpObrgt">* </span>Nome</label>
                                 <input type="hidden" name="codConta" id="codConta">
                                 <input type="text" class="form-control border-input" id="nomeConta"  name="nomeConta" placeholder="Nome da Conta">
                             </div>
@@ -307,7 +307,7 @@ if ($PERMISSAO == 'Administrador'){
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                               <label for="">Empresa / Pefil</label>
+                               <label for=""><span id = "cmpObrgt">* </span>Empresa / Pefil</label>
                                <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
                                </select>
@@ -345,7 +345,7 @@ if ($PERMISSAO == 'Administrador'){
                     </div>
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Saldo Incial</label>
+                            <label><span id = "cmpObrgt">* </span>Saldo Incial</label>
                             <input type="text" class="form-control border-input" id="saldoInicial" name="saldoInicial" placeholder="R$ 1.000,00">
                         </div>
                     </div>
@@ -483,7 +483,7 @@ padding-bottom: 20px">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>Nome</label>
+                            <label><span id = "cmpObrgt">* </span>Nome</label>
                             <input type="hidden"  class="form-control border-input" id="administradorCod" name="administradorCod" >
 
                             <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
@@ -491,13 +491,13 @@ padding-bottom: 20px">
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Login</label>
+                            <label><span id = "cmpObrgt">* </span>Login</label>
                             <input type="text" class="form-control border-input" id="AdministradorLogin" name="AdministradorLogin"  placeholder="beardsmaster">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label for="">Senha</label>
+                            <label for=""><span id = "cmpObrgt">* </span>Senha</label>
                             <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
                         </div>
                     </div>
@@ -513,7 +513,7 @@ padding-bottom: 20px">
 
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Empresa</label>
+                            <label><span id = "cmpObrgt">* </span>Empresa</label>
                             <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
                             </select>
                         </div>
@@ -521,7 +521,7 @@ padding-bottom: 20px">
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Permissão</label>
+                            <label><span id = "cmpObrgt">* </span>Permissão</label>
                             <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao" onchange="if(this.selectedIndex == 1) alert('Usuários com permissão Administrador não poderão ser alterados futuramente.')">
                                 <option value="">Selecione...</option>
                                 <option value="1">Administrador</option>
@@ -532,7 +532,7 @@ padding-bottom: 20px">
 
                     <div class="col-md-2">
                         <div class="form-group">
-                            <label>Status</label>
+                            <label><span id = "cmpObrgt">* </span>Status</label>
                             <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
                                 <option value="">Selecione...</option>
                                 <option value="1">Ativo</option>

@@ -252,7 +252,7 @@ else if($_GET['funcao'] == 'atualizaConta'){
 
 }
 else if($_GET['funcao'] == 'insereAdministrador'){
-	$cSql = "INSERT INTO USUARIO VALUES (0,'$_GET[administradorSenha]','$_GET[administradorLogin]','$_GET[administradorNome]','$_GET[administradorEmail]',$_GET[administradorPermissao],$_GET[administradorStatus])";
+	$cSql = "INSERT INTO USUARIO VALUES (0,'$_GET[administradorSenha]','$_GET[administradorLogin]','$_GET[administradorNome]','$_GET[administradorEmail]',$_GET[administradorPermissao],$_GET[administradorStatus], null)";
 	
 	$cSql = str_replace("''","NULL", $cSql);
 
@@ -289,7 +289,7 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 
 
 else if($_GET['funcao'] == 'alteraUsuarioAdministrador'){
-	$cSql = "UPDATE USUARIO SET USR_SENHA = '$_GET[txtSenha]', USR_LOGIN = '$_GET[txtLogin]', USR_NOME = '$_GET[txtNome]', USR_EMAIL = '$_GET[txtEmail]', USR_STATUS = $_GET[txtStatus], USR_PERMISSAO = $_GET[txtPermissao] WHERE USR_COD = $_GET[txtCodUsuario]";
+	$cSql = "UPDATE USUARIO SET USR_SENHA = '$_GET[txtSenha]', USR_LOGIN = '$_GET[txtLogin]', USR_NOME = '$_GET[txtNome]', USR_EMAIL = '$_GET[txtEmail]', USR_STATUS = $_GET[txtStatus], USR_PERMISSAO = $_GET[txtPermissao], USR_PONTUACAO = USR_PONTUACAO WHERE USR_COD = $_GET[txtCodUsuario]";
 
 	$cSql = str_replace("''","NULL", $cSql);
 

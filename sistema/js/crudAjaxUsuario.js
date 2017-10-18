@@ -888,6 +888,14 @@ function atualizaComboEmpresa(){
 
 			var oDados = JSON.parse(responseText);
 
+			var contadorAdm = document.getElementById("cmbEmpresaAdm").length;
+			
+
+			for (i = 0; i <=contadorAdm; i++) {
+				var combinhoAdm = document.getElementById("cmbEmpresaAdm");	
+				combinhoAdm.remove(contadorAdm.i);
+			}
+
 
 			var r = document.getElementById("cmbEmpresaAdm");
 			var optionr = document.createElement("option");

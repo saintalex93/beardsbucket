@@ -839,3 +839,31 @@ function deleteRows(id){
 	}
 
 }
+
+
+function trocaTipoConta(valueC){
+
+	if(valueC == "SC"){
+
+		with(document.all){
+			cadCliFornBanco.disabled = true;
+			cadCliFornAg.disabled = true;
+			cadCliFornConta.disabled = true;
+		}
+
+	}
+
+	else{
+
+		with(document.all){
+			cadCliFornBanco.disabled = false;
+			cadCliFornAg.disabled = false;
+			cadCliFornConta.disabled = false;
+		}
+
+	}
+
+}
+
+
+// cadCliFornTipoConta

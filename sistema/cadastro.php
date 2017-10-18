@@ -39,7 +39,7 @@ $cod =  $_SESSION['user']['id'];
 
 								<div class="col-md-6">
 									<div class="form-group">
-										<label>Nome</label>
+										<label><span id = "cmpObrgt">* </span>Nome</label>
 										<input type="hidden" name="cadastroCliFornCod" id="cadastroCliFornCod">
 										<input type="text" class="form-control border-input" name="cadCliFornName" id="cadCliFornName" placeholder="Nome">
 									</div>
@@ -78,7 +78,7 @@ $cod =  $_SESSION['user']['id'];
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Empresa / Perfil</label>
+										<label for=""><span id = "cmpObrgt">* </span>Empresa / Perfil</label>
 										<select value="" class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" >
 										</select>
 									</div>
@@ -86,7 +86,7 @@ $cod =  $_SESSION['user']['id'];
 
 								<div class="col-md-2">
 									<div class="form-group">
-										<label for="">Status</label>
+										<label for=""><span id = "cmpObrgt">* </span>Status</label>
 										<select value="" class="form-control border-input" name="cadCliFornStatus" id="cadCliFornStatus">
 											<option value="">Selecione...</option>
 											<option value="1">Ativo</option>
@@ -101,8 +101,8 @@ $cod =  $_SESSION['user']['id'];
 								
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Tipo da Conta</label>
-										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta">
+										<label for=""><span id = "cmpObrgt">* </span>Tipo da Conta</label>
+										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta" onchange="trocaTipoConta(this.value)">
 											<option value="">Selecione...</option>
 											<option value="SC">Sem Conta</option>
 											<option value="CC">Corrente</option>
@@ -216,14 +216,14 @@ $cod =  $_SESSION['user']['id'];
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="">Nome</label>
+										<label for=""><span id = "cmpObrgt">* </span>Nome</label>
 										<input type="hidden" name="categoriaCod" id="categoriaCod">
 										<input type="text" id="categoriaNome" name="categoriaNome" class="form-control border-input">
 									</div>
 								</div>
 								<div class="col-md-4">
 									<div class="form-group">
-										<label>Empresa / Perfil</label>
+										<label><span id = "cmpObrgt">* </span>Empresa / Perfil</label>
 										<select value="" class="form-control border-input" id="cmbEmpresaCat2" name="cmbEmpresaCat2">
 											
 										</select>
@@ -231,7 +231,7 @@ $cod =  $_SESSION['user']['id'];
 								</div>
 								<div class="col-md-2">
 									<div class="form-group">
-										<label for="">Status</label>
+										<label for=""><span id = "cmpObrgt">* </span>Status</label>
 										<select type="text" id="categoriaStatus" name="categoriaStatus" class="form-control border-input">
 											<option value="">Selecione...</option>
 											<option value="1">Ativo</option>
