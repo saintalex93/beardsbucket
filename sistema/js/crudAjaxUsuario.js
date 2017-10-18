@@ -794,7 +794,7 @@ else if(param == 2){
 				document.getElementById("retornoFormAdministrador").innerHTML = "Não foi possível alterar o Usuário";
 				document.getElementById("retornoFormAdministrador").setAttribute("class", "retDanger");
 
-				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
+				setTimeout(function(){ document.getElementById("retorinnerTextnoFormAdministrador").style.display = "none"; }, 3000);
 
 			}
 
