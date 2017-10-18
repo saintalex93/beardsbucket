@@ -1,21 +1,11 @@
 <?php include_once('superior.php');?>
 
-
-
-
-
 <div class="content">
-
-
 
 	<div class="container-fluid" >
 
-
-
 		<div class="row">
 			<div class="col-lg-12 col-md-12">
-
-
 
 				<div class="card">
 					<div class="header">
@@ -23,7 +13,6 @@
 					</div>
 
 					<div class="content">
-
 
 						<form>
 							<div class="row">
@@ -201,10 +190,6 @@
 				</div> <!-- Content FORM -->
 			</div> <!-- CARD  -->
 		</div> <!-- ROW LANCAMENTO -->
-
-
-		
-
 
 	</div> <!-- CONTAINER FLUID -->
 </div> <!-- CONTAINER -->

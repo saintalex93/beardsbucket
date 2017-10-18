@@ -152,7 +152,10 @@ else if(param == 2){
 
 			if(responseText != "Erro ao Atualizar"){
 
+
 				var oDados = JSON.parse(responseText);
+
+
 
 				document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
 				document.getElementById("buttonCancelarCliForn").style.display = 'none';
@@ -254,8 +257,23 @@ function selecionaCliForn(codCliForn){
 	// document.getElementById("cadCliFornStatus").disabled = true;
 
 
+
+
 	var catTabela = document.getElementsByName(codCliForn);
 
+
+	if(catTabela[13].innerText == "SC"){
+
+		trocaTipoConta("SC");
+
+	}
+
+	else{
+
+		trocaTipoConta("BILOLA");
+
+
+	}
 
 	document.getElementById("cadastroCliFornCod").value = catTabela[0].innerText;	
 	document.getElementById("cadCliFornName").value = catTabela[1].innerText;
