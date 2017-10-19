@@ -32,6 +32,8 @@ if($row = mysqli_fetch_assoc($result))
 		print_r(json_encode($json_array));  
 		echo '</pre>';*/ 
 
+
+
 		if (sizeof($json_array)<1){
 			
 			echo $response["fail"] = 0;
@@ -39,6 +41,9 @@ if($row = mysqli_fetch_assoc($result))
 
 		else if (str_replace(['"'], "",json_encode($json_array[0]['USR_SENHA'])) != $senha)
 			echo $response["fail"] = -1;	
+
+		else if (str_replace(['"'], "",json_encode($json_array[0]['USR_PERMISSAO'])) != 1)
+			echo $response["fail"] = -2;
 
 		else if(str_replace(['"'], "",json_encode($json_array[0]['USR_SENHA'])) == $senha && str_replace(['"'], "",json_encode($json_array[0]['USR_LOGIN'])) == $login){
 

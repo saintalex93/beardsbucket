@@ -227,9 +227,9 @@
 
 
 
-<script src="js/ajaxConsultaDashboard.js"></script>
+<!-- <script src="js/ajaxConsultaDashboard.js"></script>
 <script src="js/ajaxConsultaDespesaDashboard.js"></script>
-<script src="js/ajaxConsultaCaixaDashboard.js"></script>
+<script src="js/ajaxConsultaCaixaDashboard.js"></script> -->
 
 
 

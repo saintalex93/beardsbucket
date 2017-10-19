@@ -686,7 +686,9 @@ if(param == 1){
 							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
 							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
 							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
+							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_SENHA'] + "</td> "+
 							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+
 
 
 
@@ -704,6 +706,7 @@ if(param == 1){
 							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
 							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
 							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
+							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_SENHA'] + "</td> "+
 							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
 
 
@@ -720,6 +723,7 @@ if(param == 1){
 					setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
 
 					comboUsuario();
+					limpaAdministrador();
 				}
 
 				else{
@@ -763,8 +767,6 @@ else if(param == 2){
 
 				var oDados = JSON.parse(responseText);
 
-				var Contador = parseInt(oDados.length) -1;
-
 				var tableAdmin = document.getElementById("tableAdministrador");
 
 				var codUsuario = 'usr_admin'+oDados[0]['USR_COD'];
@@ -776,7 +778,8 @@ else if(param == 2){
 				document.getElementsByName(codUsuario)[4].innerText = oDados[0]['USR_PERMISSAO'];
 				document.getElementsByName(codUsuario)[5].innerText = oDados[0]['USR_STATUS'];
 				document.getElementsByName(codUsuario)[6].innerText = oDados[0]['USR_EMAIL'];
-				document.getElementsByName(codUsuario)[7].innerText = oDados[0]['COD_EMPR'];
+				document.getElementsByName(codUsuario)[7].innerText = oDados[0]['USR_SENHA'];
+				document.getElementsByName(codUsuario)[8].innerText = oDados[0]['COD_EMPR'];
 
 
 				document.getElementById("retornoFormAdministrador").style.display = "block";

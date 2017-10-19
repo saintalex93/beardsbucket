@@ -29,6 +29,15 @@ function selectLogin(usuario, senha){
 				
 			}
 
+					
+			else if(oDados == -2){
+				document.getElementById("message").style.display = "block";
+				document.all.message.innerHTML = "Usuário Inativo";
+				setTimeout(function(){ document.getElementById("message").style.display = "none"; }, 3000);
+
+				
+			}
+
 			else if(oDados == 1){
 				window.location = "./dashboard.php";
 			}
@@ -43,3 +52,11 @@ function selectLogin(usuario, senha){
 	}
 
 }
+
+
+
+
+		// else if(json_encode($json_array[0]['USR_PERMISSAO']) !=1)
+		// 	echo $response["fail"] = -2;
+
+
