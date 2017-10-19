@@ -42,7 +42,7 @@ if($row = mysqli_fetch_assoc($result))
 		else if (str_replace(['"'], "",json_encode($json_array[0]['USR_SENHA'])) != $senha)
 			echo $response["fail"] = -1;	
 
-		else if (str_replace(['"'], "",json_encode($json_array[0]['USR_PERMISSAO'])) != 1)
+		else if (str_replace(['"'], "",json_encode($json_array[0]['USR_STATUS'])) != 1)
 			echo $response["fail"] = -2;
 
 		else if(str_replace(['"'], "",json_encode($json_array[0]['USR_SENHA'])) == $senha && str_replace(['"'], "",json_encode($json_array[0]['USR_LOGIN'])) == $login){
