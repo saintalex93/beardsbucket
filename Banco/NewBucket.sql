@@ -143,7 +143,9 @@ insert into CATEGORIA VALUES
 
 -- 
 INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1,1),
-(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',0,2);
+(0, "Alex Santos", 'PF', "399.23.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
+(0, "Alex Santos", 'PF', "399.11.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
+(0, "Alex Santos", 'PF', "399.44.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
 
 
 INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);

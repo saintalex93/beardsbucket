@@ -124,8 +124,9 @@
 									<div class="form-group">
 										<label for="">Status</label>
 										<select value="" class="form-control border-input" id="txtStatus">
-											<option name="" id="">Pago / Recebido</option>
+											<option name="" id="">Selecione...</option>
 											<option name="" id="">A Pagar / Receber</option>
+											<option name="" id="">Pago / Recebido</option>
 										</select>
 									</div>
 								</div>

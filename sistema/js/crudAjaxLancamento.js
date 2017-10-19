@@ -175,8 +175,6 @@ function atualizaOsParanaue(codEmpresa){
 		limpaCombo("cmbConta");
 		limpaCombo("cmbCategoria");
 		bloqueiaCampos();
-
-
 	}
 }
 
