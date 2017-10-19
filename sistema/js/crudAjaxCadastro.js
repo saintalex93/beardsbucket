@@ -167,8 +167,6 @@ else if(param == 2){
 				document.getElementById("retornoFormCliForn").innerHTML = "Dados atualizados com sucesso";
 				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
 
-
-
 				var tableCliForn = document.getElementById("tableCliForn");
 
 				var linhas = document.getElementById("tableCliForn").rows;
@@ -209,12 +207,7 @@ else if(param == 2){
 
 					document.getElementById("cmbEmpresaSelecao").disabled = false;
 					document.getElementById("cadCliFornStatus").disabled = false;
-
-
 				}
-
-
-
 			}
 
 			else{
@@ -256,7 +249,7 @@ function selecionaCliForn(codCliForn){
 
 	
 	document.getElementById("cmbEmpresaSelecao").disabled = true;
-	// document.getElementById("cadCliFornStatus").disabled = true;
+	document.getElementById("cmbEmpresaFiltro").disabled = true;
 
 
 
@@ -330,10 +323,11 @@ function cancelaCliForn(){
 
 	document.getElementById("cmbEmpresaSelecao").disabled = false;
 	document.getElementById("cadCliFornStatus").disabled = false;
-
-
-
-
+	document.getElementById("cmbEmpresaFiltro").disabled = false;
+	document.getElementById("cadCliFornBanco").disabled = false;
+	document.getElementById("cadCliFornAg").disabled = false;
+	document.getElementById("cadCliFornTipoConta").disabled = false;
+	document.getElementById("cadCliFornConta").disabled = false;
 }
 //------------------------------------------FIM----------------------------------------------------------//
 
@@ -455,23 +449,30 @@ if(param == 1){
 
 					var oDados = JSON.parse(responseText);
 
-					var Contador = parseInt(oDados.length) -1;
+					// var Contador = parseInt(oDados.length) -1;
 
 					var tableCategoria = document.getElementById("tableCategoria");
 
+					var linhas = document.getElementById("tableCliForn").rows;
+
+					for (i= linhas.length-1; i>=1; i--){
+						document.getElementById("tableCliForn").deleteRow(i);
+
+					}
 
 
-					tableCategoria.insertAdjacentHTML('afterbegin',
-						"<tr class = 'registroInserido'><td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_COD'] + "</td>"+
-						"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_NOME'] + "</td> "+
-						"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUS'] + "</td> "+
-						"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['CAT_STATUSDESC'] + "</td> "+
-						"<td hidden name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td> "+
-						"<td name = 'categ"+oDados[Contador]['CAT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
+					for(i = 0; i<=oDados.length; i++){
+						tableCategoria.insertAdjacentHTML('afterbegin',
+							"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS'] + "</td> "+
+							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
+							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 
-						"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
-						);
-
+							"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+							);
+					}
 					
 					document.getElementById("categoriaNome").value = "";
 					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
