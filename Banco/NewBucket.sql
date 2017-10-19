@@ -131,13 +131,11 @@ INSERT INTO USR_EMPR VALUES(0,4,3);
 -- 
 
 insert into CATEGORIA VALUES
-(0,"Salário",1,1),(0,"Transporte",1,1),(0,"Alimentação",1,1),(0,"Taxas e Impostos",1,1),(0,"Serviços",1,1),
-(0,"Convênios",1,1),(0,"Hospedagem",0,1),(0,"Compras em Geral",1,1),(0,"Combustível",0,1),(0,"Viagens",0,1),(0,"Saúde",1,1),(0,"Estudos",1,1),
-(0,"Investimentos",1,1),(0,"Salário",1,2),(0,"Transporte",0,2),(0,"Alimentação",0,2),(0,"Taxas e Impostos",0,2),(0,"Contratos",0,2),
-(0,"Convênios",0,2),(0,"Hospedagem",0,2),(0,"Estornos",1,2),(0,"Vendas em Geral",1,2),(0,"Viagens",0,2),(0,"Estudos",1,2),(0,"Investimentos",1,2),
-(0,"Salário",0,3),(0,"Transporte",0,3),(0,"Alimentação",0,3),(0,"Taxas e Impostos",1,3),(0,"Contratos",1,3),(0,"Convênios",1,3),(0,"Hospedagem",1,3),
-(0,"Estornos",1,3),(0,"Vendas em Geral",0,3),(0,"Viagens",0,3),(0,"Estudos",1,3),(0,"Investimentos",0,3);
+(0,"Estudos",1,1),(0,"Investimentos",1,1),
+(0,"Viagens",0,2),(0,"Estudos",1,2),
+(0,"Estudos",1,3),(0,"Investimentos",0,3);
 -- 
+
 
 -- 
 

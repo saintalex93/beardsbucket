@@ -18,7 +18,14 @@ if($_GET['funcao'] == 'insereCategoria'){
 
 	if(mysqli_query($conecta,$cSql)){
 
-		$cSql = "SELECT DISTINCT CAT_NOME,EMP_COD,CAT_COD, CAT_STATUS, EMP_NOME_EMPRESA, IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC  FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD WHERE CAT_COD = $_GET[cmbEmpresaCat2] AND EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) ";
+		$codCategoria = mysqli_insert_id($conecta);
+
+
+		$cSql = "SELECT DISTINCT CAT_NOME,EMP_COD,CAT_COD, CAT_STATUS, EMP_NOME_EMPRESA, 
+		IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC 
+		FROM EMPRESA JOIN CATEGORIA ON COD_EMPRESA = EMP_COD where CAT_COD = $codCategoria";
+
+
 
 
 		$result = mysqli_query($conecta,$cSql);
@@ -36,7 +43,50 @@ if($_GET['funcao'] == 'insereCategoria'){
 	else
 		echo "Erro ao Inserir Categoria";
 }
+
 // FIM DO INSERE CATEGORIA
+//ATUALIZA CATEGORIA
+ //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+// ///////////////////////////////////////////////ATUALIZA CATEGORIAS///////////////////////////////////////////////////// // 
+
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
+
+
+else if($_GET['funcao'] == 'atualizaCategoria'){
+
+	$cSql = "UPDATE CATEGORIA SET CAT_NOME = '$_GET[categoriaNome]' , CAT_STATUS = $_GET[categoriaStatus], COD_EMPRESA = $_GET[cmbEmpresaCat] WHERE CAT_COD = $_GET[categoriaCod]";
+
+	$cSql = str_replace("''","NULL", $cSql);
+
+	
+	if(mysqli_query($conecta,$cSql)){
+
+		$cSql = "SELECT DISTINCT CAT_NOME,CAT_COD,EMP_NOME_EMPRESA,CAT_STATUS,EMP_COD,IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC FROM CATEGORIA INNER JOIN EMPRESA ON EMP_COD= COD_EMPRESA WHERE EMP_COD = $_GET[cmbEmpresaCat]";
+
+
+		$result = mysqli_query($conecta,$cSql);
+
+		$json_array = array();
+
+		while ($row = mysqli_fetch_assoc($result)){
+
+			$json_array[] = $row;
+		}
+
+		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
+
+	}
+	else
+		echo "Erro ao Atualizar";
+}
+
+
+
+
+//FIM DO ATUALIZA CATEGORIA
+
+
 
 //BUSCA CATEGORIA POR EMPRESA
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -69,41 +119,7 @@ else if($_GET['funcao']=="buscaCategoriaEmpresa"){
 //FIM DO BUSCA CATEGORIA POR EMPRESA
 
 
-//ATUALIZA CATEGORIA
- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
-// ///////////////////////////////////////////////ATUALIZA CATEGORIAS///////////////////////////////////////////////////// // 
-
-// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
-else if($_GET['funcao'] == 'atualizaCategoria'){
-
-	$cSql = "UPDATE CATEGORIA SET CAT_NOME = '$_GET[categoriaNome]' , CAT_STATUS = $_GET[categoriaStatus], COD_EMPRESA = $_GET[cmbEmpresaCat] WHERE CAT_COD = $_GET[categoriaCod]";
-
-	$cSql = str_replace("''","NULL", $cSql);
-
-	
-	if(mysqli_query($conecta,$cSql)){
-
-		$cSql = "SELECT DISTINCT CAT_NOME,CAT_COD,EMP_NOME_EMPRESA,CAT_STATUS,EMP_COD,IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) as CAT_STATUSDESC FROM CATEGORIA INNER JOIN EMPRESA ON EMP_COD= COD_EMPRESA WHERE EMP_COD = $_GET[cmbEmpresaCat]";
-
-
-		$result = mysqli_query($conecta,$cSql);
-
-		$json_array = array();
-
-		while ($row = mysqli_fetch_assoc($result)){
-
-			$json_array[] = $row;
-		}
-
-		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
-
-	}
-	else
-		echo "Erro ao Atualizar";
-}
-
-//FIM DO ATUALIZA CATEGORIA
 
 //COMBO CARREGA EMPRESAS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //

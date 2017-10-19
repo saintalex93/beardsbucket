@@ -339,53 +339,64 @@ function cancelaCliForn(){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 function buscaClienteForn(param){
 
+	if(document.getElementById("cmbEmpresaFiltro").value!=0){
+
+		var oPagina = new XMLHttpRequest();
+
+		with(oPagina){
+
+			open ('GET','./src/CrudCadastro.php?funcao=buscaClienteFornecedor&cmbEmpresaFiltro='+param);
+
+			send();
 
 
-	var oPagina = new XMLHttpRequest();
+			onload = function(){
 
-	with(oPagina){
+				var oDados = JSON.parse(responseText);
 
-		open ('GET','./src/CrudCadastro.php?funcao=buscaClienteFornecedor&cmbEmpresaFiltro='+param);
 
-		send();
 
-		
-		onload = function(){
+				var tableCliForn = document.getElementById("tableCliForn");
 
-			var oDados = JSON.parse(responseText);
+				var linhas = document.getElementById("tableCliForn").rows;
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableCliForn").deleteRow(i);
 
-			
+				}
 
-			var tableCliForn = document.getElementById("tableCliForn");
+				for(i = 0; i<=oDados.length; i++){
+					tableCliForn.insertAdjacentHTML('afterbegin', 
+						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TELEFONE'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_EMAIL'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
+						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUSDESC'] + "</td> "+					
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
+						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
+						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
+						);
+				}
 
-			var linhas = document.getElementById("tableCliForn").rows;
-			for (i= linhas.length-1; i>=1; i--){
-				document.getElementById("tableCliForn").deleteRow(i);
-
-			}
-			
-			for(i = 0; i<=oDados.length; i++){
-				tableCliForn.insertAdjacentHTML('afterbegin', 
-					"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
-					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TELEFONE'] + "</td> "+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_EMAIL'] + "</td> "+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
-					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUS'] + "</td> "+					
-					"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_STATUSDESC'] + "</td> "+					
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_BANCO']+ "</td>"+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_AGENCIA']+ "</td>"+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CONTA']+ "</td>"+
-					"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
-					"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
-					);
 			}
 
 		}
+	}
 
+	else{
+		var tableCliForn = document.getElementById("tableCliForn");
+
+		var linhas = document.getElementById("tableCliForn").rows;
+		for (i= linhas.length-1; i>=1; i--){
+			document.getElementById("tableCliForn").deleteRow(i);
+
+		}
 		
 	}
 
@@ -446,6 +457,18 @@ if(param == 1){
 				if(responseText != "Erro ao Inserir Categoria"){
 
 
+					document.getElementById("categoriaNome").value = "";
+					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
+					document.getElementById("categoriaStatus").selectedIndex = 0;
+					document.getElementById("buttonCategoria").value = 1;
+
+
+
+					document.getElementById("retornoFormCategoria").style.display = "block";
+					document.getElementById("retornoFormCategoria").innerHTML = "Dados inseridos com sucesso!";
+					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
+
+					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
 
 					var oDados = JSON.parse(responseText);
 
@@ -463,27 +486,18 @@ if(param == 1){
 
 					for(i = 0; i<=oDados.length; i++){
 						tableCategoria.insertAdjacentHTML('afterbegin',
-							"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+							"<tr class = 'registroInserido'><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS'] + "</td> "+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
 							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 
-							"<td><button class = 'btn' id = 'categ"+ oDados['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+							"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
 							);
 					}
 					
-					document.getElementById("categoriaNome").value = "";
-					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
-					document.getElementById("categoriaStatus").selectedIndex = 0;
-
-					document.getElementById("retornoFormCategoria").style.display = "block";
-					document.getElementById("retornoFormCategoria").innerHTML = "Dados inseridos com sucesso!";
-					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
-
-					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
-
+					
 				}
 
 				else{
@@ -539,7 +553,7 @@ else if(param == 2){
 		codCategoria = document.getElementsByName("categoriaCod")[0].value, 
 		categNome = document.getElementsByName("categoriaNome")[0].value, 
 		categStatus = document.getElementsByName("categoriaStatus")[0].value,
-		categEmpresa = document.getElementsByName("cmbEmpresaCat")[0].value;
+		categEmpresa = document.getElementsByName("cmbEmpresaCat2")[0].value;
 
 		document.getElementById("cmbEmpresaCat2").disabled = false;
 		document.getElementById("cmbEmpresaCat").disabled = false;
@@ -565,8 +579,10 @@ else if(param == 2){
 					document.getElementById("categoriaNome").value = "";
 					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
 					document.getElementById("categoriaStatus").selectedIndex = 0;
+					document.getElementById("buttonCategoria").value = 1;
 
-					document.getElementById("buttonCategoria").innerHTML = "Inserir";
+
+					document.getElementById("buttonCategoria").innerHTML = "Cadastrar";
 					document.getElementById("buttonCancelarCategoria").style.display = 'none';
 					document.getElementById("buttonCancelarCategoria").value = 1;
 					document.getElementById("retornoFormCategoria").style.display = "block";
@@ -595,9 +611,6 @@ else if(param == 2){
 							"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
 							);
 					}
-
-
-
 
 				}
 
@@ -635,7 +648,7 @@ function cancelaCategoria(){
 	document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
 	document.getElementById("categoriaStatus").selectedIndex = 0;
 
-	document.getElementById("buttonCategoria").innerHTML = "Inserir";
+	document.getElementById("buttonCategoria").innerHTML = "Cadastrar";
 	document.getElementById("buttonCancelarCategoria").style.display = 'none';
 	document.getElementById("buttonCancelarCategoria").value = 1;
 	document.getElementById("retornoFormCategoria").style.display = "block";
@@ -643,8 +656,6 @@ function cancelaCategoria(){
 	document.getElementById("cmbEmpresaCat2").disabled = false;
 	document.getElementById("cmbEmpresaCat").disabled = false;
 	
-
-
 
 }
 //------------------------------------------FIM----------------------------------------------------------//
@@ -658,49 +669,64 @@ function cancelaCategoria(){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 function buscaCategorias(param){
 
-
-
-	var oPagina = new XMLHttpRequest();
-
-	with(oPagina){
-
-		open ('GET','./src/CrudCadastro.php?funcao=buscaCategoriaEmpresa&cmbEmpresaCat='+param);
-
-		send();
-
-		onload = function(){
+	if(document.getElementById("cmbEmpresaCat").value != 0){
 
 
 
-			
-			var oDados = JSON.parse(responseText);
+		var oPagina = new XMLHttpRequest();
+
+		with(oPagina){
+
+			open ('GET','./src/CrudCadastro.php?funcao=buscaCategoriaEmpresa&cmbEmpresaCat='+param);
+
+			send();
+
+			onload = function(){
 
 
 
-			var tableCategoria = document.getElementById("tableCategoria");
 
-			var linhas = document.getElementById("tableCategoria").rows;
-			for (i= linhas.length-1; i>=1; i--){
-				document.getElementById("tableCategoria").deleteRow(i);
+				var oDados = JSON.parse(responseText);
+
+
+
+				var tableCategoria = document.getElementById("tableCategoria");
+
+				var linhas = document.getElementById("tableCategoria").rows;
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableCategoria").deleteRow(i);
+
+				}
+
+				for(i = 0; i<=oDados.length; i++){
+					tableCategoria.insertAdjacentHTML('afterbegin', 
+						"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+						"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS']+ "</td>"+
+						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
+						"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+						);
+				}
 
 			}
-			
-			for(i = 0; i<=oDados.length; i++){
-				tableCategoria.insertAdjacentHTML('afterbegin', 
-					"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
-					"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-					"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS']+ "</td>"+
-					"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
-					"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
-					"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-					"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
-					);
-			}
+
 
 		}
 
-		
 	}
+
+	else{
+		var tableCategoria = document.getElementById("tableCategoria");
+
+		var linhas = document.getElementById("tableCategoria").rows;
+		for (i= linhas.length-1; i>=1; i--){
+			document.getElementById("tableCategoria").deleteRow(i);
+
+		}
+	}
+
 
 }
 
@@ -741,6 +767,8 @@ function atualizaComboEmpresaCadastro(){
 			}
 
 			optionr.text = "Selecione...";
+			optionr.value = 0;
+
 			r.add(optionr);
 
 			for (var i = 0; i<oDados.length; i++){
@@ -806,6 +834,8 @@ function atualizaComboEmpresaCadastro(){
 			var a = document.getElementById("cmbEmpresaFiltro");
 			var optiona = document.createElement("option");
 			optiona.text = "Selecione...";
+			optiona.value = 0;
+
 			a.add(optiona);
 
 			var contado4 = document.getElementById("cmbEmpresaFiltro").length;
