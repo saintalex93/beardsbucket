@@ -7,7 +7,7 @@
 	var
 	// default settings object.
 	defaults = {
-		label: 'MENU',
+		label: '<i class="fa fa-bars fa-2x" aria-hidden="true"></i>',
 		duplicate: true,
 		duration: 200,
 		easingOpen: 'swing',

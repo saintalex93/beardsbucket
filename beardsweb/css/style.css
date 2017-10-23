@@ -404,7 +404,7 @@ border: none;
 	margin-top: 12px;
 	line-height: 23px;
 }
-.fa-cogs {
+.Fully .fa-cogs {
 	margin-left: 2px;
 	background: url(../images/cir.png) no-repeat;
 	padding: 26px;
@@ -422,7 +422,7 @@ border: none;
 .Fully  h4{
 	//margin-left: 20px;
 }
-.fa-heart{
+.Ver .fa-heart{
 	//margin-left: 20px;
 	width:73px;
 	background: url(../images/cir.png) no-repeat;
@@ -2055,6 +2055,7 @@ margin-bottom: 35px !important;
 /*                                                                    */
 	.default{
 		transition-duration: 1s;
+       
 	}
     .fixed {
 		transition-duration: 1s;
