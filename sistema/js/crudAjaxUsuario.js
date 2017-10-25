@@ -1023,7 +1023,7 @@ function montaTabela(codUsr){
 
 				}
 
-				for(i = 0; i<=oDados.length; i++){
+				for(i = 0; i<oDados.length; i++){
 
 					if(oDados[i]['COD_USR'] == null)
 					{
@@ -1100,7 +1100,7 @@ if(acao == 1){
 
 				if(responseText != "Erro ao atualizar"){
 
-					for(i = 0; i<=oDados.length; i++){
+					for(i = 0; i<oDados.length; i++){
 
 						if(oDados[i]['COD_USR'] == null)
 						{
@@ -1166,7 +1166,7 @@ else{
 
 			if(responseText != "Erro ao atualizar"){
 
-				for(i = 0; i<=oDados.length; i++){
+				for(i = 0; i<oDados.length; i++){
 
 					if(oDados[i]['COD_USR'] == null)
 					{

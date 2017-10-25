@@ -178,7 +178,7 @@ else if ($_GET['funcao'] == 'insereCliForn'){
 	}
 	
 	else
-		echo "Erro ao inserir Cliente ou Fornecedor".mysql_error($conecta);
+		echo "Erro ao inserir Cliente ou Fornecedor";
 
 }    
 //FIM DO INSERE CLIENTE E FORNECEDOR

@@ -56,7 +56,7 @@ if(param == 1){
 
 				}
 
-				for(i = 0; i<=oDados.length; i++){
+				for(i = 0; i<oDados.length; i++){
 
 					tableCategoria.insertAdjacentHTML('afterbegin', 
 						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
@@ -182,7 +182,7 @@ else if(param == 2){
 
 				}
 
-				for(i = 0; i<=oDados.length; i++){
+				for(i = 0; i<oDados.length; i++){
 					tableCliForn.insertAdjacentHTML('afterbegin', 
 						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
 						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
@@ -371,7 +371,7 @@ function buscaClienteForn(param){
 
 				}
 
-				for(i = 0; i<=oDados.length; i++){
+				for(i = 0; i<oDados.length; i++){
 					tableCliForn.insertAdjacentHTML('afterbegin', 
 						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
 						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
@@ -491,7 +491,7 @@ if(param == 1){
 					}
 
 
-					for(i = 0; i<=oDados.length; i++){
+					for(i = 0; i<oDados.length; i++){
 						tableCategoria.insertAdjacentHTML('afterbegin',
 							"<tr class = 'registroInserido'><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
@@ -607,7 +607,7 @@ else if(param == 2){
 
 					}
 
-					for(i = 0; i<=oDados.length; i++){
+					for(i = 0; i<oDados.length; i++){
 						tableCategoria.insertAdjacentHTML('afterbegin', 
 							"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
