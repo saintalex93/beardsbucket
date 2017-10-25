@@ -254,7 +254,6 @@ function statusPagamento(){
 
 function selecionaLancamento(param){
 
-alert(param);
 // INSERE LANÇAMENtO
 
 with(document.all){
@@ -274,25 +273,13 @@ with(document.all){
 	dataRecebimento = txtDataRecebimento.value,
 	valorPago = txtValorPago.value;
 
-
-	// alert(empresa);
-	// alert(tipoDespesa);
-	// alert(categoria);
-	// alert(conta);
-	// alert(cliente);
-	// alert(descricao);
-	// alert(valorTitulo);
-	// alert(dataVencimento);
-	// alert(formaPagamento);
-	// alert(parcelas);
-	// alert(juros);
-	// alert(dataLancamento);
-	// alert(status);
-	// alert(dataRecebimento);
-	// alert(valorPago);
-
-
 }
+alert(dataVencimento);
+alert(dataRecebimento);
+
+console.log("Desc:",descricao, "DT RECEB:", dataRecebimento,"DT VENC:", dataVencimento, "VLR PAGO:",valorPago,"VLR TITULO:",valorTitulo,"juros:",juros,"PARCELAS:",parcelas,"STATUS:",status,"TIPO DESP:",tipoDespesa,"FORMA PAGAMENTO:",formaPagamento,"CATEGORIA:",categoria,"CLIENTE:",cliente,"CONTA:",conta);
+
+
 
 if (param == 1){
 
@@ -301,23 +288,28 @@ if (param == 1){
 
 	with (oPagina){
 
-		open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=null&LCT_STATUSLANC=0&LCT_TIPO=Despesa&LCT_FRMPAG=dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1');
+		open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO='+descricao+'&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+'&LCT_JUROSDIA='+juros+'&LCT_NPARC='+parcelas+'&LCT_STATUSLANC='+status+'&LCT_TIPO='+tipoDespesa+'&LCT_FRMPAG='+formaPagamento+'&CAT_COD='+categoria+'&CLI_COD='+cliente+'&CNT_COD='+conta);
+
+// open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste Sql&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=5&LCT_STATUSLANC=Pago / Recebido&LCT_TIPO=Despesa&LCT_FRMPAG=Dinheiro&CAT_COD=5&CLI_COD=2&CNT_COD=3');
 
 
 
-		send();
+// Desc:  DT RECEB: 12/01/2017 DT VENC: 2017-12-31    CATEGORIA: 5 CLIENTE: 2 CONTA: 3
+
+send();
 
 
-		onload = function(){
+onload = function(){
 
+	alert(responseText);
 
-			var oDados = JSON.parse(responseText);
+	var oDados = JSON.parse(responseText);
 
-			alert(responseText);
+	alert(responseText);
 
-		}
+}
 
-	}
+}
 
 
 }

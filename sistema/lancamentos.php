@@ -91,10 +91,10 @@
 										<label for="">Forma de Pagamento</label>
 										<select value="" class="form-control border-input" id="cmbFormaPagamento">
 											<option name="" id="">Selecione...</option>
-											<option name="" id="">Dinheiro</option>
-											<option name="" id="">Cartão</option>
-											<option name="" id="">Cheque</option>
-											<option name="" id="">Depósito</option>
+											<option name="" id="" value="Dinheiro">Dinheiro</option>
+											<option name="" id="" value="Cartão">Cartão</option>
+											<option name="" id="" value="Cheque">Cheque</option>
+											<option name="" id="" value="Depósito">Depósito</option>
 										</select>
 									</div>
 								</div>
@@ -125,8 +125,8 @@
 										<label for="">Status</label>
 										<select value="" class="form-control border-input" id="txtStatus" onchange="statusPagamento()">
 											<option name="" id="">Selecione...</option>
-											<option name="" id="">A Pagar / Receber</option>
-											<option name="" id="">Pago / Recebido</option>
+											<option name="" id="" value="A Pagar / Receber">A Pagar / Receber</option>
+											<option name="" id="" value="Pago / Recebido">Pago / Recebido</option>
 										</select>
 									</div>
 								</div>
@@ -134,7 +134,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Data de Recebimento</label>
-										<input type="text" class="form-control border-input" id="txtDataRecebimento">
+										<input type="date" class="form-control border-input" id="txtDataRecebimento">
 									</div>
 								</div>
 								<div class="col-md-3">

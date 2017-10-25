@@ -55,47 +55,95 @@ else if($_GET['funcao'] == 'comboCliente'){
 
 else if($_GET['funcao'] == 'insereLancamento'){
 
-	$dataPagamento = $_GET['LCT_DTPAG'];
-	$dataVencimento = $_GET['LCT_DTVENC'];
+	$dataPagamento = $_GET["LCT_DTPAG"];
+	$dataPagamento = date('Y-m-d', strtotime($dataPagamento));
+
+	$dataVencimento = $_GET["LCT_DTVENC"];
+	$dataVencimento = date('Y-m-d', strtotime($dataVencimento));
+
+
 	$valorPago = $_GET['LCT_VLRPAGO'];
 	$valorTitulo = $_GET['LCT_VLRTITULO'];
 	$parcelas = $_GET['LCT_NPARC'];
 
+	if($parcelas > 1){
+
+		$codigosRegistros = array();
+
+		$valorTitulo = $valorTitulo / $parcelas;
+
+
+		for($nCont = 1; $nCont<=$parcelas; $nCont++){
+
+			if($nCont != 1)
+				$dataVencimento = date('Y-m-d',strtotime('+30 days', strtotime($dataVencimento)));	
+
+			$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO] $nCont/$parcelas',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
+			
+
+			mysqli_query($conecta, $cSql);
+
+			$codigosRegistros[] = mysqli_insert_id($conecta);
+		}
+
+		$codigosConcatenados = implode(",", $codigosRegistros);
 
 
 
+		$cSql = "SELECT * FROM LANCAMENTO WHERE LCT_COD IN ($codigosConcatenados)";
 
 
+		if($result = mysqli_query($conecta, $cSql)){ 
 
-	$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO]',NOW(),'$_GET[LCT_DTPAG]', '$_GET[LCT_DTVENC]', $_GET[LCT_VLRPAGO],$_GET[LCT_VLRTITULO],$_GET[LCT_JUROSDIA],$_GET[LCT_NPARC],'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
-
-		// LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=null&LCT_STATUSLANC=0&LCT_TIPO=Despesa&LCT_FRMPAG=dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1
-
-	if (mysqli_query($conecta, $cSql)){
-
-		$cSql = "SELECT * from LANCAMENTO";
-
-
-		$result = mysqli_query($conecta, $cSql); 
-
-		$json_array = array();  
-		while($row = mysqli_fetch_assoc($result))  
-		{  
-			$json_array[] = $row;  
-		}  
+			$json_array = array();  
+			while($row = mysqli_fetch_assoc($result))  
+			{  
+				$json_array[] = $row;  
+			}  
 
 
-		echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                         
+
+		}
+		else{
+			echo mysqli_error($conecta);
+		}	     
 
 	}
 
 	else{
-		echo mysqli_error($conecta);
-	}	     
+
+		$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO]',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
+
+		if (mysqli_query($conecta, $cSql)){
+
+			$cSql = "SELECT * from LANCAMENTO WHERE LCT_COD = ".mysqli_insert_id($conecta);
+
+
+			$result = mysqli_query($conecta, $cSql); 
+
+			$json_array = array();  
+			while($row = mysqli_fetch_assoc($result))  
+			{  
+				$json_array[] = $row;  
+			}  
+
+
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+
+		}
+
+		else{
+			echo mysqli_error($conecta);
+		}	     
+
+	}
+
+
+	
+
+//localhost/beardsbucket/sistema/src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=5&LCT_STATUSLANC=Pago&LCT_TIPO=Despesa&LCT_FRMPAG=Dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1
 
 }
-
-// ?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_VLRPAGO=1.00&LCT_VLRTITULO=1.00&LCT_JUROSDIA=NULL&LCT_NPARC=0&LCT_STATUSLANC=Pago&LCT_TIPO=Despesa&LCT_FRMPAG=Dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1
-
 
 ?>

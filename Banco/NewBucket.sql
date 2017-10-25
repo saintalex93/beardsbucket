@@ -149,5 +149,4 @@
 
 	INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);
 
-SELECT * FROM LANCAMENTO;
 
