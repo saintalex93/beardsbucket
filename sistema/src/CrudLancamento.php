@@ -80,10 +80,12 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 			$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO] $nCont/$parcelas',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
 			
+			$cSql = str_replace("''","NULL", $cSql);
 
 			mysqli_query($conecta, $cSql);
 
 			$codigosRegistros[] = mysqli_insert_id($conecta);
+
 		}
 
 		$codigosConcatenados = implode(",", $codigosRegistros);
@@ -119,6 +121,7 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 			$cSql = "SELECT * from LANCAMENTO WHERE LCT_COD = ".mysqli_insert_id($conecta);
 
+			$cSql = str_replace("''","NULL", $cSql);
 
 			$result = mysqli_query($conecta, $cSql); 
 
@@ -135,7 +138,11 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 		else{
 			echo mysqli_error($conecta);
-		}	     
+		}
+
+		mysqli_free_result($result);
+		mysqli_close($conecta);
+
 
 	}
 

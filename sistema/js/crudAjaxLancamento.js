@@ -252,77 +252,106 @@ function statusPagamento(){
 }
 
 
-function selecionaLancamento(param){
+
+
+
+
+
+
+
+
+
 
 // INSERE LANÇAMENtO
 
-with(document.all){
-	var empresa = cmbEmpresa.value ,
-	tipoDespesa = cmbTipo.value ,
-	categoria = cmbCategoria.value ,
-	conta = cmbConta.value ,
-	cliente = cmbCliente.value ,
-	descricao = txtDesc.value ,
-	valorTitulo = txtValor.value ,
-	dataVencimento = txtDataVenc.value ,
-	formaPagamento = cmbFormaPagamento.value ,
-	parcelas = txtParcelas.value,
-	juros = txtJuros.value,
-	dataLancamento = txtDataLancamento.value,
-	status = txtStatus.value,
-	dataRecebimento = txtDataRecebimento.value,
-	valorPago = txtValorPago.value;
+
+function selecionaLancamento(param){
+
+
+	with(document.all){
+		var empresa = cmbEmpresa.value ,
+		tipoDespesa = cmbTipo.value ,
+		categoria = cmbCategoria.value ,
+		conta = cmbConta.value ,
+		cliente = cmbCliente.value ,
+		descricao = txtDesc.value ,
+		valorTitulo = txtValor.value ,
+		dataVencimento = txtDataVenc.value ,
+		formaPagamento = cmbFormaPagamento.value ,
+		parcelas = txtParcelas.value,
+		juros = txtJuros.value,
+		dataLancamento = txtDataLancamento.value,
+		status = txtStatus.value,
+		dataRecebimento = txtDataRecebimento.value,
+		valorPago = txtValorPago.value;
+
+	}
+
+	if (param == 1){
+
+		var oPagina = new XMLHttpRequest();
+
+		with (oPagina){
+
+			open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO='+descricao+'&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+'&LCT_JUROSDIA='+juros+'&LCT_NPARC='+parcelas+'&LCT_STATUSLANC='+status+'&LCT_TIPO='+tipoDespesa+'&LCT_FRMPAG='+formaPagamento+'&CAT_COD='+categoria+'&CLI_COD='+cliente+'&CNT_COD='+conta);
+
+			send();
+
+			onload = function(){
+
+				var oDados = JSON.parse(responseText);
+
+				alert(responseText);
+
+				var tableCategoria = document.getElementById("tableConsulta");
+
+				var linhas = document.getElementById("tableConsulta").rows;
+
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableConsulta").deleteRow(i);
+
+				}
+
+				for(i = 0; i<oDados.length; i++){
+
+					tableCategoria.insertAdjacentHTML('beforebegin', 
+						"<tr><td name = 'cliforn"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
+						"<td name = 'cliforn"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
+						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
+
+						);
+				}
+
+
+			}
+
+
+		}
+
+	}
+
 
 }
-alert(dataVencimento);
-alert(dataRecebimento);
-
-console.log("Desc:",descricao, "DT RECEB:", dataRecebimento,"DT VENC:", dataVencimento, "VLR PAGO:",valorPago,"VLR TITULO:",valorTitulo,"juros:",juros,"PARCELAS:",parcelas,"STATUS:",status,"TIPO DESP:",tipoDespesa,"FORMA PAGAMENTO:",formaPagamento,"CATEGORIA:",categoria,"CLIENTE:",cliente,"CONTA:",conta);
 
 
 
-if (param == 1){
-
-
-	var oPagina = new XMLHttpRequest();
-
-	with (oPagina){
-
-		open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO='+descricao+'&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+'&LCT_JUROSDIA='+juros+'&LCT_NPARC='+parcelas+'&LCT_STATUSLANC='+status+'&LCT_TIPO='+tipoDespesa+'&LCT_FRMPAG='+formaPagamento+'&CAT_COD='+categoria+'&CLI_COD='+cliente+'&CNT_COD='+conta);
-
-// open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste Sql&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=5&LCT_STATUSLANC=Pago / Recebido&LCT_TIPO=Despesa&LCT_FRMPAG=Dinheiro&CAT_COD=5&CLI_COD=2&CNT_COD=3');
+ // open('GET','./src/CrudLancamento.php?
+ // funcao=insereLancamento&LCT_DESCRICAO=Teste Sql&LCT_DTPAG=2017-01-01&
+ // LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA
+ // =null&LCT_NPARC=5&LCT_STATUSLANC=Pago / Recebido&LCT_TIPO=Despesa&LCT_FRMPAG=
+ // Dinheiro&CAT_COD=5&CLI_COD=2&CNT_COD=3
 
 
 
-// Desc:  DT RECEB: 12/01/2017 DT VENC: 2017-12-31    CATEGORIA: 5 CLIENTE: 2 CONTA: 3
-
-send();
 
 
-onload = function(){
 
-	alert(responseText);
+ (function (){
 
-	var oDados = JSON.parse(responseText);
+ 	atualizaComboEmpresa();
+ 	limpaCombo("cmbCliente");
+ 	limpaCombo("cmbConta");
+ 	limpaCombo("cmbCategoria");
+ 	bloqueiaCampos();
 
-	alert(responseText);
-
-}
-
-}
-
-
-}
-
-}
-
-
-(function (){
-
-	atualizaComboEmpresa();
-	limpaCombo("cmbCliente");
-	limpaCombo("cmbConta");
-	limpaCombo("cmbCategoria");
-	bloqueiaCampos();
-
-}());
+ }());
