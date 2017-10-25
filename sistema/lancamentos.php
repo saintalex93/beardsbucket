@@ -101,7 +101,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Nº Parcelas</label>
-										<input type="text" class="form-control border-input" id="txtParcelas">
+										<input type="number" class="form-control border-input" id="txtParcelas">
 									</div>
 								</div>
 								<div class="col-md-3">
@@ -113,7 +113,7 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Data de Lançamento</label>
-										<input type="text" class="form-control border-input" disabled id="txtDataLancamento">
+										<input type="text" class="form-control border-input" disabled id="txtDataLancamento" value = "<?php echo date('d/m/Y');?>">
 									</div>
 								</div>
 
@@ -123,7 +123,7 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label for="">Status</label>
-										<select value="" class="form-control border-input" id="txtStatus">
+										<select value="" class="form-control border-input" id="txtStatus" onchange="statusPagamento()">
 											<option name="" id="">Selecione...</option>
 											<option name="" id="">A Pagar / Receber</option>
 											<option name="" id="">Pago / Recebido</option>

@@ -1,3 +1,10 @@
+
+
+
+
+// OBS:   i = 0; i<oDados.length; i++
+// Tirar o '=';
+
 //----------------------------------------INSERE CLIENTE E FORNCEDOR--------------------------------------//
 function selecionaAcaoCadClienteForncedor(param){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
@@ -698,7 +705,7 @@ function buscaCategorias(param){
 
 				}
 
-				for(i = 0; i<=oDados.length; i++){
+				for(i = 0; i<oDados.length; i++){
 					tableCategoria.insertAdjacentHTML('afterbegin', 
 						"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
 						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+

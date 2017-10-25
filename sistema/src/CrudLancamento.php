@@ -58,6 +58,7 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 	$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO]',NOW(),'$_GET[LCT_DTPAG]',$_GET[LCT_VLRPAGO],$_GET[LCT_VLRTITULO],$_GET[LCT_JUROSDIA],$_GET[LCT_NPARC],'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
 
+		
 	if (mysqli_query($conecta, $cSql)){
 
 		$cSql = "SELECT * from LANCAMENTO";

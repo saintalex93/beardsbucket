@@ -229,9 +229,78 @@ function desbloqueiaCampos(){
 		txtParcelas.disabled = false;
 		txtJuros.disabled = false;
 		txtStatus.disabled = false;
+		txtDataRecebimento.disabled = true;
+		txtValorPago.disabled = true;
+	}
+}
+
+
+
+function statusPagamento(){
+
+	if(document.getElementById("txtStatus").selectedIndex == 2){
 		txtDataRecebimento.disabled = false;
 		txtValorPago.disabled = false;
 	}
+
+	else{
+
+		txtDataRecebimento.disabled = true;
+		txtValorPago.disabled = true;
+	}
+
+}
+
+
+function selecionaLancamento(param){
+
+
+// INSERE LANÇAMENtO
+
+with(document.all){
+	var empresa = cmbEmpresa.value ,
+	tipoDespesa = cmbTipo.value ,
+	categoria = cmbCategoria.value ,
+	conta = comboConta.value ,
+	cliente = cmbCliente.value ,
+	descricao = txtDesc.value ,
+	empresa = txtEmpresa.value ,
+	empresa = txtEmpresa.value ,
+	empresa = txtEmpresa.value ,
+	empresa = txtEmpresa.value ,
+	empresa = txtEmpresa.value;
+
+
+}
+
+if (param == 1){
+
+
+	var oPagina = new XMLHttpRequest();
+
+	with (oPagina){
+
+		open('GET','.src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=null&LCT_STATUSLANC=0&LCT_TIPO=Despesa&LCT_FRMPAG=dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1');
+
+
+
+		send();
+
+
+		onload = function(){
+
+
+			var oDados = JSON.parse(responseText);
+
+			alert(oDados[0]);
+
+		}
+
+	}
+
+
+}
+
 }
 
 

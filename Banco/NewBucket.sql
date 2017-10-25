@@ -41,9 +41,7 @@ CLI_BANCO VARCHAR(15),
 CLI_AGENCIA VARCHAR(15),
 CLI_CONTA VARCHAR(15),
 CLI_TIPOCONTA CHAR(2),
-CLI_STATUS TINYINT,
-COD_EMPR INT NOT NULL,
-FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
+CLI_STATUS TINYINT
 );
 
 
@@ -55,10 +53,12 @@ USR_LOGIN VARCHAR(50) UNIQUE,
 USR_NOME VARCHAR(200),
 USR_EMAIL VARCHAR(200),
 USR_PERMISSAO TINYINT,
-USR_STATUS TINYINT,
-USR_PONTUACAO INT
+USR_STATUS TINYINT
 );
  
+
+
+
 
 CREATE TABLE USR_EMPR (
 COD_USR_EMPR INT PRIMARY KEY AUTO_INCREMENT,
@@ -105,10 +105,10 @@ ALTER TABLE LANCAMENTO ADD FOREIGN KEY(CAT_COD) REFERENCES CATEGORIA (CAT_COD);
 /*---------------------------INSERTS--------------------------------------*/
 
 INSERT INTO USUARIO VALUES
-(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
-(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,0),
-(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
-(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
+(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1),
+(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1),
+(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1),
+(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1);
 --
 
 INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",1),
@@ -131,19 +131,19 @@ INSERT INTO USR_EMPR VALUES(0,4,3);
 -- 
 
 insert into CATEGORIA VALUES
-(0,"Estudos",1,1),(0,"Investimentos",1,1),
-(0,"Viagens",0,2),(0,"Estudos",1,2),
-(0,"Estudos",1,3),(0,"Investimentos",0,3);
+(0,"Salário",1,1),(0,"Transporte",1,1),(0,"Alimentação",1,1),(0,"Taxas e Impostos",1,1),(0,"Serviços",1,1),
+(0,"Convênios",1,1),(0,"Hospedagem",0,1),(0,"Compras em Geral",1,1),(0,"Combustível",0,1),(0,"Viagens",0,1),(0,"Saúde",1,1),(0,"Estudos",1,1),
+(0,"Investimentos",1,1),(0,"Salário",1,2),(0,"Transporte",0,2),(0,"Alimentação",0,2),(0,"Taxas e Impostos",0,2),(0,"Contratos",0,2),
+(0,"Convênios",0,2),(0,"Hospedagem",0,2),(0,"Estornos",1,2),(0,"Vendas em Geral",1,2),(0,"Viagens",0,2),(0,"Estudos",1,2),(0,"Investimentos",1,2),
+(0,"Salário",0,3),(0,"Transporte",0,3),(0,"Alimentação",0,3),(0,"Taxas e Impostos",1,3),(0,"Contratos",1,3),(0,"Convênios",1,3),(0,"Hospedagem",1,3),
+(0,"Estornos",1,3),(0,"Vendas em Geral",0,3),(0,"Viagens",0,3),(0,"Estudos",1,3),(0,"Investimentos",0,3);
 -- 
 
-
 -- 
 
 -- 
-INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1,1),
-(0, "Alex Santos", 'PF', "399.23.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
-(0, "Alex Santos", 'PF', "399.11.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
-(0, "Alex Santos", 'PF', "399.44.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
+INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1),
+(0, "Alex Santos", 'PF', "399.333.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',0);
 
 
 INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);
@@ -152,4 +152,7 @@ INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),150.00,150.00,0.1,0,
 
 
            
+
+SELECT DISTINCT CAT_COD, CAT_NOME,EMP_NOME_EMPRESA,EMP_COD,IF(CAT_STATUS = 1,REPLACE(CAT_STATUS,1,'Ativo'),REPLACE(CAT_STATUS,0,'Inativo')) 
+as CAT_STATUSDESC FROM CATEGORIA INNER JOIN EMPRESA ON EMP_COD= COD_EMPRESA WHERE EMP_COD =2
 

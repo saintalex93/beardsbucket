@@ -139,9 +139,9 @@ $cod =  $_SESSION['user']['id'];
 
 
 						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd" name="buttoncadClienteForncedor" id="buttoncadClienteForncedor" value="1" onclick="selecionaAcaoCadClienteForncedor(this.value)">Cadastrar</button>
+							<button class="btn btn-info btn-fill btn-wd" name="buttoncadClienteForncedor" id="buttoncadClienteForncedor" value="1" onclick="selecionaAcaoCadClienteForncedor(this.value)">Cadastrar</button>
 
-							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCliForn()" name="buttonCancelarCliForn" id="buttonCancelarCliForn">Cancelar</button>
+							<button  class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCliForn()" name="buttonCancelarCliForn" id="buttonCancelarCliForn">Cancelar</button>
 
 						</div>
 
@@ -247,9 +247,9 @@ $cod =  $_SESSION['user']['id'];
 
 
 						<div class="text-center">
-							<button type="submit" class="btn btn-info btn-fill btn-wd"  value="1" onclick="selectionAcaoCategoria(this.value)" id="buttonCategoria">Cadastrar</button>
+							<button class="btn btn-info btn-fill btn-wd"  value="1" onclick="selectionAcaoCategoria(this.value)" id="buttonCategoria">Cadastrar</button>
 
-							<button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCategoria()" id="buttonCancelarCategoria">Cancelar</button>
+							<button class="btn btn-info btn-fill btn-wd danger" value="2" onclick="cancelaCategoria()" id="buttonCancelarCategoria">Cancelar</button>
 						</div>
 
 						<div class="row" style="margin-top: 30px;">
