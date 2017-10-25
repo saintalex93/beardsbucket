@@ -254,21 +254,42 @@ function statusPagamento(){
 
 function selecionaLancamento(param){
 
-
+alert(param);
 // INSERE LANÇAMENtO
 
 with(document.all){
 	var empresa = cmbEmpresa.value ,
 	tipoDespesa = cmbTipo.value ,
 	categoria = cmbCategoria.value ,
-	conta = comboConta.value ,
+	conta = cmbConta.value ,
 	cliente = cmbCliente.value ,
 	descricao = txtDesc.value ,
-	empresa = txtEmpresa.value ,
-	empresa = txtEmpresa.value ,
-	empresa = txtEmpresa.value ,
-	empresa = txtEmpresa.value ,
-	empresa = txtEmpresa.value;
+	valorTitulo = txtValor.value ,
+	dataVencimento = txtDataVenc.value ,
+	formaPagamento = cmbFormaPagamento.value ,
+	parcelas = txtParcelas.value,
+	juros = txtJuros.value,
+	dataLancamento = txtDataLancamento.value,
+	status = txtStatus.value,
+	dataRecebimento = txtDataRecebimento.value,
+	valorPago = txtValorPago.value;
+
+
+	// alert(empresa);
+	// alert(tipoDespesa);
+	// alert(categoria);
+	// alert(conta);
+	// alert(cliente);
+	// alert(descricao);
+	// alert(valorTitulo);
+	// alert(dataVencimento);
+	// alert(formaPagamento);
+	// alert(parcelas);
+	// alert(juros);
+	// alert(dataLancamento);
+	// alert(status);
+	// alert(dataRecebimento);
+	// alert(valorPago);
 
 
 }
@@ -280,7 +301,7 @@ if (param == 1){
 
 	with (oPagina){
 
-		open('GET','.src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=null&LCT_STATUSLANC=0&LCT_TIPO=Despesa&LCT_FRMPAG=dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1');
+		open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=null&LCT_STATUSLANC=0&LCT_TIPO=Despesa&LCT_FRMPAG=dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1');
 
 
 
@@ -292,7 +313,7 @@ if (param == 1){
 
 			var oDados = JSON.parse(responseText);
 
-			alert(oDados[0]);
+			alert(responseText);
 
 		}
 
