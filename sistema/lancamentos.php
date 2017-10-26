@@ -19,14 +19,14 @@
 
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Empresa / Grupo</label>
+										<label for=""><span id = "cmpObrgt">* </span>Empresa / Grupo</label>
 										<select value="" class="form-control border-input" id="cmbEmpresa" onchange="atualizaOsParanaue(this.value)">
 										</select>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label>Tipo</label>
+										<label><span id = "cmpObrgt">* </span>Tipo</label>
 										<select value="" class="form-control border-input" id="cmbTipo">
 											<option name="" id="">Selecione...</option>
 											<option name="" id="">Despesa</option>
@@ -36,16 +36,16 @@
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label>Categoria</label>
+										<label><span id = "cmpObrgt">* </span>Categoria</label>
 										<select value="" class="form-control border-input" id="cmbCategoria">
 										</select>
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Conta</label>
+										<label for=""><span id = "cmpObrgt">* </span>Conta</label>
 										<select value="" class="form-control border-input" id="cmbConta">
-										
+
 										</select>
 									</div>
 								</div>
@@ -56,7 +56,7 @@
 
 								<div class="col-md-3">
 									<div class="form-group">
-										<label>Cliente / Fornecedor</label>
+										<label><span id = "cmpObrgt">* </span>Cliente / Fornecedor</label>
 										<select value="" class="form-control border-input" id="cmbCliente">
 
 										</select>
@@ -64,21 +64,21 @@
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Descrição</label>
+										<label for=""><span id = "cmpObrgt">* </span>Descrição</label>
 										<input type="text" class="form-control border-input" id="txtDesc">
 									</div>
 								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Valor Título</label>
+										<label for=""><span id = "cmpObrgt">* </span>Valor Título</label>
 										<input type="text" class="form-control border-input" id="txtValor">
 									</div>
 								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Data Vencimento</label>
+										<label for=""><span id = "cmpObrgt">* </span>Data Vencimento</label>
 										<input type="date" class="form-control border-input" id="txtDataVenc">
 									</div>
 								</div>
@@ -88,7 +88,7 @@
 
 								<div class="col-md-3">
 									<div class="form-group">
-										<label for="">Forma de Pagamento</label>
+										<label for=""><span id = "cmpObrgt">* </span>Forma de Pagamento</label>
 										<select value="" class="form-control border-input" id="cmbFormaPagamento">
 											<option name="" id="">Selecione...</option>
 											<option name="" id="" value="Dinheiro">Dinheiro</option>
@@ -107,13 +107,14 @@
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Juros ao Dia</label>
-										<input type="text" class="form-control border-input" id="txtJuros">
+										<input type="number" class="form-control border-input" id="txtJuros">
 									</div>
 								</div>
 								<div class="col-md-3">
 									<div class="form-group">
 										<label for="">Data de Lançamento</label>
-										<input type="text" class="form-control border-input" disabled id="txtDataLancamento" value = "<?php echo date('d/m/Y');?>">
+										<input type="date" class="form-control border-input" disabled id="txtDataLancamento" value = "<?php echo date('Y-m-d');?>">
+										
 									</div>
 								</div>
 
@@ -122,11 +123,11 @@
 							<div class="row">
 								<div class="col-md-6">
 									<div class="form-group">
-										<label for="">Status</label>
-										<select value="" class="form-control border-input" id="txtStatus" onchange="statusPagamento()">
+										<label for=""><span id = "cmpObrgt">* </span>Status</label>
+										<select value="" class="form-control border-input" id="cmbStatus" onchange="statusPagamento()">
 											<option name="" id="">Selecione...</option>
-											<option name="" id="" value="A Pagar / Receber">A Pagar / Receber</option>
-											<option name="" id="" value="Pago / Recebido">Pago / Recebido</option>
+											<option name="" id="" value="A Pagar - Receber">A Pagar / Receber</option>
+											<option name="" id="" value="Pago - Recebido">Pago / Recebido</option>
 										</select>
 									</div>
 								</div>
@@ -159,15 +160,15 @@
 							<table class="table table-bordered table-striped text-center" width="100%" id="dataTable" cellspacing="0">
 								<thead>
 									<tr>
-										<th>Código</th>
+										<th hidden>Código</th>
 										<th>Descrição</th>
-										<th>Data</th>
-										<th>Valor</th>
-										<th>Forma de Pagamento</th>
-										<th>Cliente / Fornecedor</th>
+										<th>Valor Título</th>
+										<th>Status</th>
+										<th>Tipo</th>
+										<th>Pagamento</th>
+										<th>Categoria</th>
+										<th>Usuário</th>
 										<th>Ações</th>
-
-
 									</tr>
 								</thead>
 
@@ -190,9 +191,15 @@
 
 <script src = "js/crudAjaxLancamento.js"></script>
 
+<script src = "js/jquery.maskMoney.min.js"></script>
+
+<script>
+
+	$("#txtValor").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
+	$("#txtValorPago").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
 
 
-
+</script>
 
 
 

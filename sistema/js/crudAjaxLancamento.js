@@ -209,7 +209,7 @@ function bloqueiaCampos(){
 		cmbFormaPagamento.disabled = true;
 		txtParcelas.disabled = true;
 		txtJuros.disabled = true;
-		txtStatus.disabled = true;
+		cmbStatus.disabled = true;
 		txtDataRecebimento.disabled = true;
 		txtValorPago.disabled = true;
 	}
@@ -228,9 +228,9 @@ function desbloqueiaCampos(){
 		cmbFormaPagamento.disabled = false;
 		txtParcelas.disabled = false;
 		txtJuros.disabled = false;
-		txtStatus.disabled = false;
-		txtDataRecebimento.disabled = true;
-		txtValorPago.disabled = true;
+		cmbStatus.disabled = false;
+		// txtDataRecebimento.disabled = true;
+		// txtValorPago.disabled = true;
 	}
 }
 
@@ -238,7 +238,7 @@ function desbloqueiaCampos(){
 
 function statusPagamento(){
 
-	if(document.getElementById("txtStatus").selectedIndex == 2){
+	if(document.getElementById("cmbStatus").selectedIndex == 2){
 		txtDataRecebimento.disabled = false;
 		txtValorPago.disabled = false;
 	}
@@ -281,9 +281,40 @@ function selecionaLancamento(param){
 		parcelas = txtParcelas.value,
 		juros = txtJuros.value,
 		dataLancamento = txtDataLancamento.value,
-		status = txtStatus.value,
+		statusDesp = cmbStatus.value,
 		dataRecebimento = txtDataRecebimento.value,
 		valorPago = txtValorPago.value;
+
+		if(dataRecebimento == "")
+			dataRecebimento = "NULL";
+
+
+		if(txtValor.value.trim().length<=0){
+			valorTitulo = "0.00";
+		}
+		else{	
+			valorTitulo = valorTitulo.replace('R$','').replace('.','').replace(',','.').trim();
+		}
+
+		if(txtValorPago.value.trim().length<=0){
+			valorPago = "0.00";
+		}
+		else{	
+			valorPago = valorPago.replace('R$','').replace('.','').replace(',','.').trim();
+		}
+
+		if(cmbStatus.selectedIndex == 1){
+			dataRecebimento = "NULL";
+			valorPago = "NULL";
+		}
+
+		if(txtParcelas.value.trim().length<=0){
+			parcelas = 1;
+		}
+
+		if(txtJuros.value.trim().length<=0){
+			juros = 0;
+		}
 
 	}
 
@@ -293,15 +324,15 @@ function selecionaLancamento(param){
 
 		with (oPagina){
 
-			open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO='+descricao+'&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+'&LCT_JUROSDIA='+juros+'&LCT_NPARC='+parcelas+'&LCT_STATUSLANC='+status+'&LCT_TIPO='+tipoDespesa+'&LCT_FRMPAG='+formaPagamento+'&CAT_COD='+categoria+'&CLI_COD='+cliente+'&CNT_COD='+conta);
+
+			open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO='+descricao+'&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+'&LCT_JUROSDIA='+juros+'&LCT_NPARC='+parcelas+'&LCT_STATUSLANC='+statusDesp+'&LCT_TIPO='+tipoDespesa+'&LCT_FRMPAG='+formaPagamento+'&CAT_COD='+categoria+'&CLI_COD='+cliente+'&CNT_COD='+conta);
 
 			send();
 
 			onload = function(){
+				alert(responseText);
 
 				var oDados = JSON.parse(responseText);
-
-				alert(responseText);
 
 				var tableCategoria = document.getElementById("tableConsulta");
 
@@ -315,9 +346,31 @@ function selecionaLancamento(param){
 				for(i = 0; i<oDados.length; i++){
 
 					tableCategoria.insertAdjacentHTML('beforebegin', 
-						"<tr><td name = 'cliforn"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
-						"<td name = 'cliforn"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
-						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
+						"<tr><td name = 'lancamento"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_STATUSLANC'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_NOME'] + "</td> "+
+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENC'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_NPARC'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CLI_COD'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CNT_COD'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_COD'] + "</td> "+
+						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['COD_EMPRESA'] + "</td> "+
+
+						
+
+
+						"<td><button class = 'btn' id = 'lancamento"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button></tr> "
 
 						);
 				}
@@ -330,6 +383,47 @@ function selecionaLancamento(param){
 
 	}
 
+
+}
+
+
+
+function selecionaTabelaLancamento(codLancamento){
+
+	var indiceTabela = document.getElementsByName(codLancamento);
+
+	var dataLancamento = indiceTabela[8].innerText.substring(0, 10),
+	dataRecebimento = indiceTabela[9].innerText.substring(0, 10),
+	dataVencimento = indiceTabela[10].innerText.substring(0, 10);
+
+	// dataLancamento = dataLancamentoSF.substring(8, 10) + "/" + dataLancamentoSF.substring(5, 7) + "/" + dataLancamentoSF.substring(0, 4),
+	// dataRecebimento = dataRecebimentoSF.substring(8, 10) + "/" + dataRecebimentoSF.substring(5, 7) + "/" + dataRecebimentoSF.substring(0, 4),
+	// dataVencimento = dataVencimentoSF.substring(8, 10) + "/" + dataVencimentoSF.substring(5, 7) + "/" + dataVencimentoSF.substring(0, 4);
+
+	alert(dataLancamento);
+
+
+	with(document.all){
+		var codigo = indiceTabela[0].innerText;
+		txtDesc.value = indiceTabela[1].innerText;
+		txtValor.value = indiceTabela[2].innerText.replace("R$ ", "R$");
+		cmbStatus.value = indiceTabela[3].innerText;
+		cmbTipo.value = indiceTabela[4].innerText;
+		cmbFormaPagamento.value = indiceTabela[5].innerText;
+
+		txtDataLancamento.value = dataLancamento;
+		txtDataRecebimento.value = dataRecebimento;
+		txtDataVenc.value = dataVencimento;
+		txtValorPago.value = indiceTabela[11].innerText.replace("R$ ", "R$");;
+		txtJuros.value = indiceTabela[12].innerText;
+		txtParcelas.value = 1;
+
+		cmbCategoria.value = indiceTabela[14].innerText;
+		cmbCliente.value = indiceTabela[15].innerText;
+		cmbConta.value = indiceTabela[16].innerText;
+		cmbEmpresa.value = indiceTabela[18].innerText;	
+		
+	}
 
 }
 

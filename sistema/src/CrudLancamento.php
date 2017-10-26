@@ -55,16 +55,28 @@ else if($_GET['funcao'] == 'comboCliente'){
 
 else if($_GET['funcao'] == 'insereLancamento'){
 
-	$dataPagamento = $_GET["LCT_DTPAG"];
-	$dataPagamento = date('Y-m-d', strtotime($dataPagamento));
+	// Verificar Isso...
+
+	// if($_GET["LCT_DTPAG"] != "NULL"){
+	// 	$dataPagamento = $_GET["LCT_DTPAG"];
+	// 	$dataPagamento = date('Y-m-d', strtotime($dataPagamento));
+	// }
+
 
 	$dataVencimento = $_GET["LCT_DTVENC"];
 	$dataVencimento = date('Y-m-d', strtotime($dataVencimento));
+
+	$dataPagamento = $_GET["LCT_DTPAG"];
+	$dataPagamento = date('Y-m-d', strtotime($dataPagamento));
+
+
 
 
 	$valorPago = $_GET['LCT_VLRPAGO'];
 	$valorTitulo = $_GET['LCT_VLRTITULO'];
 	$parcelas = $_GET['LCT_NPARC'];
+	$status = $_GET['LCT_STATUSLANC'];
+
 
 	if($parcelas > 1){
 
@@ -78,7 +90,7 @@ else if($_GET['funcao'] == 'insereLancamento'){
 			if($nCont != 1)
 				$dataVencimento = date('Y-m-d',strtotime('+30 days', strtotime($dataVencimento)));	
 
-			$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO] $nCont/$parcelas',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
+			$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO] $nCont/$parcelas',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$status','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
 			
 			$cSql = str_replace("''","NULL", $cSql);
 
@@ -92,7 +104,8 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 
 
-		$cSql = "SELECT * FROM LANCAMENTO WHERE LCT_COD IN ($codigosConcatenados)";
+		$cSql = "SELECT LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')) AS LCT_VLRPAGO, CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, 
+		LCT_TIPO, LCT_FRMPAG, LANCAMENTO.CAT_COD, CLI_COD, CNT_COD, LANCAMENTO.USR_COD, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD WHERE LCT_COD IN ($codigosConcatenados)";
 
 
 		if($result = mysqli_query($conecta, $cSql)){ 
@@ -103,8 +116,11 @@ else if($_GET['funcao'] == 'insereLancamento'){
 				$json_array[] = $row;  
 			}  
 
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);   
 
-			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                         
+			$cSql = "UPDATE USUARIO SET USR_PONTUACAO = USR_PONTUACAO + 10 WHERE USR_COD = $cod";
+
+			mysqli_query($conecta, $cSql);                      
 
 		}
 		else{
@@ -115,11 +131,12 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 	else{
 
-		$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO]',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$_GET[LCT_STATUSLANC]','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
+		$cSql = "INSERT INTO LANCAMENTO VALUES (0,'$_GET[LCT_DESCRICAO]',NOW(),'$dataPagamento', '$dataVencimento', $valorPago,$valorTitulo,$_GET[LCT_JUROSDIA],$parcelas,'$status','$_GET[LCT_TIPO]','$_GET[LCT_FRMPAG]',$_GET[CAT_COD],$_GET[CLI_COD],$_GET[CNT_COD],$cod)";
 
 		if (mysqli_query($conecta, $cSql)){
 
-			$cSql = "SELECT * from LANCAMENTO WHERE LCT_COD = ".mysqli_insert_id($conecta);
+			$cSql = "SELECT LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')) AS LCT_VLRPAGO, CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, 
+			LCT_TIPO, LCT_FRMPAG, LANCAMENTO.CAT_COD, CLI_COD, CNT_COD, LANCAMENTO.USR_COD, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD WHERE LCT_COD = ".mysqli_insert_id($conecta);
 
 			$cSql = str_replace("''","NULL", $cSql);
 
@@ -131,8 +148,11 @@ else if($_GET['funcao'] == 'insereLancamento'){
 				$json_array[] = $row;  
 			}  
 
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE); 
 
-			echo json_encode($json_array, JSON_UNESCAPED_UNICODE);                          
+			$cSql = "UPDATE USUARIO SET USR_PONTUACAO = USR_PONTUACAO + 10 WHERE USR_COD = $cod";
+
+			mysqli_query($conecta, $cSql);  
 
 		}
 
