@@ -1,4 +1,8 @@
-<?php include_once('superior.php');?>
+<?php include_once('superior.php');
+require 'src/conecta.php';
+
+$cod =  $_SESSION['user']['id'];
+?>
 
 <div class="content">
 
@@ -114,7 +118,7 @@
 									<div class="form-group">
 										<label for="">Data de Lançamento</label>
 										<input type="date" class="form-control border-input" disabled id="txtDataLancamento" value = "<?php echo date('Y-m-d');?>">
-										
+
 									</div>
 								</div>
 
@@ -167,13 +171,64 @@
 										<th>Tipo</th>
 										<th>Pagamento</th>
 										<th>Categoria</th>
-										<th>Usuário</th>
+										<th>Empresa</th>
 										<th>Ações</th>
 									</tr>
 								</thead>
 
 								<tbody id="tableConsulta">
-									
+
+									<?php
+
+									$dataAtual = date('Y-m-d');
+
+
+									$cSql = "SELECT
+									LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')) AS LCT_VLRPAGO,
+									CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, LCT_TIPO, LCT_FRMPAG, 
+									LANCAMENTO.CAT_COD, CLI_COD, CNT_COD, LANCAMENTO.USR_COD, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA, EMP_NOME_EMPRESA 
+									FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD 
+									INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD INNER JOIN EMPRESA ON COD_EMPRESA = EMP_COD WHERE COD_EMPRESA IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) AND LCT_DTVENC LIKE '$dataAtual%'";
+
+
+									$result = mysqli_query($conecta, $cSql); 
+
+									while($row = mysqli_fetch_assoc($result))  
+									{  
+										echo "<tr>
+										<td name = 'lancamento".$row['LCT_COD']."' hidden>" . $row['LCT_COD'] . "</td>
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_DESCRICAO'] . "</td> 
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_VLRTITULO'] . "</td>
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_STATUSLANC'] . "</td> 
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_TIPO'] . "</td> 
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_FRMPAG'] . "</td> 
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['CAT_NOME'] . "</td> 
+										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['EMP_NOME_EMPRESA'] . "</td> 
+
+
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_DTCADASTR'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_DTPAG'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_DTVENC'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_VLRPAGO'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_JUROSDIA'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_NPARC'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['CAT_COD'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['CLI_COD'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['CNT_COD'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['USR_COD'] . "</td> 
+										<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['COD_EMPRESA'] . "</td> 
+
+										<td><button class = 'btn' id = 'lancamento". $row['LCT_COD'] ."' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button>
+
+
+										";
+									}
+
+
+
+
+									?>
+
 								</tbody>
 							</table>
 

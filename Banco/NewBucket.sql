@@ -132,12 +132,9 @@
 	-- 
 
 	insert into CATEGORIA VALUES
-	(0,"Estudos",1,1),(0,"Investimentos",1,1),
-	(0,"Viagens",0,2),(0,"Estudos",1,2),
-	(0,"Estudos",1,3),(0,"Investimentos",0,3);
-	-- 
-
-
+	(0,"Alugel",1,1),(0,"Salário",1,1),
+	(0,"Alugel",1,2),(0,"Salário",1,2),
+	(0,"Alugel",1,3),(0,"Salário",1,3);
 	-- 
 
 	-- 
@@ -147,14 +144,10 @@
 	(0, "Alex Santos", 'PF', "399.44.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
 
 
-	INSERT INTO LANCAMENTO VALUES (0,'Informática',NOW(),NOW(),NOW(),150.00,150.00,0.1,0,"Pago","Despesa","Dinheiro",5,1,1,2);
 
-
-SELECT * FROM LANCAMENTO ;
-
-SELECT LANCAMENTO.*, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD;
-
-
-
-
-
+	INSERT INTO LANCAMENTO VALUES (0,'Aluguel do Hotel',NOW(),NULL, NOW(), NULL,12000.00,0,1,'A Pagar - Receber','Receita','Dinheiro',5,2,3,2);
+	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(), NOW(),NOW(), 1000.00,1000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',6,2,3,2);
+    
+	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(),NULL, NOW(), NULL,5000.00,0,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
+	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',3,4,2,2)
+   

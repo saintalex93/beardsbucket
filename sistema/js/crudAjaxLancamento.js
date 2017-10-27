@@ -39,7 +39,7 @@ function atualizaComboEmpresa(){
 	}
 }
 
-function atualizaComboCategoria(codEmpr){
+function atualizaComboCategoria(codEmpr, codLancamento){
 	var oPagina = new XMLHttpRequest();
 
 	with(oPagina){
@@ -76,11 +76,20 @@ function atualizaComboCategoria(codEmpr){
 				r.add(optionr);
 			}
 
+			if(codLancamento != undefined){
+
+				var indiceTabela = document.getElementsByName(codLancamento);
+				var codCategoria = indiceTabela[14].innerText;
+				document.getElementById('cmbCategoria').value = codCategoria;
+
+			}
+
+
 		}
 	}
 }
 
-function atualizaComboConta(codEmpr){
+function atualizaComboConta(codEmpr, codLancamento){
 	var oPagina = new XMLHttpRequest();
 
 	with(oPagina){
@@ -116,11 +125,20 @@ function atualizaComboConta(codEmpr){
 				r.add(optionr);
 			}
 
+			if(codLancamento != undefined){
+
+				var indiceTabela = document.getElementsByName(codLancamento);
+				var codConta = indiceTabela[16].innerText;
+				document.getElementById('cmbConta').value = codConta;
+
+			}
+
+
 		}
 	}
 }
 
-function atualizaComboCliente(codEmpr){
+function atualizaComboCliente(codEmpr, codLancamento){
 	var oPagina = new XMLHttpRequest();
 
 	with(oPagina){
@@ -156,17 +174,27 @@ function atualizaComboCliente(codEmpr){
 				r.add(optionr);
 			}
 
+			if(codLancamento != undefined){
+
+				var indiceTabela = document.getElementsByName(codLancamento);
+				var codCliente = indiceTabela[15].innerText;
+				cmbCliente.value = codCliente;
+
+			}
+
+
+
 		}
 	}
 }
 
-function atualizaOsParanaue(codEmpresa){
+function atualizaOsParanaue(codEmpresa, codLancamento){
 
 	if(codEmpresa !=0){
 
-		atualizaComboCliente(codEmpresa);
-		atualizaComboConta(codEmpresa);
-		atualizaComboCategoria(codEmpresa);
+		atualizaComboCliente(codEmpresa, codLancamento);
+		atualizaComboConta(codEmpresa, codLancamento);
+		atualizaComboCategoria(codEmpresa, codLancamento);
 		desbloqueiaCampos();
 	}
 
@@ -241,12 +269,16 @@ function statusPagamento(){
 	if(document.getElementById("cmbStatus").selectedIndex == 2){
 		txtDataRecebimento.disabled = false;
 		txtValorPago.disabled = false;
+		var date2 = new Date().toISOString().substr(0, 10).replace('T', ' ');
+		txtDataRecebimento.value = date2;
+		txtValorPago.value = txtValor.value;
 	}
 
 	else{
 
 		txtDataRecebimento.disabled = true;
 		txtValorPago.disabled = true;
+
 	}
 
 }
@@ -353,7 +385,7 @@ function selecionaLancamento(param){
 						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td> "+
 						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
 						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_NOME'] + "</td> "+
+						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 
 						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td> "+
 						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td> "+
@@ -390,20 +422,29 @@ function selecionaLancamento(param){
 
 function selecionaTabelaLancamento(codLancamento){
 
-	var indiceTabela = document.getElementsByName(codLancamento);
 
-	var dataLancamento = indiceTabela[8].innerText.substring(0, 10),
-	dataRecebimento = indiceTabela[9].innerText.substring(0, 10),
-	dataVencimento = indiceTabela[10].innerText.substring(0, 10);
+	var indiceTabela = document.getElementsByName(codLancamento);
+	var codEmpresa = indiceTabela[18].innerText;
+
+	atualizaOsParanaue(codEmpresa, codLancamento);
+
+
+
+	document.getElementById("cmbEmpresa").value = codEmpresa;	
+
+// document.getElementById("cmbEmpresa").focus();
+
+var dataLancamento = indiceTabela[8].innerText.substring(0, 10),
+dataRecebimento = indiceTabela[9].innerText.substring(0, 10),
+dataVencimento = indiceTabela[10].innerText.substring(0, 10);
 
 	// dataLancamento = dataLancamentoSF.substring(8, 10) + "/" + dataLancamentoSF.substring(5, 7) + "/" + dataLancamentoSF.substring(0, 4),
 	// dataRecebimento = dataRecebimentoSF.substring(8, 10) + "/" + dataRecebimentoSF.substring(5, 7) + "/" + dataRecebimentoSF.substring(0, 4),
 	// dataVencimento = dataVencimentoSF.substring(8, 10) + "/" + dataVencimentoSF.substring(5, 7) + "/" + dataVencimentoSF.substring(0, 4);
 
-	alert(dataLancamento);
-
-
 	with(document.all){
+		
+
 		var codigo = indiceTabela[0].innerText;
 		txtDesc.value = indiceTabela[1].innerText;
 		txtValor.value = indiceTabela[2].innerText.replace("R$ ", "R$");
@@ -418,12 +459,18 @@ function selecionaTabelaLancamento(codLancamento){
 		txtJuros.value = indiceTabela[12].innerText;
 		txtParcelas.value = 1;
 
-		cmbCategoria.value = indiceTabela[14].innerText;
-		cmbCliente.value = indiceTabela[15].innerText;
-		cmbConta.value = indiceTabela[16].innerText;
-		cmbEmpresa.value = indiceTabela[18].innerText;	
+		// var codCategoria = indiceTabela[14].innerText;
+		// var codConta = indiceTabela[16].innerText;
+		// var codCliente = indiceTabela[15].innerText;
+
+		// cmbCategoria.value = codCategoria;
+		// cmbCliente.value = codCliente;
+		// cmbConta.value = codConta;
+
 		
 	}
+
+
 
 }
 
