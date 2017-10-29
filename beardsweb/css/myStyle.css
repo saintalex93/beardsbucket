@@ -1,60 +1,79 @@
-        .btnVoltar{
-            display: none;
-            z-index: 10;
-            position: fixed;
-            bottom: 90px;
-            right: 3%;
-            width: 50px;
-            height: 50px;
-            background-color: brown;
-      
-            
-        }
-        .btnVoltarLink{
-            display: block;
-            width: 100%;
-            height: 100%;
-            line-height: 50px;
-            text-align: center;
-            color: #000;
-            font-weight: bold;
-            font-size: 40px;
-        }
-        
+::-webkit-scrollbar-track {
+    background-color: #2f2626;
+}
 
- @keyframes btnVoltar {
-	0% {
-		transform:translateY(0);
-	}
-	
-	25% {
-		transform:translateY(-20px);
-	}
-	
-	50% {
-		transform:translateY(0);
-	}
-    
-    
+::-webkit-scrollbar {
+    width: 10px;
+    background: #2f2626;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #633;
+}
+
+.btnVoltar {
+    display: none;
+    z-index: 10;
+    position: fixed;
+    bottom: 40px;
+    right: 3%;
+    width: 50px;
+    height: 50px;
+    background-color: brown;
+}
+
+.btnVoltarLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    font-size: 40px;
+}
+
+@keyframes btnVoltar {
+    0% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-20px);
+    }
+    50% {
+        transform: translateY(0);
+    }
     75% {
-		transform:translateY(-20px);
-	}
-  
+        transform: translateY(-20px);
+    }
     100% {
-		transform:translateY(0);
-	}
-            
-           
+        transform: translateY(0);
+    }
 }
 
 .btnVoltar:hover {
-	animation-name: btnVoltar;
-	animation-delay: 1s;
-	animation-duration: 1s;
-	animation-timing-function: linear;
-	animation-iteration-count: 100;
+    animation-name: btnVoltar;
+    animation-delay: 1s;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 100;
 }
 
 
 /*centralizar imagens de trabalhos*/
-.imgCenter{ margin: 0 auto;}
+
+.imgCenter {
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 500px) {
+    #logoBannerHome {
+        display: none;
+    }
+    .mobile_bnt {
+        display: none;
+    }
+    .gallery {
+        display: none;
+    }
+}
