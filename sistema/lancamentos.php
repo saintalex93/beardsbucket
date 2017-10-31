@@ -284,7 +284,7 @@ $cod =  $_SESSION['user']['id'];
 						</div>
 					</div>
 					<div class="text-center" style="margin-bottom: 20px;">
-						<button class="btn btn-info btn-fill btn-wd" id="buttonLancamento" onclick="consultar()">Consultar</button>
+						<button class="btn btn-info btn-fill btn-wd" id="" onclick="consultar()">Consultar</button>
 					</div>
 
 					<div class="form-group">

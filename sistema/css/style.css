@@ -175,7 +175,7 @@ body {
 
 
 
-#buttonCancelarEmpresa, #buttonCancelarConta, #buttonCancelarUsr, #buttonCancelarCategoria,#buttonCancelarCliForn, #buttonExcluiLancamento, #buttonCancelaLancamento{
+#buttonCancelarEmpresa, #buttonCancelarConta, #consulta, #buttonCancelarUsr, #buttonCancelarCategoria,#buttonCancelarCliForn, #buttonExcluiLancamento, #buttonCancelaLancamento{
   display: none;
 }
 
