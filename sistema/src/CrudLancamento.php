@@ -188,6 +188,7 @@ else if($_GET['funcao'] == 'insereLancamento'){
 //localhost/beardsbucket/sistema/src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=5&LCT_STATUSLANC=Pago&LCT_TIPO=Despesa&LCT_FRMPAG=Dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1
 
 }
+// DELETA LANÇAMENTO
 
 else if($_GET['funcao'] == 'excluiLancamento'){
 
@@ -203,11 +204,37 @@ else if($_GET['funcao'] == 'excluiLancamento'){
 
 }
 
-
+// ALTERA LANÇAMENTO
 else if($_GET['funcao'] == 'alteraLancamento'){
 
-	// UPDATE LANCAMENTO SET LCT_DESCRICAO = '', LCT_DTPAG = '', LCT_DTVENC = '', LCT_VLRPAGO = 0.00, LCT_VLRTITULO = 0.00, LCT_JUROSDIA =0, 
- //    LCT_STATUSLANC = '', LCT_TIPO = '', LCT_FRMPAG = '', CAT_COD = 0, CLI_COD = 0, CNT_COD = 0, USR_COD = 0; 
+	if($_GET["LCT_DTPAG"] != "NULL"){
+		$dataPagamento = $_GET["LCT_DTPAG"];
+		$dataPagamento = "'".date('Y-m-d', strtotime($dataPagamento))."'";
+	}
+
+	else{
+		$dataPagamento = 'NULL';
+	}
+
+	$dataVencimento = $_GET["LCT_DTVENC"];
+	$dataVencimento = date('Y-m-d', strtotime($dataVencimento));
+
+	$descrição = $_GET['TXTDESCRICAO'];
+	$juros = $_GET['LCT_JUROSDIA'];
+	$valorPago = $_GET['LCT_VLRPAGO'];
+	$valorTitulo = $_GET['LCT_VLRTITULO'];
+	$status = $_GET['LCT_STATUSLANC'];
+	$tipo = $_GET['LCT_TIPO'];
+	$formaPagamento = $_GET['LCT_FORMAPAGAMENTO'];
+	$codCliente = $_GET['txtCliente'];
+	$codConta = $_GET['txtConta'];
+	$codCategoria = $_GET['txtCategoria'];
+
+	$codLancamento = $_GET['CODLANCAMENTO'];
+
+
+
+	$cSql = "UPDATE LANCAMENTO SET LCT_DESCRICAO = '$descrição', LCT_DTPAG = $dataPagamento, LCT_DTVENC = '$dataPagamento', LCT_VLRPAGO = $valorPago, LCT_VLRTITULO = $valorTitulo, LCT_JUROSDIA =$juros, LCT_STATUSLANC = $status, LCT_TIPO = '$tipo', LCT_FRMPAG = '$formaPagamento', CAT_COD = $codCategoria, CLI_COD = $codCliente, CNT_COD = $codConta, USR_COD = $cod WHERE LCT_COD = $codLancamento" 
 }
 
 
