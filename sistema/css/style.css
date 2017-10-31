@@ -209,6 +209,12 @@ body {
 }
 
 
+#iframeGrafico{
+  width: 100%;
+  height: 550px;
+}
+
+
 
 
 
@@ -530,6 +536,10 @@ table th{
 
 #cmpObrgt{
   color: red;
+}
+
+#cmbEmpresaSelecao{
+  margin-top: 15px;
 }
 
 

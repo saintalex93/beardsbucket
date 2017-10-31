@@ -4,83 +4,11 @@ require "src/conecta.php";
 $cod =  $_SESSION['user']['id'];
 
 ?>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-  google.charts.load('current', {'packages':['corechart']});
-  google.charts.setOnLoadCallback(drawChart);
 
-  function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        ['Mês', 'Receitas', 'Despesas'],
-
-        <?php
-
-        $mes = array();
-        $mes[] = "Mes";
-
-        $mes[] = "Jan";
-        $mes[] = 'Fev';
-        $mes[] = 'Mar';
-        $mes[] ='Abr';
-        $mes[] ='Mai';
-        $mes[] ='Jun';
-        $mes[] ='Jul';
-        $mes[] ='Ago';
-        $mes[] ='Set';
-        $mes[] ='Out';
-        $mes[] ='Nov';
-        $mes[] ='Dez';
-        
-        for($i=1; $i<13; $i++){
-            $cSql = " SELECT (SELECT SUM(LCT_VLRTITULO) from LANCAMENTO WHERE LCT_TIPO = 'Receita' AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-d')
-            BETWEEN DATE_FORMAT('2017-$i-01', '%Y-%m-d') AND DATE_FORMAT('2017-$i-31', '%Y-%m-d')) AS RECEITA, 
-            (SELECT SUM(LCT_VLRTITULO) from LANCAMENTO WHERE LCT_TIPO = 'Despesa' AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-d')
-            BETWEEN DATE_FORMAT('2017-$i-01', '%Y-%m-d') AND DATE_FORMAT('2017-$i-31', '%Y-%m-d')) AS DESPESA";
-
-            $result = mysqli_query($conecta, $cSql);
-
-            while($row = mysqli_fetch_assoc($result))
-            {  
-             if($row['DESPESA'] == "")
-                 $desp = 0.00;
-             else 
-                $desp = $row['DESPESA'];
-
-            if($row['RECEITA'] == "")
-                $recei = 0.00;
-         else 
-            $recei = $row['RECEITA'];
-
-
-
-        echo "['$mes[$i]',   $recei,      $desp],";
-
-
-    }  
-
-}
-
-?>
-
-
-
-
-]);
-
-    var options = {
-      title: 'Detalhes Anuais',
-      hAxis: {title: 'Mês',  titleTextStyle: {color: '#333'}},
-      vAxis: {minValue: 0}
-  };
-
-  var chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
-  chart.draw(data, options);
-}
-</script>
 <div class="col-md-6 col-md-offset-3 text-center">
     <div class="form-group">
 
-        <select class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" onchange="buscaReceita(this.value,<?php echo $cod;?>);buscaDespesa(this.value,<?php echo $cod;?>);caixaDash(this.value,<?php echo $cod;?>)">
+        <select class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" onchange="buscaDespesa(this.value);atualizaGrafico(this.value)">
             <label for=""><span id = "cmpObrgt">* </span>Empresa</label>
             <option value="">Selecione...</option>
 
@@ -127,7 +55,7 @@ $cod =  $_SESSION['user']['id'];
                                 <div class="numbers" id="receita">
                                     <p >Receita</p>
                                     
-
+                                    <p class='valores' id='vlrReceita' name='vlrReceita'>Teste</p>
 
                                 </p>
                             </div>
@@ -154,6 +82,8 @@ $cod =  $_SESSION['user']['id'];
                         <div class="col-xs-7">
                             <div class="numbers" id="despesa">
                                 <p>Despesas</p>
+
+                                <p class='valores' id='vlrDespesa' name='vlrDespesa'>Teste</p>
                             </div>
                         </div>
                     </div>
@@ -178,7 +108,7 @@ $cod =  $_SESSION['user']['id'];
                         <div class="col-xs-7">
                             <div class="numbers">
                                 <p>Caixa</p>
-                                <p class="valores" id="caixa"></p>
+                                <p class='valores' id='caixa' name='caixa'>Teste</p>
                             </div>
                         </div>
                     </div>
@@ -199,65 +129,66 @@ $cod =  $_SESSION['user']['id'];
 
             <div class="col-md-12">
                 <div class="card">
-                   <div id="chart_div" style="width: 100%; height: 500px;"></div>
-               </div>
-           </div>
-       </div>
-   </div> <!--ROW GRÁFICO-->
 
-   <div class="row"> <!-- DESPESAS -->
-
-    <div class="content">
-
-        <div class="col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Despesas</h4>
+                    <iframe src="grafico.php?codEmpresa=0" frameborder="0" id="iframeGrafico"></iframe>
                 </div>
-                <div class="content">
-                   <div class="table-responsive">
-                      <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Valor</th>
-                                <th>Data Vencimento</th>
-                                <th>Juros</th>
-                                <th>Valor Atual</th>
-                            </tr>
-                        </thead>
+            </div>
+        </div>
+    </div> <!--ROW GRÁFICO-->
 
-                        <tbody>
+    <div class="row"> <!-- DESPESAS -->
 
-                            <?php
-                            for($nCont = 0; $nCont<=5; $nCont++){
+        <div class="content">
 
-                                echo "
-
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Despesas</h4>
+                    </div>
+                    <div class="content">
+                       <div class="table-responsive">
+                          <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+                            <thead>
                                 <tr>
-                                <td>$nCont</td>
-                                <td>Eletropaulo</td>
-                                <td>R$ 8.000,00</td>
-                                <td>21/02/2017</td>
-                                <td>0.1%</td>
-                                <td>8.010,00</td>
+                                    <th>Código</th>
+                                    <th>Nome</th>
+                                    <th>Valor</th>
+                                    <th>Data Vencimento</th>
+                                    <th>Juros</th>
+                                    <th>Valor Atual</th>
                                 </tr>
-                                ";
+                            </thead>
 
-                            }
+                            <tbody>
 
-                            ?>
+                                <?php
+                                for($nCont = 0; $nCont<=5; $nCont++){
+
+                                    echo "
+
+                                    <tr>
+                                    <td>$nCont</td>
+                                    <td>Eletropaulo</td>
+                                    <td>R$ 8.000,00</td>
+                                    <td>21/02/2017</td>
+                                    <td>0.1%</td>
+                                    <td>8.010,00</td>
+                                    </tr>
+                                    ";
+
+                                }
+
+                                ?>
 
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div> <!--ROW DESPESAS -->
 
 <div class="row">

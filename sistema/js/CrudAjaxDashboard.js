@@ -52,67 +52,75 @@ function atualizaComboEmpresaCadastro(){
 
 
 
+//------------------------------------------FIM----------------------------------------------------------//
+
+
+
+function buscaDespesa(codEmpresa){
+
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+		open('GET', './src/CrudDashboard.php?funcao=atualizaDash&cmbEmpresaSelecao='+codEmpresa);
+
+		send();
+		
+		onload = function(){
+
+
+			var valorDespesa, valorReceita, valorCaixa;
+			var oDados = JSON.parse(responseText);
+
+			if(oDados[0]['DESPESA'] != null){
+				valorDespesa = oDados[0]['DESPESA'].replace('','R$').replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.");
+			}
+
+			else{
+				valorDespesa = "R$ 0.00";
+			}
+
+			if(oDados[0]['RECEITA'] != null){
+				valorReceita = oDados[0]['RECEITA'].replace('','R$').replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.");
+				
+			}
+
+			else{
+				valorReceita = "R$ 0.00";
+			}
+
+			if(oDados[0]['CAIXA']!= null){
+				valorCaixa = oDados[0]['CAIXA'].replace('','R$').replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.");
+			}
+
+			else{
+				valorCaixa = "R$ 0.00";
+			}
+
+			document.getElementById("vlrReceita").innerHTML =valorReceita;
+
+			document.getElementById("vlrDespesa").innerHTML =valorDespesa;
+
+			document.getElementById("caixa").innerHTML =valorCaixa;
+			
+		}
+	}
+}
+
+
+
+
+
+function atualizaGrafico(id){
+	document.getElementById('iframeGrafico').src = "grafico.php?codEmpresa="+id;
+
+}
+
+
+
+
 (function(){
 	atualizaComboEmpresaCadastro();
 
 }())
-//------------------------------------------FIM----------------------------------------------------------//
-
-
-//http://localhost/beardsbucket/sistema/src/CrudDashboard.php?funcao=buscaReceita&cmbEmpresaSelecao=3&codUsuario=2
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////// CONSULTA RECEITA DASH ///////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function buscaReceita(param,codUsuario){
-
-
-	var oPagina = new XMLHttpRequest();
-
-	with(oPagina){
-
-		open('GET', './src/CrudDashboard.php?funcao=buscaReceita&cmbEmpresaSelecao='+param+'&codUsuario='+codUsuario);
-
-		send();
-		
-		onload = function(){
-
-
-			var oDados = JSON.parse(responseText);
-
-			var receita = document.getElementById('receita');
-
-			receita.insertAdjacentHTML('beforeend',"<p class='valores' id='vlrReceita' name='vlrReceita'>"+oDados[0]['LCT_VLRTITULO'].replace('','R$').replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.")+"</p>");
-
-
-		}
-
-
-	}
-}
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////// CONSULTA DESPESA DASH ///////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-function buscaDespesa(param,codUsuario){
-
-
-	var oPagina = new XMLHttpRequest();
-
-	with(oPagina){
-
-		open('GET', './src/CrudDashboard.php?funcao=buscaDespesa&cmbEmpresaSelecao='+param+'&codUsuario='+codUsuario);
-
-		send();
-		
-		onload = function(){
-
-			var oDados = JSON.parse(responseText);
-
-			var receita = document.getElementById('despesa');
-
-			receita.insertAdjacentHTML('beforeend',"<p class='valores' id='vlrDespesa' name='vlrDespesa'>"+oDados[0]['LCT_VLRTITULO'].replace('','R$').replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.")+"</p>");
-		}
-	}
-}
