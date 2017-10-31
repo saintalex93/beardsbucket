@@ -12,12 +12,12 @@
         if($codEmpresa==0){
                 $cSql = " SELECT (SELECT SUM(LCT_VLRTITULO) from LANCAMENTO INNER JOIN CONTA ON LANCAMENTO.CNT_COD = CONTA.CNT_COD 
                 INNER JOIN EMPRESA ON EMP_COD = COD_EMPR  WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) AND LCT_TIPO = 
-                'Receita' AND LCT_STATUSLANC ='A Pagar - Receber' AND  DATE_FORMAT(LCT_DTVENC, '%Y-%m-d')
-                BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-d') AND DATE_FORMAT('$dataAtual', '%Y-%m-d')) AS RECEITA, 
+                'Receita' AND LCT_STATUSLANC ='A Pagar - Receber' AND  DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d')
+                BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-%d') AND DATE_FORMAT('$dataAtual', '%Y-%m-%d')) AS RECEITA, 
                 (SELECT SUM(LCT_VLRTITULO) from LANCAMENTO  INNER JOIN CONTA ON LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA 
                 ON EMP_COD = COD_EMPR  WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) AND LCT_TIPO = 'Despesa' AND 
-                LCT_STATUSLANC ='A Pagar - Receber' AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-d') BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-d')
-                AND DATE_FORMAT('$dataAtual', '%Y-%m-d')) AS DESPESA, (SELECT SUM(CNT_SALDOINICIAL) FROM CONTA WHERE COD_EMPR IN 
+                LCT_STATUSLANC ='A Pagar - Receber' AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-%d')
+                AND DATE_FORMAT('$dataAtual', '%Y-%m-%d')) AS DESPESA, (SELECT SUM(CNT_SALDOINICIAL) FROM CONTA WHERE COD_EMPR IN 
                 (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod)) AS CAIXA";
 
 
@@ -28,12 +28,12 @@
 
                 $cSql = " SELECT (SELECT SUM(LCT_VLRTITULO) from LANCAMENTO INNER JOIN CONTA ON LANCAMENTO.CNT_COD = CONTA.CNT_COD 
                 INNER JOIN EMPRESA ON EMP_COD = COD_EMPR  WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) AND LCT_TIPO = 
-                'Receita' AND LCT_STATUSLANC ='A Pagar - Receber' AND COD_EMPR = $codEmpresa AND  DATE_FORMAT(LCT_DTVENC, '%Y-%m-d')
-                BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-d') AND DATE_FORMAT('$dataAtual', '%Y-%m-d')) AS RECEITA, 
+                'Receita' AND LCT_STATUSLANC ='A Pagar - Receber' AND COD_EMPR = $codEmpresa AND  DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d')
+                BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-%d') AND DATE_FORMAT('$dataAtual', '%Y-%m-%d')) AS RECEITA, 
                 (SELECT SUM(LCT_VLRTITULO) from LANCAMENTO  INNER JOIN CONTA ON LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA 
                 ON EMP_COD = COD_EMPR  WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) AND LCT_TIPO = 'Despesa' AND 
-                LCT_STATUSLANC ='A Pagar - Receber' AND COD_EMPR = $codEmpresa AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-d') BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-d')
-                AND DATE_FORMAT('$dataAtual', '%Y-%m-d')) AS DESPESA, (SELECT SUM(CNT_SALDOINICIAL) FROM CONTA WHERE COD_EMPR =$codEmpresa) AS CAIXA;";
+                LCT_STATUSLANC ='A Pagar - Receber' AND COD_EMPR = $codEmpresa AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') BETWEEN DATE_FORMAT('$dataAtual', '%Y-%m-%d')
+                AND DATE_FORMAT('$dataAtual', '%Y-%m-%d')) AS DESPESA, (SELECT SUM(CNT_SALDOINICIAL) FROM CONTA WHERE COD_EMPR =$codEmpresa) AS CAIXA;";
 
                
 

@@ -19,7 +19,7 @@ function atualizaComboEmpresaCadastro(){
 
 			var r = document.getElementById("cmbEmpresaSelecao");
 			var optionr = document.createElement("option");
-			optionr.text = "Selecione...";
+			optionr.text = "Todas...";
 			r.add(optionr);
 
 			var contador2 = document.getElementById("cmbEmpresaSelecao").length;
@@ -29,7 +29,7 @@ function atualizaComboEmpresaCadastro(){
 				combinho2.remove(combinho2.i);
 			}
 
-			optionr.text = "Selecione...";
+			optionr.text = "Todas";
 			optionr.value = 0;
 
 			r.add(optionr);
@@ -83,7 +83,7 @@ function buscaDespesa(codEmpresa){
 
 			if(oDados[0]['RECEITA'] != null){
 				valorReceita = oDados[0]['RECEITA'].replace('','R$').replace(/[.]/g, ",").replace(/\d(?=(?:\d{3})+(?:\D|$))/g, "$&.");
-				
+
 			}
 
 			else{
@@ -122,5 +122,7 @@ function atualizaGrafico(id){
 
 (function(){
 	atualizaComboEmpresaCadastro();
+	buscaDespesa(0);
+	atualizaGrafico(0);
 
 }())

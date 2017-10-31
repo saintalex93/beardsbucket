@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<style type="text/css">
+@media screen
+{
+	div
+	{
+		background: #00FF00;
+		border: 3px double #990000;
+	}
+
+}
+
+@media print
+{
+	div
+	{
+		background: red;
+		border: 5px dotted blue;
+	}
+	button
+	{
+		display: none;
+	}
+}
+</style>
+<body>
+	
+	<div>
+		tesgte
+	</div>
+	<button onclick="window.print()">Imprimir</button>
+</body>
+</html>

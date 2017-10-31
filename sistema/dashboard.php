@@ -55,7 +55,7 @@ $cod =  $_SESSION['user']['id'];
                                 <div class="numbers" id="receita">
                                     <p >Receita</p>
                                     
-                                    <p class='valores' id='vlrReceita' name='vlrReceita'>Teste</p>
+                                    <p class='valores' id='vlrReceita' name='vlrReceita'></p>
 
                                 </p>
                             </div>
@@ -83,7 +83,7 @@ $cod =  $_SESSION['user']['id'];
                             <div class="numbers" id="despesa">
                                 <p>Despesas</p>
 
-                                <p class='valores' id='vlrDespesa' name='vlrDespesa'>Teste</p>
+                                <p class='valores' id='vlrDespesa' name='vlrDespesa'></p>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ $cod =  $_SESSION['user']['id'];
                         <div class="col-xs-7">
                             <div class="numbers">
                                 <p>Caixa</p>
-                                <p class='valores' id='caixa' name='caixa'>Teste</p>
+                                <p class='valores' id='caixa' name='caixa'></p>
                             </div>
                         </div>
                     </div>
