@@ -1,3 +1,36 @@
+#logoBannerHome {
+  position: absolute;
+ 
+  opacity: 1;
+margin: 0 auto;
+  width: 450px;
+ height: 100hv;
+  top: 0; bottom: 0;
+ left: 0; right: 0;
+
+   padding-top: 55px;
+ //background: blue;
+  
+}
+
+#logoBannerHome img {
+ //position: fixed;
+  width: 450px;
+    //background: red;
+   
+    /* box-shadow: 2px 2px 2px #363636;
+ -webkit-box-shadow: 2px 2px 2px #363636;
+ -moz-box-shadow: 2px 2px 2px #363636;*/
+}
+
+
+
+
+
+
+
+
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -131,7 +164,7 @@ border: none;
 	color:#1fcdff;
 }
 .gallery {
-	height:500px;
+	height: 100vh;
 }
 #camera_wrap_1{
 	margin-bottom:0 !important;
@@ -231,6 +264,7 @@ border: none;
 	.news p{
 		text-align: justify;
 	}
+    
 	
 }
 @media screen and (max-width: 1229px) {

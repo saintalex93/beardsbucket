@@ -22,6 +22,7 @@ $cod =  $_SESSION['user']['id'];
 							<div class="row">
 
 								<div class="col-md-3">
+									<input type="hidden" id="codLancamento">
 									<div class="form-group">
 										<label for=""><span id = "cmpObrgt">* </span>Empresa / Grupo</label>
 										<select value="" class="form-control border-input" id="cmbEmpresa" onchange="atualizaOsParanaue(this.value)">
@@ -155,9 +156,25 @@ $cod =  $_SESSION['user']['id'];
 
 					</form>
 
+
+
 					<div class="text-center">
-						<button type="submit" class="btn btn-info btn-fill btn-wd botao" onclick="selecionaLancamento(this.value)" value="1">Cadastrar</button>
+						<button type="submit" class="btn btn-info btn-fill btn-wd" onclick="selecionaLancamento(this.value)" value="1" id="buttonLancamento">Cadastrar</button>
+
+						<button type="submit" id="buttonExcluiLancamento" class="btn btn-info btn-fill btn-wd danger " onclick="deletaLancamento(document.getElementById('codLancamento').value)" value="1">Excluir</button>
+
 					</div>
+
+					<div class="text-center botaoCancelaLancamento">
+
+						<button type="submit" class="btn btn-info btn-fill btn-wd danger cancelar" onclick="cancelaLancamento()" value="1" id="buttonCancelaLancamento">Cancelar</button>
+					</div>
+
+					<div class="form-group">
+						<output type="text" class="text-center" id="retornoFormLancamento"></output>
+					</div>
+
+
 
 					<div class="content"> <!-- Content Tabela -->
 						<div class="table-responsive">
@@ -195,7 +212,7 @@ $cod =  $_SESSION['user']['id'];
 
 									while($row = mysqli_fetch_assoc($result))  
 									{  
-										echo "<tr>
+										echo "<tr id = 'linha".$row['LCT_COD']."'>
 										<td name = 'lancamento".$row['LCT_COD']."' hidden>" . $row['LCT_COD'] . "</td>
 										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_DESCRICAO'] . "</td> 
 										<td name = 'lancamento".$row['LCT_COD']."'>" . $row['LCT_VLRTITULO'] . "</td>

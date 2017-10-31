@@ -125,7 +125,7 @@
 							<div class="content">
 
 
-								<form>
+								<form action="src/insertCadastroUser.php" method="POST">
 
 									<h4 class="title tituloCadastro">Acesso:</h4>
 
@@ -134,14 +134,14 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for=""><span id = "cmpObrgt">* </span>Nome</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder=""  required>
+												<input type="text" class="form-control border-input" name='nomeCadastro' id="" placeholder=""  required>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="">Email</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+												<input type="text" class="form-control border-input" name='emailCadastro' id="" placeholder="">
 											</div>
 										</div>
 
@@ -153,14 +153,14 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for=""><span id = "cmpObrgt">* </span>Login</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="" required>
+												<input type="text" class="form-control border-input" name='loginCadastro' id="" placeholder="" required>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for=""><span id = "cmpObrgt">* </span>Senha</label>
-												<input type="password" class="form-control border-input" name='' id="" placeholder="" required>
+												<input type="password" class="form-control border-input" name='senhaCadastro' id="" placeholder="" required>
 											</div>
 										</div>
 
@@ -175,14 +175,14 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for=""><span id = "cmpObrgt">* </span>Empresa / Perfil</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="Pessoal / Nome da Empresa" required>
+												<input type="text" class="form-control border-input" name="nomeEmpresaCadastro" id="" placeholder="Pessoal / Nome da Empresa" required>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="">CNPJ / CPF</label>
-												<input type="text" class="form-control border-input" name='' 
+												<input type="text" class="form-control border-input" name="cnpjEmpresaCadastro" 
 												id="">	
 											</div>
 										</div>
@@ -197,14 +197,14 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for=""><span id = "cmpObrgt">* </span>Nome</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="" required>
+												<input type="text" class="form-control border-input" name='nomeContaCadastro' id="" placeholder="" required>
 											</div>
 										</div>
 
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="">Banco</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="">
+												<input type="text" class="form-control border-input" name='bancoContaCadastro' id="" placeholder="">
 											</div>
 										</div>
 
@@ -215,21 +215,21 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="">Agência</label>
-												<input type="text" class="form-control border-input" name='' id="" placeholder="Pessoal / Nome da Empresa">
+												<input type="text" class="form-control border-input" name='agenciaContaCadastro' id="" placeholder="Pessoal / Nome da Empresa">
 											</div>
 										</div>
 
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="">Número da Conta</label>
-												<input type="text" class="form-control border-input" name='' id="">
+												<input type="text" class="form-control border-input" name='numeroContaCadastro' id="">
 											</div>
 										</div>
 
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for="">Tipo da Conta</label>
-												<select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta" >
+												<select multiple placeholder="" class="form-control border-input" id="tipoConta" name="tipoContaCadastro" >
 													<option value="">Selecione...</option>
 													<option value="CC">Conta Corrente</option>
 													<option value="CP">Conta Poupança</option>
@@ -242,7 +242,7 @@
 										<div class="col-md-3">
 											<div class="form-group">
 												<label for=""><span id = "cmpObrgt">* </span>Saldo Inicial</label>
-												<input type="text" class="form-control border-input" name='' id="" required>
+												<input type="text" class="form-control border-input" name='saldoContaCadastro' id="" required>
 											</div>
 										</div>
 

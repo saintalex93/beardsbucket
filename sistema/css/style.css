@@ -156,7 +156,8 @@ body {
 }
 
 
-#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, #retornoFormCategoria,#retornoFormCliForn{
+#retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, 
+#retornoFormCategoria,#retornoFormCliForn, #retornoFormLancamento{
   display: none;
   text-align: center;
   font-weight: bold;
@@ -174,11 +175,11 @@ body {
 
 
 
-#buttonCancelarEmpresa, #buttonCancelarConta, #buttonCancelarUsr, #buttonCancelarCategoria,#buttonCancelarCliForn{
+#buttonCancelarEmpresa, #buttonCancelarConta, #buttonCancelarUsr, #buttonCancelarCategoria,#buttonCancelarCliForn, #buttonExcluiLancamento, #buttonCancelaLancamento{
   display: none;
 }
 
-.btn.danger{
+.btn-info.btn-fill.danger{
   background: #EB5E28;
 }
 
@@ -412,6 +413,20 @@ body {
 .botoes{
   margin-bottom: 30px;
 }
+
+.btn-info.btn-fill.danger.cancelar{
+  background: #ea2626;
+}
+
+.btn-info.btn-fill.danger.cancelar:hover{
+  background: #da3939;
+}
+
+.botaoCancelaLancamento{
+  margin-top: 20px;
+}
+
+
 
 
 .tituloSiteBeards{

@@ -1,3 +1,5 @@
+var codigo;
+
 function atualizaComboEmpresa(){
 	var oPagina = new XMLHttpRequest();
 
@@ -34,7 +36,6 @@ function atualizaComboEmpresa(){
 				optionr.value = oDados[i]['EMP_COD'];
 				r.add(optionr);
 			}
-
 		}
 	}
 }
@@ -83,8 +84,6 @@ function atualizaComboCategoria(codEmpr, codLancamento){
 				document.getElementById('cmbCategoria').value = codCategoria;
 
 			}
-
-
 		}
 	}
 }
@@ -132,8 +131,6 @@ function atualizaComboConta(codEmpr, codLancamento){
 				document.getElementById('cmbConta').value = codConta;
 
 			}
-
-
 		}
 	}
 }
@@ -181,9 +178,6 @@ function atualizaComboCliente(codEmpr, codLancamento){
 				cmbCliente.value = codCliente;
 
 			}
-
-
-
 		}
 	}
 }
@@ -284,16 +278,6 @@ function statusPagamento(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
 // INSERE LANÇAMENtO
 
 
@@ -356,59 +340,136 @@ function selecionaLancamento(param){
 
 		with (oPagina){
 
-
 			open('GET','./src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO='+descricao+'&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+'&LCT_JUROSDIA='+juros+'&LCT_NPARC='+parcelas+'&LCT_STATUSLANC='+statusDesp+'&LCT_TIPO='+tipoDespesa+'&LCT_FRMPAG='+formaPagamento+'&CAT_COD='+categoria+'&CLI_COD='+cliente+'&CNT_COD='+conta);
 
 			send();
 
 			onload = function(){
-				alert(responseText);
 
-				var oDados = JSON.parse(responseText);
+				if(responseText.substring(0,14) != "erro ao lancar"){
 
-				var tableCategoria = document.getElementById("tableConsulta");
+					var oDados = JSON.parse(responseText);
 
-				var linhas = document.getElementById("tableConsulta").rows;
+					var tableCategoria = document.getElementById("tableConsulta");
 
-				for (i= linhas.length-1; i>=1; i--){
-					document.getElementById("tableConsulta").deleteRow(i);
+					var linhas = document.getElementById("tableConsulta").rows;
 
+					for (i= linhas.length-1; i>=1; i--){
+						document.getElementById("tableConsulta").deleteRow(i);
+
+					}
+
+					for(i = 0; i<oDados.length; i++){
+
+						tableCategoria.insertAdjacentHTML('beforebegin', 
+							"<tr id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'lancamento"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_STATUSLANC'] + "</td> "+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td> "+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENC'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_NPARC'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CLI_COD'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CNT_COD'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_COD'] + "</td> "+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['COD_EMPRESA'] + "</td> "+
+
+
+							"<td><button class = 'btn' id = 'lancamento"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button></tr> "
+
+							);
+
+						document.getElementById("retornoFormLancamento").style.display = "block";
+						document.getElementById("retornoFormLancamento").innerHTML = "Dados inseridos com sucesso!";
+						document.getElementById("retornoFormLancamento").setAttribute("class", "retSuccess");
+
+						setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
+
+						cancelaLancamento();
+					}
 				}
 
-				for(i = 0; i<oDados.length; i++){
+				else{
+					document.getElementById("retornoFormLancamento").style.display = "block";
+					document.getElementById("retornoFormLancamento").innerHTML = "Erro ao inserir dados.";
+					document.getElementById("retornoFormLancamento").setAttribute("class", "retDanger");
 
-					tableCategoria.insertAdjacentHTML('beforebegin', 
-						"<tr><td name = 'lancamento"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_STATUSLANC'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-						"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENC'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_NPARC'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CLI_COD'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CNT_COD'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_COD'] + "</td> "+
-						"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['COD_EMPRESA'] + "</td> "+
-
-						
+					setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
 
 
-						"<td><button class = 'btn' id = 'lancamento"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button></tr> "
-
-						);
 				}
-
 
 			}
+
+		}
+
+	}
+
+	else{
+
+
+
+
+
+	}
+
+
+}
+
+
+function deletaLancamento(codLancamento){
+
+
+
+	var nomeLinha = "linha"+codLancamento;
+
+
+	var oPagina = new XMLHttpRequest();
+
+	with(oPagina){
+
+
+		open('GET','./src/CrudLancamento.php?funcao=excluiLancamento&CODLANCAMENTO='+codLancamento);
+
+
+		send();
+
+		onload = function(){
+
+			if(responseText == "Deletado"){
+
+				var parent = document.getElementById("tableConsulta");
+				var child = document.getElementById(nomeLinha);
+				parent.removeChild(child);
+
+				document.getElementById("retornoFormLancamento").style.display = "block";
+				document.getElementById("retornoFormLancamento").innerHTML = "Dados deletados com sucesso!";
+				document.getElementById("retornoFormLancamento").setAttribute("class", "retSuccess");
+
+				setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
+
+				cancelaLancamento();
+
+			}
+			else{
+				document.getElementById("retornoFormLancamento").style.display = "block";
+				document.getElementById("retornoFormLancamento").innerHTML = "Erro ao deletar dados";
+				document.getElementById("retornoFormLancamento").setAttribute("class", "retDanger");
+
+				setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
+
+				cancelaLancamento();
+			}
+
 
 
 		}
@@ -422,30 +483,30 @@ function selecionaLancamento(param){
 
 function selecionaTabelaLancamento(codLancamento){
 
+	
 
 	var indiceTabela = document.getElementsByName(codLancamento);
 	var codEmpresa = indiceTabela[18].innerText;
 
 	atualizaOsParanaue(codEmpresa, codLancamento);
 
+	document.getElementById("buttonLancamento").value = 2;
 
+	statusPagamento();
 
 	document.getElementById("cmbEmpresa").value = codEmpresa;	
 
-// document.getElementById("cmbEmpresa").focus();
 
-var dataLancamento = indiceTabela[8].innerText.substring(0, 10),
-dataRecebimento = indiceTabela[9].innerText.substring(0, 10),
-dataVencimento = indiceTabela[10].innerText.substring(0, 10);
+	var dataLancamento = indiceTabela[8].innerText.substring(0, 10),
+	dataRecebimento = indiceTabela[9].innerText.substring(0, 10),
+	dataVencimento = indiceTabela[10].innerText.substring(0, 10);
 
-	// dataLancamento = dataLancamentoSF.substring(8, 10) + "/" + dataLancamentoSF.substring(5, 7) + "/" + dataLancamentoSF.substring(0, 4),
-	// dataRecebimento = dataRecebimentoSF.substring(8, 10) + "/" + dataRecebimentoSF.substring(5, 7) + "/" + dataRecebimentoSF.substring(0, 4),
-	// dataVencimento = dataVencimentoSF.substring(8, 10) + "/" + dataVencimentoSF.substring(5, 7) + "/" + dataVencimentoSF.substring(0, 4);
 
 	with(document.all){
-		
+		txtParcelas.disabled = true;
 
-		var codigo = indiceTabela[0].innerText;
+
+		codLancamento.value = indiceTabela[0].innerText;
 		txtDesc.value = indiceTabela[1].innerText;
 		txtValor.value = indiceTabela[2].innerText.replace("R$ ", "R$");
 		cmbStatus.value = indiceTabela[3].innerText;
@@ -459,40 +520,59 @@ dataVencimento = indiceTabela[10].innerText.substring(0, 10);
 		txtJuros.value = indiceTabela[12].innerText;
 		txtParcelas.value = 1;
 
-		// var codCategoria = indiceTabela[14].innerText;
-		// var codConta = indiceTabela[16].innerText;
-		// var codCliente = indiceTabela[15].innerText;
 
-		// cmbCategoria.value = codCategoria;
-		// cmbCliente.value = codCliente;
-		// cmbConta.value = codConta;
+		buttonExcluiLancamento.style.display = "inline";
+		buttonCancelaLancamento.style.display = "inline";
+		buttonLancamento.value = 2;
+		buttonLancamento.innerHTML = "Alterar";
+
 
 		
 	}
 
+}
+
+function cancelaLancamento(){
 
 
+	with(document.all){
+		buttonExcluiLancamento.style.display = "none";
+		buttonCancelaLancamento.style.display = "none";
+		buttonLancamento.value = 1;
+		buttonLancamento.innerHTML = "Cadastrar";
+	}
+
+	limpaCampos();
+	bloqueiaCampos();
+
+}
+
+function limpaCampos(){
+	cmbEmpresa.selectedIndex = 0;
+	cmbTipo.selectedIndex = 0;
+	cmbCategoria.selectedIndex = 0;
+	cmbConta.selectedIndex = 0;
+	cmbCliente.selectedIndex = 0;
+	txtDesc.value = "";
+	txtValor.value = "";
+	txtDataVenc.value = "";
+	cmbFormaPagamento.selectedIndex = 0;
+	txtParcelas.value = "";
+	txtJuros.value = "";
+	cmbStatus.selectedIndex = 0;
+	txtDataRecebimento.value = "";
+	txtValorPago.value = "";
 }
 
 
 
- // open('GET','./src/CrudLancamento.php?
- // funcao=insereLancamento&LCT_DESCRICAO=Teste Sql&LCT_DTPAG=2017-01-01&
- // LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA
- // =null&LCT_NPARC=5&LCT_STATUSLANC=Pago / Recebido&LCT_TIPO=Despesa&LCT_FRMPAG=
- // Dinheiro&CAT_COD=5&CLI_COD=2&CNT_COD=3
 
+(function (){
 
+	atualizaComboEmpresa();
+	limpaCombo("cmbCliente");
+	limpaCombo("cmbConta");
+	limpaCombo("cmbCategoria");
+	bloqueiaCampos();
 
-
-
-
- (function (){
-
- 	atualizaComboEmpresa();
- 	limpaCombo("cmbCliente");
- 	limpaCombo("cmbConta");
- 	limpaCombo("cmbCategoria");
- 	bloqueiaCampos();
-
- }());
+}());
