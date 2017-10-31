@@ -74,9 +74,6 @@ else if($_GET['funcao'] == 'insereLancamento'){
 	// $dataPagamento = $_GET["LCT_DTPAG"];
 	// $dataPagamento = date('Y-m-d', strtotime($dataPagamento));
 
-
-
-
 	$valorPago = $_GET['LCT_VLRPAGO'];
 	$valorTitulo = $_GET['LCT_VLRTITULO'];
 	$parcelas = $_GET['LCT_NPARC'];
@@ -99,9 +96,14 @@ else if($_GET['funcao'] == 'insereLancamento'){
 			
 			$cSql = str_replace("''","NULL", $cSql);
 
-			mysqli_query($conecta, $cSql);
+			if(mysqli_query($conecta, $cSql)){
 
-			$codigosRegistros[] = mysqli_insert_id($conecta);
+				$codigosRegistros[] = mysqli_insert_id($conecta);
+			}
+
+			else
+				echo "erro ao lancar";
+
 
 		}
 
@@ -133,7 +135,8 @@ else if($_GET['funcao'] == 'insereLancamento'){
 
 		}
 		else{
-			echo mysqli_error($conecta);
+			echo "erro ao lancar";
+			
 		}	     
 
 	}
@@ -170,7 +173,7 @@ else if($_GET['funcao'] == 'insereLancamento'){
 		}
 
 		else{
-			echo mysqli_error($conecta);
+			echo "erro ao lancar";
 		}
 
 		mysqli_free_result($result);
@@ -185,5 +188,27 @@ else if($_GET['funcao'] == 'insereLancamento'){
 //localhost/beardsbucket/sistema/src/CrudLancamento.php?funcao=insereLancamento&LCT_DESCRICAO=Teste&LCT_DTPAG=2017-01-01&LCT_DTVENC=2017-01-01&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_JUROSDIA=null&LCT_NPARC=5&LCT_STATUSLANC=Pago&LCT_TIPO=Despesa&LCT_FRMPAG=Dinheiro&CAT_COD=1&CLI_COD=1&CNT_COD=1
 
 }
+
+else if($_GET['funcao'] == 'excluiLancamento'){
+
+	$cSql = "DELETE FROM LANCAMENTO WHERE LCT_COD = $_GET[CODLANCAMENTO]";
+
+	if (mysqli_query($conecta, $cSql)){
+
+		echo "Deletado";
+
+	}
+	else
+		echo "Deu ruim";
+
+}
+
+
+else if($_GET['funcao'] == 'alteraLancamento'){
+
+	// UPDATE LANCAMENTO SET LCT_DESCRICAO = '', LCT_DTPAG = '', LCT_DTVENC = '', LCT_VLRPAGO = 0.00, LCT_VLRTITULO = 0.00, LCT_JUROSDIA =0, 
+ //    LCT_STATUSLANC = '', LCT_TIPO = '', LCT_FRMPAG = '', CAT_COD = 0, CLI_COD = 0, CNT_COD = 0, USR_COD = 0; 
+}
+
 
 ?>
