@@ -271,17 +271,7 @@ $cod =  $_SESSION['user']['id'];
 <script src="js/ajaxConsultaCaixaDashboard.js"></script> -->
 
 <script src="js/CrudAjaxDashboard.js"></script>
-<script src = "js/jquery.maskMoney.min.js"></script>
-<script>
-    $("#vlrDespesa").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
-</script>
-<script>
-    $("#vlrReceita").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
-    
-</script>
-<script>
-    $("#vlrCaixa").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});    
-</script>
+
 
 
 
