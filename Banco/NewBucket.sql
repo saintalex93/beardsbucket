@@ -149,5 +149,6 @@
 	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(), NOW(),NOW(), 1000.00,1000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',6,2,3,2);
     
 	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(),NULL, NOW(), NULL,5000.00,0,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
-	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',3,4,2,2)
-   
+	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',3,4,2,2);
+    
+	

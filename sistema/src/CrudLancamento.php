@@ -216,6 +216,8 @@ else if($_GET['funcao'] == 'alteraLancamento'){
 		$dataPagamento = 'NULL';
 	}
 
+
+
 	$dataVencimento = $_GET["LCT_DTVENC"];
 	$dataVencimento = date('Y-m-d', strtotime($dataVencimento));
 
@@ -234,8 +236,90 @@ else if($_GET['funcao'] == 'alteraLancamento'){
 
 
 
-	$cSql = "UPDATE LANCAMENTO SET LCT_DESCRICAO = '$descrição', LCT_DTPAG = $dataPagamento, LCT_DTVENC = '$dataPagamento', LCT_VLRPAGO = $valorPago, LCT_VLRTITULO = $valorTitulo, LCT_JUROSDIA =$juros, LCT_STATUSLANC = $status, LCT_TIPO = '$tipo', LCT_FRMPAG = '$formaPagamento', CAT_COD = $codCategoria, CLI_COD = $codCliente, CNT_COD = $codConta, USR_COD = $cod WHERE LCT_COD = $codLancamento" 
+	$cSql = "UPDATE LANCAMENTO SET LCT_DESCRICAO = '$descrição', LCT_DTPAG = $dataPagamento, LCT_DTVENC = $dataPagamento, LCT_VLRPAGO = $valorPago, LCT_VLRTITULO = $valorTitulo, LCT_JUROSDIA =$juros, LCT_STATUSLANC = '$status', LCT_TIPO = '$tipo', LCT_FRMPAG = '$formaPagamento', CAT_COD = $codCategoria, CLI_COD = $codCliente, CNT_COD = $codConta, USR_COD = $cod WHERE LCT_COD = $codLancamento";
+
+	if (mysqli_query($conecta, $cSql)){
+
+		echo "Alterado";
+
+	}
+	else
+		echo "Deu ruim";
+
 }
+
+else if($_GET['funcao'] == 'buscaLancamento'){
+
+	$EmpresaConsulta = $_GET['empConsulta'];
+	$dataInicial = $_GET['dataInicial'];
+	$dataFinal = $_GET['dataFinal'];
+
+	if($EmpresaConsulta == 0){
+
+		$cSql = "SELECT
+		LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, DATE_FORMAT(LCT_DTPAG, '%d/%m/%Y') as LCT_DTPAG, DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') as LCT_DTVENC, CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')) AS LCT_VLRPAGO, 
+		CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, LCT_TIPO, LCT_FRMPAG, 
+		LANCAMENTO.CAT_COD, CLI_COD, CNT_COD, LANCAMENTO.USR_COD, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA, EMP_NOME_EMPRESA
+		FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD 
+		INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD INNER JOIN EMPRESA ON COD_EMPRESA = EMP_COD WHERE COD_EMPRESA IN
+		(SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-d')  BETWEEN DATE_FORMAT('$dataInicial', '%Y-%m-d') AND DATE_FORMAT('$dataFinal', '%Y-%m-d');
+		";
+
+		$result = mysqli_query($conecta, $cSql);
+		if(mysqli_num_rows($result) >= 1){
+
+			$json_array = array();  
+			while($row = mysqli_fetch_assoc($result))  
+			{  
+				$json_array[] = $row;  
+			}  
+
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE); 
+
+			mysqli_free_result($result);
+			mysqli_close($conecta);
+		}
+
+		else{
+			echo "erro ao consultar";
+		}
+	}
+
+	else{
+
+		$cSql = "SELECT
+		LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, DATE_FORMAT(LCT_DTPAG, '%d/%m/%Y') as LCT_DTPAG, DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') as LCT_DTVENC, CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')) AS LCT_VLRPAGO, 
+		CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, LCT_TIPO, LCT_FRMPAG, 
+		LANCAMENTO.CAT_COD, CLI_COD, CNT_COD, LANCAMENTO.USR_COD, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA, EMP_NOME_EMPRESA
+		FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD 
+		INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD INNER JOIN EMPRESA ON COD_EMPRESA = EMP_COD WHERE COD_EMPRESA = $EmpresaConsulta AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-d')  BETWEEN DATE_FORMAT('$dataInicial', '%Y-%m-d') AND DATE_FORMAT('$dataFinal', '%Y-%m-d');
+		";
+
+		$result = mysqli_query($conecta, $cSql);
+		if(mysqli_num_rows($result) >= 1){
+
+			$json_array = array();  
+			while($row = mysqli_fetch_assoc($result))  
+			{  
+				$json_array[] = $row;  
+			}  
+
+			echo json_encode($json_array, JSON_UNESCAPED_UNICODE); 
+
+			mysqli_free_result($result);
+			mysqli_close($conecta);
+		}
+		else{
+			echo "erro ao consultar";
+
+		}
+
+	}
+
+}
+
+
+// funcao=alteraLancamento&LCT_DTPAG=01-01-2017&LCT_DTVENC=01-01-2017&TXTDESCRICAO=Teste&LCT_JUROSDIA=0&LCT_VLRPAGO=20.00&LCT_VLRTITULO=20.00&LCT_STATUSLANC=Pago&LCT_TIPO=Desp&LCT_FORMAPAGAMENTO=Dinehi&txtCliente=1&txtConta=1&txtCategoria=1&CODLANCAMENTO=1
 
 
 ?>

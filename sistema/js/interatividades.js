@@ -93,3 +93,29 @@ function fnMenuLogin(button){
 
 }
 
+function menuLancamento(button){
+	if(button.id == "btnLancamento"){
+
+		button.setAttribute('class', 'active');
+		document.getElementById("btnConsulta").setAttribute('class', '');
+
+		document.getElementById("lancamento").style.display = "block";
+		document.getElementById("consulta").style.display = "none";
+
+
+	}
+
+	if(button.id == "btnConsulta"){
+
+		button.setAttribute('class', 'active');
+		document.getElementById("btnLancamento").setAttribute('class', '');
+
+		document.getElementById("lancamento").style.display = "none";
+		document.getElementById("consulta").style.display = "block";
+
+	}
+
+
+}
+
+

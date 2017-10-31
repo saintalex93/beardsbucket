@@ -5,19 +5,6 @@ require 'src/conecta.php';
 $cod =  $_SESSION['user']['id'];
 
 
-// if($_SESSION['user']['permission'] == 0)
-//     $permissao = "Usuário";
-// else if ($_SESSION['user']['permission'] == 1)
-//     $permissao = "Gerente";
-// else
-//     $permissao = "Administrador";
-
-// if($STATUS == 1)
-//     $STATUS = "Ativo";
-// else
-//     $STATUS = "Inativo";
-
-
 $cSql = "SELECT USR_COD, USR_SENHA, USR_LOGIN, USR_NOME, USR_EMAIL, IF(USR_STATUS = 1, REPLACE(1, USR_STATUS, 'Ativo'), REPLACE(0, USR_STATUS, 'INATIVO')) AS  USR_STATUS,
 IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USUARIO where USR_COD =".$cod;
 
@@ -34,19 +21,10 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
 }
 
 
-
-
 mysqli_free_result($dataSet);
 mysqli_close($conecta);
 
-
-
-
 ?>
-
-
-
-
 
 <div class="content">
 
