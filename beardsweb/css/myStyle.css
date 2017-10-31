@@ -19,7 +19,7 @@
     right: 3%;
     width: 50px;
     height: 50px;
-    background-color: brown;
+    background-color: #633;
 }
 
 .btnVoltarLink {
@@ -57,6 +57,8 @@
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: 100;
+    
+
 }
 
 
