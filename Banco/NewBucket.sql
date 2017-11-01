@@ -117,7 +117,7 @@
 	(0, "Pessoal", null,0); 
 
 	INSERT INTO CONTA VALUES(0, "Fisa Itau", "Itaú", "5607", "00657-3", 'CC',1,60000.00,1),
-	(0, "Beards", "Itaú", "5602", "00127-3", 'CP',1, 90000.00,2),
+	(0, "Beards", "Itaú", "5602", "00127-3", 'CP',1, 20000.00,2),
 	(0, "Albroz BB", "Banco do Brasil", "5602", "00127-3",'CC',1, 90000.00,3),
 	(0, "Pessoal", "Banco do Brasil", "5612", "00132-3", 'CS',1, 1000.00,4);
 
@@ -145,10 +145,12 @@
 
 
 
-	INSERT INTO LANCAMENTO VALUES (0,'Aluguel do Hotel',NOW(),NULL, NOW(), NULL,12000.00,0,1,'A Pagar - Receber','Receita','Dinheiro',5,2,3,2);
+	INSERT INTO LANCAMENTO VALUES (0,'Aluguel do Hotel',NOW(),NULL, NOW(), NULL,12000.00,1,1,'A Pagar - Receber','Receita','Dinheiro',5,2,3,2);
 	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(), NOW(),NOW(), 1000.00,1000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',6,2,3,2);
     
-	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(),NULL, NOW(), NULL,5000.00,0,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
+	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário','2017-10-28',NULL, '2017-10-28', NULL,5000.00,1,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
+    INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(),NULL, NOW(), NULL,5000.00,1,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
+    
 	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',3,4,2,2);
     
 	

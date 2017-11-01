@@ -452,7 +452,7 @@ function selecionaLancamento(param){
 			var oPagina = new XMLHttpRequest();
 
 			with (oPagina){
-				open('GET','./src/CrudLancamento.php?funcao=alteraLancamento&LCT_DTPAG='+dataLancamento+'&LCT_DTVENC='+dataRecebimento+'&TXTDESCRICAO='
+				open('GET','./src/CrudLancamento.php?funcao=alteraLancamento&LCT_DTPAG='+dataRecebimento+'&LCT_DTVENC='+dataVencimento+'&TXTDESCRICAO='
 					+descricao+'&LCT_JUROSDIA='+juros+'&LCT_VLRPAGO='+valorPago+'&LCT_VLRTITULO='+valorTitulo+
 					'&LCT_STATUSLANC='+statusDesp+'&LCT_TIPO='+tipoDespesa+'&LCT_FORMAPAGAMENTO='+formaPagamento+
 					'&txtCliente='+cliente+'&txtConta='+conta+'&txtCategoria='+categoria+'&CODLANCAMENTO='+codLancamento);
@@ -790,6 +790,12 @@ function consultar(){
 				}
 
 				else{
+					var linhas = document.getElementById("tableConsultalancamento").rows;
+					for (i= linhas.length-1; i>=1; i--){
+						document.getElementById("tableConsultalancamento").deleteRow(i);
+
+					}
+
 					document.getElementById("retornoConsulta").style.display = "block";
 					document.getElementById("retornoConsulta").innerHTML = "Sem registros";
 					document.getElementById("retornoConsulta").setAttribute("class", "retDanger");

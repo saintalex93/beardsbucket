@@ -64,7 +64,7 @@ $cod =  $_SESSION['user']['id'];
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-reload"></i> Relatório
+                            <i class="ti-reload"></i>Recebidas e a Receber
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ $cod =  $_SESSION['user']['id'];
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-calendar"></i> Relatório
+                            <i class="ti-calendar"></i> Pagas e a Pagar
                         </div>
                     </div>
                 </div>
@@ -115,7 +115,7 @@ $cod =  $_SESSION['user']['id'];
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-timer"></i> Relatório
+                            <i class="ti-timer"></i> Saldo Inicial e Movimentações
                         </div>
                     </div>
                 </div>

@@ -186,7 +186,7 @@ $cod =  $_SESSION['user']['id'];
 
 				<div class="content"> <!-- Content Tabela -->
 					<div class="table-responsive">
-						<table class="table table-bordered table-striped text-center" width="100%" id="dataTable" cellspacing="0">
+						<table class="table table-bordered table-striped text-center" width="100%" id="table" cellspacing="0">
 							<thead>
 								<tr>
 									<th hidden>Código</th>

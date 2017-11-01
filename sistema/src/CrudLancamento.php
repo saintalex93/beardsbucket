@@ -219,7 +219,7 @@ else if($_GET['funcao'] == 'alteraLancamento'){
 
 
 	$dataVencimento = $_GET["LCT_DTVENC"];
-	$dataVencimento = date('Y-m-d', strtotime($dataVencimento));
+	$dataVencimento = "'".date('Y-m-d', strtotime($dataVencimento))."'";
 
 	$descrição = $_GET['TXTDESCRICAO'];
 	$juros = $_GET['LCT_JUROSDIA'];
@@ -236,7 +236,7 @@ else if($_GET['funcao'] == 'alteraLancamento'){
 
 
 
-	$cSql = "UPDATE LANCAMENTO SET LCT_DESCRICAO = '$descrição', LCT_DTPAG = $dataPagamento, LCT_DTVENC = $dataPagamento, LCT_VLRPAGO = $valorPago, LCT_VLRTITULO = $valorTitulo, LCT_JUROSDIA =$juros, LCT_STATUSLANC = '$status', LCT_TIPO = '$tipo', LCT_FRMPAG = '$formaPagamento', CAT_COD = $codCategoria, CLI_COD = $codCliente, CNT_COD = $codConta, USR_COD = $cod WHERE LCT_COD = $codLancamento";
+	$cSql = "UPDATE LANCAMENTO SET LCT_DESCRICAO = '$descrição', LCT_DTPAG = $dataPagamento, LCT_DTVENC = $dataVencimento, LCT_VLRPAGO = $valorPago, LCT_VLRTITULO = $valorTitulo, LCT_JUROSDIA =$juros, LCT_STATUSLANC = '$status', LCT_TIPO = '$tipo', LCT_FRMPAG = '$formaPagamento', CAT_COD = $codCategoria, CLI_COD = $codCliente, CNT_COD = $codConta, USR_COD = $cod WHERE LCT_COD = $codLancamento";
 
 	if (mysqli_query($conecta, $cSql)){
 
