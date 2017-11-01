@@ -188,6 +188,7 @@ body {
 }
 
 
+
 #rowVinculo{
   display: none;
 }
@@ -456,6 +457,10 @@ table th{
   background: #95e095;
 }
 
+.registroVencido td{
+  background: #ff9595;
+}
+
 
 #rowCategoria{
   display: none;
@@ -541,6 +546,7 @@ table th{
 
 #cmbEmpresaSelecao{
   margin-top: 15px;
+  margin-bottom: 20px;
 }
 
 

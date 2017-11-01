@@ -7,8 +7,12 @@ $cod =  $_SESSION['user']['id'];
 
 <div class="col-md-6 col-md-offset-3 text-center">
     <div class="form-group">
+        <div class="header">
+                <h4 class="title">Detalhes mensais por Empresa</h4>
+            </div>
 
-        <select class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" onchange="buscaDespesa(this.value);atualizaGrafico(this.value)">
+
+        <select class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" onchange="buscaDespesa(this.value);atualizaGrafico(this.value);atualizaDespesa(this.value); atualizaReceita(this.value);">
             <label for=""><span id = "cmpObrgt">* </span>Empresa</label>
             <option value="">Selecione...</option>
 
@@ -147,48 +151,31 @@ $cod =  $_SESSION['user']['id'];
                     </div>
                     <div class="content">
                        <div class="table-responsive">
-                          <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+                          <table class="table table-bordered table-striped text-center " width="100%" id="tableDespesa" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Código</th>
-                                    <th>Nome</th>
-                                    <th>Valor</th>
+                                    <th hidden>Código</th>
+                                    <th>Empresa</th>
+                                    <th>Categoria</th>
+                                    <th>Valor Título</th>
                                     <th>Data Vencimento</th>
-                                    <th>Juros</th>
+                                    <th>Juros ao Dia</th>
                                     <th>Valor Atual</th>
+                                    <th>Ação</th>
+
                                 </tr>
                             </thead>
 
-                            <tbody>
-
-                                <?php
-                                for($nCont = 0; $nCont<=5; $nCont++){
-
-                                    echo "
-
-                                    <tr>
-                                    <td>$nCont</td>
-                                    <td>Eletropaulo</td>
-                                    <td>R$ 8.000,00</td>
-                                    <td>21/02/2017</td>
-                                    <td>0.1%</td>
-                                    <td>8.010,00</td>
-                                    </tr>
-                                    ";
-
-                                }
-
-                                ?>
+                            <tbody id="corpoDespesa">
 
 
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                     </tbody>
+                 </table>
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
 </div> <!--ROW DESPESAS -->
 
 <div class="row">
@@ -202,47 +189,30 @@ $cod =  $_SESSION['user']['id'];
                 </div>
                 <div class="content">
                    <div class="table-responsive">
-                      <table class="table table-bordered table-striped text-center " width="100%" id="dataTable" cellspacing="0">
+                      <table class="table table-bordered table-striped text-center " width="100%" id="tableReceita" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>Valor</th>
-                                <th>Data Vencimento</th>
-                                <th>Juros</th>
-                                <th>Valor Atual</th>
-                            </tr>
-                        </thead>
+                              <th hidden>Código</th>
+                              <th>Empresa</th>
+                              <th>Categoria</th>
+                              <th>Valor Título</th>
+                              <th>Data Vencimento</th>
+                              <th>Juros ao Dia</th>
+                              <th>Valor Atual</th>
+                              <th>Ação</th>
 
-                        <tbody>
+                          </tr>
+                      </thead>
 
-                            <?php
-                            for($nCont = 0; $nCont<=5; $nCont++){
-
-                                echo "
-
-                                <tr>
-                                <td>$nCont</td>
-                                <td>Eletropaulo</td>
-                                <td>R$ 8.000,00</td>
-                                <td>21/02/2017</td>
-                                <td>0.1%</td>
-                                <td>8.010,00</td>
-                                </tr>
-                                ";
-
-                            }
-
-                            ?>
+                      <tbody id="corpoReceita">
 
 
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 </div> <!--ROW DESPESAS -->
 

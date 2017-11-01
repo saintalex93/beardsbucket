@@ -217,7 +217,6 @@ else if($_GET['funcao'] == 'alteraLancamento'){
 	}
 
 
-
 	$dataVencimento = $_GET["LCT_DTVENC"];
 	$dataVencimento = "'".date('Y-m-d', strtotime($dataVencimento))."'";
 

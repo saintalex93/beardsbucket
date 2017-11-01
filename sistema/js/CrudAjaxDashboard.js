@@ -117,6 +117,154 @@ function atualizaGrafico(id){
 
 }
 
+function atualizaDespesa(codEmpresa){
+	var oPagina = new XMLHttpRequest();
+
+	with (oPagina){
+
+		open('GET','./src/CrudDashboard.php?funcao=atualizaDespesa&codEmpresa='+codEmpresa)
+		send();
+
+		onload = function(){
+			var erro = responseText;
+
+			if(erro !=" sem registros"){
+
+
+				var oDados = JSON.parse(responseText);
+
+				var tableDespesa = document.getElementById("corpoDespesa");
+
+				var linhas = document.getElementById("tableDespesa").rows;
+
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableDespesa").deleteRow(i);
+
+				}
+
+
+				for(i = 0; i<oDados.length; i++){
+
+					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
+
+						tableDespesa.insertAdjacentHTML('beforebegin', 
+							"<tr class = 'registroVencido' id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
+
+
+							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+
+							);
+
+					}
+					else{
+						tableDespesa.insertAdjacentHTML('beforebegin', 
+							"<tr id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
+
+							
+							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+
+							);
+					}
+
+
+				}
+			}
+			else{
+				var linhas = document.getElementById("tableDespesa").rows;
+
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableDespesa").deleteRow(i);
+				}
+			}
+		}
+	}
+}
+
+function atualizaReceita(codEmpresa){
+	var oPagina = new XMLHttpRequest();
+
+	with (oPagina){
+
+		open('GET','./src/CrudDashboard.php?funcao=AtualizaReceita&codEmpresa='+codEmpresa)
+		send();
+
+		onload = function(){
+			if(responseText !=" sem registros"){
+				
+				var oDados = JSON.parse(responseText);
+
+				var tableReceita = document.getElementById("corpoReceita");
+
+				var linhas = document.getElementById("tableReceita").rows;
+
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableReceita").deleteRow(i);
+
+				}
+
+
+				for(i = 0; i<oDados.length; i++){
+
+					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
+
+						tableReceita.insertAdjacentHTML('beforebegin', 
+							"<tr class = 'registroVencido' id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
+
+
+							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+
+							);
+
+					}
+					else{
+						tableReceita.insertAdjacentHTML('beforebegin', 
+							"<tr id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
+
+							
+							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+
+							);
+					}
+
+
+				}
+			}
+			else{
+				var linhas = document.getElementById("tableReceita").rows;
+
+				for (i= linhas.length-1; i>=1; i--){
+					document.getElementById("tableReceita").deleteRow(i);
+
+				}
+			}
+		}
+	}
+}
+
 
 
 
@@ -124,6 +272,8 @@ function atualizaGrafico(id){
 	atualizaComboEmpresaCadastro();
 	buscaDespesa(0);
 	atualizaGrafico(0);
+	atualizaDespesa(0);
+	atualizaReceita(0);
 
 }())
 
@@ -140,5 +290,5 @@ function atualizaGrafico(id){
 	// 		 LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
 	// 		 LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =2) 
  //             AND LCT_DTVENC <= NOW() AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Despesa';
-             
+
 	// 		 
