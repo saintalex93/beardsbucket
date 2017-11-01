@@ -148,8 +148,9 @@ function atualizaDespesa(codEmpresa){
 					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
 
 						tableDespesa.insertAdjacentHTML('beforebegin', 
-							"<tr class = 'registroVencido' id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<tr class = 'registroVencido' id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
@@ -157,15 +158,16 @@ function atualizaDespesa(codEmpresa){
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 
-							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Pagar</button></tr> "
 
 							);
 
 					}
 					else{
 						tableDespesa.insertAdjacentHTML('beforebegin', 
-							"<tr id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<tr id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
@@ -173,7 +175,7 @@ function atualizaDespesa(codEmpresa){
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 							
-							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Pagar</button></tr> "
 
 							);
 					}
@@ -220,32 +222,34 @@ function atualizaReceita(codEmpresa){
 					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
 
 						tableReceita.insertAdjacentHTML('beforebegin', 
-							"<tr class = 'registroVencido' id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
+							"<tr class = 'registroVencido' id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 
-							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Pagar</button></tr> "
 
 							);
 
 					}
 					else{
 						tableReceita.insertAdjacentHTML('beforebegin', 
-							"<tr id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
+							"<tr id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 							
-							"<td><button class = 'btn-info btn-fill btn' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagaDespesa(this.id)'>Pagar</button></tr> "
+							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Pagar</button></tr> "
 
 							);
 					}
@@ -263,6 +267,43 @@ function atualizaReceita(codEmpresa){
 			}
 		}
 	}
+}
+
+
+function pagar(id){
+
+
+	var linha = document.getElementById('linhaDash'+id);
+	var colunas = linha.getElementsByTagName('td');
+
+	var valor = colunas[7].innerText.replace("R$ ",'').replace('.', '').replace(',','.');
+
+	if(confirm("Deseja efetuar o pagamento com o valor atual?")){
+		var oPagina = new XMLHttpRequest();
+
+		with (oPagina){
+
+			open('GET','./src/CrudDashboard.php?funcao=efetuaPagamento&VALORPAGO='+valor+'&CODLANCAMENTO='+id)
+			send();
+
+			onload = function(){
+				if(responseText ==" Lancou"){
+					buscaDespesa(0);
+					atualizaGrafico(0);
+					atualizaDespesa(0);
+					atualizaReceita(0);
+				}
+
+				else{
+					alert("Não foi possível efetuar o pagamento. \nErro nº: "+responseText);
+				}
+			}
+
+
+		}
+
+	}
+
 }
 
 

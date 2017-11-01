@@ -156,6 +156,7 @@ $cod =  $_SESSION['user']['id'];
                                 <tr>
                                     <th hidden>Código</th>
                                     <th>Empresa</th>
+                                    <th>Descrição</th>
                                     <th>Categoria</th>
                                     <th>Valor Título</th>
                                     <th>Data Vencimento</th>
@@ -194,6 +195,7 @@ $cod =  $_SESSION['user']['id'];
                             <tr>
                               <th hidden>Código</th>
                               <th>Empresa</th>
+                              <th>Descrição</th>
                               <th>Categoria</th>
                               <th>Valor Título</th>
                               <th>Data Vencimento</th>

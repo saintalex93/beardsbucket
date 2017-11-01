@@ -549,6 +549,19 @@ table th{
   margin-bottom: 20px;
 }
 
+.btn-info.btn-fill.btn.btnDash{
+  border: 1px solid #333;
+}
+
+
+.radio label{
+  margin-top: 2px;
+}
+
+.radio{
+  display: inline-block;
+  margin-right: 20px;
+}
 
 
 @media  (max-width: 768px){

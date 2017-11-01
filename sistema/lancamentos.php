@@ -301,6 +301,7 @@ $cod =  $_SESSION['user']['id'];
 									<th>Pagamento</th>
 									<th>Categoria</th>
 									<th>Valor Título</th>
+									<th>Valor Pago</th>
 									<th>Vencimento</th>
 
 								</tr>

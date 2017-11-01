@@ -772,7 +772,9 @@ function consultar(){
 					var corpotable = document.getElementById("tbodyConsultaLancamento");
 
 					for(i = 0; i<oDados.length; i++){
-
+						if(oDados[i]['LCT_VLRPAGO']==null){
+							oDados[i]['LCT_VLRPAGO']="R$ 0,00";
+						}
 						corpotable.insertAdjacentHTML('beforebegin', 
 							"<tr>"+
 							"<td>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
@@ -782,6 +784,8 @@ function consultar(){
 							"<td>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
 							"<td>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td>" + oDados[i]['LCT_VLRTITULO'] + "</td>"+
+							"<td>" + oDados[i]['LCT_VLRPAGO'] + "</td>"+
+
 							"<td>" + oDados[i]['LCT_DTVENC'] + "</td>"+
 
 							"</tr>"

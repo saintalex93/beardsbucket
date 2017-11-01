@@ -59,7 +59,7 @@ if($_GET['funcao'] == 'atualizaDespesa'){
         if($_GET['codEmpresa'] == 0){
 
          $cSql = "SELECT 
-         LCT_COD, EMP_NOME_EMPRESA, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
          DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
          <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
          ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
@@ -71,7 +71,7 @@ if($_GET['funcao'] == 'atualizaDespesa'){
  }
  else{
         $cSql = "SELECT 
-        LCT_COD, EMP_NOME_EMPRESA, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+        LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
         DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
         <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
         ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
@@ -105,7 +105,7 @@ else
 if($_GET['funcao'] == 'AtualizaReceita'){
         if($_GET['codEmpresa'] == 0){
          $cSql = "SELECT 
-         LCT_COD, EMP_NOME_EMPRESA, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
          DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
          <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
          ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
@@ -118,7 +118,7 @@ if($_GET['funcao'] == 'AtualizaReceita'){
 
  else{
          $cSql = "SELECT 
-         LCT_COD, EMP_NOME_EMPRESA, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO,  CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
          DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
          <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
          ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
@@ -147,6 +147,26 @@ else
         echo "sem registros";
 
 }
+
+if($_GET['funcao'] == 'efetuaPagamento'){
+
+        $cSql = "UPDATE LANCAMENTO SET LCT_VLRPAGO = $_GET[VALORPAGO], LCT_STATUSLANC = 'Pago - Recebido', LCT_DTPAG = NOW() WHERE LCT_COD = $_GET[CODLANCAMENTO]";
+        if(mysqli_query($conecta,$cSql)){
+                echo "Lancou";
+
+                $cSql = "UPDATE USUARIO SET USR_PONTUACAO = USR_PONTUACAO + 10 WHERE USR_COD = $cod";
+
+                mysqli_query($conecta,$cSql);
+        }
+
+        else{
+                echo mysqli_connect_errno($conecta);
+        }
+
+
+
+}
+
 
 
 ?>
