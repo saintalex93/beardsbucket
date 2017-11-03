@@ -67,10 +67,15 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 		$cSql = "INSERT INTO USR_EMPR  values (0, $cod, $codEmpresa)";
 
-
-
 		mysqli_query($conecta, $cSql);
 
+		$cSql = "INSERT INTO CATEGORIA VALUES
+		(0,'Aluguel',1,$codEmpresa),(0,'Salário',1,$codEmpresa),
+		(0,'Transporte',1,$codEmpresa),(0,'Alimentação',1,$codEmpresa),
+		(0,'Pessoal',1,$codEmpresa),(0,'Vendas',1,$codEmpresa)";
+
+		mysqli_query($conecta, $cSql);
+		
 
 		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ, IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;
 
@@ -375,7 +380,7 @@ else if($_GET['funcao'] == 'deletaUsuario'){
 	mysqli_query($conecta,$cSql);
 
 	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA EMPRESA, COD_USR, COD_USR_EMPR FROM EMPRESA LEFT JOIN USR_EMPR ON COD_EMPR = EMP_COD and COD_USR = $_GET[codUsuario] 
-		WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+	WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 	
 
 	if (mysqli_query($conecta,$cSql)){
@@ -405,7 +410,7 @@ else if($_GET['funcao'] == 'insereUsuario'){
 	mysqli_query($conecta,$cSql);
 
 	$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA EMPRESA, COD_USR, COD_USR_EMPR FROM EMPRESA LEFT JOIN USR_EMPR ON COD_EMPR = EMP_COD and COD_USR = $_GET[codUsuario] 
-		WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
+	WHERE EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)";
 	
 
 	if (mysqli_query($conecta,$cSql)){

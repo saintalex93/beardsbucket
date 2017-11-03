@@ -232,7 +232,7 @@ function atualizaReceita(codEmpresa){
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 
-							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Pagar</button></tr> "
+							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Receber</button></tr> "
 
 							);
 
@@ -249,7 +249,7 @@ function atualizaReceita(codEmpresa){
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 							
-							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Pagar</button></tr> "
+							"<td><button class = 'btn-info btn-fill btn btnDash' id = '"+ oDados[i]['LCT_COD'] +"' onclick = 'pagar(this.id)'>Receber</button></tr> "
 
 							);
 					}
@@ -288,10 +288,12 @@ function pagar(id){
 
 			onload = function(){
 				if(responseText ==" Lancou"){
+					document.getElementById("cmbEmpresaSelecao").selectedIndex = "0";
 					buscaDespesa(0);
 					atualizaGrafico(0);
 					atualizaDespesa(0);
 					atualizaReceita(0);
+
 				}
 
 				else{

@@ -132,9 +132,18 @@
 	-- 
 
 	insert into CATEGORIA VALUES
-	(0,"Alugel",1,1),(0,"Salário",1,1),
-	(0,"Alugel",1,2),(0,"Salário",1,2),
-	(0,"Alugel",1,3),(0,"Salário",1,3);
+	(0,"Aluguel",1,1),(0,"Salário",1,1),
+    (0,"Transporte",1,1),(0,"Alimentação",1,1),
+    (0,"Pessoal",1,1),(0,"Vendas",1,1),
+	
+    (0,"Aluguel",1,2),(0,"Salário",1,2),
+    (0,"Transporte",1,2),(0,"Alimentação",1,2),
+    (0,"Pessoal",1,2),(0,"Vendas",1,2),
+	
+    (0,"Aluguel",1,3),(0,"Salário",1,3),
+    (0,"Transporte",1,3),(0,"Alimentação",1,3),
+    (0,"Pessoal",1,3),(0,"Vendas",1,3);
+
 	-- 
 
 	-- 
@@ -145,12 +154,13 @@
 
 
 
-	INSERT INTO LANCAMENTO VALUES (0,'Aluguel do Hotel',NOW(),NULL, NOW(), NULL,12000.00,1,1,'A Pagar - Receber','Receita','Dinheiro',5,2,3,2);
+	INSERT INTO LANCAMENTO VALUES (0,'Aluguel do Hotel',NOW(),NULL, NOW(), NULL,12000.00,1,1,'A Pagar - Receber','Receita','Dinheiro',5,2,3,4);
 	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(), NOW(),NOW(), 1000.00,1000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',6,2,3,2);
     
-	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário','2017-10-28',NULL, '2017-10-28', NULL,5000.00,1,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
-    INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(),NULL, NOW(), NULL,5000.00,1,1,'A Pagar - Receber','Despesa','Dinheiro',4,4,2,2);
+	INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário','2017-10-28',NULL, '2017-10-28', NULL,5000.00,1,1,'A Pagar - Receber','Despesa','Dinheiro',1,4,2,2);
+    INSERT INTO LANCAMENTO VALUES (0,'Salário funcionário',NOW(),NULL, NOW(), NULL,5000.00,1,1,'A Pagar - Receber','Despesa','Dinheiro',1,4,2,2);
     
 	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',3,4,2,2);
     
-	
+
+

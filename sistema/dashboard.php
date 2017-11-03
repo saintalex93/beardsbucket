@@ -2,7 +2,21 @@
 require "src/conecta.php";
 
 $cod =  $_SESSION['user']['id'];
+$mes = array();
+        $mes[] = "Mes";
 
+        $mes[] = "Janeiro";
+        $mes[] = 'Fevereiro';
+        $mes[] = 'Março';
+        $mes[] ='Abril';
+        $mes[] ='Maio';
+        $mes[] ='Junho';
+        $mes[] ='Julho';
+        $mes[] ='Agosto';
+        $mes[] ='Setetembro';
+        $mes[] ='Outubro';
+        $mes[] ='Novembro';
+        $mes[] ='Dezembro';
 ?>
 
 <div class="col-md-6 col-md-offset-3 text-center">
@@ -68,7 +82,7 @@ $cod =  $_SESSION['user']['id'];
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-reload"></i>Recebidas e a Receber
+                            <i class="ti-reload"></i>A receber no mês de <?php echo $mes[date('m')]?>
                         </div>
                     </div>
                 </div>
@@ -94,7 +108,7 @@ $cod =  $_SESSION['user']['id'];
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-calendar"></i> Pagas e a Pagar
+                            <i class="ti-calendar"></i>A pagar no mês de <?php echo $mes[date('m')]?>
                         </div>
                     </div>
                 </div>
