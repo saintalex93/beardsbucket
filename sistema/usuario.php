@@ -28,184 +28,195 @@ mysqli_close($conecta);
 
 <div class="content">
 
-    <div class="container-fluid" >
-
+    <div class="container-fluid">
+        
         <div class="row">
-           <div class="col-lg-4 col-md-5">
-            <div class="card card-user" style=" height:305px">
-                <div class="image">
-                    <img src="assets/img/background.jpg" alt="..."/>
+            <div class="col-lg-4 col-md-5">
+                <div class="card card-user" style=" height:305px">
+                    <div class="image"  >
+                        
+                        <div class="trofeu" rel="tooltip" title="texto explicativo."><img src="img/1.png" ></div>
+                        <!--<img src="assets/img/background.jpg" alt="..."/>-->
+
+                    </div>
+                    <div class="content">
+                        <div class="author">
+
+                            <img class="avatar border-white" src="assets/img/faces/beards.png" alt="..." />
+                            <h4 class="title" id="nomePagina">
+                                <?php echo $NOME?>
+                            </h4>
+                        </div>
+                        <p class="description text-center" id="permissaoPagina">
+                            <?php echo $PERMISSAO;?>
+                        </p>
+                    </div>
+
                 </div>
-                <div class="content">
-                    <div class="author">
-                      <img class="avatar border-white" src="assets/img/faces/beards.png" alt="..."/>
-                      <h4 class="title" id="nomePagina"><?php echo $NOME?></h4>
-                  </div>
-                  <p class="description text-center" id="permissaoPagina"><?php echo $PERMISSAO;?></p>
-              </div>
-
-          </div>
-      </div>
-      <!-- Fim Perfil Esquerda -->
-
-      <!-- Perfil Cadastro -->
-      <div class="col-lg-8 col-md-7">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Editar Perfil</h4>
             </div>
+            <!-- Fim Perfil Esquerda -->
 
-            <div class="content">
-                <form name="usuarioPerfil" id="usuarioPerfil">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Nome</label>
-                                <input type="text" class="form-control border-input" value = "<?php echo $NOME?>" name ="txtNomeUsr">
+            <!-- Perfil Cadastro -->
+            <div class="col-lg-8 col-md-7">
+                <div class="card">
+                    <div class="header">
+                        <h4 class="title">Editar Perfil</h4>
+                    </div>
+
+                    <div class="content">
+                        <form name="usuarioPerfil" id="usuarioPerfil">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nome</label>
+                                        <input type="text" class="form-control border-input" value="<?php echo $NOME?>" name="txtNomeUsr">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Login</label>
+                                        <input type="text" class="form-control border-input" value="<?php echo $LOGIN?>" name="txtLoginUsr">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="">Senha</label>
+                                        <input type="password" class="form-control border-input" value="<?php echo $SENHA?>" name="txtSenhaUsr">
+                                    </div>
+                                </div>
                             </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control border-input" value="<?php echo $EMAIL?>" name="txtEmailUsr">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Permissão</label>
+                                        <input type="text" class="form-control border-input" disabled value="<?php echo $PERMISSAO?>" name="txtPermissaoUsr">
+                                    </div>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <input type="text" class="form-control border-input" disabled value="<?php echo $STATUS?>" name="txtStatusUsr">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="alteraUsuario()">Alterar</button>
+                            <br>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Login</label>
-                                <input type="text" class="form-control border-input"  value = "<?php echo $LOGIN?>" name = "txtLoginUsr">
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <output type="text" class="text-center" id="retornoFormUsuario"></output>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label for="">Senha</label>
-                                <input type="password" class="form-control border-input" value = "<?php echo $SENHA?>" name = "txtSenhaUsr">
-                            </div>
+
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label>Email</label>
-                                <input type="text" class="form-control border-input"  value = "<?php echo $EMAIL?>" name = "txtEmailUsr">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Permissão</label>
-                                <input type="text" class="form-control border-input" disabled value = "<?php echo $PERMISSAO?>" name = "txtPermissaoUsr">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Status</label>
-                                <input type="text" class="form-control border-input" disabled value="<?php echo $STATUS?>" name = "txtStatusUsr" >
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-
-
-
-                <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd" onclick="alteraUsuario()">Alterar</button>
-                    <br>
-                    <div class="clearfix"></div>
                 </div>
-
-                <div class="row">
-
-                    <div class="col-md-12">
-                     <div class="form-group">
-                        <output type="text" class="text-center" id="retornoFormUsuario"></output>
-                    </div>
-                </div>
+                <!-- Fim Form Perfil -->
 
             </div>
-        </div>  
+            <!-- Fim ROW Conjunto perfil -->
+        </div>
 
-    </div> <!-- Fim Form Perfil -->
-
-</div> <!-- Fim ROW Conjunto perfil -->
-</div>
-
-<?php
+        <?php
 
 if ($PERMISSAO == 'Administrador'){
 
     ?>
 
-    <div class="row" id="rowEmpresa"> <!-- ROW EMPRESA -->
+            <div class="row" id="rowEmpresa">
+                <!-- ROW EMPRESA -->
 
-        <div class="col-lg-12 col-md-12">
-            <div class="card">
-                <div class="header">
-                    <h4 class="title">Empresa / Perfil</h4>
-                </div>
-                <div class="content">
-                    <form>
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Empresa / Perfil</h4>
+                        </div>
+                        <div class="content">
+                            <form>
 
-                        <div class="row">
+                                <div class="row">
 
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label><span id = "cmpObrgt">* </span>Nome</label>
-                                    <input type="hidden" name="codEmpresa" id="codEmpresa">
-                                    <input type="text" class="form-control border-input"  placeholder="Pessoal" name="txtNomeEmpresa" id="txtNomeEmpresa">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <label>CNPJ/CPF</label>
-                                    <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj" id="txtCnpj">
-                                </div>
-                            </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Nome</label>
+                                            <input type="hidden" name="codEmpresa" id="codEmpresa">
+                                            <input type="text" class="form-control border-input" placeholder="Pessoal" name="txtNomeEmpresa" id="txtNomeEmpresa">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CNPJ/CPF</label>
+                                            <input type="text" class="form-control border-input" placeholder="04.666.666/00001-6" name="txtCnpj" id="txtCnpj">
+                                        </div>
+                                    </div>
 
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    <label>Status</label>
-                                    <select class="form-control border-input" id="cmbStatusEmpresa" disabled>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control border-input" id="cmbStatusEmpresa" disabled>
                                         <option value="Ativo">Ativo</option>
                                         <option value="Inativo">Inativo</option>
                                     </select>
 
+                                        </div>
+                                    </div>
+
                                 </div>
+
+                            </form>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
+
+                                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
                             </div>
 
-                        </div>
+                            <div class="row">
 
-                    </form>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <output type="text" class="text-center" id="retornoFormEmpresa"></output>
+                                    </div>
+                                </div>
 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcao(this.value)" id="buttonEmpresa">Inserir</button>
+                            </div>
 
-                        <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcao(3)" id="buttonCancelarEmpresa">Cancelar</button>
-                    </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nome</th>
+                                            <th>CNPJ</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
 
-                    <div class="row">
+                                        </tr>
+                                    </thead>
 
-                        <div class="col-md-12">
-                         <div class="form-group">
-                            <output type="text" class="text-center" id="retornoFormEmpresa"></output>
-                        </div>
-                    </div>
+                                    <tbody>
 
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-bordered table-striped text-center " width="100%" id="tableEmpresa" cellspacing="0">
-                        <thead>
-                            <tr>
-                                <th>Código</th>
-                                <th>Nome</th>
-                                <th>CNPJ</th>
-                                <th>Status</th>
-                                <th>Ações</th>
-
-                            </tr>
-                        </thead>
-
-                        <tbody>
-
-                            <?php
+                                        <?php
 
                             require 'src/conecta.php';
 
@@ -238,80 +249,82 @@ if ($PERMISSAO == 'Administrador'){
 
                             ?>
 
-                        </tbody>
-                    </table>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+                    </div>
+
                 </div>
 
-
-
-
-
-
             </div>
+            <!-- Fim ROW Empresa -->
 
 
-        </div>
+            <div class="row" id="rowConta">
+                <!-- Conta -->
 
-    </div> 
-
-</div> <!-- Fim ROW Empresa -->
-
-
-<div class="row" id="rowConta">  <!-- Conta -->
-
-    <div class="col-lg-12 col-md-12">
-        <div class="card">
-            <div class="header">
-                <h4 class="title">Conta</h4>
-            </div>
-            <div class="content">
-
-                <form>
-
-                    <div class="row">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label><span id = "cmpObrgt">* </span>Nome</label>
-                                <input type="hidden" name="codConta" id="codConta">
-                                <input type="text" class="form-control border-input" id="nomeConta"  name="nomeConta" placeholder="Nome da Conta">
-                            </div>
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="header">
+                            <h4 class="title">Conta</h4>
                         </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                                <label>Banco</label>
-                                <input type="text" class="form-control border-input" id="nomeBanco" name="nomeBanco" placeholder="Itaú">
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group">
-                               <label for=""><span id = "cmpObrgt">* </span>Empresa / Pefil</label>
-                               <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
+                        <div class="content">
+
+                            <form>
+
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Nome</label>
+                                            <input type="hidden" name="codConta" id="codConta">
+                                            <input type="text" class="form-control border-input" id="nomeConta" name="nomeConta" placeholder="Nome da Conta">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Banco</label>
+                                            <input type="text" class="form-control border-input" id="nomeBanco" name="nomeBanco" placeholder="Itaú">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for=""><span id = "cmpObrgt">* </span>Empresa / Pefil</label>
+                                            <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
                                </select>
-                           </div>
-                       </div>
+                                        </div>
+                                    </div>
 
-                   </div>
+                                </div>
 
-                   <div class="row">
+                                <div class="row">
 
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="">Agência</label>
-                            <input type="email" class="form-control border-input" id="agenciaConta" name="agenciaConta" placeholder="Agencia">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Conta Corrente</label>
-                            <input type="text" class="form-control border-input" id="numeroConta" name="numeroConta" placeholder="Conta">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Tipo</label>
-                            <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="">Agência</label>
+                                            <input type="email" class="form-control border-input" id="agenciaConta" name="agenciaConta" placeholder="Agencia">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Conta Corrente</label>
+                                            <input type="text" class="form-control border-input" id="numeroConta" name="numeroConta" placeholder="Conta">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Tipo</label>
+                                            <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
                                 <option value="">Selecione...</option>
                                 <option value="CC">Conta Corrente</option>
                                 <option value="CP">Conta Poupança</option>
@@ -319,70 +332,70 @@ if ($PERMISSAO == 'Administrador'){
                                 <option value="SC">Sem Conta</option>
 
                             </select>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label><span id = "cmpObrgt">* </span>Saldo Incial</label>
-                            <input type="text" class="form-control border-input" id="saldoInicial" name="saldoInicial" placeholder="R$ 1.000,00">
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label>Status</label>
-                            <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Saldo Incial</label>
+                                            <input type="text" class="form-control border-input" id="saldoInicial" name="saldoInicial" placeholder="R$ 1.000,00">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label>Status</label>
+                                            <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" disabled>
                                 <option value="1">Ativo</option>
                                 <option value="0">Inativo</option>
                             </select>
-                        </div>
-                    </div>
-                </div>
-            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
 
 
-            <div class="text-center">
-                <button  class="btn btn-info btn-fill btn-wd" value="1" id ="buttonConta" onclick="selecionaAcaoConta(this.value)">Inserir</button>
+                            <div class="text-center">
+                                <button class="btn btn-info btn-fill btn-wd" value="1" id="buttonConta" onclick="selecionaAcaoConta(this.value)">Inserir</button>
 
-                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarConta">Cancelar</button>
-            </div>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="selecionaAcaoConta(3)" id="buttonCancelarConta">Cancelar</button>
+                            </div>
 
-            <div class="row">
+                            <div class="row">
 
-                <div class="col-md-12">
-                 <div class="form-group">
-                    <output type="text" class="text-center" id="retornoFormConta"></output>
-                </div>
-            </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <output type="text" class="text-center" id="retornoFormConta"></output>
+                                    </div>
+                                </div>
 
-        </div>
+                            </div>
 
-        <div class="row">
+                            <div class="row">
 
-            <div class="col-md-12">
-             <div class="form-group">
-                <output type="text" class="text-center" id="retornoFormConta"></output>
-            </div>
-        </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <output type="text" class="text-center" id="retornoFormConta"></output>
+                                    </div>
+                                </div>
 
-    </div>
-    <div class="table-responsive">
+                            </div>
+                            <div class="table-responsive">
 
-        <table class="table table-bordered table-striped text-center " width="100%"  name="tableConta" id="tableConta" cellspacing="0">
-            <thead>
-                <tr>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Banco</th>
-                    <th>Empresa</th>
-                    <th>Saldo Inicial</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
+                                <table class="table table-bordered table-striped text-center " width="100%" name="tableConta" id="tableConta" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Código</th>
+                                            <th>Nome</th>
+                                            <th>Banco</th>
+                                            <th>Empresa</th>
+                                            <th>Saldo Inicial</th>
+                                            <th>Status</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
 
-            <tbody>
+                                    <tbody>
 
-                <?php
+                                        <?php
                 require 'src/conecta.php';
 
 
@@ -419,149 +432,151 @@ if ($PERMISSAO == 'Administrador'){
 
 
 
-            </tbody>
-        </table>
-    </div>
+                                    </tbody>
+                                </table>
+                            </div>
 
 
 
-</div> 
-</div>
-</div> <!-- Fim Conta -->
-</div> <!-- Fim ROW Conta -->
-
-
-
-
-<!-- Administrador -->
-
-<ul class="nav nav-pills " style="
-padding-bottom: 20px">
-<li class="active" id = "cadastro" onclick="fnBotoes(this)">
-    <a href="#"><span class="ti-user"></span> Cadastrar</a>
-</li>
-
-<li class="" id="vinculo" onclick="fnBotoes(this)">
-    <a href="#"><span class="ti-link"></span> Vincular</a>
-</li>
-
-</ul>
-
-<div class="row" id="rowCadastro">
-    <div class="col-lg-12 col-md-12">
-        <div class="card">
-
-
-
-            <div class="header">
-                <h4 class="title">Usuários</h4>
-            </div>
-            <div class="content">
-               <form>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label><span id = "cmpObrgt">* </span>Nome</label>
-                            <input type="hidden"  class="form-control border-input" id="administradorCod" name="administradorCod" >
-
-                            <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label><span id = "cmpObrgt">* </span>Login</label>
-                            <input type="text" class="form-control border-input" id="AdministradorLogin" name="AdministradorLogin"  placeholder="beardsmaster">
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for=""><span id = "cmpObrgt">* </span>Senha</label>
-                            <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
                         </div>
                     </div>
                 </div>
+                <!-- Fim Conta -->
+            </div>
+            <!-- Fim ROW Conta -->
 
-                <div class="row">
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control border-input" id="administradorEmail" name="administradorEmail" placeholder="alex@beardsweb.com.br">
+
+
+
+            <!-- Administrador -->
+
+            <ul class="nav nav-pills " style="
+padding-bottom: 20px">
+                <li class="active" id="cadastro" onclick="fnBotoes(this)">
+                    <a href="#"><span class="ti-user"></span> Cadastrar</a>
+                </li>
+
+                <li class="" id="vinculo" onclick="fnBotoes(this)">
+                    <a href="#"><span class="ti-link"></span> Vincular</a>
+                </li>
+
+            </ul>
+
+            <div class="row" id="rowCadastro">
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
+
+
+
+                        <div class="header">
+                            <h4 class="title">Usuários</h4>
                         </div>
-                    </div>
+                        <div class="content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Nome</label>
+                                            <input type="hidden" class="form-control border-input" id="administradorCod" name="administradorCod">
 
-                    <div class="col-md-4">
-                        <div class="form-group">
-                            <label><span id = "cmpObrgt">* </span>Empresa</label>
-                            <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
+                                            <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Login</label>
+                                            <input type="text" class="form-control border-input" id="AdministradorLogin" name="AdministradorLogin" placeholder="beardsmaster">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for=""><span id = "cmpObrgt">* </span>Senha</label>
+                                            <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Email</label>
+                                            <input type="email" class="form-control border-input" id="administradorEmail" name="administradorEmail" placeholder="alex@beardsweb.com.br">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Empresa</label>
+                                            <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
                             </select>
-                        </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label><span id = "cmpObrgt">* </span>Permissão</label>
-                            <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao" onchange="if(this.selectedIndex == 1) alert('Usuários com permissão Administrador não poderão ser alterados futuramente.')">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Permissão</label>
+                                            <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao" onchange="if(this.selectedIndex == 1) alert('Usuários com permissão Administrador não poderão ser alterados futuramente.')">
                                 <option value="">Selecione...</option>
                                 <option value="1">Administrador</option>
                                 <option value="0">Usuário</option>
                             </select>
-                        </div>
-                    </div>
+                                        </div>
+                                    </div>
 
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label><span id = "cmpObrgt">* </span>Status</label>
-                            <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <label><span id = "cmpObrgt">* </span>Status</label>
+                                            <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
                                 <option value="">Selecione...</option>
                                 <option value="1">Ativo</option>
                                 <option value="0">Inativo</option>
                             </select>
-                        </div>
-                    </div>
+                                        </div>
+                                    </div>
 
 
 
-                </div>
-            </form>
+                                </div>
+                            </form>
 
-            <div class="text-center">
-                <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)" id="buttonUsuario">Inserir</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)" id="buttonUsuario">Inserir</button>
 
-                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="limpaAdministrador()" id="buttonCancelarUsr">Cancelar</button>
-            </div>
+                                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="limpaAdministrador()" id="buttonCancelarUsr">Cancelar</button>
+                            </div>
 
-            <div class="row">
+                            <div class="row">
 
-                <div class="col-md-12">
-                 <div class="form-group">
-                    <output type="text" class="text-center" id="retornoFormAdministrador"></output>
-                </div>
-            </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <output type="text" class="text-center" id="retornoFormAdministrador"></output>
+                                    </div>
+                                </div>
 
-        </div>
+                            </div>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped text-center " width="100%" name = "tableAdministrador" id="tableAdministrador" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th hidden>Código</th>
-                        <th>Empresa</th>
-                        <th>Nome</th>
-                        <th>Login</th>
-                        <th>Permissão</th>
-                        <th>Status</th>
-                        <th hidden>Email</th>
-                        <th hidden>CodEmpr</th>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center " width="100%" name="tableAdministrador" id="tableAdministrador" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th hidden>Código</th>
+                                            <th>Empresa</th>
+                                            <th>Nome</th>
+                                            <th>Login</th>
+                                            <th>Permissão</th>
+                                            <th>Status</th>
+                                            <th hidden>Email</th>
+                                            <th hidden>CodEmpr</th>
 
 
-                        <th>Ações</th>
+                                            <th>Ações</th>
 
-                    </tr>
-                </thead>
+                                        </tr>
+                                    </thead>
 
-                <tbody>
+                                    <tbody>
 
-                 <?php
+                                        <?php
 
                  require 'src/conecta.php';
 
@@ -613,90 +628,94 @@ padding-bottom: 20px">
 
                 ?>
 
-            </tbody>
-        </table>
-    </div>
-
-</div>
-</div> <!-- Card Administrador-->
-</div>
-
-</div> <!--FINAL ROW Administrador-->
-
-
-<div class="row" id="rowVinculo">
-
-    <div class="col-lg-12 col-md-12">
-        <div class="card">
-
-
-            <div class="header">
-                <h4 class="title">Vincular Usuário / Empresa</h4>
-            </div>
-            <div class="content">
-               <form>
-
-                <div class="row">
-                    <div class="col-md-offset-3 col-md-6">
-                        <div class="form-group" style="margin: 0 auto;">
-                            <label>Nome</label>
-                            <select placeholder="" class="form-control border-input" id="nomeUsuario" name="nomeUsuario" onchange="montaTabela(this.value)">
-                            </select>
+                                    </tbody>
+                                </table>
+                            </div>
 
                         </div>
                     </div>
-
-
+                    <!-- Card Administrador-->
                 </div>
 
-
-
-            </form>
-
-
-        </div>
-
-
-        <div class="row">
-
-            <div class="col-md-12">
-             <div class="form-group">
-                <output type="text" class="text-center" id="retornoFormAdministrador"></output>
             </div>
-        </div>
-
-    </div>
-    <div class="content">
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped text-center " width="100%" id="tableUsuarioAdministrador" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th hidden>Código</th>
-                        <th>Empresa</th>
-                        <th hidden>Codigo Empresa</th>
-                        <th>Ações</th>
+            <!--FINAL ROW Administrador-->
 
 
+            <div class="row" id="rowVinculo">
 
-                    </tr>
-                </thead>
-
-                <tbody>
-
+                <div class="col-lg-12 col-md-12">
+                    <div class="card">
 
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-</div> <!-- Card Administrador-->
+                        <div class="header">
+                            <h4 class="title">Vincular Usuário / Empresa</h4>
+                        </div>
+                        <div class="content">
+                            <form>
 
-</div> <!--FINAL ROW Administrador-->
+                                <div class="row">
+                                    <div class="col-md-offset-3 col-md-6">
+                                        <div class="form-group" style="margin: 0 auto;">
+                                            <label>Nome</label>
+                                            <select placeholder="" class="form-control border-input" id="nomeUsuario" name="nomeUsuario" onchange="montaTabela(this.value)">
+                            </select>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
 
 
 
-<?php
+                            </form>
+
+
+                        </div>
+
+
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <output type="text" class="text-center" id="retornoFormAdministrador"></output>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="content">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center " width="100%" id="tableUsuarioAdministrador" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th hidden>Código</th>
+                                            <th>Empresa</th>
+                                            <th hidden>Codigo Empresa</th>
+                                            <th>Ações</th>
+
+
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card Administrador-->
+
+            </div>
+            <!--FINAL ROW Administrador-->
+
+
+
+            <?php
 
 }
 ?>
@@ -706,21 +725,28 @@ padding-bottom: 20px">
 
 
 
-</div> <!-- Container Fluid -->
+    </div>
+    <!-- Container Fluid -->
 
 
 
 
-<?php include_once('inferior.php');?>
-<script src = "js/crudAjaxUsuario.js"></script>
-<script src = "js/interatividades.js"></script>
-<script src = "js/jquery.maskMoney.min.js"></script>
+    <?php include_once('inferior.php');?>
+    <script src="js/crudAjaxUsuario.js"></script>
+    <script src="js/interatividades.js"></script>
+    <script src="js/jquery.maskMoney.min.js"></script>
+    <script src="assets/js/tooltip.js"></script>
 
 
 
 
-<script>
+    <script>
+        $("#saldoInicial").maskMoney({
+            prefix: 'R$',
+            allowNegative: true,
+            thousands: '.',
+            decimal: ',',
+            affixesStay: true
+        });
 
-$("#saldoInicial").maskMoney({prefix:'R$', allowNegative: true, thousands:'.', decimal:',', affixesStay: true});
-
-</script>
+    </script>

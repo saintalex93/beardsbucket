@@ -55,11 +55,12 @@
 		<div class="container">
 			<div class="row">
 				<div class="logo col-md-4">
-					<!--<div>
+					<div class="lgPataDefult">
 						<a href="#">
-							<h3>&lt;/Beards WEB&gt;</h3>
+						<img src="images/logo.png">
+							<!--<h3>&lt;/Beards WEB&gt;</h3>-->
 						</a>
-					</div>-->
+					</div>
 				</div>
 				<div class="col-md-8">
 					<div class="navmenu"style="text-align: center;">
@@ -79,9 +80,10 @@
 	</div>
 		 <div class="container">
                 <div class="row wrap">
-                    <div class="col-md-12 gallery" id="">
+                    <div class="col-md-12 gallery row" id="">
                        <div id="logoBannerHome" class="">
-        <img src="images/logoHome.png" alt="" class="col-md-12">
+                       
+        <img src="images/logoHome.png" alt="" class="img-responsive row">
     </div>
                         <!--<img src="../sistema/img/beards.png" alt="">-->
                         <!-- #camera_wrap_1 -->
@@ -110,26 +112,27 @@
      <!--about start-->
 
     <div id="about">
-        <div class="line2">
+        <div class="line2 ">
+           <div class="anime-left">
             <div class="container">
                 <div class="row Fresh">
                     <div class="col-md-4 Des">
                         <i class="fa fa-code" aria-hidden="true"></i>
                         <h4>Desenvolvimento</h4>
-                        <p>Desenvolvimento de sites institucionais, Desenvolvimento de sistemas web, criação de sites intuitivos.</p>
+                        <p class="pPequeno">Desenvolvimento de sites institucionais, Desenvolvimento de sistemas web, criação de sites intuitivos.</p>
                     </div>
                     <div class="col-md-4 Ver">
                         <i class="fa fa-heart" aria-hidden="true"></i>
                         <h4>Design Gráfico</h4>
-                        <p>Banners, posts para Facebook, design de layout web, template de e-mail marketing, ícones, mascotes, marcas e o que mais a sua empresa precisar para se destacar perante ao público-alvo. </p>
+                        <p class="pPequeno">Banners, posts para Facebook, design de layout web, template de e-mail marketing, ícones, mascotes, marcas e o que mais a sua empresa precisar para se destacar perante ao público-alvo. </p>
                     </div>
                     <div class="col-md-4 Fully">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
                         <h4>Consultoria</h4>
-                        <p>Consultoria de Informática, Consultoria de Designer, Consultoria de Redes e Conectividades, Consultoria de Desenvolvimento de Sistemas e Websites entre outros aspectos referente a informatica. </p>
+                        <p class="pPequeno">Consultoria de Informática, Consultoria de Designer, Consultoria de Redes e Conectividades, Consultoria de Desenvolvimento de Sistemas e Websites entre outros aspectos referente a informatica. </p>
                     </div>
                 </div>
-            </div>
+            </div></div>
         </div>
         <div class="container">
             <div class="row">
@@ -142,8 +145,9 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container anime-left">
             <div class="row team">
+               <div class="">
                 <div class="col-md-4 b1">
                     <img class="img-responsive" src="images/picTeam/picT1.png">
                     <h4>Alex Santos</h4>
@@ -156,9 +160,9 @@
                         <li><a href="#"><i class="fa fa-google-plus-square"></i></a></li>
                     </ul>
                 </div>
+             </div>
 
-
-                <div class="col-md-4">
+                <div class="col-md-4" >
                     <img class="img-responsive" src="images/picTeam/picT1.png">
                     <h4>Diego Rodrigues</h4>
                     <h5>Desenvolvedor</h5>
@@ -172,7 +176,7 @@
                 </div>
 
 
-                <div class="col-md-4 b3">
+                <div class="col-md-4 b3 ">
                     <img class="img-responsive" src="images/picTeam/picT1.png">
                     <h4>Gustavo Silva</h4>
                     <h5>Ddesenvolvedor</h5>
@@ -476,6 +480,7 @@
    </div>
         
 	<script src="js/animateBtnTop.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/animateDIVs.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.slicknav.js"></script>
@@ -541,6 +546,26 @@
 		
 	});
 	</script>
+	
+	
+	<script>
+    $(function(){
+        var nav = $('.lgPataDefult');
+        
+        $(window).scroll(function(){
+           if($(this).scrollTop() > 100){
+               nav.addClass('lgPatafixed');
+               
+           } else{
+               nav.removeClass('lgPatafixed');
+           }
+        });
+        
+        
+    });
+    
+    </script>
+	
 	<script>
     $(function(){
         var nav = $('.default');

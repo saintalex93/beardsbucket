@@ -57,8 +57,6 @@
     animation-duration: 1s;
     animation-timing-function: linear;
     animation-iteration-count: 100;
-    
-
 }
 
 
@@ -68,14 +66,135 @@
     margin: 0 auto;
 }
 
-@media screen and (max-width: 500px) {
+
+/*@media screen and (max-width: 500px) {
     #logoBannerHome {
-        display: none;
+       // display: none;
     }
+    .mobile_bnt {
+        //display: none;
+    }
+    .gallery {
+       // display: none;
+    }
+}*/
+
+
+
+
+
+
+
+.anime-left{
+    opacity: 0;
+    transform: translate3d(-100px,0,0);
+    transition: .5s;
+}
+
+/*.anime-right{
+    opacity: 0;
+    transform: translate3d(100px,0,0);
+    transition: .3s;
+    
+}*/
+
+.anime-start{
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 991px) {
+    #logoBannerHome {
+        width: 100%;
+    }
+   
     .mobile_bnt {
         display: none;
     }
-    .gallery {
+    
+    .logo{
+        position: fixed;
+    }
+    
+    .slicknav_menu {
+    display: block;
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+        padding: 0 5px !important;
+        
+ 
+
+}
+    
+    .anime-left
+    .anime-start{display:none;}
+    
+    slicknav_menu{display:none;}
+    
+    .lgPatafixed{
+        position: fixed;
+    }
+    
+  #menuF{
         display: none;
     }
+   
+    
+    .gallery{
+        top:40px;
+    }
+   
 }
+
+@media screen and (max-width: 639px) {
+    .gallery{
+    /* position: fixed; */
+    //width: 200px;
+        margin: 0 auto;
+    //background-color: red;}
+    
+    #logoBannerHome{
+        //background-color: blue;
+        height: 600px;
+    }
+    .headerLine{
+            height: 545px;
+        overflow: none;
+    }
+}
+
+/*h3 {text-shadow: 0 0 0.2em #87F, 0 0 0.2em #87F,
+
+        0 0 0.2em #87F}
+
+p {font-size: 100px;}
+
+.pPequeno {text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black}*/
