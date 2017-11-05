@@ -208,12 +208,13 @@ $cod =  $_SESSION['user']['id'];
 								$dataAtual = date('Y-m-d');
 
 
-								$cSql = "SELECT
+								$cSql = "SELECT 
 								LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')) AS LCT_VLRPAGO,
 								CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, LCT_TIPO, LCT_FRMPAG, 
-								LANCAMENTO.CAT_COD, CLI_COD, CNT_COD, LANCAMENTO.USR_COD, USR_NOME, CATEGORIA.CAT_COD, CAT_NOME, COD_EMPRESA, EMP_NOME_EMPRESA 
-								FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD 
-								INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD INNER JOIN EMPRESA ON COD_EMPRESA = EMP_COD WHERE COD_EMPRESA IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) AND LCT_DTVENC LIKE '$dataAtual%'";
+								LANCAMENTO.CAT_COD, CLI_COD, LANCAMENTO.CNT_COD, LANCAMENTO.USR_COD, USR_NOME, LANCAMENTO.CAT_COD, CAT_NOME, EMP_COD, EMP_NOME_EMPRESA
+								FROM LANCAMENTO INNER JOIN CONTA ON CONTA.CNT_COD = LANCAMENTO.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR
+								INNER JOIN CATEGORIA ON CATEGORIA.CAT_COD = LANCAMENTO.CAT_COD INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD
+								WHERE EMPRESA.EMP_COD IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) AND LCT_DTVENC LIKE '$dataAtual%'";
 
 
 								$result = mysqli_query($conecta, $cSql); 
@@ -241,7 +242,7 @@ $cod =  $_SESSION['user']['id'];
 									<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['CLI_COD'] . "</td> 
 									<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['CNT_COD'] . "</td> 
 									<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['USR_COD'] . "</td> 
-									<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['COD_EMPRESA'] . "</td> 
+									<td hidden name = 'lancamento".$row['LCT_COD']."'>" . $row['EMP_COD'] . "</td> 
 
 									<td><button class = 'btn' id = 'lancamento". $row['LCT_COD'] ."' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button>
 
