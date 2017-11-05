@@ -1,3 +1,13 @@
+
+<script>
+        function loginsuccessfally(){
+            setTimeout("window.location='.././index.htm'", 100000);
+        }
+   
+    
+    </script>
+
+
 <?php
 
 $nome = $_POST['nomeCadastro'];
@@ -20,31 +30,43 @@ mysqli_set_charset($conecta, "utf8");
 
 $oSQL = "insert into USUARIO(USR_SENHA,USR_LOGIN,USR_NOME,USR_EMAIL,USR_PERMISSAO,USR_STATUS)values('$senha','$login','$nome','$email',1,1)";
 
-echo $oSQL . '</br>';
+/*echo $oSQL . '</br>';*/
 
-$codUsuario = mysqli_insert_id($conecta);
+
 $dados= mysqli_query($conecta, $oSQL);
-echo $codUsuario . '</br>';
+$codUsuario = mysqli_insert_id($conecta);
+/*echo $codUsuario . '</br>';*/
 
 
 
 $oSQL = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS)VALUES(0,'$nomeEmpresa', '$cnpjEmpresa',2)";
 
-echo $oSQL . '</br>';
+/*echo $oSQL . '</br>';*/
 $dados= mysqli_query($conecta, $oSQL);
 $codEmpresa = mysqli_insert_id($conecta);
-echo $dados . '</br>';
+/*echo $codEmpresa . '</br>';*/
 
 
 
+$oSQL = "INSERT INTO USR_EMPR(COD_USR_EMPR,COD_USR,COD_EMPR) VALUES(0,$codUsuario,$codEmpresa)";
+//FOREIGN KEY(COD_USR) REFERENCES USUARIO (USR_COD),
+//FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
+$dados= mysqli_query($conecta, $oSQL);
+$codUserEmpr = mysqli_insert_id($conecta);
 
-$oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoConta', '$numeroConta', 'cc',$saldoConta,1)";
 
-echo $oSQL . '</br>';
+
+$oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoConta', '$numeroConta', '$tipoConta',1,$saldoConta,$codUserEmpr)";
+
+/*echo $oSQL . '</br>';*/
 $dados= mysqli_query($conecta, $oSQL);
 
 $codConta = mysqli_insert_id($conecta);
-
+/*echo $codConta . '</br>';*/
+echo $oSQL;
+echo "<script>loginsuccessfally()</script>";
 mysqli_close($conecta);
 
 ?>
+
+
