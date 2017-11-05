@@ -79,39 +79,6 @@ $cod =  $_SESSION['user']['id'];
               </div>
               <div class="col-md-4">
                 <div class="form-group">
-                  <label for="">Categoria</label>
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Todas</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="">Tipo</label>
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Todas</option>
-
-                    <option value=""></option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="form-group">
-                  <label for="">Status</label>
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Todas</option>
-
-                    <option value=""></option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-                <div class="form-group">
                   <label for="">Empresa</label>
                   <select name="" id="" class="form-control border-input">
                     <option value="">Todas</option>
@@ -138,6 +105,44 @@ $cod =  $_SESSION['user']['id'];
                     <option value="">Todas</option>
 
                     <option value=""></option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Categoria</label>
+                  <select name="" id="" class="form-control border-input">
+                    <option value="">Todas</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Tipo</label>
+                  <select name="" id="" class="form-control border-input">
+                    <option value="">Todas</option>
+                    <option value="">Despesa</option>
+                    <option value="">Receitas</option>
+
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label for="">Status</label>
+                  <select name="" id="" class="form-control border-input">
+                    <option value="">Todas</option>
+                    <option value="">Pagas - Recebidas</option>
+                    <option value="">A Pagar - A Receber</option>
+
+
                   </select>
                 </div>
               </div>
@@ -187,7 +192,7 @@ $cod =  $_SESSION['user']['id'];
                FROM LANCAMENTO INNER JOIN CONTA ON LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR
                INNER JOIN CATEGORIA ON CATEGORIA.CAT_COD = LANCAMENTO.CAT_COD INNER JOIN CLIENTE ON CLIENTE.CLI_COD = LANCAMENTO.CLI_COD
                INNER JOIN USUARIO ON USUARIO.USR_COD = LANCAMENTO.USR_COD 
-               WHERE EMPRESA.EMP_COD IN (SELECT USR_EMPR.COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) ORDER BY EMP_NOME_EMPRESA ASC, LCT_DTVENC DESC";
+               WHERE EMPRESA.EMP_COD IN (SELECT USR_EMPR.COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') = CURRENT_DATE() ORDER BY EMP_NOME_EMPRESA ASC, LCT_DTVENC DESC";
 
 
                $dataSet = mysqli_query($conecta, $cSql);
