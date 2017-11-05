@@ -82,7 +82,7 @@ $mes = array();
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-reload"></i>A receber no mês de <?php echo $mes[date('m')]?>
+                            <i class="ti-reload"></i>A receber no mês de <?php echo $mes[date('m')]?> (S/ Juros)
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ $mes = array();
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-calendar"></i>A pagar no mês de <?php echo $mes[date('m')]?>
+                            <i class="ti-calendar"></i>A pagar no mês de <?php echo $mes[date('m')]?> (S/ Juros)
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@ $mes = array();
                     <div class="footer">
                         <hr />
                         <div class="stats">
-                            <i class="ti-timer"></i> Saldo Inicial e Movimentações
+                            <i class="ti-timer"></i> Saldo Inicial e Movimentações (C/ Juros)
                         </div>
                     </div>
                 </div>

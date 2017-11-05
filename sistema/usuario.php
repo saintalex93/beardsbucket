@@ -20,29 +20,25 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
     $STATUS = $oDados['USR_STATUS'];
 }
 
-
-
-
 ?>
 
 <div class="content">
 
     <div class="container-fluid">
-        
+
         <div class="row">
             <div class="col-lg-4 col-md-5">
                 <div class="card card-user" style=" height:305px">
                     <div class="image"  >
-                        
+
                         <div class="trofeu" rel="tooltip" title="texto explicativo.">
-                        <?php
-                              $pontuacao = 0;  
-                            $cSQL ="SELECT USR_PONTUACAO FROM USUARIO WHERE URS_COD =".$cod;
-                             $oDados = mysqli_query($conecta, $cSql);
-                          
-                             /*if($pontuacao == $oDados['USR_PONTUACAO']){ }*/
-                             /*if($pontuacao == $oDados['USR_PONTUACAO'<= 100]){ }*/
-                            
+                            <?php
+                            $cSQL ="SELECT USR_PONTUACAO FROM USUARIO WHERE USR_COD =".$cod;
+                            $dataSet = mysqli_query($conecta, $cSQL);
+                            if($oDados = mysqli_fetch_assoc($dataSet)){
+                                $pontuacao = $oDados['USR_PONTUACAO'];
+                            }
+
                             if($pontuacao <= 100){
                                 echo '<img src="img/1.png" >';
                             }
@@ -67,19 +63,17 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                             else if($pontuacao <= 800){
                                 echo '<img src="img/8.png" >';
                             }    
-                             else if($pontuacao <= 900){
+                            else if($pontuacao <= 900){
                                 echo '<img src="img/9.png" >';
                             }  
-                                else if($pontuacao <= 1000){
+                            else if($pontuacao <= 1000){
                                 echo '<img src="img/10.png" >';
                             }
-                             
+
                             
-                            mysqli_free_result($oDados);                           
-                            mysqli_free_result($dataSet);
                             mysqli_close($conecta);
                             ?>
-                         
+
                         </div>
                         <!--<img src="assets/img/background.jpg" alt="..."/>-->
 
@@ -184,9 +178,9 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
 
         <?php
 
-if ($PERMISSAO == 'Administrador'){
+        if ($PERMISSAO == 'Administrador'){
 
-    ?>
+            ?>
 
             <div class="row" id="rowEmpresa">
                 <!-- ROW EMPRESA -->
@@ -219,9 +213,9 @@ if ($PERMISSAO == 'Administrador'){
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select class="form-control border-input" id="cmbStatusEmpresa" disabled>
-                                        <option value="Ativo">Ativo</option>
-                                        <option value="Inativo">Inativo</option>
-                                    </select>
+                                                <option value="Ativo">Ativo</option>
+                                                <option value="Inativo">Inativo</option>
+                                            </select>
 
                                         </div>
                                     </div>
@@ -263,36 +257,36 @@ if ($PERMISSAO == 'Administrador'){
 
                                         <?php
 
-                            require 'src/conecta.php';
+                                        require 'src/conecta.php';
 
 
-                            $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
-                            IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
-                            FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
+                                        $cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ,
+                                        IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS 
+                                        FROM USUARIO JOIN USR_EMPR ON USR_COD = COD_USR INNER JOIN EMPRESA ON EMP_COD = COD_EMPR WHERE COD_USR = ".$cod;
 
 
-                            $dataSet = mysqli_query($conecta, $cSql);
+                                        $dataSet = mysqli_query($conecta, $cSql);
 
-                            while($oDados = mysqli_fetch_assoc($dataSet)){
-                                echo "
+                                        while($oDados = mysqli_fetch_assoc($dataSet)){
+                                            echo "
 
-                                <tr>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
-                                <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
+                                            <tr>
+                                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_COD']."</td>
+                                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_CNPJ']."</td>
+                                            <td name = 'emp".$oDados['EMP_COD']."'>".$oDados['EMP_STATUS']."</td>
 
-                                <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
-                                </tr>
-                                ";
+                                            <td><button class = 'btn' id = '".$oDados['EMP_COD']."' onclick = 'selecionaEmpresa(this.id)' >Alterar</button></td>
+                                            </tr>
+                                            ";
 
-                            }
+                                        }
 
-                            mysqli_free_result($dataSet);
-                            mysqli_close($conecta);  
+                                        mysqli_free_result($dataSet);
+                                        mysqli_close($conecta);  
 
 
-                            ?>
+                                        ?>
 
                                     </tbody>
                                 </table>
@@ -346,7 +340,7 @@ if ($PERMISSAO == 'Administrador'){
                                             <label for=""><span id = "cmpObrgt">* </span>Empresa / Pefil</label>
                                             <select placeholder="" class="form-control border-input" id="cmbEmpresa" name="cmbEmpresa">
 
-                               </select>
+                                            </select>
                                         </div>
                                     </div>
 
@@ -370,13 +364,13 @@ if ($PERMISSAO == 'Administrador'){
                                         <div class="form-group">
                                             <label>Tipo</label>
                                             <select placeholder="" class="form-control border-input" id="tipoConta" name="tipoConta">
-                                <option value="">Selecione...</option>
-                                <option value="CC">Conta Corrente</option>
-                                <option value="CP">Conta Poupança</option>
-                                <option value="CS">Conta Salário</option>
-                                <option value="SC">Sem Conta</option>
+                                                <option value="">Selecione...</option>
+                                                <option value="CC">Conta Corrente</option>
+                                                <option value="CP">Conta Poupança</option>
+                                                <option value="CS">Conta Salário</option>
+                                                <option value="SC">Sem Conta</option>
 
-                            </select>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
@@ -389,9 +383,9 @@ if ($PERMISSAO == 'Administrador'){
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select class="form-control border-input" name="cmbStatusConta" id="cmbStatusConta" disabled>
-                                <option value="1">Ativo</option>
-                                <option value="0">Inativo</option>
-                            </select>
+                                                <option value="1">Ativo</option>
+                                                <option value="0">Inativo</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -441,39 +435,39 @@ if ($PERMISSAO == 'Administrador'){
                                     <tbody>
 
                                         <?php
-                require 'src/conecta.php';
+                                        require 'src/conecta.php';
 
 
-                $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
-                EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
+                                        $cSql = "SELECT CNT_COD, CNT_NOME, CNT_BANCO, CNT_AGNC, CNT_NMCONTA, CNT_TIPO, CNT_TIPO, CNT_SALDOINICIAL, EMP_NOME_EMPRESA, IF(CNT_STATUS = 1,REPLACE( CNT_STATUS,1,'Ativo'),REPLACE( CNT_STATUS,0,'Inativo')) as CNT_STATUS  FROM CONTA INNER JOIN
+                                        EMPRESA ON EMPRESA.EMP_COD = CONTA.COD_EMPR INNER JOIN USR_EMPR ON USR_EMPR.COD_EMPR = EMPRESA.EMP_COD WHERE COD_USR = ".$cod." order by CNT_COD";
 
 
-                $dataSet = mysqli_query($conecta, $cSql);
+                                        $dataSet = mysqli_query($conecta, $cSql);
 
-                while($oDados = mysqli_fetch_assoc($dataSet)){
-                    echo "
+                                        while($oDados = mysqli_fetch_assoc($dataSet)){
+                                            echo "
 
-                    <tr>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
-                    <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
+                                            <tr>
+                                            <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_COD']."</td>
+                                            <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_NOME']."</td>
+                                            <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_BANCO']."</td>
+                                            <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                                            <td name = 'conta".$oDados['CNT_COD']."'>"."R$".number_format($oDados['CNT_SALDOINICIAL'],2,",",".")."</td>
+                                            <td name = 'conta".$oDados['CNT_COD']."'>".$oDados['CNT_STATUS']."</td>
 
-                    <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
-                    </tr>
-                    ";
+                                            <td><button class = 'btn' id = '".$oDados['CNT_COD']."' onclick = 'selecionaConta(this.id)' >Alterar</button></td>
+                                            </tr>
+                                            ";
 
                     // for(var i = 0; i<document.getElementById('".$oDados['CNT_COD']."').length;i++){alert(document.getElementById('".$oDados['CNT_COD']."')[i].innerTEXT);}
 
-                }
+                                        }
 
-                mysqli_free_result($dataSet);
-                mysqli_close($conecta);  
+                                        mysqli_free_result($dataSet);
+                                        mysqli_close($conecta);  
 
 
-                ?>
+                                        ?>
 
 
 
@@ -496,228 +490,99 @@ if ($PERMISSAO == 'Administrador'){
             <!-- Administrador -->
 
             <ul class="nav nav-pills " style="
-padding-bottom: 20px">
-                <li class="active" id="cadastro" onclick="fnBotoes(this)">
-                    <a href="#"><span class="ti-user"></span> Cadastrar</a>
-                </li>
+            padding-bottom: 20px">
+            <li class="active" id="cadastro" onclick="fnBotoes(this)">
+                <a href="#"><span class="ti-user"></span> Cadastrar</a>
+            </li>
 
-                <li class="" id="vinculo" onclick="fnBotoes(this)">
-                    <a href="#"><span class="ti-link"></span> Vincular</a>
-                </li>
+            <li class="" id="vinculo" onclick="fnBotoes(this)">
+                <a href="#"><span class="ti-link"></span> Vincular</a>
+            </li>
 
-            </ul>
+        </ul>
 
-            <div class="row" id="rowCadastro">
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
+        <div class="row" id="rowCadastro">
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
 
 
 
-                        <div class="header">
-                            <h4 class="title">Usuários</h4>
-                        </div>
-                        <div class="content">
-                            <form>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label><span id = "cmpObrgt">* </span>Nome</label>
-                                            <input type="hidden" class="form-control border-input" id="administradorCod" name="administradorCod">
+                    <div class="header">
+                        <h4 class="title">Usuários</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label><span id = "cmpObrgt">* </span>Nome</label>
+                                        <input type="hidden" class="form-control border-input" id="administradorCod" name="administradorCod">
 
-                                            <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label><span id = "cmpObrgt">* </span>Login</label>
-                                            <input type="text" class="form-control border-input" id="AdministradorLogin" name="AdministradorLogin" placeholder="beardsmaster">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for=""><span id = "cmpObrgt">* </span>Senha</label>
-                                            <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
-                                        </div>
+                                        <input type="text" class="form-control border-input" id="administradorNome" name="administradorNome" placeholder="Nome">
                                     </div>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Email</label>
-                                            <input type="email" class="form-control border-input" id="administradorEmail" name="administradorEmail" placeholder="alex@beardsweb.com.br">
-                                        </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label><span id = "cmpObrgt">* </span>Login</label>
+                                        <input type="text" class="form-control border-input" id="AdministradorLogin" name="AdministradorLogin" placeholder="beardsmaster">
                                     </div>
-
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label><span id = "cmpObrgt">* </span>Empresa</label>
-                                            <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
-                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label><span id = "cmpObrgt">* </span>Permissão</label>
-                                            <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao" onchange="if(this.selectedIndex == 1) alert('Usuários com permissão Administrador não poderão ser alterados futuramente.')">
-                                <option value="">Selecione...</option>
-                                <option value="1">Administrador</option>
-                                <option value="0">Usuário</option>
-                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-2">
-                                        <div class="form-group">
-                                            <label><span id = "cmpObrgt">* </span>Status</label>
-                                            <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
-                                <option value="">Selecione...</option>
-                                <option value="1">Ativo</option>
-                                <option value="0">Inativo</option>
-                            </select>
-                                        </div>
-                                    </div>
-
-
-
                                 </div>
-                            </form>
-
-                            <div class="text-center">
-                                <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)" id="buttonUsuario">Inserir</button>
-
-                                <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="limpaAdministrador()" id="buttonCancelarUsr">Cancelar</button>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for=""><span id = "cmpObrgt">* </span>Senha</label>
+                                        <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row">
-
-                                <div class="col-md-12">
+                                <div class="col-md-4">
                                     <div class="form-group">
-                                        <output type="text" class="text-center" id="retornoFormAdministrador"></output>
+                                        <label>Email</label>
+                                        <input type="email" class="form-control border-input" id="administradorEmail" name="administradorEmail" placeholder="alex@beardsweb.com.br">
                                     </div>
                                 </div>
 
-                            </div>
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped text-center " width="100%" name="tableAdministrador" id="tableAdministrador" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th hidden>Código</th>
-                                            <th>Empresa</th>
-                                            <th>Nome</th>
-                                            <th>Login</th>
-                                            <th>Permissão</th>
-                                            <th>Status</th>
-                                            <th hidden>Email</th>
-                                            <th hidden>CodEmpr</th>
-
-
-                                            <th>Ações</th>
-
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-
-                                        <?php
-
-                 require 'src/conecta.php';
-
-
-                 $cSql = "SELECT DISTINCT USR_COD,COD_EMPR,EMP_NOME_EMPRESA, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-                 IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
-                 USUARIO.USR_COD = USR_EMPR.COD_USR join EMPRESA on COD_EMPR = EMP_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) order by EMP_NOME_EMPRESA";
-
-                 $dataSet = mysqli_query($conecta, $cSql);
-
-                 while($oDados = mysqli_fetch_assoc($dataSet)){
-                    echo "
-
-                    <tr>
-                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_COD']."</td>
-                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
-                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_NOME']."</td>
-                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_LOGIN']."</td>
-                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
-                    <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
-                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
-                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_SENHA']."</td>
-                    <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['COD_EMPR']."</td>
-
-
-
-
-                    ";
-
-
-                    if($oDados['USR_PERMISSAO'] != "Administrador"){
-                        echo "<td><button class = 'btn' id = 'usr_admin".$oDados['USR_COD']."' onclick = 'selecionaUsuario(this.id)'>Alterar</button></td>
-                        </tr>
-                        ";
-                    }
-                    else{
-                        echo "<td><button class = 'btn' id = 'usr_admin".$oDados['USR_COD']."' disabled>Alterar</button></td>
-                        </tr>
-                        ";
-                    }
-
-
-                }
-
-                mysqli_free_result($dataSet);
-                mysqli_close($conecta);  
-
-
-
-                ?>
-
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
-                    <!-- Card Administrador-->
-                </div>
-
-            </div>
-            <!--FINAL ROW Administrador-->
-
-
-            <div class="row" id="rowVinculo">
-
-                <div class="col-lg-12 col-md-12">
-                    <div class="card">
-
-
-                        <div class="header">
-                            <h4 class="title">Vincular Usuário / Empresa</h4>
-                        </div>
-                        <div class="content">
-                            <form>
-
-                                <div class="row">
-                                    <div class="col-md-offset-3 col-md-6">
-                                        <div class="form-group" style="margin: 0 auto;">
-                                            <label>Nome</label>
-                                            <select placeholder="" class="form-control border-input" id="nomeUsuario" name="nomeUsuario" onchange="montaTabela(this.value)">
-                            </select>
-
-                                        </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label><span id = "cmpObrgt">* </span>Empresa</label>
+                                        <select placeholder="" class="form-control border-input" id="cmbEmpresaAdm" name="cmbEmpresaAdm">
+                                        </select>
                                     </div>
+                                </div>
 
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label><span id = "cmpObrgt">* </span>Permissão</label>
+                                        <select placeholder="" class="form-control border-input" id="administradorPermissao" name="administradorPermissao" onchange="if(this.selectedIndex == 1) alert('Usuários com permissão Administrador não poderão ser alterados futuramente.')">
+                                            <option value="">Selecione...</option>
+                                            <option value="1">Administrador</option>
+                                            <option value="0">Usuário</option>
+                                        </select>
+                                    </div>
+                                </div>
 
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label><span id = "cmpObrgt">* </span>Status</label>
+                                        <select placeholder="" class="form-control border-input" id="administradorStatus" name="administradorStatus">
+                                            <option value="">Selecione...</option>
+                                            <option value="1">Ativo</option>
+                                            <option value="0">Inativo</option>
+                                        </select>
+                                    </div>
                                 </div>
 
 
 
-                            </form>
+                            </div>
+                        </form>
 
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" onclick="selecionaAcaoAdministrador(this.value)" id="buttonUsuario">Inserir</button>
 
+                            <button type="submit" class="btn btn-info btn-fill btn-wd danger" value="2" onclick="limpaAdministrador()" id="buttonCancelarUsr">Cancelar</button>
                         </div>
-
 
                         <div class="row">
 
@@ -728,70 +593,199 @@ padding-bottom: 20px">
                             </div>
 
                         </div>
-                        <div class="content">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped text-center " width="100%" id="tableUsuarioAdministrador" cellspacing="0">
-                                    <thead>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped text-center " width="100%" name="tableAdministrador" id="tableAdministrador" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th hidden>Código</th>
+                                        <th>Empresa</th>
+                                        <th>Nome</th>
+                                        <th>Login</th>
+                                        <th>Permissão</th>
+                                        <th>Status</th>
+                                        <th hidden>Email</th>
+                                        <th hidden>CodEmpr</th>
+
+
+                                        <th>Ações</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                    <?php
+
+                                    require 'src/conecta.php';
+
+
+                                    $cSql = "SELECT DISTINCT USR_COD,COD_EMPR,EMP_NOME_EMPRESA, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                                    IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+                                    USUARIO.USR_COD = USR_EMPR.COD_USR join EMPRESA on COD_EMPR = EMP_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) order by EMP_NOME_EMPRESA";
+
+                                    $dataSet = mysqli_query($conecta, $cSql);
+
+                                    while($oDados = mysqli_fetch_assoc($dataSet)){
+                                        echo "
+
                                         <tr>
-                                            <th hidden>Código</th>
-                                            <th>Empresa</th>
-                                            <th hidden>Codigo Empresa</th>
-                                            <th>Ações</th>
+                                        <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_COD']."</td>
+                                        <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
+                                        <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_NOME']."</td>
+                                        <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_LOGIN']."</td>
+                                        <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
+                                        <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
+                                        <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
+                                        <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_SENHA']."</td>
+                                        <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['COD_EMPR']."</td>
 
 
 
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>
+                                        ";
 
 
+                                        if($oDados['USR_PERMISSAO'] != "Administrador"){
+                                            echo "<td><button class = 'btn' id = 'usr_admin".$oDados['USR_COD']."' onclick = 'selecionaUsuario(this.id)'>Alterar</button></td>
+                                            </tr>
+                                            ";
+                                        }
+                                        else{
+                                            echo "<td><button class = 'btn' id = 'usr_admin".$oDados['USR_COD']."' disabled>Alterar</button></td>
+                                            </tr>
+                                            ";
+                                        }
 
-                                    </tbody>
-                                </table>
-                            </div>
+
+                                    }
+
+                                    mysqli_free_result($dataSet);
+                                    mysqli_close($conecta);  
+
+
+
+                                    ?>
+
+                                </tbody>
+                            </table>
                         </div>
+
                     </div>
                 </div>
                 <!-- Card Administrador-->
-
             </div>
-            <!--FINAL ROW Administrador-->
+
+        </div>
+        <!--FINAL ROW Administrador-->
+
+
+        <div class="row" id="rowVinculo">
+
+            <div class="col-lg-12 col-md-12">
+                <div class="card">
+
+
+                    <div class="header">
+                        <h4 class="title">Vincular Usuário / Empresa</h4>
+                    </div>
+                    <div class="content">
+                        <form>
+
+                            <div class="row">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <div class="form-group" style="margin: 0 auto;">
+                                        <label>Nome</label>
+                                        <select placeholder="" class="form-control border-input" id="nomeUsuario" name="nomeUsuario" onchange="montaTabela(this.value)">
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
 
 
 
-            <?php
-
-}
-?>
+                        </form>
 
 
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <output type="text" class="text-center" id="retornoFormAdministrador"></output>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="content">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped text-center " width="100%" id="tableUsuarioAdministrador" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th hidden>Código</th>
+                                        <th>Empresa</th>
+                                        <th hidden>Codigo Empresa</th>
+                                        <th>Ações</th>
+
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Administrador-->
+
+        </div>
+        <!--FINAL ROW Administrador-->
+
+
+
+        <?php
+
+    }
+    ?>
 
 
 
 
-    </div>
-    <!-- Container Fluid -->
+
+
+</div>
+<!-- Container Fluid -->
 
 
 
 
-    <?php include_once('inferior.php');?>
-    <script src="js/crudAjaxUsuario.js"></script>
-    <script src="js/interatividades.js"></script>
-    <script src="js/jquery.maskMoney.min.js"></script>
-    <script src="assets/js/tooltip.js"></script>
+<?php include_once('inferior.php');?>
+<script src="js/crudAjaxUsuario.js"></script>
+<script src="js/interatividades.js"></script>
+<script src="js/jquery.maskMoney.min.js"></script>
+<script src="assets/js/tooltip.js"></script>
 
 
 
 
-    <script>
-        $("#saldoInicial").maskMoney({
-            prefix: 'R$',
-            allowNegative: true,
-            thousands: '.',
-            decimal: ',',
-            affixesStay: true
-        });
+<script>
+    $("#saldoInicial").maskMoney({
+        prefix: 'R$',
+        allowNegative: true,
+        thousands: '.',
+        decimal: ',',
+        affixesStay: true
+    });
 
-    </script>
+</script>
