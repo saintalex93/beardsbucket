@@ -1,7 +1,7 @@
 
 <script>
         function loginsuccessfally(){
-            setTimeout("window.location='.././index.htm'", 100000);
+            setTimeout("window.location='.././index.htm'", 0);
         }
    
     
