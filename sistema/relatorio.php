@@ -152,25 +152,23 @@ $cod =  $_SESSION['user']['id'];
                 <tr>
                   <th hidden>Código</th>
                   <th>Empresa</th>
-                  <th hidden >Conta</th>
+                  <th id='relatorio'>Conta</th>
                   <th>Cliente</th>
-                  <th hidden >Banco</th>
-                  <th hidden >Agência</th>
-                  <th hidden >Conta</th>
-                  <th hidden >Tipo Conta</th>
+                  <th id='relatorio'>Banco</th>
+                  <th id='relatorio'>Agência</th>
+                  <th id='relatorio'>Conta</th>
+                  <th id='relatorio'>Tipo</th>
                   
 
                   <th>Descrição</th>
                   <th>Tipo</th>
                   <th>Categoria</th>
-                  <th hidden>Forma</th>
+                  <th id='relatorio' >Forma</th>
                   <th>Vencimento</th>
-                  <th hidden>Pagamento</th>
-                  <th hidden >Cadastramento</th>
+                  <th id='relatorio'>Pagamento</th>
+                  <th id='relatorio' >Cadastro</th>
                   <th>Valor Título</th>
                   <th>Valor Pago</th>
-                  <th hidden>Parcelas</th>
-                  <th hidden>Juros</th>
                   <th>Status</th>
                   <th>Usuário</th>
 
@@ -200,24 +198,22 @@ $cod =  $_SESSION['user']['id'];
                 <tr>
                 <td hidden>".$oDados['LCT_COD']."</td>
                 <td>".$oDados['EMP_NOME_EMPRESA']."</td>
-                <td hidden>".$oDados['CNT_NOME']."</td>
+                <td id='relatorio'>".$oDados['CNT_NOME']."</td>
                 <td>".$oDados['CLI_NOME']."</td>
-                <td hidden>".$oDados['CLI_BANCO']."</td>
-                <td hidden>".$oDados['CLI_AGENCIA']."</td>
-                <td hidden>".$oDados['CLI_CONTA']."</td>
-                <td hidden>".$oDados['CLI_TIPOCONTA']."</td>
+                <td id='relatorio'>".$oDados['CLI_BANCO']."</td>
+                <td id='relatorio'>".$oDados['CLI_AGENCIA']."</td>
+                <td id='relatorio'>".$oDados['CLI_CONTA']."</td>
+                <td id='relatorio'>".$oDados['CLI_TIPOCONTA']."</td>
                 <td>".$oDados['LCT_DESCRICAO']."</td>
                 <td>".$oDados['LCT_TIPO']."</td>
                 <td>".$oDados['CAT_NOME']."</td>
-                <td hidden>".$oDados['LCT_FRMPAG']."</td>
+                <td id='relatorio'>".$oDados['LCT_FRMPAG']."</td>
                 <td>".$oDados['LCT_DTVENC']."</td>
-                <td hidden>".$oDados['LCT_DTPAG']."</td>
-                <td hidden>".$oDados['LCT_DTCADASTR']."</td>
+                <td id='relatorio'>".$oDados['LCT_DTPAG']."</td>
+                <td id='relatorio'>".$oDados['LCT_DTCADASTR']."</td>
                 <td>".$oDados['LCT_VLRTITULO']."</td>
                 <td>".$oDados['LCT_VLRPAGO']."</td>
                 <td>".$oDados['LCT_STATUSLANC']."</td>
-                <td hidden>".$oDados['LCT_NPARC']."</td>
-                <td hidden>".$oDados['LCT_JUROSDIA']."</td>
                 <td>".$oDados['USR_NOME']."</td>
 
                 </tr>
