@@ -35,7 +35,21 @@ mysqli_close($conecta);
                 <div class="card card-user" style=" height:305px">
                     <div class="image"  >
                         
-                        <div class="trofeu" rel="tooltip" title="texto explicativo."><img src="img/1.png" ></div>
+                        <div class="trofeu" rel="tooltip" title="texto explicativo.">
+                        <?php
+                            
+                            
+                            ?>
+                            
+                            
+                        <img src="img/1.png" >
+                        <?php
+                            
+                            
+                            
+                            ?>
+                         
+                        </div>
                         <!--<img src="assets/img/background.jpg" alt="..."/>-->
 
                     </div>
