@@ -652,7 +652,6 @@ function validaCampos(){
 function selecionaTabelaLancamento(codLancamento){
 
 
-
 	var indiceTabela = document.getElementsByName(codLancamento);
 	var codEmpresa = indiceTabela[18].innerText;
 

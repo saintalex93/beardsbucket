@@ -113,7 +113,7 @@ display: none;
 
 #menu .active a {
 border:0;
-color:#1fcdff;
+color:#dacb09;
 }
 #menu .active a:focus{
 	outline: none;
@@ -161,7 +161,7 @@ border: none;
 #menu li a:hover{
 	border:none;
 	outline:none;
-	color:#1fcdff;
+	color:#dacb09;
 }
 .gallery {
 	height: 100vh;
@@ -828,9 +828,9 @@ border: none;
 }
 .cBtn ul li:hover{
 	cursor:pointer;
-	background:#1fcdff;
+	background:#d8c907;
 	color:#fff;
-	box-shadow: 0px 2px 0px 0px #179abf;
+	box-shadow: 0px 2px 0px 0px #827b20;
 }
 /**/
 
@@ -884,13 +884,13 @@ border: none;
 }
 #filter li a:hover{
 	cursor:pointer;
-	background:#1fcdff;
+	background:#d8c907;
 	//color:#fff;
-	box-shadow: 0px 2px 0px 0px #179abf;
+	box-shadow: 0px 2px 0px 0px #827b20;
 }
 #filter .current{
-	background:#1fcdff;
-	box-shadow: 0px 2px 0px 0px #179abf;
+	background:#d8c907;
+	box-shadow: 0px 2px 0px 0px #827b20;
 }
 /**/
 .pretty{
@@ -1319,8 +1319,8 @@ textarea {
 	font-weight: 700;
 }
 .forma .cBtn .send{
-	box-shadow: 0px 2px 0px 0px #179abf;
-	background:#1fcdff ;
+	box-shadow: 0px 2px 0px 0px #827b20;
+	background:#d8c907;
 }
 .forma .cBtn .send:hover{
 	background:#2f2f2f;
@@ -1352,7 +1352,7 @@ textarea {
 }
 .cont a{
 	text-decoration:none;
-	color:#1fcdff;
+	color:#663333;
 }
 .cont a:hover{
 	color:#666666;
@@ -1999,9 +1999,9 @@ margin-bottom: 35px !important;
 }*/
 #filter li a.selected {
 	cursor:pointer;
-	background:#1fcdff;
+	background:#d8c907;
 	color:#fff;
-	box-shadow: 0px 2px 0px 0px #179abf;
+	box-shadow: 0px 2px 0px 0px #827b20;
 }
 
 #projects .columns1 .project {

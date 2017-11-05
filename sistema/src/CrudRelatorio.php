@@ -47,18 +47,27 @@ if($cCliente == " AND LANCAMENTO.CLI_COD=")
 
 
 if(isset($_GET['categoria'])){
- $cCategoria = $_GET['categoria'];
+ $cCategoria = " AND LANCAMENTO.CAT_COD=".$_GET['categoria'];
 }
+
+if($cCategoria == " AND LANCAMENTO.CAT_COD=")
+$cCategoria = "";
 
 if(isset($_GET['tipo'])){
- $cTipo = $_GET['tipo'];
+ $cTipo =" AND LCT_TIPO=".$_GET['tipo'];
 }
+
+if($cTipo == " AND LCT_TIPO=")
+  $cTipo = "";
 
 if(isset($_GET['status'])){
- $cStatus = $_GET['status'];
+ $cStatus =" AND LCT_STATUSLANC=".$_GET['status'];
 }
 
-echo $cEmpresa;
+if($cStatus == " AND LCT_STATUSLANC=")
+  $cStatus = "";
+
+
 
 $cData = " AND DATE_FORMAT($intervaloData, '%Y-%m-%d') BETWEEN $dataInicial AND $dataFinal";
 
@@ -72,40 +81,18 @@ INNER JOIN USUARIO ON USUARIO.USR_COD = LANCAMENTO.USR_COD
 WHERE EMPRESA.EMP_COD IN (SELECT USR_EMPR.COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod) $cData $cEmpresa $cConta $cCliente $cCategoria $cTipo $cStatus ORDER BY EMP_NOME_EMPRESA ASC, LCT_DTVENC DESC";
 
 
-$dataSet = mysqli_query($conecta, $cSql);
 
-while($oDados = mysqli_fetch_assoc($dataSet)){
-  echo $oDados['LCT_COD'];
-                // echo "
+ $result = mysqli_query($conecta, $cSql);
 
-                // <tr>
-                // <td hidden>".$oDados['LCT_COD']."</td>
-                // <td>".$oDados['EMP_NOME_EMPRESA']."</td>
-                // <td id='relatorio'>".$oDados['CNT_NOME']."</td>
-                // <td>".$oDados['CLI_NOME']."</td>
-                // <td id='relatorio'>".$oDados['CLI_BANCO']."</td>
-                // <td id='relatorio'>".$oDados['CLI_AGENCIA']."</td>
-                // <td id='relatorio'>".$oDados['CLI_CONTA']."</td>
-                // <td id='relatorio'>".$oDados['CLI_TIPOCONTA']."</td>
-                // <td>".$oDados['LCT_DESCRICAO']."</td>
-                // <td>".$oDados['LCT_TIPO']."</td>
-                // <td>".$oDados['CAT_NOME']."</td>
-                // <td id='relatorio'>".$oDados['LCT_FRMPAG']."</td>
-                // <td>".$oDados['LCT_DTVENC']."</td>
-                // <td id='relatorio'>".$oDados['LCT_DTPAG']."</td>
-                // <td id='relatorio'>".$oDados['LCT_DTCADASTR']."</td>
-                // <td>".$oDados['LCT_VLRTITULO']."</td>
-                // <td>".$oDados['LCT_VLRPAGO']."</td>
-                // <td>".$oDados['LCT_STATUSLANC']."</td>
-                // <td>".$oDados['USR_NOME']."</td>
+  while($row = mysqli_fetch_assoc($result))
+  {  
+    $json_array[] = $row;  
+  }  
 
-                // </tr>
-                // ";
+  echo json_encode($json_array, JSON_UNESCAPED_UNICODE);              
 
-}
 
-mysqli_free_result($dataSet);
-mysqli_close($conecta);  
+
 
 
 
