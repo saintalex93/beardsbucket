@@ -107,7 +107,7 @@
 
 	INSERT INTO USUARIO VALUES
 	(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
-	(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,0),
+	(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,1000),
 	(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
 	(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
 	--
@@ -162,5 +162,8 @@
     
 	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',3,4,2,2);
     
+
+
+
 
 
