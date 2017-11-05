@@ -21,8 +21,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
 }
 
 
-mysqli_free_result($dataSet);
-mysqli_close($conecta);
+
 
 ?>
 
@@ -37,16 +36,48 @@ mysqli_close($conecta);
                         
                         <div class="trofeu" rel="tooltip" title="texto explicativo.">
                         <?php
+                              $pontuacao = 0;  
+                            $cSQL ="SELECT USR_PONTUACAO FROM USUARIO WHERE URS_COD =".$cod;
+                             $oDados = mysqli_query($conecta, $cSql);
+                          
+                             /*if($pontuacao == $oDados['USR_PONTUACAO']){ }*/
+                             /*if($pontuacao == $oDados['USR_PONTUACAO'<= 100]){ }*/
                             
+                            if($pontuacao <= 100){
+                                echo '<img src="img/1.png" >';
+                            }
+                            else if($pontuacao <= 200){
+                                echo '<img src="img/2.png" >';
+                            }
+                            else if($pontuacao <= 300){
+                                echo '<img src="img/3.png" >';
+                            }
+                            else if($pontuacao <= 400){
+                                echo '<img src="img/4.png" >';
+                            }
+                            else if($pontuacao <= 500){
+                                echo '<img src="img/5.png" >';
+                            }
+                            else if($pontuacao <= 600){
+                                echo '<img src="img/6.png" >';
+                            }
+                            else if($pontuacao <= 700){
+                                echo '<img src="img/7.png" >';
+                            }
+                            else if($pontuacao <= 800){
+                                echo '<img src="img/8.png" >';
+                            }    
+                             else if($pontuacao <= 900){
+                                echo '<img src="img/9.png" >';
+                            }  
+                                else if($pontuacao <= 1000){
+                                echo '<img src="img/10.png" >';
+                            }
+                             
                             
-                            ?>
-                            
-                            
-                        <img src="img/1.png" >
-                        <?php
-                            
-                            
-                            
+                            mysqli_free_result($oDados);                           
+                            mysqli_free_result($dataSet);
+                            mysqli_close($conecta);
                             ?>
                          
                         </div>
