@@ -8,7 +8,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #38eb47;
+  background: #41a24c;
 }
 /*USUARIO*/
 
@@ -188,7 +188,7 @@ body {
 
 
 #retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, 
-#retornoFormCategoria,#retornoFormCliForn, #retornoFormLancamento, #retornoConsulta{
+#retornoFormCategoria,#retornoFormCliForn, #retornoFormLancamento, #retornoConsulta, #retornoFormRelatorio{
   display: none;
   text-align: center;
   font-weight: bold;
@@ -249,7 +249,10 @@ body {
 
 
 
-
+.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret{
+  border-bottom-color:#28bd28;
+  border-top-color: #28bd28;
+}
 
 
 
@@ -423,7 +426,9 @@ body {
 
 
 /* usuario */
-
+#datas{
+  display: none;
+}
 
 
 
@@ -601,6 +606,10 @@ table th{
 
   #relatorio{
     display: none;
+  }
+
+  #btnImprimir{
+    margin-bottom: 10px;
   }
 }
 

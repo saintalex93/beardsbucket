@@ -32,6 +32,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                     <div class="image"  >
 
                         <div class="trofeu" rel="tooltip" title="texto explicativo.">
+
                             <?php
                             $cSQL ="SELECT USR_PONTUACAO FROM USUARIO WHERE USR_COD =".$cod;
                             $dataSet = mysqli_query($conecta, $cSQL);
@@ -66,7 +67,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                             else if($pontuacao <= 900){
                                 echo '<img src="img/9.png" >';
                             }  
-                            else if($pontuacao <= 1000){
+                            else if($pontuacao >= 900){
                                 echo '<img src="img/10.png" >';
                             }
 

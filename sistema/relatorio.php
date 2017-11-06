@@ -27,45 +27,45 @@ $cod =  $_SESSION['user']['id'];
             <div class="col-md-12 text-center">
               <div class="radio">
                 <label>Vencimento</label>
-                <input type="radio" name="datas" checked>
+                <input type="radio" name="RdDatas" id="RdDatas" value="LCT_DTVENC" checked>
               </div>
 
               <div class="radio">
-                <label>Pagamento</label>
-                <input type="radio" name="datas">
+                <label>Pagamento / Recebimento</label>
+                <input type="radio" name="RdDatas" id="RdDatas" value="LCT_DTPAG">
               </div>
 
               <div class="radio">
                 <label>Cadastro</label>
-                <input type="radio" name="datas">
+                <input type="radio" name="RdDatas" id="RdDatas" value="LCT_DTCADASTR">
               </div>
             </div>
             <div class="row text-center">
 
               <div class="col-md-4 col-md-offset-4">
                 <div class="form-group">
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Data Atual</option>
-                    <option value="">Semanal</option>
-                    <option value="">Mensal</option>
-                    <option value="">Anual</option>
-                    <option value="">Personalizado</option>
+                  <select name="" id="intervaloPesquisa" class="form-control border-input" onchange="datas(this.selectedIndex)">
+                    <option value="atual">Data Atual</option>
+                    <option value="semanal">Semanal</option>
+                    <option value="mensal">Mensal</option>
+                    <option value="anual">Anual</option>
+                    <option value="personalizado">Personalizado</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            <div class="row">
+            <div class="row" id="datas">
               <div class="col-md-4 col-md-offset-2">
                 <div class="form-group">
                   <label>Data Inicial</label>
-                  <input type="date" class="form-control border-input" >
+                  <input type="date" class="form-control border-input" id="dataInicialRelatorio">
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label>Data Final</label>
-                  <input type="date" class="form-control border-input">
+                  <input type="date" class="form-control border-input" id="dataFinalRelatorio">
                 </div>
               </div>
 
@@ -80,17 +80,14 @@ $cod =  $_SESSION['user']['id'];
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Empresa</label>
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Todas</option>
-
-                    <option value=""></option>
+                  <select name="" id="cmbEmpresa" class="form-control border-input" onchange="atualizaCombos(this.value)">
                   </select>
                 </div>
               </div>
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Conta</label>
-                  <select name="" id="" class="form-control border-input">
+                  <select name="" id="cmbConta" class="form-control border-input" >
                     <option value="">Todas</option>
 
                     <option value=""></option>
@@ -101,7 +98,7 @@ $cod =  $_SESSION['user']['id'];
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Cliente / Fornecedor</label>
-                  <select name="" id="" class="form-control border-input">
+                  <select name="" id="cmbCliente" class="form-control border-input">
                     <option value="">Todas</option>
 
                     <option value=""></option>
@@ -111,12 +108,10 @@ $cod =  $_SESSION['user']['id'];
             </div>
 
             <div class="row">
-
-
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Categoria</label>
-                  <select name="" id="" class="form-control border-input">
+                  <select name="" id="cmbCategoria" class="form-control border-input">
                     <option value="">Todas</option>
                   </select>
                 </div>
@@ -125,10 +120,10 @@ $cod =  $_SESSION['user']['id'];
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Tipo</label>
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Todas</option>
-                    <option value="">Despesa</option>
-                    <option value="">Receitas</option>
+                  <select name="" id="cmbTipo" class="form-control border-input">
+                    <option value="null">Todas</option>
+                    <option value="Despesa">Despesa</option>
+                    <option value="Receita">Receitas</option>
 
                   </select>
                 </div>
@@ -137,14 +132,22 @@ $cod =  $_SESSION['user']['id'];
               <div class="col-md-4">
                 <div class="form-group">
                   <label for="">Status</label>
-                  <select name="" id="" class="form-control border-input">
-                    <option value="">Todas</option>
-                    <option value="">Pagas - Recebidas</option>
-                    <option value="">A Pagar - A Receber</option>
-
-
+                  <select name="" id="cmbStatus" class="form-control border-input">
+                    <option value="null">Todas</option>
+                    <option value="Pago - Recebido">Pagas - Recebidas</option>
+                    <option value="A Pagar - Receber">A Pagar - A Receber</option>
                   </select>
                 </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="text-center">
+                <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" id="" onclick="consultar()">Consultar</button>
+              </div>
+
+              <div class="form-group">
+                <output type="text" class="text-center" id="retornoFormRelatorio">Teste</output>
               </div>
             </div>
           </div>
@@ -152,7 +155,7 @@ $cod =  $_SESSION['user']['id'];
           
 
           <div class="table-responsive">
-            <table class="table table-bordered table-striped text-center "  id="tableEmpresa" cellspacing="0">
+            <table class="table table-bordered table-striped text-center "  id="tableRelatorio" cellspacing="0">
               <thead>
                 <tr>
                   <th hidden>Código</th>
@@ -180,7 +183,7 @@ $cod =  $_SESSION['user']['id'];
                 </tr>
               </thead>
 
-              <tbody>
+              <tbody id="tbodyRelatorio">
 
                <?php
 
@@ -233,15 +236,13 @@ $cod =  $_SESSION['user']['id'];
 
 
               ?>
-
+              
             </tbody>
           </table>
         </div>
 
         <div class="text-center">
           <button type="submit" class="btn btn-info btn-fill btn-wd" value="1" id="btnImprimir" onclick="window.print()">Imprimir</button>
-
-          
         </div>
 
       </div> <!--COntent --> 
@@ -255,3 +256,4 @@ $cod =  $_SESSION['user']['id'];
 
 
 <?php include_once('inferior.php');?>
+<script src = 'js/CrudAjaxRelatorio.js'></script>

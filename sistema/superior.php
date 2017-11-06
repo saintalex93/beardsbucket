@@ -25,7 +25,7 @@ $url = basename($_SERVER['PHP_SELF']);
 	<link rel="icon" type="image/png" sizes="96x96" href="img/beards.png">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <meta name="theme-color" content="#c5f3c5">
+    <meta name="theme-color" content="#41a24c">
 
 	<title>Beards Bucket</title>
 	
@@ -75,7 +75,7 @@ $url = basename($_SERVER['PHP_SELF']);
 
  <div class="sidebar-wrapper">
     <div class="logo">
-        <a href="http://www.beardsweb.com.br" class="simple-text">
+        <a href="http://www.beardsweb.com.br" class="simple-text" target="_blank">
             Beards Web
         </a>
     </div>
@@ -178,16 +178,12 @@ $url = basename($_SERVER['PHP_SELF']);
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="ti-bell"></i>
-            <p class="notification">5</p>
+            <p class="notification"></p>
             <p>Avisos</p>
             <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-            <li><a href="#">Notification 1</a></li>
-            <li><a href="#">Notification 2</a></li>
-            <li><a href="#">Notification 3</a></li>
-            <li><a href="#">Notification 4</a></li>
-            <li><a href="#">Another notification</a></li>
+            <li><a href="#">Sem Notificações</a></li>
         </ul>
     </li>
     <li class="dropdown">
