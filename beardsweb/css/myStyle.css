@@ -32,6 +32,12 @@
     font-weight: bold;
     font-size: 40px;
 }
+.fa-angle-double-up:hover{
+        color: #dacb09;
+}
+a:hover{
+    color: #dacb09;
+}
 
 @keyframes btnVoltar {
     0% {
