@@ -106,7 +106,7 @@ function atualizaComboCategoria(codEmpr, codLancamento){
 			if(codLancamento != undefined){
 
 				var indiceTabela = document.getElementsByName(codLancamento);
-				var codCategoria = indiceTabela[14].innerText;
+				var codCategoria = indiceTabela[16].innerText;
 				document.getElementById('cmbCategoria').value = codCategoria;
 
 			}
@@ -153,7 +153,7 @@ function atualizaComboConta(codEmpr, codLancamento){
 			if(codLancamento != undefined){
 
 				var indiceTabela = document.getElementsByName(codLancamento);
-				var codConta = indiceTabela[16].innerText;
+				var codConta = indiceTabela[18].innerText;
 				document.getElementById('cmbConta').value = codConta;
 
 			}
@@ -200,7 +200,7 @@ function atualizaComboCliente(codEmpr, codLancamento){
 			if(codLancamento != undefined){
 
 				var indiceTabela = document.getElementsByName(codLancamento);
-				var codCliente = indiceTabela[15].innerText;
+				var codCliente = indiceTabela[17].innerText;
 				cmbCliente.value = codCliente;
 
 			}
@@ -389,27 +389,29 @@ function selecionaLancamento(param){
 						for(i = 0; i<oDados.length; i++){
 
 							tableCategoria.insertAdjacentHTML('beforebegin', 
-								"<tr id = 'linha"+oDados[i]['LCT_COD']+"''><td name = 'lancamento"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_STATUSLANC'] + "</td> "+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td> "+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+								"<tr id = 'linha"+oDados[i]['LCT_COD']+"'>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_STATUSLANC'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td>"+
+								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['Vencimento'] + "</td>"+
 
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENC'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_NPARC'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CLI_COD'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CNT_COD'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_COD'] + "</td> "+
-								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['COD_EMPRESA'] + "</td> "+
-
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENC'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_NPARC'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CNT_COD'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_COD'] + "</td>"+
+								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
 
 								"<td><button class = 'btn' id = 'lancamento"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button></tr> "
 
@@ -653,7 +655,7 @@ function selecionaTabelaLancamento(codLancamento){
 
 
 	var indiceTabela = document.getElementsByName(codLancamento);
-	var codEmpresa = indiceTabela[18].innerText;
+	var codEmpresa = indiceTabela[20].innerText;
 
 	atualizaOsParanaue(codEmpresa, codLancamento);
 
@@ -663,9 +665,9 @@ function selecionaTabelaLancamento(codLancamento){
 	document.getElementById("cmbEmpresa").value = codEmpresa;	
 
 
-	var dataLancamento = indiceTabela[8].innerText.substring(0, 10),
-	dataRecebimento = indiceTabela[9].innerText.substring(0, 10),
-	dataVencimento = indiceTabela[10].innerText.substring(0, 10);
+	var dataLancamento = indiceTabela[10].innerText.substring(0, 10),
+	dataRecebimento = indiceTabela[11].innerText.substring(0, 10),
+	dataVencimento = indiceTabela[12].innerText.substring(0, 10);
 
 
 	with(document.all){
@@ -675,15 +677,15 @@ function selecionaTabelaLancamento(codLancamento){
 		codLancamento.value = indiceTabela[0].innerText;
 		txtDesc.value = indiceTabela[1].innerText;
 		txtValor.value = indiceTabela[2].innerText.replace("R$ ", "R$");
-		cmbStatus.value = indiceTabela[3].innerText;
-		cmbTipo.value = indiceTabela[4].innerText;
-		cmbFormaPagamento.value = indiceTabela[5].innerText;
+		txtValorPago.value = indiceTabela[3].innerText.replace("R$ ", "R$");;
+		cmbStatus.value = indiceTabela[4].innerText;
+		cmbTipo.value = indiceTabela[5].innerText;
+		cmbFormaPagamento.value = indiceTabela[6].innerText;
 
 		txtDataLancamento.value = dataLancamento;
 		txtDataRecebimento.value = dataRecebimento;
 		txtDataVenc.value = dataVencimento;
-		txtValorPago.value = indiceTabela[11].innerText.replace("R$ ", "R$");;
-		txtJuros.value = indiceTabela[12].innerText;
+		txtJuros.value = indiceTabela[14].innerText;
 		txtParcelas.value = 1;
 
 		buttonExcluiLancamento.style.display = "inline";
@@ -762,33 +764,45 @@ function consultar(){
 
 					var oDados = JSON.parse(responseText);
 
-					var linhas = document.getElementById("tableConsultalancamento").rows;
+					var linhas = document.getElementById("table").rows;
 					for (i= linhas.length-1; i>=1; i--){
-						document.getElementById("tableConsultalancamento").deleteRow(i);
+						document.getElementById("table").deleteRow(i);
 
 					}
 
-					var corpotable = document.getElementById("tbodyConsultaLancamento");
+					var corpotable = document.getElementById("tableConsulta");
 
 					for(i = 0; i<oDados.length; i++){
-						if(oDados[i]['LCT_VLRPAGO']==null){
-							oDados[i]['LCT_VLRPAGO']="R$ 0,00";
-						}
+
 						corpotable.insertAdjacentHTML('beforebegin', 
-							"<tr>"+
-							"<td>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td>" + oDados[i]['LCT_TIPO'] + "</td> "+
-							"<td>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
-							"<td>" + oDados[i]['LCT_STATUSLANC'] + "</td> "+
-							"<td>" + oDados[i]['LCT_FRMPAG'] + "</td> "+
-							"<td>" + oDados[i]['CAT_NOME'] + "</td> "+
-							"<td>" + oDados[i]['LCT_VLRTITULO'] + "</td>"+
-							"<td>" + oDados[i]['LCT_VLRPAGO'] + "</td>"+
+							"<tr id = 'linha"+oDados[i]['LCT_COD']+"'>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_STATUSLANC'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_TIPO'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_FRMPAG'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td>"+
+							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['Vencimento'] + "</td>"+
 
-							"<td>" + oDados[i]['LCT_DTVENC'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTCADASTR'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTPAG'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENC'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRPAGO'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_NPARC'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CNT_COD'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['USR_COD'] + "</td>"+
+							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td>"+
+							
+							"<td><button class = 'btn' id = 'lancamento"+ oDados[i]['LCT_COD'] +"' onclick = 'selecionaTabelaLancamento(this.id)'>Alterar</button></tr>"
 
-							"</tr>"
 							);
+
 					}
 				}
 
