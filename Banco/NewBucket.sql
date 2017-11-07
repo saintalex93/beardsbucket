@@ -174,3 +174,5 @@
 		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
 	END //
 	delimiter ;
+    
+    

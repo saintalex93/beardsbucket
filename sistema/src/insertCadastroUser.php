@@ -20,7 +20,7 @@ $cnpjEmpresa = $_POST['cnpjEmpresaCadastro'];
 
 $nomeConta = $_POST['nomeContaCadastro'];
 $bancoConta = $_POST['bancoContaCadastro'];
-$bancoConta = $_POST['agenciaContaCadastro'];
+$bancoAgencia = $_POST['agenciaContaCadastro'];
 $numeroConta = $_POST['numeroContaCadastro'];
 $tipoConta=$_POST['tipoContaCadastro'];
 $saldoConta = $_POST['saldoContaCadastro'];
@@ -54,8 +54,12 @@ $oSQL = "INSERT INTO USR_EMPR(COD_USR_EMPR,COD_USR,COD_EMPR) VALUES(0,$codUsuari
 $dados= mysqli_query($conecta, $oSQL);
 
 
+$saldoConta = str_replace("R$","", $saldoConta);
+$saldoConta = str_replace(".","", $saldoConta);
+$saldoConta = str_replace(",",".", $saldoConta);
+$oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoAgencia', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
 
-$oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoConta', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
+echo $oSQL;
 
 /*echo $oSQL . '</br>';*/
 $dados= mysqli_query($conecta, $oSQL);

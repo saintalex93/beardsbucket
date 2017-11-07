@@ -1,4 +1,6 @@
-<?php include_once('superior.php');
+<?php 
+session_start();
+include_once('superior.php');
 require "src/conecta.php";
 
 $cod =  $_SESSION['user']['id'];

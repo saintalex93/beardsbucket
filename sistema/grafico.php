@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-
-	<?php 
-
-	session_start();
+<?php 
+  session_start();
 
   if( !isset($_SESSION['user']) )
   {
@@ -19,9 +12,11 @@
 
   ?>
 
-  <style>
-
-</style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Grafico Beards</title>
 </head>
 <body>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

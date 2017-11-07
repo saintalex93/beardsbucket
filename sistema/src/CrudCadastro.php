@@ -1,6 +1,6 @@
 <?php 
-require 'conecta.php';
 session_start();
+require 'conecta.php';
 $cod =  $_SESSION['user']['id'];
 
 //INSERE CATEGORIA

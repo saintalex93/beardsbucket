@@ -1,6 +1,5 @@
-
-
 <?php 
+session_start();
 
 // header('Access-Control-Allow-Origin: *');
 
@@ -54,7 +53,6 @@ if($row = mysqli_fetch_assoc($result))
 
 		else if(str_replace(['"'], "",json_encode($json_array[0]['USR_SENHA'])) == $senha && str_replace(['"'], "",json_encode($json_array[0]['USR_LOGIN'])) == $login){
 
-			session_start();
 
 			$user = (object)[
 				'id' => $json_array[0]['USR_COD'],
