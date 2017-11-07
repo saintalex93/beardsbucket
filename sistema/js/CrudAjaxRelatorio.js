@@ -33,6 +33,7 @@ function consultar(){
 
 	with (oPagina){
 
+
 		if(intervaloPesquisa == "personalizado"){
 			dataInicial = document.getElementById("dataInicialRelatorio").value;
 			dataFinal = document.getElementById("dataFinalRelatorio").value;
@@ -52,6 +53,8 @@ function consultar(){
 		send();
 
 		onload = function(){
+		alert(responseText);
+			
 			if(responseText!= "sem registros"){
 
 				var oDados = JSON.parse(responseText);

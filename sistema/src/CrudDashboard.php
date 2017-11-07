@@ -67,6 +67,7 @@
 }
 
 
+
 if($_GET['funcao'] == 'atualizaDespesa'){
  $UltimoDiaM = date('Y-m-31');
  if($_GET['codEmpresa'] == 0){

@@ -52,11 +52,10 @@ $oSQL = "INSERT INTO USR_EMPR(COD_USR_EMPR,COD_USR,COD_EMPR) VALUES(0,$codUsuari
 //FOREIGN KEY(COD_USR) REFERENCES USUARIO (USR_COD),
 //FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
 $dados= mysqli_query($conecta, $oSQL);
-$codUserEmpr = mysqli_insert_id($conecta);
 
 
 
-$oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoConta', '$numeroConta', '$tipoConta',1,$saldoConta,$codUserEmpr)";
+$oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoConta', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
 
 /*echo $oSQL . '</br>';*/
 $dados= mysqli_query($conecta, $oSQL);
