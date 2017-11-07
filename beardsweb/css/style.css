@@ -25,10 +25,19 @@ width: 450px;
 
 
 
+.erro{
+	color: red;
+}
 
 
+.sucesso{
+	color: green;
+}
 
 
+.resultadoCont{
+	margin-left: -15px;
+}
 
 
 html, body, div, span, applet, object, iframe,

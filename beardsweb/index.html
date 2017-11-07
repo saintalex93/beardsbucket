@@ -77,13 +77,13 @@
       <div class="col-md-8">
          <div class="navmenu"style="text-align: center;">
           <ul id="menu">
-           
+
             <li class="active"><a href="#home">Home</a></li>
             <li><a href="#about">Sobre</a></li>
             <li><a href="#project">Portfólio</a></li>
             <!-- <li><a href="#news">News</a></li> -->
             <li class="last"><a href="#contact">Contato</a></li>
-            
+
         </ul>
     </div>
 </div>
@@ -94,7 +94,7 @@
     <div class="row wrap">
         <div class="col-md-12 gallery row" id="">
            <div id="logoBannerHome" class="">
-               
+
             <img src="images/logoHome.png" alt="" class="img-responsive row">
         </div>
         <!--<img src="../sistema/img/beards.png" alt="">-->
@@ -180,12 +180,12 @@
                 position: relative;
                 width: 200px;
             }
-            
+
             .CV:hover:after {
                 visibility: visible;
-                
+
             }
-            
+
             .CV::after {
                 background-image: url(images/picTeam/cv.png);
                 background-position: 50% 3%;
@@ -416,11 +416,11 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-9 col-xs-12 forma">
-                                    <form>
-                                        <input type="text" class="col-md-6 col-xs-12 name" name='name' placeholder='Nome *' required>
-                                        <input type="text" class="col-md-6 col-xs-12 Email" name='Email' placeholder='Email *' />
-                                        <input type="text" class="col-md-12 col-xs-12 Subject" name='Subject' placeholder='Assunto' />
-                                        <textarea type="text" class="col-md-12 col-xs-12 Message" name='Message' placeholder='Mensagem *'></textarea>
+                                    <form id="contatoForm" onsubmit="return false;">
+                                        <input type="text" class="col-md-6 col-xs-12 name" name='txtNome' placeholder='Nome *' required>
+                                        <input type="text" class="col-md-6 col-xs-12 Email" name='txtEmail' placeholder='Email *' required/>
+                                        <input type="text" class="col-md-12 col-xs-12 Subject" name='txtAssunto' placeholder='Assunto' required/>
+                                        <textarea type="text" class="col-md-12 col-xs-12 Message" name='txtMensagem' placeholder='Mensagem *' required></textarea>
                                         <style>
                                         .cBtn .btn-limpar {
                                             background-color: #2f2f2f;
@@ -437,14 +437,14 @@
                                             margin-bottom: 15px;
                                             margin-right: 10px;
                                         }
-                                        
+
                                         .btn-limpar:hover {
                                             cursor: pointer;
                                             background: #d8c907;
                                             color: #fff;
                                             box-shadow: 0px 2px 0px 0px #827b20;
                                         }
-                                        
+
                                         .cBtn .btn-enviar {
                                             background: #d8c907;
                                             color: #fff;
@@ -462,7 +462,7 @@
                                             margin-bottom: 15px;
                                             margin-right: 10px;
                                         }
-                                        
+
                                         .btn-enviar:hover {
                                             cursor: pointer;
                                             background-color: #2f2f2f;
@@ -472,10 +472,14 @@
 
                                     </style>
                                     <div class="cBtn col-xs-12">
+
+                                        <div class="resultadoCont" id="resultadoCont">
+                                            <div id="mensagemCont"></div>
+                                        </div>
                                         <ul>
                                             <!--<li class="clear"><button><a href="#"><i class="fa fa-times"></i>Limpar</a></button></li>-->
                                             <input type="submit" value="Limpar" class="btn-limpar">
-                                            <input type="submit" value="Enviar" class="btn-enviar">
+                                            <input type="submit" value="Enviar" class="btn-enviar" id="btnEnviar">
                                 <!-- <li class="clear"><a href="#"><i class="fa fa-times"></i>Limpar</a></li>
                                     <li class="send"><a href="#"><i class="fa fa-share"></i>Enviar</a></li>-->
                                 </ul>
@@ -521,7 +525,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!-- Botão animado (topo) -->
         <div class="mobile_bnt">
             <div class="btnVoltar jbtnVontar">
@@ -530,7 +534,7 @@
                 </a>
             </div>
         </div>
-        
+
 
         <script src="js/animateBtnTop.js" type="text/javascript" charset="utf-8"></script>
         <script src="js/animateDIVs.js" type="text/javascript" charset="utf-8"></script>
@@ -687,6 +691,26 @@
             });
 
         </script>
+        
+        <script src = "js/jquery.blockUI.js"></script>
+        <script type="text/javascript">
+            function carregando(){
+                $.blockUI({
+                    css: {
+                        border: 'none',
+                        padding: '15px',
+                        backgroundColor: '#000',
+                        '-webkit-border-radius': '10px',
+                        '-moz-border-radius': '10px',
+                        opacity: .5,
+                        color: '#fff'
+                    },
+                    message:'<img src="images/loading.gif" style="width:7%"/> Por favor aguarde...'
+                });
+            }
+        </script>
+
+        <script src = "js/email.js"></script>
 
     </body>
 

@@ -300,19 +300,7 @@ SELECT
                 
                 
                 
--- Delimiter //
--- 
--- CREATE TRIGGER TR_CATEGORIA after INSERT ON EMPRESA
--- FOR EACH ROW
--- BEGIN
--- SET @id = LAST_INSERT_ID();
--- insert into CATEGORIA VALUES
--- 	(0,"Aluguel",1,@id),(0,"Salário",1,@id),
---     (0,"Transporte",1,@id),(0,"Alimentação",1,@id),
---     (0,"Pessoal",1,@id),(0,"Vendas",1,@id);
--- END //
--- delimiter ;
--- 
+
 ;
 
 SELECT LCT_COD, EMP_NOME_EMPRESA, CNT_NOME, CLI_NOME, CLI_BANCO, CLI_AGENCIA, CLI_CONTA, CLI_TIPOCONTA, LCT_DESCRICAO, DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENC,
@@ -349,5 +337,26 @@ FROM LANCAMENTO INNER JOIN USUARIO ON LANCAMENTO.USR_COD = USUARIO.USR_COD
 INNER JOIN CATEGORIA ON LANCAMENTO.CAT_COD=CATEGORIA.CAT_COD INNER JOIN EMPRESA ON EMP_COD = EMP_COD WHERE COD_EMPRESA IN (SELECT COD_EMPR FROM USR_EMPR WHERE LANCAMENTO.USR_COD = 2) AND LCT_DTVENC LIKE '2017-11-05%';
 
 
+
+
+
+
+Delimiter //
+
+CREATE TRIGGER TR_CATEGORIA after INSERT ON EMPRESA
+FOR EACH ROW
+BEGIN
+insert into CATEGORIA VALUES
+	(0,"Aluguel",1,new.EMP_COD),(0,"Salário",1,new.EMP_COD),
+    (0,"Transporte",1,new.EMP_COD),(0,"Alimentação",1,new.EMP_COD),
+    (0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
+END //
+delimiter ;
+
+INSERT INTO EMPRESA VALUES(0, "Teste", null,1),
+	(0, "Teste2", null,1),(0, "Teste3", null,0); 
+
+
+select * from CATEGORIA where COD_EMPRESA IN(8,9, 10);
 
 
