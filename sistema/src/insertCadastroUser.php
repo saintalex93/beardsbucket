@@ -39,7 +39,7 @@ $codUsuario = mysqli_insert_id($conecta);
 
 
 
-$oSQL = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS)VALUES(0,'$nomeEmpresa', '$cnpjEmpresa',2)";
+$oSQL = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS)VALUES(0,'$nomeEmpresa', '$cnpjEmpresa',1)";
 
 /*echo $oSQL . '</br>';*/
 $dados= mysqli_query($conecta, $oSQL);
@@ -60,9 +60,9 @@ $oSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_
 /*echo $oSQL . '</br>';*/
 $dados= mysqli_query($conecta, $oSQL);
 
-$codConta = mysqli_insert_id($conecta);
+// $codConta = mysqli_insert_id($conecta);
 /*echo $codConta . '</br>';*/
-echo $oSQL;
+// echo $oSQL;
 echo "<script>loginsuccessfally()</script>";
 mysqli_close($conecta);
 

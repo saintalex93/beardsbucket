@@ -53,7 +53,7 @@ function consultar(){
 		send();
 
 		onload = function(){
-		alert(responseText);
+		
 			
 			if(responseText!= "sem registros"){
 

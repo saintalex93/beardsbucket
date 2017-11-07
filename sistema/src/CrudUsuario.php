@@ -69,12 +69,12 @@ if ($_GET['funcao'] == 'insereEmpresa'){
 
 		mysqli_query($conecta, $cSql);
 
-		$cSql = "INSERT INTO CATEGORIA VALUES
-		(0,'Aluguel',1,$codEmpresa),(0,'Salário',1,$codEmpresa),
-		(0,'Transporte',1,$codEmpresa),(0,'Alimentação',1,$codEmpresa),
-		(0,'Pessoal',1,$codEmpresa),(0,'Vendas',1,$codEmpresa)";
+		// $cSql = "INSERT INTO CATEGORIA VALUES
+		// (0,'Aluguel',1,$codEmpresa),(0,'Salário',1,$codEmpresa),
+		// (0,'Transporte',1,$codEmpresa),(0,'Alimentação',1,$codEmpresa),
+		// (0,'Pessoal',1,$codEmpresa),(0,'Vendas',1,$codEmpresa)";
 
-		mysqli_query($conecta, $cSql);
+		// mysqli_query($conecta, $cSql);
 		
 
 		$cSql = "SELECT EMP_COD, EMP_NOME_EMPRESA, EMP_CNPJ, IF(EMP_STATUS = 1,REPLACE( EMP_STATUS,1,'Ativo'),REPLACE( EMP_STATUS,0,'Inativo')) as EMP_STATUS FROM USUARIO INNER JOIN USR_EMPR ON USUARIO.USR_COD = USR_EMPR.COD_USR INNER JOIN EMPRESA ON EMPRESA.EMP_COD = USR_EMPR.COD_EMPR WHERE COD_USR = ".$cod;

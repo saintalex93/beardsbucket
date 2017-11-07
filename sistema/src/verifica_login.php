@@ -1,11 +1,19 @@
 
 
-<?php header('Access-Control-Allow-Origin: *');
+<?php 
+
+// header('Access-Control-Allow-Origin: *');
+
+// header("Content-type: text/html; charset=utf-8"); 
 
 
-header("Content-type: text/html; charset=utf-8"); 
+// session_start(): Cannot send session cookie - headers already sent by (output started at /home/numbe874/beardsweb.com.br/sistema/superior.php:2) in /home/numbe874/beardsweb.com.br/sistema/superior.php on line 5
 
+// Warning: session_start(): Cannot send session cache limiter - headers already sent (output started at /home/numbe874/beardsweb.com.br/sistema/superior.php:2) in /home/numbe874/beardsweb.com.br/sistema/superior.php on line 5
 
+// Warning: Cannot modify header information - headers already sent by (output started at /home/numbe874/beardsweb.com.br/sistema/superior.php:2) in /home/numbe874/beardsweb.com.br/sistema/superior.php on line 9
+
+require 'conecta.php';
 
 $login = $_GET['usuario'];
 
@@ -13,12 +21,11 @@ $login = $_GET['usuario'];
 $senha = $_GET['senha'];
 
 
-$connect = mysqli_connect("localhost", "bucket", "123", "BUCKET");  
-mysqli_set_charset($connect, "utf8");
+
 $sql = "SELECT * FROM USUARIO WHERE USR_LOGIN = '$login'"; 
 
 
-$result = mysqli_query($connect, $sql);  
+$result = mysqli_query($conecta, $sql);  
 $json_array = array(); 
 
 if($row = mysqli_fetch_assoc($result))  
@@ -74,7 +81,7 @@ if($row = mysqli_fetch_assoc($result))
 
 
 
-		mysqli_close($connect);
+		mysqli_close($conecta);
 
 
 		
