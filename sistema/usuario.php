@@ -78,13 +78,13 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                             ?>
 
                         </div>
-                        <!--<img src="assets/img/background.jpg" alt="..."/>-->
+                        <!-- <img src="assets/img/background.jpg" alt="..."/> -->
 
                     </div>
                     <div class="content">
                         <div class="author">
 
-                            <img class="avatar border-white" src="assets/img/faces/beards.png" alt="..." />
+                            <img class="avatar border-white" src="img/beards.png" alt="..." />
                             <h4 class="title" id="nomePagina">
                                 <?php echo $NOME?>
                             </h4>

@@ -2,9 +2,7 @@
 
 if( !isset($_SESSION['user']) )
 {
-    header("Location: index.htm");
-
-                
+                   
     echo "window.location = 'index.htm';";
 
     exit;

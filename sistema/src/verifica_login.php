@@ -12,6 +12,8 @@ session_start();
 
 // Warning: Cannot modify header information - headers already sent by (output started at /home/numbe874/beardsweb.com.br/sistema/superior.php:2) in /home/numbe874/beardsweb.com.br/sistema/superior.php on line 9
 
+// responseText.charAt(responseText.length-15)
+
 require 'conecta.php';
 
 $login = $_GET['usuario'];
