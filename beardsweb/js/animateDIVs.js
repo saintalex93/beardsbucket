@@ -14,11 +14,10 @@ function animeScrollDiv1(){
         if(documentTop > itemTop - offset){
             $(this).addClass(animationClass);
             
-        }else{
+        }/*else{
              console.log("desativa");
             $(this).removeClass(animationClass);
-        }
-        
+        }*/      
         
     })
 }
