@@ -58,7 +58,7 @@
     }
     
     .CV::after {
-        background-image: url(images/picTeam/cv.png);
+        background-image: url(../images/picTeam/cv.png);
         background-position: 50% 3%;
         background-repeat: no-repeat;
         content: '';
