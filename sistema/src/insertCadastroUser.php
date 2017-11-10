@@ -105,7 +105,7 @@ mysqli_close($conecta);
 */
 ?>
 
- <?php
+<?php
 
 require 'conecta.php';
 
@@ -114,28 +114,25 @@ $erro = 0;
 $codEmpresa = 0;
 $codUsuario = 0;
 
-$nome = $_POST['nomeCadastro'];
-$login = $_POST['loginCadastro'];
-$senha = $_POST['senhaCadastro'];
-$email = $_POST['emailCadastro'];
+$nome = $_GET['nomeCadastro'];
+$login = $_GET['loginCadastro'];
+$senha = $_GET['senhaCadastro'];
+$email = $_GET['emailCadastro'];
 
-$nomeEmpresa = $_POST['nomeEmpresaCadastro'];
-$cnpjEmpresa = $_POST['cnpjEmpresaCadastro'];
+$nomeEmpresa = $_GET['nomeEmpresaCadastro'];
+$cnpjEmpresa = $_GET['cnpjEmpresaCadastro'];
 
-$nomeConta = $_POST['nomeContaCadastro'];
-$bancoConta = $_POST['bancoContaCadastro'];
-$bancoAgencia = $_POST['agenciaContaCadastro'];
-$numeroConta = $_POST['numeroContaCadastro'];
-$tipoConta=$_POST['tipoContaCadastro'];
-$saldoConta = $_POST['saldoContaCadastro'];
+$nomeConta = $_GET['nomeContaCadastro'];
+$bancoConta = $_GET['bancoContaCadastro'];
+$bancoAgencia = $_GET['agenciaContaCadastro'];
+$numeroConta = $_GET['numeroContaCadastro'];
+$tipoConta=$_GET['tipoContaCadastro'];
+$saldoConta = $_GET['saldoContaCadastro'];
 
 $cSQL1 = "INSERT INTO USUARIO(USR_SENHA,USR_LOGIN,USR_NOME,USR_EMAIL,USR_PERMISSAO,USR_STATUS) VALUES ('$senha','$login','$nome','$email',1,1)";
 
 if (mysqli_query($conecta, $cSQL1)){
 	$codUsuario = mysqli_insert_id($conecta);
-
-	echo "passou usuario";
-
 }
 
 else{
@@ -143,16 +140,11 @@ else{
 }
 
 
-
-
 $cSQL2 = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS) VALUES (0,'$nomeEmpresa', '$cnpjEmpresa',1)";
 
 
 if (mysqli_query($conecta, $cSQL2)){
 	$codEmpresa = mysqli_insert_id($conecta);
-
-	echo "passou Empresa";
-
 
 }
 
@@ -169,10 +161,7 @@ if (!mysqli_query($conecta, $cSQL3)){
 	$erro++;
 }
 
-else{
-	echo "passou UsrEmpr";
 
-}
 
 
 $cSQL4 = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoAgencia', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
@@ -182,21 +171,29 @@ if (!mysqli_query($conecta, $cSQL4)){
 	$erro++;
 }
 
-else{
-	echo "passou Conta";
 
-}
 
 if ($erro == 0){
 	mysqli_commit($conecta); 
-	echo "Commit";
+	
+	$cSQL = "SELECT USR_LOGIN, USR_SENHA FROM USUARIO WHERE USR_COD = $codUsuario";
+
+	$result = mysqli_query($conecta, $cSQL);
+
+	$json_array = array();
+
+	while($row = mysqli_fetch_assoc($result)){
+
+		$json_array[] = $row;
+
+	}
+
+	echo json_encode($json_array, JSON_UNESCAPED_UNICODE);
 } 
 else { 
-
-	echo $codEmpresa;
-	echo $codUsuario;
-	echo mysqli_error($conecta);
+	
 	mysqli_rollback($conecta); 
+
 
 	echo "RollBack";
 

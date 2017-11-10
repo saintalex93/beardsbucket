@@ -188,7 +188,8 @@ body {
 
 
 #retornoFormEmpresa, #retornoFormConta, #retornoFormAdministrador, #retornoFormUsuario, 
-#retornoFormCategoria,#retornoFormCliForn, #retornoFormLancamento, #retornoConsulta, #retornoFormRelatorio{
+#retornoFormCategoria,#retornoFormCliForn, #retornoFormLancamento, #retornoConsulta, #retornoFormRelatorio,
+ #retornoFormLogin, #retornoFormInserir{
   display: none;
   text-align: center;
   font-weight: bold;

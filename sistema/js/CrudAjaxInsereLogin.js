@@ -1,23 +1,24 @@
+
 function insereUsuario(){
 
 	with(document.all){
 
-	var nome = nomeCadastro.value,
-	login = loginCadastro.value,
-	email = emailCadastro.value,
-	empresa = nomeEmpresaCadastro.value,
-	cnpj = cnpjEmpresaCadastro.value,
-	nomeConta = nomeContaCadastro.value,
-	banco = bancoContaCadastro.value,
-	agencia = agenciaContaCadastro.value,
-	conta = numeroContaCadastro.value,
-	saldo = saldoContaCadastro.value;
+		var nome = nomeCadastro.value,
+		login = loginCadastro.value,
+		email = emailCadastro.value,
+		empresa = nomeEmpresaCadastro.value,
+		cnpj = cnpjEmpresaCadastro.value,
+		nomeConta = nomeContaCadastro.value,
+		banco = bancoContaCadastro.value,
+		agencia = agenciaContaCadastro.value,
+		conta = numeroContaCadastro.value,
+		saldo = saldoContaCadastro.value;
 
-	saldo = saldo.replace("R$","").replace(".","").replace(",",".");
+		saldo = saldo.replace("R$","").replace(".","").replace(",",".");
 
 
 
-}
+	}
 	var senhaCadastro = document.getElementById("senhaCadastro").value;
 	var tipoConta = document.getElementById("tipoConta").value;
 
@@ -27,7 +28,7 @@ function insereUsuario(){
 
 		with(oPagina){
 
-			open('POST', './src/insertCadastroUser.php?nomeCadastro='+nome+'&loginCadastro='+login+'&senhaCadastro='
+			open('GET', './src/insertCadastroUser.php?nomeCadastro='+nome+'&loginCadastro='+login+'&senhaCadastro='
 				+senhaCadastro+'&emailCadastro='+email+'&nomeEmpresaCadastro='+empresa+'&cnpjEmpresaCadastro='+cnpj+
 				'&nomeContaCadastro='+nomeConta+'&bancoContaCadastro='+banco+'&agenciaContaCadastro='+agencia+
 				'&numeroContaCadastro='+conta+'&tipoContaCadastro='+tipoConta+'&saldoContaCadastro='+saldo);
@@ -36,8 +37,30 @@ function insereUsuario(){
 
 			onload = function(){
 
-				alert(responseText);
+				if(responseText.trim() != "RollBack"){
 
+
+					window.fnMenuLogin(entrar);
+
+					var oDados = JSON.parse(responseText);
+
+					document.getElementById("usuario").value = oDados[0]['USR_LOGIN'];
+					document.getElementById("senha").value = oDados[0]['USR_SENHA'];
+
+					document.getElementById("retornoFormLogin").style.display = "block";
+					document.getElementById("retornoFormLogin").innerHTML = "Usuário cadastrado com Sucesso!";
+					document.getElementById("retornoFormLogin").setAttribute("class", "retSuccess");
+					setTimeout(function(){ document.getElementById("retornoFormLogin").style.display = "none"; }, 3000);
+
+				}
+
+				else{
+
+					document.getElementById("retornoFormInserir").style.display = "block";
+					document.getElementById("retornoFormInserir").innerHTML = "Erro ao Cadastrar Usuário";
+					document.getElementById("retornoFormInserir").setAttribute("class", "retDanger");
+					setTimeout(function(){ document.getElementById("retornoFormInserir").style.display = "none"; }, 3000);
+				}
 			}
 		}
 	}
@@ -75,3 +98,6 @@ function validaCampos(){
 	
 
 }
+
+
+
