@@ -1,16 +1,118 @@
 
-<script>
-        function loginsuccessfally(){
-            setTimeout("window.location='.././index.htm'", 0);
-        }
-   
-    
-    </script>
-
 
 <?php
+/*
 
 require 'conecta.php';
+
+$nome = $_GET['nomeCadastro'];
+$login = $_GET['loginCadastro'];
+$senha = $_GET['senhaCadastro'];
+$email = $_GET['emailCadastro'];
+
+$nomeEmpresa = $_GET['nomeEmpresaCadastro'];
+$cnpjEmpresa = $_GET['cnpjEmpresaCadastro'];
+
+$nomeConta = $_GET['nomeContaCadastro'];
+$bancoConta = $_GET['bancoContaCadastro'];
+$bancoAgencia = $_GET['agenciaContaCadastro'];
+$numeroConta = $_GET['numeroContaCadastro'];
+$tipoConta=$_GET['tipoContaCadastro'];
+$saldoConta = $_GET['saldoContaCadastro'];
+
+
+// echo "Nome ".$nome;
+// echo "\n";
+// echo "login ".$login;
+// echo "\n";
+
+// echo "senha ".$senha;
+// echo "\n";
+
+// echo "email ".$email;
+// echo "\n";
+
+// echo "nomeEmpresa ".$nomeEmpresa;
+// echo "\n";
+
+// echo "cnpjEmpresa ".$cnpjEmpresa;
+// echo "\n";
+
+// echo "nomeConta ".$nomeConta;
+// echo "\n";
+
+// echo "bancoConta ".$bancoConta;
+// echo "\n";
+
+// echo "bancoAgencia ".$bancoAgencia;
+// echo "\n";
+
+// echo "numeroConta ".$numeroConta;
+// echo "\n";
+
+// echo "tipoConta ".$tipoConta;
+// echo "\n";
+
+// echo "saldoConta ".$saldoConta;
+
+
+
+
+$cSQL = "INSERT INTO USUARIO(USR_SENHA,USR_LOGIN,USR_NOME,USR_EMAIL,USR_PERMISSAO,USR_STATUS) VALUES ('$senha','$login','$nome','$email',1,1)";
+
+if (mysqli_query($conecta, $cSQL)){
+	$codUsuario = mysqli_insert_id($conecta);
+
+
+	$cSQL = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS) VALUES (0,'$nomeEmpresa', '$cnpjEmpresa',1)";
+
+
+	if (mysqli_query($conecta, $cSQL)){
+		$codEmpresa = mysqli_insert_id($conecta);
+
+		$cSQL = "INSERT INTO USR_EMPR(COD_USR_EMPR,COD_USR,COD_EMPR) VALUES (0,$codUsuario,$codEmpresa)";
+
+		if (mysqli_query($conecta, $cSQL)){
+
+			$cSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoAgencia', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
+
+
+			if (mysqli_query($conecta, $cSQL)){
+
+				echo "FOI";
+
+			}
+			else
+				echo "erro na conta".mysqli_error($conecta);
+
+		}
+		else
+			echo "erro no ÙSUARIOEMPRESA".mysqli_error($conecta);
+
+	}
+	else
+		echo "erro na Empresa".mysqli_error($conecta);
+
+
+}
+
+else{
+
+	echo "erro no usuario".mysqli_error($conecta);
+}
+
+mysqli_close($conecta);
+*/
+?>
+
+ <?php
+
+require 'conecta.php';
+
+mysqli_autocommit($conecta, FALSE);
+$erro = 0;
+$codEmpresa = 0;
+$codUsuario = 0;
 
 $nome = $_POST['nomeCadastro'];
 $login = $_POST['loginCadastro'];
@@ -27,48 +129,85 @@ $numeroConta = $_POST['numeroContaCadastro'];
 $tipoConta=$_POST['tipoContaCadastro'];
 $saldoConta = $_POST['saldoContaCadastro'];
 
-$cSQL = "INSERT into USUARIO(USR_SENHA,USR_LOGIN,USR_NOME,USR_EMAIL,USR_PERMISSAO,USR_STATUS)values('$senha','$login','$nome','$email',1,1)";
+$cSQL1 = "INSERT INTO USUARIO(USR_SENHA,USR_LOGIN,USR_NOME,USR_EMAIL,USR_PERMISSAO,USR_STATUS) VALUES ('$senha','$login','$nome','$email',1,1)";
 
-/*echo $cSQL . '</br>';*/
+if (mysqli_query($conecta, $cSQL1)){
+	$codUsuario = mysqli_insert_id($conecta);
 
+	echo "passou usuario";
 
-$dados= mysqli_query($conecta, $cSQL);
-$codUsuario = mysqli_insert_id($conecta);
-/*echo $codUsuario . '</br>';*/
+}
 
-
-
-$cSQL = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS)VALUES(0,'$nomeEmpresa', '$cnpjEmpresa',1)";
-
-/*echo $cSQL . '</br>';*/
-$dados= mysqli_query($conecta, $cSQL);
-$codEmpresa = mysqli_insert_id($conecta);
-/*echo $codEmpresa . '</br>';*/
+else{
+	$erro++;
+}
 
 
 
-$cSQL = "INSERT INTO USR_EMPR(COD_USR_EMPR,COD_USR,COD_EMPR) VALUES(0,$codUsuario,$codEmpresa)";
-//FOREIGN KEY(COD_USR) REFERENCES USUARIO (USR_COD),
-//FOREIGN KEY(COD_EMPR) REFERENCES EMPRESA (EMP_COD)
-$dados= mysqli_query($conecta, $cSQL);
+
+$cSQL2 = "INSERT INTO EMPRESA (EMP_COD,EMP_NOME_EMPRESA,EMP_CNPJ,EMP_STATUS) VALUES (0,'$nomeEmpresa', '$cnpjEmpresa',1)";
 
 
-$saldoConta = str_replace("R$","", $saldoConta);
-$saldoConta = str_replace(".","", $saldoConta);
-$saldoConta = str_replace(",",".", $saldoConta);
-$cSQL = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoAgencia', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
+if (mysqli_query($conecta, $cSQL2)){
+	$codEmpresa = mysqli_insert_id($conecta);
 
-echo $cSQL;
+	echo "passou Empresa";
 
-/*echo $cSQL . '</br>';*/
-$dados= mysqli_query($conecta, $cSQL);
 
-// $codConta = mysqli_insert_id($conecta);
-/*echo $codConta . '</br>';*/
-// echo $cSQL;
-echo "<script>loginsuccessfally()</script>";
+}
+
+else{
+	$erro++;
+}
+
+
+
+
+$cSQL3 = "INSERT INTO USR_EMPR(COD_USR_EMPR,COD_USR,COD_EMPR) VALUES (0,$codUsuario,$codEmpresa)";
+
+if (!mysqli_query($conecta, $cSQL3)){
+	$erro++;
+}
+
+else{
+	echo "passou UsrEmpr";
+
+}
+
+
+$cSQL4 = "INSERT INTO CONTA (CNT_COD,CNT_NOME,CNT_BANCO,CNT_AGNC,CNT_NMCONTA,CNT_TIPO,CNT_STATUS,CNT_SALDOINICIAL,COD_EMPR) VALUES(0, '$nomeConta', '$bancoConta', '$bancoAgencia', '$numeroConta', '$tipoConta',1,$saldoConta,$codEmpresa)";
+
+
+if (!mysqli_query($conecta, $cSQL4)){
+	$erro++;
+}
+
+else{
+	echo "passou Conta";
+
+}
+
+if ($erro == 0){
+	mysqli_commit($conecta); 
+	echo "Commit";
+} 
+else { 
+
+	echo $codEmpresa;
+	echo $codUsuario;
+	echo mysqli_error($conecta);
+	mysqli_rollback($conecta); 
+
+	echo "RollBack";
+
+}
+
+
 mysqli_close($conecta);
 
 ?>
+
+
+
 
 

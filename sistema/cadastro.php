@@ -323,10 +323,11 @@ $cod =  $_SESSION['user']['id'];
 	<script src = "js/interatividades.js"></script>
 	<script src = "js/crudAjaxCadastro.js"></script>
 
-	<!-- <script src="js/jquery-3.2.1.js" type="text/javascript"></script> -->
+	<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
 
-	<!-- Aqui que dá problema, no inferior.php tem a chamada do jquery versão 1.10.2, que o tema usa,
-	mas quando eu referencio o 3.2 dá merda, e eu preciso dele para usar esse plugin.-->
+	<script>
+		var $JQ = jQuery.noConflict();    
+	</script>
 
 	<script src="js/jquery.maskMoney.min.js"></script>
 	<script src="js/jquery.mask.js"></script>
@@ -342,20 +343,20 @@ $cod =  $_SESSION['user']['id'];
 			}
 		}
 
-		$('#cadCliFornCNPJCPF').mask('000.000.000-000', options);
+		$JQ('#cadCliFornCNPJCPF').mask('000.000.000-000', options);
 
 
 		var options2 = {
 			onKeyPress: function (cpf, ev, el, op) {
-				var masks = ['(00)0000-0000', '(00)00000-0000'],
-				mask = (cpf.length >= 13) ? masks[1] : masks[0];
-				console.log(cpf.length)
+				var masks = ['(00) 0000-00000', '(00) 00000-0000'],
+				mask = (cpf.length > 14) ? masks[1] : masks[0];
 				el.mask(mask, op);
 			}
 		}
 
-		$('#cadCliFornTel').mask('(00)0000-0000', options2);
+		$JQ('#cadCliFornTel').mask('(00) 0000-00000', options2);
 
 
-	
-</script>
+
+
+	</script>

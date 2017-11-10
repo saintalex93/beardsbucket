@@ -792,3 +792,25 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
     });
 
 </script>
+
+
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+
+    <script>
+        var $JQ = jQuery.noConflict();    
+    </script>
+
+    <script src="js/jquery.mask.js"></script>
+
+    <script>
+        var options = {
+            onKeyPress: function (cpf, ev, el, op) {
+                var masks = ['000.000.000-000', '00.000.000/0000-00'],
+                mask = (cpf.length > 14) ? masks[1] : masks[0];
+                el.mask(mask, op);
+            }
+        }
+
+        $JQ('#txtCnpj').mask('000.000.000-000', options);
+
+    </script>

@@ -70,21 +70,21 @@
 
 
 if($_GET['funcao'] == 'atualizaDespesa'){
- $UltimoDiaM = date('Y-m-31');
- if($_GET['codEmpresa'] == 0){
+       $UltimoDiaM = date('Y-m-31');
+       if($_GET['codEmpresa'] == 0){
 
-         $cSql = "SELECT 
-         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-         DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
-         <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
-         ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
-         (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
-         FROM LANCAMENTO INNER JOIN CONTA ON 
-         LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
-         LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) 
-         AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') <= '$UltimoDiaM' AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Despesa'";
- }
- else{
+               $cSql = "SELECT 
+               LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+               <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
+               ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
+               (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
+               FROM LANCAMENTO INNER JOIN CONTA ON 
+               LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
+               LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) 
+               AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') <= '$UltimoDiaM' AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Despesa'";
+       }
+       else{
         $cSql = "SELECT 
         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
         DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
@@ -101,9 +101,9 @@ $result = mysqli_query($conecta,$cSql);
 if(mysqli_num_rows($result) >= 1){
 
 
- $json_array = array();
+       $json_array = array();
 
- while($row = mysqli_fetch_assoc($result)){
+       while($row = mysqli_fetch_assoc($result)){
 
         $json_array[] = $row;
 
@@ -118,41 +118,41 @@ else
 
 
 if($_GET['funcao'] == 'AtualizaReceita'){
- $UltimoDiaM = date('Y-m-31');
+       $UltimoDiaM = date('Y-m-31');
 
- if($_GET['codEmpresa'] == 0){
-         $cSql = "SELECT 
-         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-         DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
-         <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
-         ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
-         (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
-         FROM LANCAMENTO INNER JOIN CONTA ON 
-         LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
-         LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) 
-         AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') <= '$UltimoDiaM' AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Receita'";
- }
+       if($_GET['codEmpresa'] == 0){
+               $cSql = "SELECT 
+               LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+               <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
+               ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
+               (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
+               FROM LANCAMENTO INNER JOIN CONTA ON 
+               LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
+               LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) 
+               AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') <= '$UltimoDiaM' AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Receita'";
+       }
 
- else{
-         $cSql = "SELECT 
-         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO,  CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-         DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
-         <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
-         ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
-         (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
-         FROM LANCAMENTO INNER JOIN CONTA ON 
-         LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
-         LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) 
-         AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') <= '$UltimoDiaM' AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Receita' AND COD_EMPR = $_GET[codEmpresa]";
- }
+       else{
+               $cSql = "SELECT 
+               LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO,  CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
+               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+               <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
+               ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
+               (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
+               FROM LANCAMENTO INNER JOIN CONTA ON 
+               LANCAMENTO.CNT_COD = CONTA.CNT_COD INNER JOIN EMPRESA ON EMP_COD = COD_EMPR INNER JOIN CATEGORIA ON
+               LANCAMENTO.CAT_COD = CATEGORIA.CAT_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) 
+               AND DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') <= '$UltimoDiaM' AND LCT_STATUSLANC = 'A Pagar - Receber' AND LCT_TIPO = 'Receita' AND COD_EMPR = $_GET[codEmpresa]";
+       }
 
- $result = mysqli_query($conecta,$cSql);
- if(mysqli_num_rows($result) >= 1){
+       $result = mysqli_query($conecta,$cSql);
+       if(mysqli_num_rows($result) >= 1){
 
 
-         $json_array = array();
+               $json_array = array();
 
-         while($row = mysqli_fetch_assoc($result)){
+               while($row = mysqli_fetch_assoc($result)){
 
                 $json_array[] = $row;
 

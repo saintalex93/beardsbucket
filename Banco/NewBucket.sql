@@ -148,9 +148,9 @@
 
 	-- 
 	INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1,1),
-	(0, "Alex Santos", 'PF', "399.23.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
-	(0, "Alex Santos", 'PF', "399.11.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
-	(0, "Alex Santos", 'PF', "399.44.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
+	(0, "Alex Santos", 'PF', "399.305.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
+	(0, "Alex Santos", 'PF', "399.123.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
+	(0, "Alex Santos", 'PF', "399.312.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
 
 
 
@@ -175,4 +175,8 @@
 	END //
 	delimiter ;
     
+    
+
+    
+
     

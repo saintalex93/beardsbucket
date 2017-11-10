@@ -3,7 +3,7 @@
 if( !isset($_SESSION['user']) )
 {
                    
-    echo "window.location = 'index.htm';";
+    echo "<script>window.location = 'index.htm';</script>";
 
     exit;
 }
