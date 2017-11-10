@@ -141,7 +141,7 @@
 										<div class="col-md-6">
 											<div class="form-group">
 												<label for="">Email</label>
-												<input type="text" class="form-control border-input" name='emailCadastro' id="" placeholder="">
+												<input type="text" class="form-control border-input" name='emailCadastro' id="emailCadastro" placeholder="">
 											</div>
 										</div>
 
@@ -288,18 +288,20 @@
 
 	</script>
 
+
 	<script>
-		$(document).ready(function(){
-			$('#cnpjEmpresaCadastro').mask('000.000.000-000');
+		var options = {
+			onKeyPress: function (cpf, ev, el, op) {
+				var masks = ['000.000.000-000', '00.000.000/0000-00'],
+				mask = (cpf.length > 14) ? masks[1] : masks[0];
+				el.mask(mask, op);
+			}
+		}
 
-			$( "#cnpjEmpresaCadastro" ).keyup(function() {
-				if(this.value.length > 14){
-					$("#cnpjEmpresaCadastro").unmask().mask("00.000.000/0000-00");
-				}
-			});
+		$('#cnpjEmpresaCadastro').mask('000.000.000-000', options);
 
+		
 
 	// $('#cnpjEmpresaCadastro').mask('00.000.000/0000-00';
-});
 </script>
 

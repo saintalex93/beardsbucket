@@ -69,7 +69,7 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Telefone</label>
-										<input type="text" class="form-control border-input" name="cadCliFornTel" id="cadCliFornTel" placeholder="(11) 3333-3333">
+										<input type="text" class="form-control border-input" name="cadCliFornTel" id="cadCliFornTel" placeholder="(11) 0000-0000">
 									</div>
 								</div>
 								<div class="col-md-4">
@@ -323,3 +323,39 @@ $cod =  $_SESSION['user']['id'];
 	<script src = "js/interatividades.js"></script>
 	<script src = "js/crudAjaxCadastro.js"></script>
 
+	<!-- <script src="js/jquery-3.2.1.js" type="text/javascript"></script> -->
+
+	<!-- Aqui que dá problema, no inferior.php tem a chamada do jquery versão 1.10.2, que o tema usa,
+	mas quando eu referencio o 3.2 dá merda, e eu preciso dele para usar esse plugin.-->
+
+	<script src="js/jquery.maskMoney.min.js"></script>
+	<script src="js/jquery.mask.js"></script>
+
+
+
+	<script>
+		var options = {
+			onKeyPress: function (cpf, ev, el, op) {
+				var masks = ['000.000.000-000', '00.000.000/0000-00'],
+				mask = (cpf.length > 14) ? masks[1] : masks[0];
+				el.mask(mask, op);
+			}
+		}
+
+		$('#cadCliFornCNPJCPF').mask('000.000.000-000', options);
+
+
+		var options2 = {
+			onKeyPress: function (cpf, ev, el, op) {
+				var masks = ['(00)0000-0000', '(00)00000-0000'],
+				mask = (cpf.length >= 13) ? masks[1] : masks[0];
+				console.log(cpf.length)
+				el.mask(mask, op);
+			}
+		}
+
+		$('#cadCliFornTel').mask('(00)0000-0000', options2);
+
+
+	
+</script>
