@@ -1516,7 +1516,8 @@ textarea.form-control {
     height: 50px;
     overflow: hidden;
     border-radius: 50%;
-    margin-right: 5px; }
+    margin-right: 5px; 
+background-color: white;}
   .card .footer {
     padding: 0;
     line-height: 30px; }
@@ -1596,11 +1597,11 @@ textarea.form-control {
 .card-user .avatar {
   width: 100px;
   height: 100px;
-  border-radius: 50%;
+  border-radius: 50% ;
   position: relative;
   margin-bottom: 15px; }
   .card-user .avatar.border-white {
-    border: 5px solid #FFFFFF; }
+    border: 2px solid  #fff; /*cor do circulo da foto do perfil*/}
   .card-user .avatar.border-gray {
     border: 5px solid #ccc5b9; }
 .card-user .title {

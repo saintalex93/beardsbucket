@@ -107,11 +107,12 @@
         display: none;
         z-index: 10;
         position: fixed;
-        bottom: 40px;
+        bottom: 12px;
         right: 3%;
         width: 50px;
         height: 50px;
         background-color: #633;
+       /* opacity: 0.9;*/
     }
     
     .btnVoltarLink {
@@ -123,6 +124,7 @@
         color: #000;
         font-weight: bold;
         font-size: 40px;
+       
     }
     
     .fa-angle-double-up:hover {
@@ -162,6 +164,7 @@
         animation-duration: 1s;
         animation-timing-function: linear;
         animation-iteration-count: 100;
+         /*opacity: 1;*/
     }
     /*centralizar imagens de trabalhos*/
     

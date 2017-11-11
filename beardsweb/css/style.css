@@ -102,7 +102,8 @@ body {
     width: 100%;
     overflow: hidden;
     height: 100hv;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(38, 35, 31, 0.78) 40%, rgba(0, 0, 0, 0.56) 50%, rgba(38, 35, 31, .5) 60%, black), url(../images/bgTop.jpg) center center no-repeat;
+    background:url(../images/bgTop.jpg) center center no-repeat;
+    /*background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(38, 35, 31, 0.78) 40%, rgba(0, 0, 0, 0.56) 50%, rgba(38, 35, 31, .5) 60%, black), url(../images/bgTop.jpg) center center no-repeat;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -452,7 +453,7 @@ body {
     width: 100%;
     overflow: hidden;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(38, 35, 31, 0.78) 40%, rgba(0, 0, 0, 0.56) 50%, rgba(38, 35, 31, .5) 60%, black), url(../images/bgTop.jpg) center center no-repeat;
+    background: url(../images/bgTop.jpg) center center no-repeat;
     /*background:url(../images/line2.png) center center no-repeat;*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -862,7 +863,7 @@ body {
     width: 100%;
     overflow: hidden;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(38, 35, 31, 0.78) 40%, rgba(0, 0, 0, 0.56) 50%, rgba(38, 35, 31, .5) 60%, black), url(../images/bgTop.jpg) center center no-repeat;
+    background:url(../images/bgTop.jpg) center center no-repeat;
     /*background: url(../images/line3Bg.jpg) center center no-repeat;*/
     /*background:#3f2d28;*/
     -webkit-background-size: cover;
@@ -1199,7 +1200,7 @@ body {
     width: 100%;
     overflow: hidden;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(38, 35, 31, 0.78) 40%, rgba(0, 0, 0, 0.56) 50%, rgba(38, 35, 31, .5) 60%, black), url(../images/bgTop.jpg) center center no-repeat;
+    background:url(../images/bgTop.jpg) center center no-repeat;
     /*background: url(../images/line4.png) center center no-repeat;*/
     /*background:#3f2d28;*/
     
@@ -1360,7 +1361,7 @@ body {
     width: 100%;
     overflow: hidden;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.56), rgba(38, 35, 31, 0.78) 40%, rgba(0, 0, 0, 0.56) 50%, rgba(38, 35, 31, .5) 60%, black), url(../images/bgTop.jpg) center center no-repeat;
+    background:url(../images/bgTop.jpg) center center no-repeat;
     /*background: url(../images/line5Bg.jpg) center center no-repeat;	*/
     /*background:#3f2d28;*/
     
