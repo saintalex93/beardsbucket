@@ -2,8 +2,6 @@
 
 $conecta = mysqli_connect('localhost', 'bucket', '123', 'BUCKET');
 
-
-
 // $conecta = mysqli_connect("192.185.176.17", "numbe874_beardsw", "BeardsWeb666", "numbe874_BUCKET");
 
 // if (!$conecta) {

@@ -2,7 +2,7 @@
 
 if( !isset($_SESSION['user']) )
 {
-                   
+ 
     echo "<script>window.location = 'index.htm';</script>";
 
     exit;
@@ -18,15 +18,15 @@ $url = basename($_SERVER['PHP_SELF']);
 <head>
 	<meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="img/beards.png">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <link rel="apple-touch-icon" sizes="76x76" href="img/beards.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="img/beards.png">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <meta name="theme-color" content="#41a24c">
 
-	<title>Beards Bucket</title>
-	
-	<!--Temos que trocar o nome do css do login por que esta o nome de style.css-->
+    <title>Beards Bucket</title>
+    
+    <!--Temos que trocar o nome do css do login por que esta o nome de style.css-->
 
     <!-- <link rel="stylesheet" href="css/style.css"> -->
 
@@ -70,7 +70,7 @@ $url = basename($_SERVER['PHP_SELF']);
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
- <div class="sidebar-wrapper">
+   <div class="sidebar-wrapper">
     <div class="logo">
         <a href="http://www.beardsweb.com.br" class="simple-text" target="_blank">
             Beards Web
@@ -107,7 +107,7 @@ $url = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
 
-         <li <?php if($url == 'relatorio.php'){ echo "class = 'active'" ;}?>>
+        <li <?php if($url == 'relatorio.php'){ echo "class = 'active'" ;}?>>
             <a href="relatorio.php">
                 <i class="ti-bar-chart"></i>
                 <p>Relatório</p>
@@ -134,9 +134,9 @@ $url = basename($_SERVER['PHP_SELF']);
             <a class="navbar-brand" href="#">
                 <?php
                 if($url == 'dashboard.php'){
-                   echo "DashBoard" ;
-               }
-               else if($url == 'usuario.php'){
+                 echo "DashBoard" ;
+             }
+             else if($url == 'usuario.php'){
 
                 echo "Usuário / Conta";
             }
@@ -168,7 +168,7 @@ $url = basename($_SERVER['PHP_SELF']);
 
 
 
-     <ul class="nav navbar-nav navbar-right">
+       <ul class="nav navbar-nav navbar-right">
 
 
 
@@ -185,7 +185,7 @@ $url = basename($_SERVER['PHP_SELF']);
     </li>
     <li class="dropdown">
 
-     <li>
+       <li>
         
         <a href="src/deslogar.php">
             <i class="ti-shift-right-alt"></i> Logout

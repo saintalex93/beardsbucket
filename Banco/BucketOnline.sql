@@ -10,10 +10,17 @@
 	USE numbe874_BUCKET;
 
 
+	-- ﻿CREATE USER 'bucket'@'localhost' IDENTIFIED BY '123';
+	-- GRANT ALL PRIVILEGES ON * . * TO 'bucket'@'localhost';
+	-- 
+	-- SELECT * FROM mysql.user;
+	-- 
+-- 	select * from INFORMATION_SCHEMA.PROCESSLIST;
+
 	CREATE TABLE EMPRESA (
 	EMP_COD INT PRIMARY KEY AUTO_INCREMENT,
 	EMP_NOME_EMPRESA VARCHAR(200) NOT NULL,
-	EMP_CNPJ VARCHAR(30) UNIQUE,
+	EMP_CNPJ VARCHAR(30),
 	EMP_STATUS TINYINT
 	);
 
@@ -34,7 +41,7 @@
 	CLI_COD INT PRIMARY KEY AUTO_INCREMENT,
 	CLI_NOME VARCHAR(100) NOT NULL,
 	CLI_TIPO CHAR(2) NOT NULL,
-	CLI_CPF_CNPJ VARCHAR(20) UNIQUE,
+	CLI_CPF_CNPJ VARCHAR(20),
 	CLI_TELEFONE VARCHAR(20),
 	CLI_EMAIL VARCHAR(200),
 	CLI_BANCO VARCHAR(15),
@@ -148,9 +155,9 @@
 
 	-- 
 	INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1,1),
-	(0, "Alex Santos", 'PF', "399.23.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
-	(0, "Alex Santos", 'PF', "399.11.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
-	(0, "Alex Santos", 'PF', "399.44.222.22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
+	(0, "Alex Santos", 'PF', "399.305.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
+	(0, "Alex Santos", 'PF', "399.123.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
+	(0, "Alex Santos", 'PF', "399.312.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,2);
 
 
 
@@ -162,7 +169,8 @@
     
 	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',7,4,2,2);
     
-		Delimiter //
+    
+	Delimiter //
 
 	CREATE TRIGGER TR_CATEGORIA after INSERT ON EMPRESA
 	FOR EACH ROW
