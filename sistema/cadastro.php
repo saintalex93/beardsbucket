@@ -310,6 +310,7 @@ $cod =  $_SESSION['user']['id'];
 
 
 		</div> <!-- CONTENT FLUID -->
+	</div>
 
 	</div> <!-- CONTENT -->
 

@@ -209,8 +209,8 @@ $cod =  $_SESSION['user']['id'];
 							<?php
 
 							$dataAtual = date('Y-m-d');
-							
-							
+
+
 
 							$cSql = "SELECT 
 							LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') as Vencimento, IFNULL(CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')),'R$ 0,00') AS LCT_VLRPAGO,
@@ -310,7 +310,7 @@ $cod =  $_SESSION['user']['id'];
 				</div>
 			</div> -->
 		</div> <!-- ROW LANCAMENTO -->
-
+</div>
 	</div> <!-- CONTAINER FLUID -->
 </div> <!-- CONTAINER -->
 

@@ -100,17 +100,17 @@ $url = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
 
-        <li <?php if($url == 'usuario.php'){ echo "class = 'active'" ;}?>>
-            <a href="usuario.php">
-                <i class="ti-user"></i>
-                <p>Usuário / Conta</p>
-            </a>
-        </li>
-
         <li <?php if($url == 'relatorio.php'){ echo "class = 'active'" ;}?>>
             <a href="relatorio.php">
                 <i class="ti-bar-chart"></i>
                 <p>Relatório</p>
+            </a>
+        </li>
+
+         <li <?php if($url == 'usuario.php'){ echo "class = 'active'" ;}?>>
+            <a href="usuario.php">
+                <i class="ti-user"></i>
+                <p>Usuário / Conta</p>
             </a>
         </li>
     </ul>
