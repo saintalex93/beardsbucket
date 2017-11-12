@@ -374,22 +374,22 @@ function selecionaLancamento(param){
 
 				onload = function(){
 					if(responseText.substring(0,14) != "erro ao lancar"){
-
+						
 						var oDados = JSON.parse(responseText);
 
 						var tableCategoria = document.getElementById("tableConsulta");
 
-						var linhas = document.getElementById("tableConsulta").rows;
+						// var linhas = document.getElementById("tableConsulta").rows;
 
-						for (i= linhas.length-1; i>=1; i--){
-							document.getElementById("tableConsulta").deleteRow(i);
+						// for (i= linhas.length-1; i>=1; i--){
+						// 	document.getElementById("tableConsulta").deleteRow(i);
 
-						}
+						// }
 
 						for(i = 0; i<oDados.length; i++){
 
 							tableCategoria.insertAdjacentHTML('beforebegin', 
-								"<tr id = 'linha"+oDados[i]['LCT_COD']+"'>"+
+								"<tr class = 'registroInserido' id = 'linha"+oDados[i]['LCT_COD']+"'>"+
 								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
 								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td>"+
 								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td>"+
@@ -725,13 +725,15 @@ function limpaCampos(){
 	cmbCliente.selectedIndex = 0;
 	txtDesc.value = "";
 	txtValor.value = "";
-	txtDataVenc.value = "";
+	txtDataVenc.value = new Date().toISOString().substr(0, 10).replace('T', ' ');
 	cmbFormaPagamento.selectedIndex = 0;
-	txtParcelas.value = "";
-	txtJuros.value = "";
+	txtParcelas.value = "0";
+	txtJuros.value = "0";
 	cmbStatus.selectedIndex = 0;
 	txtDataRecebimento.value = "";
 	txtValorPago.value = "";
+	txtDataLancamento.value =  new Date().toISOString().substr(0, 10).replace('T', ' ');
+
 }
 
 

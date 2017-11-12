@@ -94,7 +94,7 @@ $cod =  $_SESSION['user']['id'];
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for=""><span id = "cmpObrgt">* </span>Data Vencimento</label>
-								<input type="date" class="form-control border-input" id="txtDataVenc">
+								<input type="date" class="form-control border-input" id="txtDataVenc" value = "<?php echo date('Y-m-d');?>">
 							</div>
 						</div>
 					</div>
@@ -116,13 +116,13 @@ $cod =  $_SESSION['user']['id'];
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="">Nº Parcelas</label>
-								<input type="number" class="form-control border-input" id="txtParcelas">
+								<input type="number" class="form-control border-input" id="txtParcelas" value = "0">
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="form-group">
 								<label for="">Juros ao Dia</label>
-								<input type="number" class="form-control border-input" id="txtJuros">
+								<input type="number" class="form-control border-input" id="txtJuros" value = "0">
 							</div>
 						</div>
 						<div class="col-md-3">
@@ -209,8 +209,8 @@ $cod =  $_SESSION['user']['id'];
 							<?php
 
 							$dataAtual = date('Y-m-d');
-
-
+							
+							
 
 							$cSql = "SELECT 
 							LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') as Vencimento, IFNULL(CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')),'R$ 0,00') AS LCT_VLRPAGO,
