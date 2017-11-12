@@ -211,6 +211,7 @@ $cod =  $_SESSION['user']['id'];
 							$dataAtual = date('Y-m-d');
 
 
+
 							$cSql = "SELECT 
 							LCT_COD, LCT_DESCRICAO, LCT_DTCADASTR, LCT_DTPAG, LCT_DTVENC, DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') as Vencimento, IFNULL(CONCAT('R$ ',format(LCT_VLRPAGO,2,'de_DE')),'R$ 0,00') AS LCT_VLRPAGO,
 							CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO, LCT_JUROSDIA, LCT_NPARC, LCT_STATUSLANC, LCT_TIPO, LCT_FRMPAG, 
@@ -284,7 +285,7 @@ $cod =  $_SESSION['user']['id'];
 				<div class="col-md-3">
 					<div class="form-group">
 						<label>Data Inicial</label>
-						<input type="date" class="form-control border-input" id="dataInicial">
+						<input type="date" class="form-control border-input" id="dataInicial" value = "<?php echo date('Y-m-d');?>">
 					</div>
 				</div>
 				<div class="col-md-3">

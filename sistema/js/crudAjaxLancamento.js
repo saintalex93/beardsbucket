@@ -534,9 +534,11 @@ function deletaLancamento(codLancamento){
 
 			if(responseText == "Deletado"){
 
-				var parent = document.getElementById("tableConsulta");
-				var child = document.getElementById(nomeLinha);
-				parent.removeChild(child);
+				// var parent = document.getElementById("tableConsulta");
+				// var child = document.getElementById(nomeLinha);
+				// parent.removeChild(child);
+
+				document.getElementById(nomeLinha).remove();
 
 				document.getElementById("retornoFormLancamento").style.display = "block";
 				document.getElementById("retornoFormLancamento").innerHTML = "Dados deletados com sucesso!";
