@@ -70,7 +70,7 @@ function consultar(){
 
 				for(i = 0; i<oDados.length; i++){
 
-					tableRelatorio.insertAdjacentHTML('beforebegin', 
+					tableRelatorio.insertAdjacentHTML('afterbegin', 
 						"<tr>"+
 						"<td hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 						"<td>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td>"+

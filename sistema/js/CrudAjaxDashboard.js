@@ -147,7 +147,7 @@ function atualizaDespesa(codEmpresa){
 
 					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
 
-						tableDespesa.insertAdjacentHTML('beforebegin', 
+						tableDespesa.insertAdjacentHTML('afterbegin', 
 							"<tr class = 'registroVencido' id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
@@ -164,7 +164,7 @@ function atualizaDespesa(codEmpresa){
 
 					}
 					else{
-						tableDespesa.insertAdjacentHTML('beforebegin', 
+						tableDespesa.insertAdjacentHTML('afterbegin', 
 							"<tr id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
@@ -221,7 +221,7 @@ function atualizaReceita(codEmpresa){
 
 					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
 
-						tableReceita.insertAdjacentHTML('beforebegin', 
+						tableReceita.insertAdjacentHTML('afterbegin', 
 							"<tr class = 'registroVencido' id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+
@@ -238,7 +238,7 @@ function atualizaReceita(codEmpresa){
 
 					}
 					else{
-						tableReceita.insertAdjacentHTML('beforebegin', 
+						tableReceita.insertAdjacentHTML('afterbegin', 
 							"<tr id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td> "+

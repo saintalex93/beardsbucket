@@ -422,6 +422,7 @@ function selecionaLancamento(param){
 							document.getElementById("retornoFormLancamento").setAttribute("class", "retSuccess");
 
 							setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
+							setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
 
 							cancelaLancamento();
 						}
@@ -490,12 +491,16 @@ function selecionaLancamento(param){
 
 						}
 
+						document.getElementsByName(nameTd)[0].parentNode.className = "registroInserido";
+						
+
 						document.getElementById("retornoFormLancamento").style.display = "block";
 						document.getElementById("retornoFormLancamento").innerHTML = "Dados alterados com sucesso!";
 						document.getElementById("retornoFormLancamento").setAttribute("class", "retSuccess");
 
 						setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
-
+						setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
+						
 						cancelaLancamento();
 
 

@@ -45,7 +45,7 @@ if(param == 1){
 
 				var oDados = JSON.parse(responseText);
 
-				var Contador = parseInt(oDados.length) -1;
+				// var Contador = parseInt(oDados.length) -1;
 
 				var tableCategoria = document.getElementById("tableCliForn");
 
@@ -59,7 +59,7 @@ if(param == 1){
 				for(i = 0; i<oDados.length; i++){
 
 					tableCategoria.insertAdjacentHTML('afterbegin', 
-						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+						"<tr class = 'registroInserido'><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
 						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
@@ -77,17 +77,8 @@ if(param == 1){
 
 						);
 
-					document.getElementById("cadCliFornName").value = "";
-					document.getElementById("cadCliFornCNPJCPF").value = "";
-					document.getElementById("cadCliFornTel").value = "";
-					document.getElementById("cadCliFornEmail").value = "";
-					document.getElementById("cadCliFornBanco").value = "";					
-					document.getElementById("cadCliFornAg").value = "";
-					document.getElementById("cadCliFornConta").value = "";
-					empresa.selectedIndex = "";
-					cadCliFornStatus.selectedIndex = "";
-					cadCliFornTipoConta.selectedIndex = "";
-					cadCliTipo.selectedIndex = "";
+					limpaCliente();
+					
 				}					
 
 				document.getElementById("retornoFormCliForn").style.display = "block";
@@ -95,6 +86,7 @@ if(param == 1){
 				document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
 
 				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+				setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
 
 
 			}
@@ -107,17 +99,8 @@ if(param == 1){
 
 				document.getElementById("cmbEmpresaSelecao").disabled = false;
 
-				document.getElementById("cadCliFornName").value = "";
-				document.getElementById("cadCliFornCNPJCPF").value = "";
-				document.getElementById("cadCliFornTel").value = "";
-				document.getElementById("cadCliFornEmail").value = "";
-				document.getElementById("cadCliFornBanco").value = "";					
-				document.getElementById("cadCliFornAg").value = "";
-				document.getElementById("cadCliFornConta").value = "";
-				empresa.selectedIndex = "";
-				cadCliFornStatus.selectedIndex = "";
-				cadCliFornTipoConta.selectedIndex = "";
-				cadCliTipo.selectedIndex = "";							
+				limpaCliente();
+
 			}
 
 
@@ -161,18 +144,7 @@ else if(param == 2){
 
 			if(responseText != "Erro ao Atualizar"){
 
-
 				var oDados = JSON.parse(responseText);
-
-
-
-				document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
-				document.getElementById("buttonCancelarCliForn").style.display = 'none';
-				document.getElementById("buttonCancelarCliForn").value = 1;
-				document.getElementById("retornoFormCliForn").style.display = "block";
-				document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
-				document.getElementById("retornoFormCliForn").innerHTML = "Dados atualizados com sucesso";
-				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
 
 				var tableCliForn = document.getElementById("tableCliForn");
 
@@ -184,7 +156,7 @@ else if(param == 2){
 
 				for(i = 0; i<oDados.length; i++){
 					tableCliForn.insertAdjacentHTML('afterbegin', 
-						"<tr><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
+						"<tr class = 'registroInserido'><td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_COD'] + "</td>"+
 						"<td name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_NOME'] + "</td> "+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_CPF_CNPJ'] + "</td> "+
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPO'] + "</td> "+
@@ -200,44 +172,32 @@ else if(param == 2){
 						"<td hidden name = 'cliforn"+oDados[i]['CLI_COD']+"'>" + oDados[i]['CLI_TIPOCONTA']+ "</td>"+
 						"<td><button class = 'btn' id = 'cliforn"+ oDados[i]['CLI_COD'] +"' onclick = 'selecionaCliForn(this.id)'>Alterar</button></tr> "
 						);
-					document.getElementById("cadCliFornName").value = "";
-					document.getElementById("cadCliFornCNPJCPF").value = "";
-					document.getElementById("cadCliFornTel").value = "";
-					document.getElementById("cadCliFornEmail").value = "";
-					document.getElementById("cadCliFornBanco").value = "";					
-					document.getElementById("cadCliFornAg").value = "";
-					document.getElementById("cadCliFornConta").value = "";
-					document.getElementById('cmbEmpresaSelecao').selectedIndex = "";
-					document.getElementById('cadCliFornStatus').selectedIndex = "";
-					document.getElementById('cadCliFornTipoConta').selectedIndex = "";
-					document.getElementById('cadCliFornTipo').selectedIndex = "";
 
-					document.getElementById("cmbEmpresaSelecao").disabled = false;
-					document.getElementById("cadCliFornStatus").disabled = false;
+					document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
+					document.getElementById("buttonCancelarCliForn").style.display = 'none';
+					document.getElementById("buttonCancelarCliForn").value = 1;
+					document.getElementById("retornoFormCliForn").style.display = "block";
+					document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
+					document.getElementById("retornoFormCliForn").innerHTML = "Dados atualizados com sucesso";
+					setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
+					setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
+
+					limpaCliente();
+
+					
 				}
 			}
 
 			else{
 
 				document.getElementById("retornoFormCliForn").style.display = "block";
-				document.getElementById("retornoFormCliForn").innerHTML = "Não foi possível Atualizar a Categoria";
+				document.getElementById("retornoFormCliForn").innerHTML = "Não foi possível Atualizar Cliente / Fornecedor";
 				document.getElementById("retornoFormCliForn").setAttribute("class", "retDanger");
 
 				setTimeout(function(){ document.getElementById("retornoFormCliForn").style.display = "none"; }, 3000);
 
-				document.getElementById("cmbEmpresaSelecao").disabled = false;
-
-				document.getElementById("cadCliFornName").value = "";
-				document.getElementById("cadCliFornCNPJCPF").value = "";
-				document.getElementById("cadCliFornTel").value = "";
-				document.getElementById("cadCliFornEmail").value = "";
-				document.getElementById("cadCliFornBanco").value = "";					
-				document.getElementById("cadCliFornAg").value = "";
-				document.getElementById("cadCliFornConta").value = "";
-				document.getElementById('cmbEmpresaSelecao').selectedIndex = "";
-				document.getElementById('cadCliFornStatus').selectedIndex = "";
-				document.getElementById('cadCliFornTipoConta').selectedIndex = "";
-				document.getElementById('cadCliFornTipo').selectedIndex = "";
+				limpaCliente();
+				
 			}
 		}
 	}
@@ -303,6 +263,34 @@ function selecionaCliForn(codCliForn){
 //------------------------------------------FIM----------------------------------------------------------//
 
 
+function limpaCliente(){
+
+	document.getElementById("cadCliFornName").value = "";
+	document.getElementById("cadCliFornCNPJCPF").value = "";
+	document.getElementById("cadCliFornTel").value = "";
+	document.getElementById("cadCliFornEmail").value = "";
+	document.getElementById("cadCliFornBanco").value = "";					
+	document.getElementById("cadCliFornAg").value = "";
+	document.getElementById("cadCliFornConta").value = "";
+	document.getElementById('cmbEmpresaSelecao').selectedIndex = "0";
+	document.getElementById('cadCliFornStatus').selectedIndex = "0";
+	document.getElementById('cadCliFornTipoConta').selectedIndex = "0";
+	document.getElementById('cadCliFornTipo').selectedIndex = "0";
+
+
+	document.getElementById("cadCliFornAg").disabled = true;
+	document.getElementById("cadCliFornBanco").disabled = true;
+	document.getElementById("cadCliFornConta").disabled = true;
+
+	document.getElementById("cmbEmpresaSelecao").disabled = false;
+	document.getElementById("cadCliFornStatus").disabled = false;
+	document.getElementById("cmbEmpresaFiltro").disabled = false;
+
+
+
+}
+
+
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 
 // ///////////////////////////////////////////////CANCELA CLIENTE FORNECEDOR/////////////////////////////////////////////// // 
@@ -318,23 +306,20 @@ function cancelaCliForn(){
 	document.getElementById("cadCliFornBanco").value = "";					
 	document.getElementById("cadCliFornAg").value = "";
 	document.getElementById("cadCliFornConta").value = "";
-	document.getElementById('cmbEmpresaSelecao').selectedIndex = "";
-	document.getElementById('cadCliFornStatus').selectedIndex = "";
-	document.getElementById('cadCliFornTipoConta').selectedIndex = "";
-	document.getElementById('cadCliFornTipo').selectedIndex = "";
+	document.getElementById('cmbEmpresaSelecao').selectedIndex = "0";
+	document.getElementById('cadCliFornStatus').selectedIndex = "0";
+	document.getElementById('cadCliFornTipoConta').selectedIndex = "0";
+	document.getElementById('cadCliFornTipo').selectedIndex = "0";
 	
 	document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
 	document.getElementById("buttonCancelarCliForn").style.display = 'none';
 	document.getElementById("buttonCancelarCliForn").value = 1;
-	document.getElementById("retornoFormCliForn").style.display = "block";
+	// document.getElementById("retornoFormCliForn").style.display = "block";
 
 	document.getElementById("cmbEmpresaSelecao").disabled = false;
 	document.getElementById("cadCliFornStatus").disabled = false;
 	document.getElementById("cmbEmpresaFiltro").disabled = false;
-	document.getElementById("cadCliFornBanco").disabled = false;
-	document.getElementById("cadCliFornAg").disabled = false;
 	document.getElementById("cadCliFornTipoConta").disabled = false;
-	document.getElementById("cadCliFornConta").disabled = false;
 }
 //------------------------------------------FIM----------------------------------------------------------//
 
@@ -462,21 +447,7 @@ if(param == 1){
 			onload = function(){
 
 				if(responseText != "Erro ao Inserir Categoria"){
-
-
-					document.getElementById("categoriaNome").value = "";
-					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
-					document.getElementById("categoriaStatus").selectedIndex = 0;
-					document.getElementById("buttonCategoria").value = 1;
-
-
-
-					document.getElementById("retornoFormCategoria").style.display = "block";
-					document.getElementById("retornoFormCategoria").innerHTML = "Dados inseridos com sucesso!";
-					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
-
-					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
-
+					
 					var oDados = JSON.parse(responseText);
 
 					// var Contador = parseInt(oDados.length) -1;
@@ -490,19 +461,31 @@ if(param == 1){
 
 					}
 
+					tableCategoria.insertAdjacentHTML('afterbegin',
+						"<tr class = 'registroInserido'><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
+						"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS'] + "</td> "+
+						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
+						"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
+						"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
 
-					for(i = 0; i<oDados.length; i++){
-						tableCategoria.insertAdjacentHTML('afterbegin',
-							"<tr class = 'registroInserido'><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
-							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
-							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS'] + "</td> "+
-							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
-							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_COD'] + "</td> "+
-							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
+						);
 
-							"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
-							);
-					}
+					document.getElementById("categoriaNome").value = "";
+					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
+					document.getElementById("categoriaStatus").selectedIndex = 0;
+					document.getElementById("buttonCategoria").value = 1;
+
+
+
+					document.getElementById("retornoFormCategoria").style.display = "block";
+					document.getElementById("retornoFormCategoria").innerHTML = "Dados inseridos com sucesso!";
+					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
+
+					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
+					setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
+
 					
 					
 				}
@@ -581,35 +564,19 @@ else if(param == 2){
 				if(responseText != "Erro ao Atualizar"){
 
 					var oDados = JSON.parse(responseText);
-
-
-					document.getElementById("categoriaNome").value = "";
-					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
-					document.getElementById("categoriaStatus").selectedIndex = 0;
-					document.getElementById("buttonCategoria").value = 1;
-
-
-					document.getElementById("buttonCategoria").innerHTML = "Cadastrar";
-					document.getElementById("buttonCancelarCategoria").style.display = 'none';
-					document.getElementById("buttonCancelarCategoria").value = 1;
-					document.getElementById("retornoFormCategoria").style.display = "block";
-					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
-					document.getElementById("retornoFormCategoria").innerHTML = "Dados atualizados com sucesso";
-					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
-
-
-
+					var tdCateg = "categ"+codCategoria;
+					document.getElementsByName(tdCateg)[0].parentNode.remove();
 					var tableCategoria = document.getElementById("tableCategoria");
 
-					var linhas = document.getElementById("tableCategoria").rows;
-					for (i= linhas.length-1; i>=1; i--){
-						document.getElementById("tableCategoria").deleteRow(i);
+					// var linhas = document.getElementById("tableCategoria").rows;
+					// for (i= linhas.length-1; i>=1; i--){
+					// 	document.getElementById("tableCategoria").deleteRow(i);
 
-					}
+					// }
 
 					for(i = 0; i<oDados.length; i++){
 						tableCategoria.insertAdjacentHTML('afterbegin', 
-							"<tr><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
+							"<tr class = 'registroInserido'><td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_COD'] + "</td>"+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td hidden name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUS']+ "</td>"+
 							"<td name = 'categ"+oDados[i]['CAT_COD']+"'>" + oDados[i]['CAT_STATUSDESC'] + "</td> "+
@@ -618,6 +585,21 @@ else if(param == 2){
 							"<td><button class = 'btn' id = 'categ"+ oDados[i]['CAT_COD'] +"' onclick = 'selecionaCategoria(this.id)'>Alterar</button></tr> "
 							);
 					}
+
+					document.getElementById("categoriaNome").value = "";
+					document.getElementById("cmbEmpresaCat2").selectedIndex = 0;
+					document.getElementById("categoriaStatus").selectedIndex = 0;
+					document.getElementById("buttonCategoria").value = 1;
+
+					document.getElementById("buttonCategoria").innerHTML = "Cadastrar";
+					document.getElementById("buttonCancelarCategoria").style.display = 'none';
+					document.getElementById("buttonCancelarCategoria").value = 1;
+					document.getElementById("retornoFormCategoria").style.display = "block";
+					document.getElementById("retornoFormCategoria").setAttribute("class", "retSuccess");
+					document.getElementById("retornoFormCategoria").innerHTML = "Dados atualizados com sucesso";
+					setTimeout(function(){ document.getElementById("retornoFormCategoria").style.display = "none"; }, 3000);
+					setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
+					
 
 				}
 
@@ -938,7 +920,7 @@ function deleteRows(id){
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// //
 function trocaTipoConta(valueC){
 
-	if(valueC == "SC"){
+	if(valueC == "SC" || valueC == "Selecione"){
 
 		with(document.all){
 			cadCliFornBanco.disabled = true;

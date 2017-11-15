@@ -105,7 +105,7 @@ $cod =  $_SESSION['user']['id'];
 									<div class="form-group">
 										<label for=""><span id = "cmpObrgt">* </span>Tipo da Conta</label>
 										<select value="" class="form-control border-input" name="cadCliFornTipoConta" id="cadCliFornTipoConta" onchange="trocaTipoConta(this.value)">
-											<option value="">Selecione...</option>
+											<option value="Selecione">Selecione...</option>
 											<option value="SC">Sem Conta</option>
 											<option value="CC">Corrente</option>
 											<option value="CP">Poupança</option>
@@ -117,21 +117,21 @@ $cod =  $_SESSION['user']['id'];
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Banco</label>
-										<input type="text" class="form-control border-input" placeholder="Itaú" name="cadCliFornBanco" id="cadCliFornBanco">
+										<input type="text" class="form-control border-input" placeholder="Itaú" name="cadCliFornBanco" id="cadCliFornBanco" disabled>
 									</div>
 								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Agência</label>
-										<input type="text" class="form-control border-input" placeholder="5607" name="cadCliFornAg" id="cadCliFornAg">
+										<input type="text" class="form-control border-input" placeholder="5607" name="cadCliFornAg" id="cadCliFornAg" disabled>
 									</div>
 								</div>
 
 								<div class="col-md-3">
 									<div class="form-group">
 										<label>Conta</label>
-										<input type="text" class="form-control border-input" placeholder="00657-3" name="cadCliFornConta" id="cadCliFornConta">
+										<input type="text" class="form-control border-input" placeholder="00657-3" name="cadCliFornConta" id="cadCliFornConta" disabled>
 									</div>
 								</div>
 								
