@@ -127,9 +127,9 @@ if(param == 1){
 
 					var oDados = JSON.parse(responseText);
 
-					var Contador = parseInt(oDados.length);
+					// var Contador = parseInt(oDados.length);
 
-					Contador = Contador -1;
+					// Contador = Contador -1;
 
 					var tableEmpresa = document.getElementById("tableEmpresa");
 
@@ -141,19 +141,21 @@ if(param == 1){
 					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
 
 
-					tableEmpresa.insertAdjacentHTML('beforeend',
-						"<tr class = 'registroInserido'><td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_COD'] + "</td>"+
-						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_CNPJ'] + "</td> "+
-						"<td name = 'emp"+oDados[Contador]['EMP_COD']+"'>" + oDados[Contador]['EMP_STATUS'] + "</td> "+
 
-						"<td><button class = 'btn' id = '"+oDados[Contador]['EMP_COD']+
+					tableEmpresa.insertAdjacentHTML('afterbegin',
+						"<tr class = 'registroInserido'><td name = 'emp"+oDados[0]['EMP_COD']+"'>" + oDados[0]['EMP_COD'] + "</td>"+
+						"<td name = 'emp"+oDados[0]['EMP_COD']+"'>" + oDados[0]['EMP_NOME_EMPRESA'] + "</td> "+
+						"<td name = 'emp"+oDados[0]['EMP_COD']+"'>" + oDados[0]['EMP_CNPJ'] + "</td> "+
+						"<td name = 'emp"+oDados[0]['EMP_COD']+"'>" + oDados[0]['EMP_STATUS'] + "</td> "+
+
+						"<td><button class = 'btn' id = '"+oDados[0]['EMP_COD']+
 						"' onclick = 'selecionaEmpresa(this.id)'>Alterar</button></tr> "
 						);
 
 					atualizaComboEmpresa();
 
 					
+					setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
 
 
 
@@ -220,6 +222,9 @@ if(param == 2){
 
 					var codEmpresa = 'emp'+oDados[0]['EMP_COD'];
 
+					document.getElementsByName(codEmpresa)[0].parentNode.className = "registroInserido";
+
+
 					document.getElementsByName(codEmpresa)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
 					document.getElementsByName(codEmpresa)[2].innerText = oDados[0]['EMP_CNPJ'];
 					document.getElementsByName(codEmpresa)[3].innerText = oDados[0]['EMP_STATUS'];
@@ -239,6 +244,8 @@ if(param == 2){
 					cmbStatusEmpresa
 
 					setTimeout(function(){ document.getElementById("retornoFormEmpresa").style.display = "none"; }, 3000);
+
+					setTimeout(function(){ document.getElementsByName(codEmpresa)[0].parentNode.removeAttribute("class"); }, 3000);
 
 					document.all.txtCnpj.value = "";
 					document.all.txtNomeEmpresa.value="";
@@ -352,11 +359,7 @@ function selecionaAcaoConta(param){
 
 		}
 
-
-
-
 		else{
-
 
 			var oPagina = new XMLHttpRequest();
 			with(oPagina){
@@ -387,23 +390,23 @@ function selecionaAcaoConta(param){
 
 						var oDados = JSON.parse(responseText);
 
-						var Contador = parseInt(oDados.length) -1;
+						// var Contador = parseInt(oDados.length) -1;
 
 
 						var tableConta = document.getElementById("tableConta");
 
 
 
-						tableConta.insertAdjacentHTML('beforeend',
-							"<tr class = 'registroInserido'><td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_COD'] + "</td>"+
-							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_NOME'] + "</td> "+
-							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_BANCO'] + "</td> "+
-							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_SALDOINICIAL']+"</td> "+
-							"<td name = 'conta"+oDados[Contador]['CNT_COD']+"'>" + oDados[Contador]['CNT_STATUS'] + "</td> "+
+						tableConta.insertAdjacentHTML('afterbegin',
+							"<tr class = 'registroInserido'><td name = 'conta"+oDados[0]['CNT_COD']+"'>" + oDados[0]['CNT_COD'] + "</td>"+
+							"<td name = 'conta"+oDados[0]['CNT_COD']+"'>" + oDados[0]['CNT_NOME'] + "</td> "+
+							"<td name = 'conta"+oDados[0]['CNT_COD']+"'>" + oDados[0]['CNT_BANCO'] + "</td> "+
+							"<td name = 'conta"+oDados[0]['CNT_COD']+"'>" + oDados[0]['EMP_NOME_EMPRESA'] + "</td> "+
+							"<td name = 'conta"+oDados[0]['CNT_COD']+"'>" + oDados[0]['CNT_SALDOINICIAL']+"</td> "+
+							"<td name = 'conta"+oDados[0]['CNT_COD']+"'>" + oDados[0]['CNT_STATUS'] + "</td> "+
 
 
-							"<td><button class = 'btn' id = '"+oDados[Contador]['CNT_COD']+
+							"<td><button class = 'btn' id = '"+oDados[0]['CNT_COD']+
 							"' onclick = 'selecionaConta(this.id)'>Alterar</button></tr> "
 							);
 
@@ -412,6 +415,9 @@ function selecionaAcaoConta(param){
 						document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
 
 						setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+						setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
+
 
 						limparConta();
 					}
@@ -481,11 +487,14 @@ if(param == 2){
 
 					var oDados = JSON.parse(responseText);
 
-					var Contador = parseInt(oDados.length) -1;
+					// var Contador = parseInt(oDados.length) -1;
 
 					var tableConta = document.getElementById("tableConta");
 
 					var codConta = 'conta'+oDados[0]['CNT_COD'];
+
+					document.getElementsByName(codConta)[0].parentNode.className = "registroInserido";
+
 
 					document.getElementsByName(codConta)[0].innerText = oDados[0]['CNT_COD'];
 					document.getElementsByName(codConta)[1].innerText = oDados[0]['CNT_NOME'];
@@ -502,6 +511,9 @@ if(param == 2){
 					document.getElementById("retornoFormConta").setAttribute("class", "retSuccess");
 
 					setTimeout(function(){ document.getElementById("retornoFormConta").style.display = "none"; }, 3000);
+
+					setTimeout(function(){ document.getElementsByName(codConta)[0].parentNode.removeAttribute("class"); }, 3000);
+
 
 
 					limparConta();
@@ -671,47 +683,42 @@ if(param == 1){
 
 					var oDados = JSON.parse(responseText);
 
-					var Contador = parseInt(oDados.length) -1;
+					// var Contador = parseInt(oDados.length) -1;
 
 
 					var tableAdministrador = document.getElementById("tableAdministrador");
 
-					if(oDados[Contador]['USR_PERMISSAO'] != "Administrador"){
+					if(oDados[0]['USR_PERMISSAO'] != "Administrador"){
 
-						tableAdministrador.insertAdjacentHTML('beforeend',
-							"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
-							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
-							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_SENHA'] + "</td> "+
-							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+						tableAdministrador.insertAdjacentHTML('afterbegin',
+							"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_COD'] + "</td>"+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_NOME'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_LOGIN'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_PERMISSAO'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_STATUS']+"</td> "+
+							"<td hidden name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_EMAIL'] + "</td> "+
+							"<td hidden name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_SENHA'] + "</td> "+
 
 
 
 
-							"<td><button class = 'btn' id = 'usr_admin"+oDados[Contador]['USR_COD']+
+							"<td><button class = 'btn' id = 'usr_admin"+oDados[0]['USR_COD']+
 							"' onclick = 'selecionaUsuario(this.id)'>Alterar</button></tr> "
 							);
 
 					}
 					else{
-						tableAdministrador.insertAdjacentHTML('beforeend',
-							"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_COD'] + "</td>"+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['EMP_NOME_EMPRESA'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_NOME'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_LOGIN'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_PERMISSAO'] + "</td> "+
-							"<td name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_STATUS']+"</td> "+
-							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_EMAIL'] + "</td> "+
-							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['USR_SENHA'] + "</td> "+
-							"<td hidden name = 'usr_admin"+oDados[Contador]['USR_COD']+"'>" + oDados[Contador]['COD_EMPR'] + "</td> "+
+						tableAdministrador.insertAdjacentHTML('afterbegin',
+							"<tr class = 'registroInserido'><td hidden name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_COD'] + "</td>"+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_NOME'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_LOGIN'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_PERMISSAO'] + "</td> "+
+							"<td name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_STATUS']+"</td> "+
+							"<td hidden name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_EMAIL'] + "</td> "+
+							"<td hidden name = 'usr_admin"+oDados[0]['USR_COD']+"'>" + oDados[0]['USR_SENHA'] + "</td> "+
 
 
-
-							"<td><button class = 'btn' id = 'usr_admin"+oDados[Contador]['USR_COD']+
+							"<td><button class = 'btn' id = 'usr_admin"+oDados[0]['USR_COD']+
 							"' onclick = 'selecionaUsuario(this.id)' disabled>Alterar</button></tr> "
 							);
 					}
@@ -722,6 +729,8 @@ if(param == 1){
 
 					setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
 
+					setTimeout(function(){ document.getElementsByClassName("registroInserido")[0].removeAttribute("class"); }, 3000);
+					
 					comboUsuario();
 					limpaAdministrador();
 				}
@@ -771,15 +780,18 @@ else if(param == 2){
 
 				var codUsuario = 'usr_admin'+oDados[0]['USR_COD'];
 
+				document.getElementsByName(codUsuario)[0].parentNode.className = "registroInserido";
+
+
 				document.getElementsByName(codUsuario)[0].innerText = oDados[0]['USR_COD'];
-				document.getElementsByName(codUsuario)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
-				document.getElementsByName(codUsuario)[2].innerText = oDados[0]['USR_NOME'];
-				document.getElementsByName(codUsuario)[3].innerText = oDados[0]['USR_LOGIN'];
-				document.getElementsByName(codUsuario)[4].innerText = oDados[0]['USR_PERMISSAO'];
-				document.getElementsByName(codUsuario)[5].innerText = oDados[0]['USR_STATUS'];
-				document.getElementsByName(codUsuario)[6].innerText = oDados[0]['USR_EMAIL'];
-				document.getElementsByName(codUsuario)[7].innerText = oDados[0]['USR_SENHA'];
-				document.getElementsByName(codUsuario)[8].innerText = oDados[0]['COD_EMPR'];
+				// document.getElementsByName(codUsuario)[1].innerText = oDados[0]['EMP_NOME_EMPRESA'];
+				document.getElementsByName(codUsuario)[1].innerText = oDados[0]['USR_NOME'];
+				document.getElementsByName(codUsuario)[2].innerText = oDados[0]['USR_LOGIN'];
+				document.getElementsByName(codUsuario)[3].innerText = oDados[0]['USR_PERMISSAO'];
+				document.getElementsByName(codUsuario)[4].innerText = oDados[0]['USR_STATUS'];
+				document.getElementsByName(codUsuario)[5].innerText = oDados[0]['USR_EMAIL'];
+				document.getElementsByName(codUsuario)[6].innerText = oDados[0]['USR_SENHA'];
+				// document.getElementsByName(codUsuario)[8].innerText = oDados[0]['COD_EMPR'];
 
 
 				document.getElementById("retornoFormAdministrador").style.display = "block";
@@ -787,6 +799,8 @@ else if(param == 2){
 				document.getElementById("retornoFormAdministrador").setAttribute("class", "retSuccess");
 
 				setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
+				setTimeout(function(){ document.getElementsByName(codUsuario)[0].parentNode.removeAttribute("class"); }, 3000);
+
 
 				limpaAdministrador();
 				comboUsuario();
@@ -817,25 +831,25 @@ function selecionaUsuario(codUsuario){
 	
 	var permissao, status;
 
-	if(admTabela[4].innerText == "Administrador")
+	if(admTabela[3].innerText == "Administrador")
 		permissao = 1;
 	else
 		permissao = 0;
 
 
-	if(admTabela[5].innerText == "Ativo")
+	if(admTabela[4].innerText == "Ativo")
 		status = 1;
 	else
 		status = 0;
+	
 
 	document.getElementById("administradorCod").value = admTabela[0].innerText;
-	document.getElementById("administradorNome").value = admTabela[2].innerText;
-	document.getElementById("AdministradorLogin").value = admTabela[3].innerText;
-	document.getElementById("administradorSenha").value = admTabela[7].innerText;
-	document.getElementById("administradorEmail").value = admTabela[6].innerText;
+	document.getElementById("administradorNome").value = admTabela[1].innerText;
+	document.getElementById("AdministradorLogin").value = admTabela[2].innerText;
+	document.getElementById("administradorSenha").value = admTabela[6].innerText;
+	document.getElementById("administradorEmail").value = admTabela[5].innerText;
 	document.getElementById("administradorPermissao").value = permissao;
 	document.getElementById("administradorStatus").value = status;
-	document.getElementById("cmbEmpresaAdm").value = admTabela[8].innerText;
 
 
 	document.getElementById("buttonCancelarUsr").style.display = 'inline';
@@ -1142,7 +1156,7 @@ if(acao == 1){
 else{
 	if(confirm("Ao desvincular o Usuário não será possível desfazer a ação.\nDeseja continuar?"))
 
-	var oPagina = new XMLHttpRequest();
+		var oPagina = new XMLHttpRequest();
 
 	with(oPagina){
 

@@ -174,31 +174,8 @@
 		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
 	END //
 	delimiter ;
-    
-    
-    
-SELECT DISTINCT USR_COD,COD_EMPR,EMP_NOME_EMPRESA, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-                                    IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USUARIO INNER JOIN USR_EMPR ON 
-                                    USUARIO.USR_COD = USR_EMPR.COD_USR join EMPRESA on COD_EMPR = EMP_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) order by EMP_NOME_EMPRESA
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                 
+                              
                                     
                                     
                                     

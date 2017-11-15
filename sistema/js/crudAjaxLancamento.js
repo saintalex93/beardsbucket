@@ -388,7 +388,7 @@ function selecionaLancamento(param){
 
 						for(i = 0; i<oDados.length; i++){
 
-							tableCategoria.insertAdjacentHTML('beforebegin', 
+							tableCategoria.insertAdjacentHTML('afterbegin', 
 								"<tr class = 'registroInserido' id = 'linha"+oDados[i]['LCT_COD']+"'>"+
 								"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
 								"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td>"+
@@ -466,21 +466,28 @@ function selecionaLancamento(param){
 					if(responseText!= "Deu ruim"){
 
 
-						var tableCategoria = document.getElementById("tableConsulta");
-
 						var nameTd = "lancamento" + document.getElementById('codLancamento').value;
+						var tr = "linha" + document.getElementById('codLancamento').value;
 						with(document.all){
 							txtDesc.value;
+							document.getElementById(tr).className  = "registroInserido";
 
 							document.getElementsByName(nameTd)[1].innerHTML = txtDesc.value;
 							document.getElementsByName(nameTd)[2].innerHTML = txtValor.value;
-							document.getElementsByName(nameTd)[3].innerHTML = cmbStatus.value;
-							document.getElementsByName(nameTd)[4].innerHTML = cmbTipo.value;
-							document.getElementsByName(nameTd)[5].innerHTML = cmbFormaPagamento.value;
-
+							document.getElementsByName(nameTd)[3].innerHTML = txtValorPago.value;
+							document.getElementsByName(nameTd)[4].innerHTML = cmbStatus.value;
+							document.getElementsByName(nameTd)[5].innerHTML = cmbTipo.value;
+							document.getElementsByName(nameTd)[6].innerHTML = cmbFormaPagamento.value;
 							var categoriaText = cmbCategoria.options[cmbCategoria.selectedIndex].text;
+							document.getElementsByName(nameTd)[7].innerHTML = categoriaText;
 
-							document.getElementsByName(nameTd)[6].innerHTML = categoriaText;
+							var empresa = cmbEmpresa.options[cmbEmpresa.selectedIndex].text;
+							document.getElementsByName(nameTd)[8].innerHTML = empresa;
+
+							var DataBencimento = txtDataVenc.value.substring(8,10) + "/" + txtDataVenc.value.substring(5,7) + "/" + txtDataVenc.value.substring(0,4);
+
+							document.getElementsByName(nameTd)[9].innerHTML = DataBencimento;
+
 						}
 
 						document.getElementById("retornoFormLancamento").style.display = "block";
@@ -490,6 +497,7 @@ function selecionaLancamento(param){
 						setTimeout(function(){ document.getElementById("retornoFormLancamento").style.display = "none"; }, 3000);
 
 						cancelaLancamento();
+
 
 					}
 
@@ -778,7 +786,7 @@ function consultar(){
 
 					for(i = 0; i<oDados.length; i++){
 
-						corpotable.insertAdjacentHTML('beforebegin', 
+						corpotable.insertAdjacentHTML('afterbegin', 
 							"<tr id = 'linha"+oDados[i]['LCT_COD']+"'>"+
 							"<td hidden name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_COD'] + "</td>"+
 							"<td name = 'lancamento"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DESCRICAO'] + "</td>"+

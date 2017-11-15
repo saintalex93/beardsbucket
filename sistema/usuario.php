@@ -610,13 +610,13 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                                 <thead>
                                     <tr>
                                         <th hidden>Código</th>
-                                        <th>Empresa</th>
+                                        <!-- <th>Empresa</th> -->
                                         <th>Nome</th>
                                         <th>Login</th>
                                         <th>Permissão</th>
                                         <th>Status</th>
                                         <th hidden>Email</th>
-                                        <th hidden>CodEmpr</th>
+                                        <!-- <th hidden>CodEmpr</th> -->
 
 
                                         <th>Ações</th>
@@ -631,13 +631,13 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                                     require 'src/conecta.php';
 
 
-                                    $cSql = "SELECT DISTINCT USR_COD,COD_EMPR,EMP_NOME_EMPRESA, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-                                    IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
-                                    USUARIO.USR_COD = USR_EMPR.COD_USR join EMPRESA on COD_EMPR = EMP_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) AND USR_COD != $cod order by EMP_NOME_EMPRESA";
+                                    // $cSql = "SELECT DISTINCT USR_COD,COD_EMPR,EMP_NOME_EMPRESA, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                                    // IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USR_EMPR INNER JOIN USUARIO ON 
+                                    // USUARIO.USR_COD = USR_EMPR.COD_USR join EMPRESA on COD_EMPR = EMP_COD WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR =$cod) AND USR_COD != $cod order by EMP_NOME_EMPRESA";
 
-                                    // $cSql = "SELECT  USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
-                                    // IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USUARIO WHERE USR_COD
-                                    // IN (SELECT COD_USR FROM USR_EMPR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)) AND USR_COD != $cod order by USR_NOME";
+                                    $cSql = "SELECT  USR_COD, USR_NOME, USR_LOGIN, USR_PERMISSAO, ifnull(USR_EMAIL, '') as USR_EMAIL, USR_SENHA, IF(USR_STATUS = 1,REPLACE( USR_STATUS,1,'Ativo'),REPLACE( USR_STATUS,0,'Inativo')) as USR_STATUS, 
+                                    IF(USR_PERMISSAO = 0, REPLACE(0, USR_PERMISSAO, 'Usuário'), REPLACE(USR_PERMISSAO, 1, 'Administrador')) as USR_PERMISSAO FROM USUARIO WHERE USR_COD
+                                    IN (SELECT COD_USR FROM USR_EMPR WHERE COD_EMPR IN (SELECT COD_EMPR FROM USR_EMPR WHERE COD_USR = $cod)) AND USR_COD != $cod order by USR_NOME";
 
                                     $dataSet = mysqli_query($conecta, $cSql);
 
@@ -646,14 +646,12 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
 
                                         <tr>
                                         <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_COD']."</td>
-                                        <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['EMP_NOME_EMPRESA']."</td>
                                         <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_NOME']."</td>
                                         <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_LOGIN']."</td>
                                         <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_PERMISSAO']."</td>
                                         <td name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_STATUS']."</td>
                                         <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_EMAIL']."</td>
                                         <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['USR_SENHA']."</td>
-                                        <td hidden name = 'usr_admin".$oDados['USR_COD']."'>".$oDados['COD_EMPR']."</td>
 
 
 
