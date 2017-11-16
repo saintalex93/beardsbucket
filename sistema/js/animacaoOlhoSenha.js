@@ -10,3 +10,17 @@
  	
  	
  });
+
+ document.getElementById('olho1').addEventListener('mousedown', function() {
+ 	document.getElementById('administradorSenha').type = 'text'; 
+
+ 	
+ 	
+ });
+
+ document.getElementById('olho1').addEventListener('mouseup', function() {
+ 	document.getElementById('administradorSenha').type = 'password';
+ 	
+ 	
+ });
+

@@ -542,6 +542,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                                     <div class="form-group">
                                         <label for=""><span id = "cmpObrgt">* </span>Senha</label>
                                         <input type="password" class="form-control border-input" id="administradorSenha" name="administradorSenha" placeholder="****">
+                                         <img src="img/olho1.png" id="olho1" class="olho">
                                     </div>
                                 </div>
                             </div>
