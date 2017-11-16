@@ -178,10 +178,23 @@ $cod =  $_SESSION['user']['id'];
 										<th>Código</th>
 										<th>Nome</th>
 										<th>Empresa</th>
+										<th hidden>CPF</th>
+										<th hidden>TIPO</th>
+										<th hidden>Telefone</th>
+										<th hidden>Email</th>
+										<th hidden>CodEmp</th>
+										<th hidden>Nome Emp</th>
 										<th>Status</th>
+										<th hidden>StatusDesc</th>
+										<th hidden>CLI_BANCO</th>
+										<th hidden>CLI_AGENCIA</th>
+										<th hidden>CLI_CONTA</th>
+										<th hidden>CLI_TIPOCONTA</th>
 										<th>Ação</th>
 									</tr>
 								</thead>
+
+			
 
 								<tbody>
 

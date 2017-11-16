@@ -39,7 +39,7 @@
 	CLI_EMAIL VARCHAR(200),
 	CLI_BANCO VARCHAR(15),
 	CLI_AGENCIA VARCHAR(15),
-	CLI_CONTA VARCHAR(15),
+	CLI_CONTA VARCHAR(15),	
 	CLI_TIPOCONTA CHAR(2),
 	CLI_STATUS TINYINT,
 	COD_EMPR INT NOT NULL,
@@ -174,16 +174,8 @@
 		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
 	END //
 	delimiter ;
-                 
-                              
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+    
+               
                                     
                                     
                                     
