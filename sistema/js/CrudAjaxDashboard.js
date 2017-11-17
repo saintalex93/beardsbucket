@@ -145,7 +145,7 @@ function atualizaDespesa(codEmpresa){
 
 				for(i = 0; i<oDados.length; i++){
 
-					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
+					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO'] || oDados[i]['LCT_DTVENCFOR'] < DataAtual()){
 
 						tableDespesa.insertAdjacentHTML('afterbegin', 
 							"<tr class = 'registroVencido' id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
@@ -219,7 +219,7 @@ function atualizaReceita(codEmpresa){
 
 				for(i = 0; i<oDados.length; i++){
 
-					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO']){
+					if(oDados[i]['LCT_VLRTITULO'] != oDados[i]['LCT_VALORACRESCIMO'] || oDados[i]['LCT_DTVENCFOR'] < DataAtual()){
 
 						tableReceita.insertAdjacentHTML('afterbegin', 
 							"<tr class = 'registroVencido' id = 'linhaDash"+oDados[i]['LCT_COD']+"''><td name = 'despesaDash"+oDados[i]['LCT_COD']+"' hidden>" + oDados[i]['LCT_COD'] + "</td>"+
@@ -319,6 +319,21 @@ function pagar(id){
 	atualizaReceita(0);
 
 }())
+
+
+
+function DataAtual(){
+
+	var dt = new Date();  
+
+	var month = dt.getMonth()+1;  
+	var day = dt.getDate();  
+	var year = dt.getFullYear();  
+	var dataAtual = day +"/"+month+"/"+year;
+
+	return dataAtual;
+
+}
 
 
 
