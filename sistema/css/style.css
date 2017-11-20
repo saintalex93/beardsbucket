@@ -28,8 +28,6 @@
 }
 
 
-
-
 /*USUARIO*/
 
 .image {
@@ -60,6 +58,31 @@
 }
 
 
+/*USUARIO - FOTO (PERFIL)*/
+
+.camera1 {
+    display: inline-block;
+    position: relative;
+}
+
+.camera1:hover:after {
+    visibility: visible;
+}
+
+.camera1::after {
+    background-image: url(../img/camera.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    content: '';
+    display: block;
+    height: 100px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    width: 100px;
+    /*opacity: 0.5;*/
+}
 
 
 /*CADASTRO*/
@@ -350,7 +373,6 @@ table th {
 
 .registroInserido td {
     background: #95e095;
-    
 }
 
 .registroVencido td {
@@ -566,5 +588,4 @@ margin-bottom: 20px;*/
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
-   
 }
