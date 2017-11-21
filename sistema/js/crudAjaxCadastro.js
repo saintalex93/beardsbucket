@@ -162,7 +162,7 @@ else if(param == 2){
 
 					document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
 					document.getElementById("buttonCancelarCliForn").style.display = 'none';
-					document.getElementById("buttonCancelarCliForn").value = 1;
+					document.getElementById("buttoncadClienteForncedor").value = 1;
 					document.getElementById("retornoFormCliForn").style.display = "block";
 					document.getElementById("retornoFormCliForn").setAttribute("class", "retSuccess");
 					document.getElementById("retornoFormCliForn").innerHTML = "Dados atualizados com sucesso";
@@ -300,7 +300,7 @@ function cancelaCliForn(){
 	
 	document.getElementById("buttoncadClienteForncedor").innerHTML = "Inserir";
 	document.getElementById("buttonCancelarCliForn").style.display = 'none';
-	document.getElementById("buttonCancelarCliForn").value = 1;
+	document.getElementById("buttoncadClienteForncedor").value = 1;
 	// document.getElementById("retornoFormCliForn").style.display = "block";
 
 	document.getElementById("cmbEmpresaSelecao").disabled = false;
