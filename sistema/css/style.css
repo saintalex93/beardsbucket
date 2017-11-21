@@ -67,6 +67,7 @@
 
 .camera1:hover:after {
     visibility: visible;
+    cursor: pointer;
 }
 
 .camera1::after {
@@ -81,7 +82,7 @@
     top: 0;
     visibility: hidden;
     width: 100px;
-    /*opacity: 0.5;*/
+   /* opacity: 0.5;*/
 }
 
 
