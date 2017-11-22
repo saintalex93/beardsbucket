@@ -2,7 +2,7 @@
 
 if( !isset($_SESSION['user']) )
 {
- 
+
     echo "<script>window.location = 'index.htm';</script>";
 
     exit;
@@ -107,7 +107,7 @@ $url = basename($_SERVER['PHP_SELF']);
             </a>
         </li>
 
-         <li <?php if($url == 'usuario.php'){ echo "class = 'active'" ;}?>>
+        <li <?php if($url == 'usuario.php'){ echo "class = 'active'" ;}?>>
             <a href="usuario.php">
                 <i class="ti-user"></i>
                 <p>Usuário / Conta</p>
@@ -186,7 +186,7 @@ $url = basename($_SERVER['PHP_SELF']);
     <li class="dropdown">
 
        <li>
-        
+
         <a href="src/deslogar.php">
             <i class="ti-shift-right-alt"></i> Logout
         </a>
@@ -203,10 +203,20 @@ $url = basename($_SERVER['PHP_SELF']);
                 </a>
             </li> -->
 
+            <?php
+
+            $nome = $_SESSION['user']['name'] ;
+
+            $parte = explode(" ", $nome);
+
+            $nomeNovo = $parte[0] . " " . $parte[count($parte)-1];
+
+            ?>
+
             <li>
                 <a href="usuario.php">
                     <i class="fa ti-user"></i>
-                    <p>Usuário: <?php echo $_SESSION['user']['name'] ?></p>
+                    <p>Usuário: <?php echo $nomeNovo ?></p>
                 </a>
             </li>
 

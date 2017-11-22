@@ -75,7 +75,7 @@ if($_GET['funcao'] == 'atualizaDespesa'){
 
                $cSql = "SELECT 
                LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
                <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
                ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
                (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
@@ -87,7 +87,7 @@ if($_GET['funcao'] == 'atualizaDespesa'){
        else{
         $cSql = "SELECT 
         LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-        DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+        DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
         <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
         ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
         (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
@@ -123,7 +123,7 @@ if($_GET['funcao'] == 'AtualizaReceita'){
        if($_GET['codEmpresa'] == 0){
                $cSql = "SELECT 
                LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO, CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
                <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
                ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
                (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO
@@ -136,7 +136,7 @@ if($_GET['funcao'] == 'AtualizaReceita'){
        else{
                $cSql = "SELECT 
                LCT_COD, EMP_NOME_EMPRESA, LCT_DESCRICAO,  CAT_NOME,CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')) AS LCT_VLRTITULO,
-               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA/100) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
+               DATE_FORMAT(LCT_DTVENC, '%d/%m/%Y') AS LCT_DTVENCFOR, (LCT_JUROSDIA) AS LCT_JUROSDIA, IF( DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d') 
                <  DATE_FORMAT(NOW(), '%Y-%m-%d') AND LCT_JUROSDIA > 0, CONCAT('R$ ',format(LCT_VLRTITULO+
                ((LCT_VLRTITULO*((LCT_JUROSDIA/100)*DATEDIFF(CURRENT_DATE, DATE_FORMAT(LCT_DTVENC, '%Y-%m-%d'))))),2,'de_DE')),
                (CONCAT('R$ ',format(LCT_VLRTITULO,2,'de_DE')))) AS LCT_VALORACRESCIMO

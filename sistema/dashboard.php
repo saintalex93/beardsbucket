@@ -5,27 +5,27 @@ require "src/conecta.php";
 
 $cod =  $_SESSION['user']['id'];
 $mes = array();
-        $mes[] = "Mes";
+$mes[] = "Mes";
 
-        $mes[] = "Janeiro";
-        $mes[] = 'Fevereiro';
-        $mes[] = 'Março';
-        $mes[] ='Abril';
-        $mes[] ='Maio';
-        $mes[] ='Junho';
-        $mes[] ='Julho';
-        $mes[] ='Agosto';
-        $mes[] ='Setetembro';
-        $mes[] ='Outubro';
-        $mes[] ='Novembro';
-        $mes[] ='Dezembro';
+$mes[] = "Janeiro";
+$mes[] = 'Fevereiro';
+$mes[] = 'Março';
+$mes[] ='Abril';
+$mes[] ='Maio';
+$mes[] ='Junho';
+$mes[] ='Julho';
+$mes[] ='Agosto';
+$mes[] ='Setetembro';
+$mes[] ='Outubro';
+$mes[] ='Novembro';
+$mes[] ='Dezembro';
 ?>
 
 <div class="col-md-6 col-md-offset-3 text-center">
     <div class="form-group">
         <div class="header">
-                <h4 class="title">Detalhes mensais por Empresa</h4>
-            </div>
+            <h4 class="title">Detalhes mensais por Empresa</h4>
+        </div>
 
 
         <select class="form-control border-input" id="cmbEmpresaSelecao" name="cmbEmpresaSelecao" onchange="buscaDespesa(this.value);atualizaGrafico(this.value);atualizaDespesa(this.value); atualizaReceita(this.value);">
@@ -186,13 +186,13 @@ $mes = array();
                             <tbody id="corpoDespesa">
 
 
-                     </tbody>
-                 </table>
-             </div>
-         </div>
-     </div>
- </div>
-</div>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div> <!--ROW DESPESAS -->
 
 <div class="row">

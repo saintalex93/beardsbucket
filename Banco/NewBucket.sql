@@ -176,7 +176,6 @@
 	delimiter ;
     
     
-    select * from USUARIO
-    
+
     
     

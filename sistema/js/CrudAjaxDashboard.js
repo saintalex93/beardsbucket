@@ -154,7 +154,7 @@ function atualizaDespesa(codEmpresa){
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + " %</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 
@@ -171,7 +171,7 @@ function atualizaDespesa(codEmpresa){
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
-							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + " %</td> "+
 							"<td name = 'despesaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 							
@@ -228,7 +228,7 @@ function atualizaReceita(codEmpresa){
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
-							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + " %</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 
@@ -245,7 +245,7 @@ function atualizaReceita(codEmpresa){
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['CAT_NOME'] + "</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VLRTITULO'] + "</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_DTVENCFOR'] + "</td> "+
-							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + "</td> "+
+							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_JUROSDIA'] + " %</td> "+
 							"<td name = 'receitaDash"+oDados[i]['LCT_COD']+"'>" + oDados[i]['LCT_VALORACRESCIMO'] + "</td> "+
 
 							
