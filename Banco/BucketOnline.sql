@@ -1,21 +1,8 @@
--- ﻿CREATE USER 'bucket'@'localhost' IDENTIFIED BY '123';
-	-- GRANT ALL PRIVILEGES ON * . * TO 'bucket'@'localhost';
-	-- 
-	-- SELECT * FROM mysql.user;
-	-- 
--- 	select * from INFORMATION_SCHEMA.PROCESSLIST;
 
 	DROP DATABASE IF EXISTS numbe874_BUCKET;
 	CREATE DATABASE numbe874_BUCKET;
 	USE numbe874_BUCKET;
 
-
-	-- ﻿CREATE USER 'bucket'@'localhost' IDENTIFIED BY '123';
-	-- GRANT ALL PRIVILEGES ON * . * TO 'bucket'@'localhost';
-	-- 
-	-- SELECT * FROM mysql.user;
-	-- 
--- 	select * from INFORMATION_SCHEMA.PROCESSLIST;
 
 	CREATE TABLE EMPRESA (
 	EMP_COD INT PRIMARY KEY AUTO_INCREMENT,
@@ -40,13 +27,13 @@
 	CREATE TABLE CLIENTE (
 	CLI_COD INT PRIMARY KEY AUTO_INCREMENT,
 	CLI_NOME VARCHAR(100) NOT NULL,
-	CLI_TIPO CHAR(2) NOT NULL,
+	CLI_TIPO CHAR(2),
 	CLI_CPF_CNPJ VARCHAR(20),
 	CLI_TELEFONE VARCHAR(20),
 	CLI_EMAIL VARCHAR(200),
 	CLI_BANCO VARCHAR(15),
 	CLI_AGENCIA VARCHAR(15),
-	CLI_CONTA VARCHAR(15),
+	CLI_CONTA VARCHAR(15),	
 	CLI_TIPOCONTA CHAR(2),
 	CLI_STATUS TINYINT,
 	COD_EMPR INT NOT NULL,
@@ -57,7 +44,8 @@
 
 	CREATE TABLE USUARIO (
 	USR_COD INT PRIMARY KEY AUTO_INCREMENT,
-    USR_SENHA VARCHAR(50),
+    USR_FOTO VARCHAR(150),
+	USR_SENHA VARCHAR(50),
 	USR_LOGIN VARCHAR(50) UNIQUE,
 	USR_NOME VARCHAR(200),
 	USR_EMAIL VARCHAR(200),
@@ -113,10 +101,10 @@
 	-- ---------------------------INSERTS--------------------------------------/
 
 	INSERT INTO USUARIO VALUES
-	(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
-	(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,1000),
-	(0, '123', 'rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
-	(0, '123', 'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
+	(0, null, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
+	(0, null, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,1000),
+	(0, null, '123','rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
+	(0, null, '123',  'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
 	--
 
 	INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",1),
@@ -181,5 +169,3 @@
 		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
 	END //
 	delimiter ;
-  
-    
