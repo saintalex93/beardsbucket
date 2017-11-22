@@ -90,10 +90,12 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                         <!-- <img src="assets/img/background.jpg" alt="..."/> -->
 
                     </div>
-                    <form action="insertImagem.php" method="post" enctype="multipart/form-data" id="frmTrocar" style="display:none"><br>
+                    <form action="insertImagem.php" method="post" enctype="multipart/form-data" id="frmTrocar" target = "gravaImagem" style="display:none"><br>
                         <input name="codigo" value="0"> <br>
                         <input type="file" name="foto" onchange="document.all.frmTrocar.submit(); trocaImagem();"><br>
                     </form>
+
+                    <iframe src="" frameborder="0" name="gravaImagem" style="display: none;"></iframe>
 
 
                     <div class="content">

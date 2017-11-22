@@ -5,7 +5,7 @@ $imagem = $_FILES['foto']['name'];
 
 
 if (move_uploaded_file($_FILES['foto']['tmp_name'], "img/users/" . $cod)){
-    echo "<script>document.location.href='usuario.php'</script>";
+	echo "Gravou";
 }
 else{
     echo 'nao gravou';
