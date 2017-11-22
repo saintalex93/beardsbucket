@@ -42,7 +42,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                 <div class="card card-user" style=" height:318px">
                     <div class="image">
 
-                        <div class="trofeu" rel="tooltip" title="texto explicativo.">
+                        <div class="trofeu" rel="" title="Nível do Usuário!">
 
                             <?php
                             $cSQL ="SELECT USR_PONTUACAO FROM USUARIO WHERE USR_COD =".$cod;
@@ -83,7 +83,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                             }
 
                             mysqli_close($conecta);
-                            
+
                             ?>
 
                         </div>
@@ -99,10 +99,10 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                     <div class="content">
                         <div class="author">
 
-                           
+
 
                             <?php
-                            
+
                             
                             echo  '<div class="camera1  border-white" ' .$cAlterar. '"> <img src="img/users/' . $cod . '"  class=" avatar border-white"  onerror=\'this.src="img/users/erro.png"\') ></div><br>'
                             ?>

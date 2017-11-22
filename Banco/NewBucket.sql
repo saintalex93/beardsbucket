@@ -50,7 +50,6 @@
 
 	CREATE TABLE USUARIO (
 	USR_COD INT PRIMARY KEY AUTO_INCREMENT,
-    USR_FOTO VARCHAR(150),
 	USR_SENHA VARCHAR(50),
 	USR_LOGIN VARCHAR(50) UNIQUE,
 	USR_NOME VARCHAR(200),
@@ -107,10 +106,10 @@
 	-- ---------------------------INSERTS--------------------------------------/
 
 	INSERT INTO USUARIO VALUES
-	(0, null, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
-	(0, null, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,1000),
-	(0, null, '123','rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
-	(0, null, '123',  'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
+	(0, '123', 'bucket', 'Sistema', 'contato@beardsweb.com.br', 1,1,0),
+	(0, '123', 'alex', 'Alex Santos', 'alexsantosinformatica@gmail.com', 1,1,1000),
+	(0, '123','rogerio', 'Rogério Santos', 'contato@hotelclubeazuldomar.com.br', 0,1,0),
+	(0, '123',  'brazolin', 'José Brazolin', 'brazolin@brazolin.com.br', 1,1,0);
 	--
 
 	INSERT INTO EMPRESA VALUES(0, "Fisa Prestadora de Serviços", "18.176.989/0001-09",1),
@@ -175,3 +174,9 @@
 		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
 	END //
 	delimiter ;
+    
+    
+    select * from USUARIO
+    
+    
+    
