@@ -92,7 +92,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                     </div>
                     <form action="insertImagem.php" method="post" enctype="multipart/form-data" id="frmTrocar" style="display:none"><br>
                         <input name="codigo" value="0"> <br>
-                        <input type="file" name="foto" onchange="document.all.frmTrocar.submit()"><br>
+                        <input type="file" name="foto" onchange="document.all.frmTrocar.submit(); trocaImagem();"><br>
                     </form>
 
 
@@ -104,7 +104,7 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
                             <?php
 
                             
-                            echo  '<div class="camera1  border-white" ' .$cAlterar. '"> <img src="img/users/' . $cod . '"  class=" avatar border-white"  onerror=\'this.src="img/users/erro.png"\') ></div><br>'
+                            echo  '<div class="camera1  border-white" ' .$cAlterar. '"> <img src="img/users/' . $cod . '"  class=" avatar border-white" id = "usrImg" onerror=\'this.src="img/users/erro.png"\') ></div><br>'
                             ?>
 
                             <h4 class="title" id="nomePagina">
@@ -830,6 +830,31 @@ if($oDados = mysqli_fetch_assoc($dataSet)){
 <script src="js/jquery.mask.js"></script>
 
 <script>
+
+    function trocaImagem(){
+
+        var oArq  = new FileReader();
+
+        oArq.onloadend = function(){
+            document.getElementById('usrImg').src = oArq.result;
+
+
+        }
+        if(document.all.foto.files[0]){
+        oArq.readAsDataURL(document.all.foto.files[0]); // Comando para carregar imagem na memória.
+        document.getElementById('usrImg').style.display = "block";
+
+
+    }
+
+    else{
+
+        document.all.imgBanner.style.display = "none";
+
+    }
+}
+
+
     var options = {
         onKeyPress: function(cpf, ev, el, op) {
             var masks = ['000.000.000-000', '00.000.000/0000-00'],
