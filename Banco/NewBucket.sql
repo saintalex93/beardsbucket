@@ -102,7 +102,18 @@
 
 	ALTER TABLE LANCAMENTO ADD FOREIGN KEY(CAT_COD) REFERENCES CATEGORIA (CAT_COD);
 	
+	Delimiter //
 
+	CREATE TRIGGER TR_CATEGORIA after INSERT ON EMPRESA
+	FOR EACH ROW
+	BEGIN
+	insert into CATEGORIA VALUES
+		(0,"Aluguel",1,new.EMP_COD),(0,"Salário",1,new.EMP_COD),
+		(0,"Transporte",1,new.EMP_COD),(0,"Alimentação",1,new.EMP_COD),
+		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
+	END //
+	delimiter ;
+    
 	-- ---------------------------INSERTS--------------------------------------/
 
 	INSERT INTO USUARIO VALUES
@@ -131,22 +142,19 @@
 	INSERT INTO USR_EMPR VALUES(0,4,3);
 	-- 
 
-	insert into CATEGORIA VALUES
-	(0,"Aluguel",1,1),(0,"Salário",1,1),
-    (0,"Transporte",1,1),(0,"Alimentação",1,1),
-    (0,"Pessoal",1,1),(0,"Vendas",1,1),
-	
-    (0,"Aluguel",1,2),(0,"Salário",1,2),
-    (0,"Transporte",1,2),(0,"Alimentação",1,2),
-    (0,"Pessoal",1,2),(0,"Vendas",1,2),
-	
-    (0,"Aluguel",1,3),(0,"Salário",1,3),
-    (0,"Transporte",1,3),(0,"Alimentação",1,3),
-    (0,"Pessoal",1,3),(0,"Vendas",1,3);
+	-- insert into CATEGORIA VALUES
+-- 	(0,"Aluguel",1,1),(0,"Salário",1,1),
+--     (0,"Transporte",1,1),(0,"Alimentação",1,1),
+--     (0,"Pessoal",1,1),(0,"Vendas",1,1),
+-- 	
+--     (0,"Aluguel",1,2),(0,"Salário",1,2),
+--     (0,"Transporte",1,2),(0,"Alimentação",1,2),
+--     (0,"Pessoal",1,2),(0,"Vendas",1,2),
+-- 	
+--     (0,"Aluguel",1,3),(0,"Salário",1,3),
+--     (0,"Transporte",1,3),(0,"Alimentação",1,3),
+--     (0,"Pessoal",1,3),(0,"Vendas",1,3);
 
-	-- 
-
-	-- 
 	INSERT INTO CLIENTE VALUES (0, "SABESP", 'PJ', NULL, NULL, NULL, NULL, NULL, NULL, 'CC',1,1),
 	(0, "Alex Santos", 'PF', "399.305.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,3),
 	(0, "Alex Santos", 'PF', "399.123.222-22", "(11) 96695-3835", "alexsantosinformatica@gmail.com", "Itaú", "5607", "00657-3", 'CP',1,4),
@@ -163,17 +171,7 @@
 	INSERT INTO LANCAMENTO VALUES (0,'Aluguel escritório',NOW(),NOW(),NOW(), 2000.00,2000.00,0,1,'Pago - Recebido','Despesa','Dinheiro',7,4,2,2);
     
     
-	Delimiter //
 
-	CREATE TRIGGER TR_CATEGORIA after INSERT ON EMPRESA
-	FOR EACH ROW
-	BEGIN
-	insert into CATEGORIA VALUES
-		(0,"Aluguel",1,new.EMP_COD),(0,"Salário",1,new.EMP_COD),
-		(0,"Transporte",1,new.EMP_COD),(0,"Alimentação",1,new.EMP_COD),
-		(0,"Pessoal",1,new.EMP_COD),(0,"Vendas",1,new.EMP_COD);
-	END //
-	delimiter ;
     
     
 

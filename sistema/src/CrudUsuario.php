@@ -292,7 +292,7 @@ else if($_GET['funcao'] == 'insereAdministrador'){
 
 	}
 	else
-		echo "Erro ao inserir";  
+		echo "Erro ao inserir".mysqli_error($conecta);  
 
 }
 

@@ -679,7 +679,7 @@ if(param == 1){
 			send();
 			onload = function(){
 
-				if(responseText != "Erro ao inserir"){
+				if(responseText.substring(0,15) != "Erro ao inserir"){
 
 					var oDados = JSON.parse(responseText);
 
@@ -737,7 +737,7 @@ if(param == 1){
 
 				else{
 					document.getElementById("retornoFormAdministrador").style.display = "block";
-					document.getElementById("retornoFormAdministrador").innerHTML = "Não foi possível inserir o Usuário";
+					document.getElementById("retornoFormAdministrador").innerHTML = "Não foi possível inserir o Usuário"+responseText;
 					document.getElementById("retornoFormAdministrador").setAttribute("class", "retDanger");
 
 					setTimeout(function(){ document.getElementById("retornoFormAdministrador").style.display = "none"; }, 3000);
