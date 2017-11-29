@@ -39,12 +39,37 @@
         background: white;
     }
 
+    ul{
+        list-style: none;
+    }
+
+    li{
+        font-size: 20px;
+    }
+
+    h4{
+        background: #fffcf5;
+        border: 1px solid #ccc;
+    }
+
     .card .content {
         border: 2px solid #ccc;
         border-radius: 10px;
         width: 90%;
         margin: 0 auto;
-        /*box-shadow: 3px 5px 2px #888888;*/
+        box-shadow: 0;
+    }
+
+    .card{
+        box-shadow: none;
+    }
+
+    .text-center{
+        margin-top: 0;
+    }
+
+    img{
+        margin: 0 auto;
     }
 
 </style>
@@ -74,21 +99,40 @@
                         <li>Gustavo Silva</li>
                         <li>Gabriel Vannucci</li>
                     </ul>
+            </div>
+        </div>
+
+            <div class="card">
+
+                <div class="content">
 
 
-                    <h3 class="text-center">Modelagem de banco de dados:</h3>
+                    <h3 class="text-center">Modelagem do Banco de Dados:</h3>
 
                     <h4 class="text-center">Modelo Conceitual:</h4>
 
-                    <img src="../Banco/Modelagem/Conceitual.jpg" alt="Imagem Banco Conceitual">
+                    <img class = "img-responsive " src="../Banco/Modelagem/Conceitual.jpg" alt="Imagem Banco Conceitual">
 
                     <h4 class="text-center">Modelo Lógico:</h4>
 
-                    <img src="../Banco/Modelagem/Logico.jpg" alt="Imagem Banco Logico">
+                    <img class = "img-responsive"src="../Banco/Modelagem/Logico.jpg" alt="Imagem Banco Logico">
 
                 </div>
 
             </div>
+
+              <div class="card">
+
+                <div class="content">
+                    <h3 class="text-center">Use Case:</h3>
+
+                    <img class = "img-responsive " src="../Documentacao/UMLBeardsBucket.jpg" alt="Imagem Banco Conceitual" id="usecase">
+
+
+                </div>
+
+            </div>
+
         </div>
 
     </div>
