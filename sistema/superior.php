@@ -70,7 +70,7 @@ $url = basename($_SERVER['PHP_SELF']);
 		Tip 2: you can change the color of the active button using the data-active-color="primary | info | success | warning | danger"
 	-->
 
-   <div class="sidebar-wrapper">
+ <div class="sidebar-wrapper">
     <div class="logo">
         <a href="http://www.beardsweb.com.br" class="simple-text" target="_blank">
             Beards Web
@@ -134,9 +134,9 @@ $url = basename($_SERVER['PHP_SELF']);
             <a class="navbar-brand" href="#">
                 <?php
                 if($url == 'dashboard.php'){
-                 echo "DashBoard" ;
-             }
-             else if($url == 'usuario.php'){
+                   echo "DashBoard" ;
+               }
+               else if($url == 'usuario.php'){
 
                 echo "Usuário / Conta";
             }
@@ -168,7 +168,7 @@ $url = basename($_SERVER['PHP_SELF']);
 
 
 
-       <ul class="nav navbar-nav navbar-right">
+     <ul class="nav navbar-nav navbar-right">
 
 
 
@@ -185,7 +185,7 @@ $url = basename($_SERVER['PHP_SELF']);
     </li>
     <li class="dropdown">
 
-       <li>
+     <li>
 
         <a href="src/deslogar.php">
             <i class="ti-shift-right-alt"></i> Logout
@@ -209,7 +209,14 @@ $url = basename($_SERVER['PHP_SELF']);
 
             $parte = explode(" ", $nome);
 
-            $nomeNovo = $parte[0] . " " . $parte[count($parte)-1];
+
+            if (count($parte)>1){
+                $nomeNovo = $parte[0] . " " . $parte[count($parte)-1];
+            }
+
+            else{
+                $nomeNovo = $nome;
+            }
 
             ?>
 

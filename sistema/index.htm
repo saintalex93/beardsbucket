@@ -35,17 +35,17 @@
     <link rel="stylesheet" href="css/style.css">
 
     <style>
-        body {
-            background: white;
-        }
-        
-        .card .content {
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            box-shadow: 3px 5px 2px #888888;
-        }
+    body {
+        background: white;
+    }
+    
+    .card .content {
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        box-shadow: 3px 5px 2px #888888;
+    }
 
-    </style>
+</style>
 
 </head>
 <!-- Enter -->
@@ -58,7 +58,7 @@
 
                 <div class="header text-center imagemLogin" id="imagemLogin">
                     <h3 class="title">Beards Bucket</h3>
-                        <img src="img/beards.png" alt="Logo Beards Web">
+                    <img src="img/beards.png" alt="Logo Beards Web">
                 </div>
 
                 <div class="col-md-4 col-md-offset-5 text-center">
@@ -248,43 +248,43 @@
                                         <div class="form-group">
                                             <label for="">Tipo da Conta:</label>
                                             <select placeholder="" class="form-control border-input" id="tipoConta">
-													<option value="SC">Sem Conta</option>
-													<option value="CC">Conta Corrente</option>
-													<option value="CP">Conta Poupança</option>
-													<option value="CS">Conta Salário</option>
-												</select>
-                                        </div>
-                                    </div>
+                                               <option value="SC">Sem Conta</option>
+                                               <option value="CC">Conta Corrente</option>
+                                               <option value="CP">Conta Poupança</option>
+                                               <option value="CS">Conta Salário</option>
+                                           </select>
+                                       </div>
+                                   </div>
 
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for=""><span id = "cmpObrgt">* </span>Saldo Inicial:</label>
-                                            <input type="text" class="form-control border-input" name='saldoContaCadastro' id="saldoContaCadastro" required>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-md-12">
+                                   <div class="col-md-3">
                                     <div class="form-group">
-                                        <output type="text" class="text-center" name="retornoFormLogin" id="retornoFormInserir"></output>
+                                        <label for=""><span id = "cmpObrgt">* </span>Saldo Inicial:</label>
+                                        <input type="text" class="form-control border-input" name='saldoContaCadastro' id="saldoContaCadastro" required>
                                     </div>
                                 </div>
 
-                                <button class="btn btn-info btn-fill botao" onclick="insereUsuario()">Cadastrar</button>
+                            </div>
 
-                            </form>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <output type="text" class="text-center" name="retornoFormLogin" id="retornoFormInserir"></output>
+                                </div>
+                            </div>
 
-                        </div>
+                            <button class="btn btn-info btn-fill botao" onclick="insereUsuario()">Cadastrar</button>
+
+                        </form>
+
                     </div>
                 </div>
-                <!-- Cadastro -->
-
             </div>
-            <!--FINAL ROW -->
+            <!-- Cadastro -->
 
         </div>
+        <!--FINAL ROW -->
+
     </div>
+</div>
 
 
 
@@ -316,7 +316,7 @@
     var options = {
         onKeyPress: function(cpf, ev, el, op) {
             var masks = ['000.000.000-000', '00.000.000/0000-00'],
-                mask = (cpf.length > 14) ? masks[1] : masks[0];
+            mask = (cpf.length > 14) ? masks[1] : masks[0];
             el.mask(mask, op);
         }
     }

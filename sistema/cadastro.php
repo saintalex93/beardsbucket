@@ -194,7 +194,7 @@ $cod =  $_SESSION['user']['id'];
 									</tr>
 								</thead>
 
-			
+								
 
 								<tbody>
 
@@ -299,8 +299,8 @@ $cod =  $_SESSION['user']['id'];
 										<th>Código</th>
 										<th>Nome</th>
 										<th>Status</th>
-										<th >Empresa</th>
-										<th >Ação</th>
+										<th>Empresa</th>
+										<th>Ação</th>
 
 									</tr>
 								</thead>
@@ -325,52 +325,52 @@ $cod =  $_SESSION['user']['id'];
 		</div> <!-- CONTENT FLUID -->
 	</div>
 
-	</div> <!-- CONTENT -->
+</div> <!-- CONTENT -->
 
 
 
 
 
-	<?php include_once('inferior.php');?>
+<?php include_once('inferior.php');?>
 
 
-	<script src = "js/interatividades.js"></script>
-	<script src = "js/crudAjaxCadastro.js"></script>
+<script src = "js/interatividades.js"></script>
+<script src = "js/crudAjaxCadastro.js"></script>
 
-	<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
+<script src="js/jquery-3.2.1.js" type="text/javascript"></script>
 
-	<script>
-		var $JQ = jQuery.noConflict();    
-	</script>
+<script>
+	var $JQ = jQuery.noConflict();    
+</script>
 
-	<script src="js/jquery.maskMoney.min.js"></script>
-	<script src="js/jquery.mask.js"></script>
+<script src="js/jquery.maskMoney.min.js"></script>
+<script src="js/jquery.mask.js"></script>
 
 
 
-	<script>
-		var options = {
-			onKeyPress: function (cpf, ev, el, op) {
-				var masks = ['000.000.000-000', '00.000.000/0000-00'],
-				mask = (cpf.length > 14) ? masks[1] : masks[0];
-				el.mask(mask, op);
-			}
+<script>
+	var options = {
+		onKeyPress: function (cpf, ev, el, op) {
+			var masks = ['000.000.000-000', '00.000.000/0000-00'],
+			mask = (cpf.length > 14) ? masks[1] : masks[0];
+			el.mask(mask, op);
 		}
+	}
 
-		$JQ('#cadCliFornCNPJCPF').mask('000.000.000-000', options);
+	$JQ('#cadCliFornCNPJCPF').mask('000.000.000-000', options);
 
 
-		var options2 = {
-			onKeyPress: function (cpf, ev, el, op) {
-				var masks = ['(00) 0000-00000', '(00) 00000-0000'],
-				mask = (cpf.length > 14) ? masks[1] : masks[0];
-				el.mask(mask, op);
-			}
+	var options2 = {
+		onKeyPress: function (cpf, ev, el, op) {
+			var masks = ['(00) 0000-00000', '(00) 00000-0000'],
+			mask = (cpf.length > 14) ? masks[1] : masks[0];
+			el.mask(mask, op);
 		}
+	}
 
-		$JQ('#cadCliFornTel').mask('(00) 0000-00000', options2);
+	$JQ('#cadCliFornTel').mask('(00) 0000-00000', options2);
 
 
 
 
-	</script>
+</script>

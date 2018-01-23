@@ -14,9 +14,12 @@ function insereUsuario(){
 		conta = numeroContaCadastro.value,
 		saldo = saldoContaCadastro.value;
 
-		saldo = saldo.replace("R$","").replace(".","").replace(",",".");
-
-
+		if(document.getElementsByName("saldoContaCadastro")[0].value.trim().length<=0){
+			saldo = "0.00";
+		}
+		else{	
+			saldo = saldo.replace('R$','').replace('.','').replace(',','.').trim();
+		}
 
 	}
 	var senhaCadastro = document.getElementById("senhaCadastro").value;
@@ -85,12 +88,6 @@ function validaCampos(){
 	else if(document.getElementById("nomeContaCadastro").value.trim().length<1){
 		return false;
 	}
-
-	else if(document.getElementById("saldoContaCadastro").value.trim().length<1){
-		return false;
-	}
-
-
 	
 	else{
 		return true;
